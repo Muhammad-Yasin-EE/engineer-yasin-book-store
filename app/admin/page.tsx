@@ -17,19 +17,14 @@ const CATEGORIES = [
 export default function AdminDashboard() {
   const supabase = createClient()
   
-  // Tabs: 'orders' | 'books'
   const [activeTab, setActiveTab] = useState<'orders' | 'books'>('orders')
-  
-  // Data lists
   const [orders, setOrders] = useState<any[]>([])
   const [books, setBooks] = useState<any[]>([])
   
-  // Loading states
   const [loadingOrders, setLoadingOrders] = useState(false)
   const [loadingBooks, setLoadingBooks] = useState(false)
-  const [actionLoading, setActionLoading] = useState<string | null>(null) // holds orderId being processed
+  const [actionLoading, setActionLoading] = useState<string | null>(null)
   
-  // Form states for Book Add/Edit
   const [showBookModal, setShowBookModal] = useState(false)
   const [editingBookId, setEditingBookId] = useState<string | null>(null)
   const [title, setTitle] = useState('')
@@ -45,11 +40,9 @@ export default function AdminDashboard() {
   const [formError, setFormError] = useState<string | null>(null)
   const [formSubmitting, setFormSubmitting] = useState(false)
   
-  // Rejection prompts
   const [rejectionOrderId, setRejectionOrderId] = useState<string | null>(null)
   const [rejectionReason, setRejectionReason] = useState('')
 
-  // Fetch orders
   const fetchOrders = async () => {
     setLoadingOrders(true)
     try {
@@ -66,7 +59,6 @@ export default function AdminDashboard() {
     }
   }
 
-  // Fetch books
   const fetchBooks = async () => {
     setLoadingBooks(true)
     try {
@@ -88,7 +80,6 @@ export default function AdminDashboard() {
     fetchBooks()
   }, [])
 
-  // Verify Order API trigger
   const handleVerifyOrder = async (orderId: string) => {
     if (!confirm('Are you sure you want to verify this manual transfer? The buyer will receive confirmation links.')) return
     setActionLoading(orderId)
@@ -100,8 +91,6 @@ export default function AdminDashboard() {
       })
       const data = await res.json()
       if (data.error) throw new Error(data.error)
-      
-      // Update local state
       setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: 'verified' } : o))
     } catch (err: any) {
       alert(`Verification failed: ${err.message}`)
@@ -110,13 +99,11 @@ export default function AdminDashboard() {
     }
   }
 
-  // Open Rejection dialogue
   const startRejection = (orderId: string) => {
     setRejectionOrderId(orderId)
     setRejectionReason('')
   }
 
-  // Submit Rejection API trigger
   const handleRejectOrder = async () => {
     if (!rejectionOrderId) return
     setActionLoading(rejectionOrderId)
@@ -135,8 +122,6 @@ export default function AdminDashboard() {
       })
       const data = await res.json()
       if (data.error) throw new Error(data.error)
-      
-      // Update local state
       setOrders(prev => prev.map(o => o.id === currentOrderId ? { ...o, status: 'rejected' } : o))
     } catch (err: any) {
       alert(`Rejection failed: ${err.message}`)
@@ -145,7 +130,6 @@ export default function AdminDashboard() {
     }
   }
 
-  // Delete Book DML
   const handleDeleteBook = async (id: string) => {
     if (!confirm('Are you sure you want to delete this book? This will break download links for past purchases.')) return
     try {
@@ -157,7 +141,6 @@ export default function AdminDashboard() {
     }
   }
 
-  // Setup Book Edit modal
   const openEditBook = (book: any) => {
     setEditingBookId(book.id)
     setTitle(book.title)
@@ -174,7 +157,6 @@ export default function AdminDashboard() {
     setShowBookModal(true)
   }
 
-  // Setup Book Add modal
   const openAddBook = () => {
     setEditingBookId(null)
     setTitle('')
@@ -191,7 +173,6 @@ export default function AdminDashboard() {
     setShowBookModal(true)
   }
 
-  // Submit Book Add/Edit form
   const handleSaveBook = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormError(null)
@@ -206,7 +187,6 @@ export default function AdminDashboard() {
       return
     }
 
-    // Require file inputs on brand-new books
     if (!editingBookId && !bookFile) {
       setFormError('Please upload the book PDF/EPUB document file.')
       return
@@ -218,18 +198,14 @@ export default function AdminDashboard() {
       let finalCoverUrl = existingCoverUrl
       let finalFilePath = existingFilePath
 
-      // 1. Upload Cover if selected
       if (coverFile) {
         const ext = coverFile.name.split('.').pop()
         const path = `covers/${Date.now()}.${ext}`
         const { error: coverErr } = await supabase.storage.from('book-covers').upload(path, coverFile, { upsert: true })
         if (coverErr) throw new Error(`Cover upload error: ${coverErr.message}`)
-        
-        // Public file access URL
         finalCoverUrl = `${supabase.storage.from('book-covers').getPublicUrl(path).data.publicUrl}`
       }
 
-      // 2. Upload Book Document if selected
       if (bookFile) {
         const ext = bookFile.name.split('.').pop()
         const bucket = type === 'free' ? 'free-books' : 'premium-books'
@@ -238,11 +214,9 @@ export default function AdminDashboard() {
         
         const { error: docErr } = await supabase.storage.from(bucket).upload(path, bookFile, { upsert: true })
         if (docErr) throw new Error(`Document upload error: ${docErr.message}`)
-        
         finalFilePath = path
       }
 
-      // 3. Save details to PostgreSQL
       const bookData = {
         title: title.trim(),
         author: author.trim(),
@@ -267,7 +241,6 @@ export default function AdminDashboard() {
         if (insertErr) throw insertErr
       }
 
-      // Refresh list and close
       fetchBooks()
       setShowBookModal(false)
     } catch (err: any) {
@@ -278,34 +251,33 @@ export default function AdminDashboard() {
     }
   }
 
-  // Get Payment proof URL for visual review
   const getProofUrl = (path: string) => {
     return `${supabase.storage.from('payment-proofs').getPublicUrl(path).data.publicUrl}`
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow bg-slate-950 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow bg-white text-[#222222] space-y-8">
       
       {/* Title */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-900 pb-6 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-150 pb-6 gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
-            <ShieldCheck className="w-7 h-7 text-amber-500" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] tracking-tight flex items-center gap-2">
+            <ShieldCheck className="w-7 h-7 text-[#B8212E]" />
             Admin Operations Panel
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm text-gray-400 mt-1">
             Manage your books catalog database and verify manual bank/wallet transfer receipts.
           </p>
         </div>
 
         {/* Tab Selector */}
-        <div className="flex bg-[#0c1324] border border-slate-800 rounded-xl p-1 shrink-0">
+        <div className="flex bg-gray-50 border border-gray-200 rounded-full p-1 shrink-0">
           <button
             onClick={() => setActiveTab('orders')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
               activeTab === 'orders'
-                ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#B8212E] text-white shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
             }`}
           >
             <Layers className="w-4 h-4" />
@@ -313,10 +285,10 @@ export default function AdminDashboard() {
           </button>
           <button
             onClick={() => setActiveTab('books')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
               activeTab === 'books'
-                ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#B8212E] text-white shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
             }`}
           >
             <BookMarked className="w-4 h-4" />
@@ -328,38 +300,38 @@ export default function AdminDashboard() {
       {/* VIEW 1: MANUAL PAYMENTS ORDERS MANAGER */}
       {activeTab === 'orders' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Submitted Verification Requests</h2>
+          <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+            <h2 className="text-xs font-bold text-gray-450 uppercase tracking-widest">Submitted Verification Requests</h2>
             <button 
               onClick={fetchOrders}
               disabled={loadingOrders}
-              className="p-2 border border-slate-800 hover:bg-slate-900 rounded-xl text-slate-400 hover:text-white cursor-pointer"
+              className="p-2 border border-gray-250 hover:bg-gray-50 rounded-full text-gray-500 hover:text-[#B8212E] cursor-pointer"
             >
-              <RefreshCw className={`w-4 h-4 ${loadingOrders ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-3.5 h-3.5 ${loadingOrders ? 'animate-spin' : ''}`} />
             </button>
           </div>
 
           {loadingOrders ? (
-            <div className="py-20 text-center text-slate-500 text-sm">Loading orders database...</div>
+            <div className="py-20 text-center text-gray-500 text-sm">Loading orders database...</div>
           ) : orders.length === 0 ? (
-            <div className="py-16 bg-[#0c1324]/20 border border-slate-900 rounded-3xl flex flex-col items-center justify-center text-slate-500 text-center px-4">
+            <div className="py-16 bg-gray-50 border border-gray-200 rounded-none flex flex-col items-center justify-center text-gray-400 text-center px-4">
               <span className="text-3xl mb-2">🎉</span>
-              <h4 className="text-sm font-bold text-slate-400">All caught up</h4>
-              <p className="text-xs text-slate-500 mt-0.5">No client orders have been submitted for verification yet.</p>
+              <h4 className="text-sm font-bold text-gray-650">All caught up</h4>
+              <p className="text-xs text-gray-400 mt-0.5">No client orders have been submitted for verification yet.</p>
             </div>
           ) : (
             <div className="space-y-6">
               {orders.map((order) => (
                 <div 
                   key={order.id} 
-                  className={`p-6 rounded-3xl border bg-[#0d1324]/30 flex flex-col lg:flex-row gap-6 transition-colors ${
+                  className={`p-6 rounded-none border flex flex-col lg:flex-row gap-6 transition-colors ${
                     order.status === 'payment_submitted' 
-                      ? 'border-indigo-500/20 shadow-lg shadow-indigo-950/10 bg-[#0d1324]/50' 
-                      : 'border-slate-900'
+                      ? 'border-[#B8212E]/30 bg-white hover:border-[#B8212E]/50' 
+                      : 'border-gray-200 bg-white'
                   }`}
                 >
-                  {/* Screenshot Display */}
-                  <div className="shrink-0 w-full lg:w-48 aspect-[3/4] bg-slate-950 rounded-2xl overflow-hidden border border-slate-850 flex items-center justify-center relative group">
+                  {/* Screenshot Display (Sharp corners) */}
+                  <div className="shrink-0 w-full lg:w-48 aspect-[3/4] bg-gray-50 rounded-none overflow-hidden border border-gray-200 flex items-center justify-center relative group">
                     {order.proof_image_url ? (
                       <>
                         <img 
@@ -371,72 +343,72 @@ export default function AdminDashboard() {
                           href={getProofUrl(order.proof_image_url)} 
                           target="_blank" 
                           rel="noreferrer"
-                          className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-xs text-indigo-400 font-semibold gap-1"
+                          className="absolute inset-0 bg-[#B8212E]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-xs text-white font-bold gap-1"
                         >
                           <ExternalLink className="w-5 h-5 text-white" />
                           View Full Size
                         </a>
                       </>
                     ) : (
-                      <span className="text-xs text-slate-600 font-mono">No Receipt Screenshot</span>
+                      <span className="text-xs text-gray-400 font-mono">No Receipt Screenshot</span>
                     )}
                   </div>
 
                   {/* Order metadata and buyer details */}
                   <div className="flex-grow space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-900 pb-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3">
                       <div>
-                        <span className="text-[10px] font-mono text-slate-500">ID: {order.id}</span>
-                        <h3 className="font-bold text-slate-200 text-sm sm:text-base">
+                        <span className="text-[9px] font-mono text-gray-400 font-bold">ID: {order.id}</span>
+                        <h3 className="font-bold text-gray-800 text-sm sm:text-base">
                           {order.profiles?.name || 'Customer Account'} 
-                          <span className="text-xs text-slate-400 font-normal ml-1.5">({order.profiles?.email})</span>
+                          <span className="text-xs text-gray-400 font-normal ml-1.5">({order.profiles?.email})</span>
                         </h3>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono uppercase bg-slate-900 px-2 py-0.5 rounded border border-slate-850 text-slate-400">
+                        <span className="text-[10px] font-mono uppercase bg-gray-50 px-2.5 py-1 rounded border border-gray-200 text-gray-500 font-bold">
                           {order.payment_method}
                         </span>
                         <OrderStatusBadge status={order.status} />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-medium text-slate-400">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold text-gray-555">
                       <div>
-                        <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">Transaction ID</span>
-                        <span className="font-mono text-slate-200 font-bold tracking-wider">{order.transaction_ref || 'N/A'}</span>
+                        <span className="block text-[9px] uppercase font-bold text-gray-400 mb-0.5">Transaction ID</span>
+                        <span className="font-mono text-gray-800 font-bold tracking-wider">{order.transaction_ref || 'N/A'}</span>
                       </div>
                       <div>
-                        <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">Total price</span>
-                        <span className="text-slate-200 font-bold">${order.total_price.toFixed(2)}</span>
+                        <span className="block text-[9px] uppercase font-bold text-gray-400 mb-0.5">Total price</span>
+                        <span className="text-[#B8212E] font-bold">Rs. {order.total_price.toFixed(0)}</span>
                       </div>
                       <div>
-                        <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">Submitted Date</span>
-                        <span className="text-slate-300">
+                        <span className="block text-[9px] uppercase font-bold text-gray-400 mb-0.5">Submitted Date</span>
+                        <span className="text-gray-600">
                           {new Date(order.created_at).toLocaleString()}
                         </span>
                       </div>
                     </div>
 
                     {/* Items details */}
-                    <div className="bg-slate-950/60 p-4 rounded-2xl border border-slate-900 space-y-2">
-                      <span className="block text-[10px] uppercase font-bold text-slate-500">Purchased Books</span>
-                      <div className="text-xs text-slate-300 space-y-1.5">
+                    <div className="bg-gray-50 p-4 rounded-none border border-gray-200 space-y-2">
+                      <span className="block text-[9px] uppercase font-bold text-gray-400">Purchased Books</span>
+                      <div className="text-xs text-gray-700 space-y-1.5">
                         {order.order_items?.map((item: any, idx: number) => (
-                          <div key={idx} className="flex justify-between border-b border-slate-900/40 pb-1 last:border-0 last:pb-0 gap-2">
-                            <span>{item.books?.title || 'Ebook document'} <span className="text-[10px] text-slate-500 font-normal">(by {item.books?.author})</span></span>
-                            <span className="font-semibold text-slate-200 shrink-0">${item.price.toFixed(2)}</span>
+                          <div key={idx} className="flex justify-between border-b border-gray-150 pb-1 last:border-0 last:pb-0 gap-2 font-semibold">
+                            <span>{item.books?.title || 'Ebook document'} <span className="text-[10px] text-gray-400 font-normal">(by {item.books?.author})</span></span>
+                            <span className="font-bold text-gray-800 shrink-0">Rs. {item.price.toFixed(0)}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Approve / Reject Controls */}
+                    {/* Approve / Reject Controls (Pill buttons) */}
                     {order.status === 'payment_submitted' && (
                       <div className="flex flex-wrap gap-3 pt-2">
                         <button
                           onClick={() => handleVerifyOrder(order.id)}
                           disabled={actionLoading !== null}
-                          className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors disabled:opacity-50 cursor-pointer"
+                          className="inline-flex items-center justify-center gap-1.5 py-2 px-5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm hover:shadow transition-all disabled:opacity-50 cursor-pointer"
                         >
                           <Check className="w-4 h-4" />
                           Verify & Unlock
@@ -444,7 +416,7 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => startRejection(order.id)}
                           disabled={actionLoading !== null}
-                          className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs transition-colors disabled:opacity-50 cursor-pointer"
+                          className="inline-flex items-center justify-center gap-1.5 py-2 px-5 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-sm hover:shadow transition-all disabled:opacity-50 cursor-pointer"
                         >
                           <X className="w-4 h-4" />
                           Reject Transfer
@@ -462,21 +434,21 @@ export default function AdminDashboard() {
       {/* VIEW 2: BOOKS CATALOG CRUD MANAGER */}
       {activeTab === 'books' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-900 pb-4">
-            <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Manage Bookstore Books ({books.length})</h2>
+          <div className="flex items-center justify-between border-b border-gray-150 pb-4">
+            <h2 className="text-xs font-bold text-gray-450 uppercase tracking-widest">Manage Bookstore Books ({books.length})</h2>
             <button
               onClick={openAddBook}
-              className="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-xs hover:-translate-y-0.5 transition-all shadow-md cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-xs hover:-translate-y-0.5 transition-all shadow-sm cursor-pointer"
             >
-              <Plus className="w-4.5 h-4.5" />
+              <Plus className="w-4 h-4" />
               Add New Book
             </button>
           </div>
 
           {loadingBooks ? (
-            <div className="py-20 text-center text-slate-500 text-sm">Loading books catalog...</div>
+            <div className="py-20 text-center text-gray-500 text-sm">Loading books catalog...</div>
           ) : books.length === 0 ? (
-            <div className="py-12 bg-[#0c1324]/20 border border-slate-900 rounded-3xl text-center text-slate-500 text-xs">
+            <div className="py-12 bg-gray-50 border border-gray-200 rounded-none text-center text-gray-400 text-xs">
               No books found in the catalog database. Click "Add New Book" to begin.
             </div>
           ) : (
@@ -484,21 +456,21 @@ export default function AdminDashboard() {
               {books.map((book) => (
                 <div 
                   key={book.id}
-                  className="p-4 bg-[#0c1324]/30 border border-slate-900 rounded-2xl flex items-center justify-between gap-4"
+                  className="p-4 bg-white border border-gray-200 rounded-none flex items-center justify-between gap-4"
                 >
                   <div className="truncate flex items-center gap-3">
-                    <div className="w-10 h-13 rounded bg-slate-950 border border-slate-800 shrink-0 overflow-hidden flex items-center justify-center text-[7px] text-center p-1 font-extrabold text-slate-500">
+                    <div className="w-10 h-13 rounded-none bg-gray-50 border border-gray-250 shrink-0 overflow-hidden flex items-center justify-center text-[7px] text-center p-1 font-extrabold text-gray-400">
                       {book.cover_url ? <img src={book.cover_url} className="w-full h-full object-cover" /> : 'NO COVER'}
                     </div>
-                    <div className="truncate">
-                      <h4 className="font-bold text-slate-200 text-sm truncate hover:text-white">{book.title}</h4>
-                      <p className="text-xs text-slate-400 truncate">by {book.author}</p>
+                    <div className="truncate font-semibold text-gray-600">
+                      <h4 className="font-bold text-gray-800 text-sm truncate hover:text-[#B8212E]">{book.title}</h4>
+                      <p className="text-xs text-gray-550 truncate">by {book.author}</p>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[9px] bg-slate-900 text-slate-450 border border-slate-850 px-1.5 py-0.5 rounded uppercase font-bold truncate max-w-[120px]">
+                        <span className="text-[9px] bg-gray-50 text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded-none uppercase font-bold truncate max-w-[120px]">
                           {book.category}
                         </span>
-                        <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono font-bold ${book.type === 'free' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-indigo-500/10 text-indigo-400'}`}>
-                          {book.type === 'free' ? 'FREE' : `$${book.price}`}
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded-none font-mono font-bold ${book.type === 'free' ? 'bg-emerald-50 text-emerald-650' : 'bg-red-50 text-[#B8212E]'}`}>
+                          {book.type === 'free' ? 'FREE' : `Rs. ${book.price}`}
                         </span>
                       </div>
                     </div>
@@ -507,14 +479,14 @@ export default function AdminDashboard() {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       onClick={() => openEditBook(book)}
-                      className="p-2 border border-slate-800 text-slate-400 hover:text-indigo-400 rounded-lg hover:bg-indigo-500/5 transition-colors cursor-pointer"
+                      className="p-2 border border-gray-200 text-gray-450 hover:text-indigo-600 rounded-full hover:bg-indigo-50 transition-colors cursor-pointer"
                       title="Edit Book details"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDeleteBook(book.id)}
-                      className="p-2 border border-slate-800 text-slate-500 hover:text-rose-450 rounded-lg hover:bg-rose-500/5 transition-colors cursor-pointer"
+                      className="p-2 border border-gray-200 text-gray-450 hover:text-rose-600 rounded-full hover:bg-rose-50 transition-colors cursor-pointer"
                       title="Delete Book"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -527,53 +499,53 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {/* DIALOG 1: BOOK ADD / EDIT DIALOG MODAL */}
+      {/* DIALOG 1: BOOK ADD / EDIT DIALOG MODAL (Clean white background, pill inputs) */}
       {showBookModal && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#0c1324] border border-slate-800 rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-gray-250 rounded-none w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl relative">
             <button 
               onClick={() => setShowBookModal(false)}
-              className="absolute top-4 right-4 p-2 text-slate-500 hover:text-white rounded-lg cursor-pointer"
+              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 rounded-full cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <h3 className="text-lg font-bold text-slate-200">
+              <h3 className="text-lg font-bold text-gray-800">
                 {editingBookId ? 'Edit Book Details' : 'Add New Book to Catalog'}
               </h3>
-              <p className="text-xs text-slate-500 mt-0.5">Please provide correct details and upload files to storage.</p>
+              <p className="text-xs text-gray-400 mt-0.5">Please provide correct details and upload files to storage.</p>
             </div>
 
             {formError && (
-              <div className="p-3 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs rounded-xl flex gap-2">
+              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-600 text-xs rounded-none flex gap-2">
                 <ShieldAlert className="w-4 h-4 shrink-0" />
                 <span>{formError}</span>
               </div>
             )}
 
-            <form onSubmit={handleSaveBook} className="space-y-4 text-xs font-semibold text-slate-400">
+            <form onSubmit={handleSaveBook} className="space-y-4 text-xs font-bold text-gray-500">
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Book Title</label>
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Book Title</label>
                   <input
                     type="text"
                     required
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2.5 px-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium text-xs"
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 text-xs font-semibold"
                     placeholder="e.g. Mastering Next.js 15"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Author Name</label>
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Author Name</label>
                   <input
                     type="text"
                     required
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2.5 px-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium text-xs"
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 text-xs font-semibold"
                     placeholder="e.g. Lee Robinson"
                   />
                 </div>
@@ -581,12 +553,12 @@ export default function AdminDashboard() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Category</label>
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Category</label>
                   <select
                     required
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2.5 px-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium text-xs"
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 text-xs font-semibold"
                   >
                     {CATEGORIES.map(cat => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -594,19 +566,19 @@ export default function AdminDashboard() {
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Pricing Mode</label>
-                  <div className="flex bg-slate-950 border border-slate-850 rounded-xl p-1">
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Pricing Mode</label>
+                  <div className="flex bg-gray-50 border border-gray-200 rounded-full p-1">
                     <button
                       type="button"
                       onClick={() => setType('free')}
-                      className={`flex-1 py-1.5 rounded-lg font-bold text-xs cursor-pointer ${type === 'free' ? 'bg-indigo-600 text-white' : 'text-slate-400'}`}
+                      className={`flex-1 py-1.5 rounded-full font-bold text-xs cursor-pointer ${type === 'free' ? 'bg-[#B8212E] text-white' : 'text-gray-550'}`}
                     >
                       FREE
                     </button>
                     <button
                       type="button"
                       onClick={() => setType('premium')}
-                      className={`flex-1 py-1.5 rounded-lg font-bold text-xs cursor-pointer ${type === 'premium' ? 'bg-indigo-600 text-white' : 'text-slate-400'}`}
+                      className={`flex-1 py-1.5 rounded-full font-bold text-xs cursor-pointer ${type === 'premium' ? 'bg-[#B8212E] text-white' : 'text-gray-555'}`}
                     >
                       PREMIUM (PAID)
                     </button>
@@ -616,35 +588,35 @@ export default function AdminDashboard() {
 
               {type === 'premium' && (
                 <div className="space-y-1 w-full sm:w-1/2">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Price ($)</label>
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Price (PKR)</label>
                   <input
                     type="number"
-                    step="0.01"
-                    min="0.01"
+                    step="1"
+                    min="1"
                     required={type === 'premium'}
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2.5 px-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-mono text-xs"
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 font-mono text-xs font-bold"
                   />
                 </div>
               )}
 
               <div className="space-y-1">
-                <label className="block text-[10px] uppercase font-bold text-slate-500">Description</label>
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Description</label>
                 <textarea
                   rows={3}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2.5 px-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium text-xs resize-none"
-                  placeholder="Summarize book contents, target audience, format sizes..."
+                  className="w-full bg-white border border-gray-200 rounded-xl py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 text-xs font-semibold resize-none"
+                  placeholder="Summarize book contents, format sizes..."
                 />
               </div>
 
               {/* Upload cover file */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Cover Image</label>
-                  <div className="relative border border-dashed border-slate-800 rounded-xl p-3 bg-slate-950/60 hover:bg-slate-950 flex flex-col items-center justify-center text-center cursor-pointer min-h-[90px]">
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Cover Image</label>
+                  <div className="relative border border-dashed border-gray-200 rounded-none p-3 bg-gray-50 hover:bg-gray-100/50 flex flex-col items-center justify-center text-center cursor-pointer min-h-[90px]">
                     <input
                       type="file"
                       accept="image/*"
@@ -653,18 +625,18 @@ export default function AdminDashboard() {
                       }}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <Upload className="w-4 h-4 text-slate-500 mb-1" />
-                    <span className="text-[10px] text-slate-400 font-semibold truncate max-w-[200px]">
+                    <Upload className="w-4 h-4 text-gray-400 mb-1" />
+                    <span className="text-[10px] text-gray-600 font-bold truncate max-w-[200px]">
                       {coverFile ? coverFile.name : existingCoverUrl ? 'Keep Existing Cover' : 'Upload Cover Image'}
                     </span>
-                    <span className="text-[8px] text-slate-600">JPG/PNG</span>
+                    <span className="text-[8px] text-gray-400">JPG/PNG</span>
                   </div>
                 </div>
 
                 {/* Upload PDF/EPUB file */}
                 <div className="space-y-1">
-                  <label className="block text-[10px] uppercase font-bold text-slate-500">Book File Document</label>
-                  <div className="relative border border-dashed border-slate-800 rounded-xl p-3 bg-slate-950/60 hover:bg-slate-950 flex flex-col items-center justify-center text-center cursor-pointer min-h-[90px]">
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Book File Document</label>
+                  <div className="relative border border-dashed border-gray-200 rounded-none p-3 bg-gray-50 hover:bg-gray-100/50 flex flex-col items-center justify-center text-center cursor-pointer min-h-[90px]">
                     <input
                       type="file"
                       accept=".pdf,.epub"
@@ -674,27 +646,27 @@ export default function AdminDashboard() {
                       }}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <Upload className="w-4 h-4 text-slate-500 mb-1" />
-                    <span className="text-[10px] text-slate-400 font-semibold truncate max-w-[200px]">
+                    <Upload className="w-4 h-4 text-gray-400 mb-1" />
+                    <span className="text-[10px] text-gray-600 font-bold truncate max-w-[200px]">
                       {bookFile ? bookFile.name : existingFilePath ? 'Keep Existing File' : 'Upload Document'}
                     </span>
-                    <span className="text-[8px] text-slate-600">PDF or EPUB formats</span>
+                    <span className="text-[8px] text-gray-400 font-normal">PDF or EPUB formats</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-slate-900">
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                 <button
                   type="button"
                   onClick={() => setShowBookModal(false)}
-                  className="px-4 py-2 border border-slate-850 hover:bg-slate-900 text-slate-300 font-semibold rounded-xl text-xs cursor-pointer"
+                  className="px-5 py-2 border border-gray-250 hover:bg-gray-50 text-gray-600 font-bold rounded-full text-xs cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={formSubmitting}
-                  className="inline-flex items-center justify-center px-5 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold rounded-xl text-xs hover:-translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center justify-center px-6 py-2 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs hover:-translate-y-0.5 transition-all disabled:opacity-50 cursor-pointer"
                 >
                   {formSubmitting ? 'Saving changes...' : 'Save Book'}
                 </button>
@@ -707,11 +679,11 @@ export default function AdminDashboard() {
 
       {/* DIALOG 2: REJECTION REASON PROMPT */}
       {rejectionOrderId && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#0c1324] border border-slate-850 rounded-3xl w-full max-w-sm p-6 space-y-4 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-gray-250 rounded-none w-full max-w-sm p-6 space-y-4 shadow-2xl relative">
             <div>
-              <h3 className="text-sm font-bold text-slate-200">Rejection Reason</h3>
-              <p className="text-[11px] text-slate-500 mt-0.5">Please explain why the payment receipt was rejected. This text will be emailed to the client.</p>
+              <h3 className="text-sm font-bold text-gray-800">Rejection Reason</h3>
+              <p className="text-[11px] text-gray-400 mt-0.5 font-semibold">Please explain why the payment receipt was rejected. This text will be emailed to the client.</p>
             </div>
 
             <textarea
@@ -719,20 +691,20 @@ export default function AdminDashboard() {
               required
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-850 rounded-xl py-2 px-3 text-slate-200 text-xs focus:outline-none focus:ring-1 focus:ring-rose-500 resize-none font-medium"
-              placeholder="e.g. Transaction ID was not found in our JazzCash ledger / Image uploaded was blurry..."
+              className="w-full bg-white border border-gray-250 rounded-xl py-2.5 px-3 text-gray-800 text-xs focus:outline-none focus:border-rose-500 resize-none font-semibold"
+              placeholder="e.g. Transaction ID was not found in our JazzCash ledger..."
             />
 
             <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setRejectionOrderId(null)}
-                className="px-3.5 py-1.5 border border-slate-850 hover:bg-slate-900 text-slate-400 font-semibold rounded-lg text-xs cursor-pointer"
+                className="px-4 py-2 border border-gray-200 hover:bg-gray-50 text-gray-550 font-bold rounded-full text-xs cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleRejectOrder}
-                className="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-lg text-xs cursor-pointer"
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-full text-xs cursor-pointer"
               >
                 Submit Rejection
               </button>

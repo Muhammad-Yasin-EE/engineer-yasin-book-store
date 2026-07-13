@@ -61,7 +61,7 @@ alter table public.books enable row level security;
 
 -- Books Policies
 create policy "Allow public read for books" on public.books for select using (true);
-create policy "Allow admin write for books" on public.books all using (
+create policy "Allow admin write for books" on public.books for all using (
   exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
 );
 
@@ -139,7 +139,7 @@ alter table public.purchases enable row level security;
 create policy "Allow users to read their own purchases" on public.purchases for select using (
   auth.uid() = user_id or exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
 );
-create policy "Allow admin write for purchases" on public.purchases all using (
+create policy "Allow admin write for purchases" on public.purchases for all using (
   exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
 );
 
@@ -276,3 +276,10 @@ insert into public.books (title, author, description, category, type, price, cov
 ('Mastering Algebra Basics', 'Math Experts', 'Algebraic formulas, variables, equations, and practice solutions.', 'All Books', 'free', 0.00, 'covers/all_free.jpg', 'free/all_free.pdf'),
 ('Advanced Algorithms & Structures', 'Thomas Cormen', 'Analysis of sorting algorithms, graph traversals, and dynamic programming.', 'All Books', 'premium', 42.00, 'covers/all_premium.jpg', 'premium/all_premium.pdf')
 on conflict do nothing;
+
+-- 8. GRANT PRIVILEGES (Fixes 42601 / permission denied error)
+grant usage on schema public to anon, authenticated, service_role;
+grant select on all tables in schema public to anon, authenticated;
+grant all on all tables in schema public to service_role;
+grant usage, select on all sequences in schema public to anon, authenticated, service_role;
+

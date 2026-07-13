@@ -34,7 +34,7 @@ export default function AddToCartButton({ book, buyNow }: AddToCartButtonProps) 
     return (
       <button
         onClick={handleAction}
-        className="flex-grow inline-flex items-center justify-center gap-2 py-3 px-6 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold text-sm hover:-translate-y-0.5 transition-all shadow-md shadow-indigo-600/10 cursor-pointer"
+        className="flex-grow inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
       >
         <ShoppingBag className="w-4.5 h-4.5" />
         Buy Now
@@ -46,22 +46,22 @@ export default function AddToCartButton({ book, buyNow }: AddToCartButtonProps) 
     <button
       onClick={handleAction}
       disabled={justAdded}
-      className={`flex-grow inline-flex items-center justify-center gap-2 py-3 px-6 rounded-2xl border font-semibold text-sm transition-all hover:-translate-y-0.5 cursor-pointer ${
+      className={`flex-grow inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full border font-bold text-sm transition-all hover:-translate-y-0.5 cursor-pointer ${
         justAdded
-          ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400'
+          ? 'bg-emerald-50 border-emerald-200 text-emerald-600'
           : isAlreadyInCart
-          ? 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-          : 'bg-slate-900 border-indigo-500/30 hover:border-indigo-500/80 text-indigo-400 hover:text-indigo-300 shadow-md shadow-indigo-950/10'
+          ? 'bg-gray-150 border-gray-200 text-gray-500'
+          : 'bg-white border-[#B8212E] text-[#B8212E] hover:bg-[#B8212E] hover:text-white'
       }`}
     >
       {justAdded ? (
         <>
           <Check className="w-4.5 h-4.5" />
-          Added to Cart!
+          Added!
         </>
       ) : isAlreadyInCart ? (
         <>
-          <Check className="w-4.5 h-4.5 text-slate-500" />
+          <Check className="w-4.5 h-4.5" />
           In Cart
         </>
       ) : (

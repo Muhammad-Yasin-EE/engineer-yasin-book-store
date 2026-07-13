@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Book, Download, ShoppingBag, ShoppingCart, UserCheck, ShieldAlert, ArrowLeft } from 'lucide-react'
-import AddToCartButton from './AddToCartButton' // We'll create this client component below
+import { Book, Download, ShoppingBag, UserCheck, ShieldAlert, ArrowLeft } from 'lucide-react'
+import AddToCartButton from './AddToCartButton'
 
-export const revalidate = 0 // Dynamic page
+export const revalidate = 0
 
 interface BookDetailPageProps {
   params: Promise<{ id: string }>
@@ -21,7 +21,6 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
   const supabase = await createClient()
 
   try {
-    // 1. Fetch book details
     const { data: bookData, error } = await supabase
       .from('books')
       .select('*')
@@ -34,12 +33,10 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
     
     book = bookData
 
-    // 2. Check if logged in & purchased
     const { data: { session } } = await supabase.auth.getSession()
     if (session?.user) {
       isLoggedIn = true
       
-      // Check admin status (admins can download all premium books)
       const { data: profile } = await supabase
         .from('profiles')
         .select('is_admin')
@@ -49,7 +46,6 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
       if (profile?.is_admin) {
         hasPurchased = true
       } else {
-        // Check purchases table
         const { data: purchase } = await supabase
           .from('purchases')
           .select('id')
@@ -67,34 +63,30 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
     errorMsg = 'Could not load payment status.'
   }
 
-  // Generate public download URL for free books
   const getFreeDownloadUrl = () => {
     if (!book) return '#'
-    // If it's a relative path in free-books bucket
     if (book.file_path.startsWith('free/')) {
       return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/free-books/${book.file_path.substring(5)}`
     }
-    // Fallback if full path or other storage layout
     return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/free-books/${book.file_path}`
   }
 
-  // Cover placeholder details
   const hasCover = book.cover_url && !book.cover_url.includes('placeholder') && !book.cover_url.includes('covers/')
   const getGradientClass = (titleStr: string) => {
     const len = titleStr.length
-    if (len % 3 === 0) return 'from-violet-900 to-indigo-950 text-indigo-200'
-    if (len % 3 === 1) return 'from-fuchsia-950 to-purple-950 text-purple-200'
-    return 'from-blue-950 to-slate-900 text-sky-200'
+    if (len % 3 === 0) return 'from-red-900 to-red-950 text-red-100'
+    if (len % 3 === 1) return 'from-gray-900 to-gray-950 text-gray-100'
+    return 'from-[#7f1d1d] to-[#450a0a] text-red-100'
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow bg-slate-950">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow bg-white text-[#222222]">
       
       {/* Back button */}
       <div className="mb-8">
         <Link 
           href="/books"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Browse Catalog
@@ -103,15 +95,15 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-start">
         
-        {/* Left Column: Book Cover Visual */}
+        {/* Left Column: Book Cover Visual (Sharp corners) */}
         <div className="md:col-span-5 flex justify-center">
-          <div className="relative aspect-[3/4] w-full max-w-[340px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl shadow-indigo-950/20 group">
-            <span className={`absolute top-4 right-4 z-10 text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-md ${
+          <div className="relative aspect-[3/4] w-full max-w-[320px] rounded-none overflow-hidden border border-gray-250 bg-gray-50 shadow-md">
+            <span className={`absolute top-3 left-3 z-10 text-[9px] font-bold px-2 py-0.5 tracking-wider ${
               book.type === 'free' 
-                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' 
-                : 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/30'
+                ? 'bg-[#2ecc71] text-white' 
+                : 'bg-[#B8212E] text-white'
             }`}>
-              {book.type === 'free' ? 'FREE' : `$${book.price.toFixed(2)}`}
+              {book.type === 'free' ? 'FREE' : 'PAID'}
             </span>
 
             {hasCover ? (
@@ -128,8 +120,8 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                 </div>
                 
                 <div className="my-auto py-6">
-                  <h3 className="font-extrabold text-xl sm:text-2xl leading-snug line-clamp-4 text-white tracking-tight">{book.title}</h3>
-                  <p className="text-sm mt-2.5 opacity-75 line-clamp-1 italic">by {book.author}</p>
+                  <h3 className="font-extrabold text-xl leading-snug line-clamp-4 text-white tracking-tight">{book.title}</h3>
+                  <p className="text-xs mt-2.5 opacity-75 line-clamp-1 italic">by {book.author}</p>
                 </div>
                 
                 <div className="border-t border-white/10 pt-3 flex justify-between items-center text-xs font-mono opacity-50">
@@ -146,30 +138,30 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
           
           {/* Metadata Header */}
           <div className="space-y-2">
-            <span className="inline-block text-xs font-bold text-indigo-400 uppercase tracking-wider bg-indigo-500/5 px-2.5 py-1 rounded-md border border-indigo-500/10">
+            <span className="inline-block text-[9px] font-bold text-[#B8212E] uppercase tracking-widest bg-[#B8212E]/5 px-2 py-0.5 rounded border border-[#B8212E]/10">
               {book.category}
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 tracking-tight leading-tight">
               {book.title}
             </h1>
-            <p className="text-base text-slate-400">
-              by <span className="font-semibold text-slate-200">{book.author}</span>
+            <p className="text-sm text-gray-500">
+              by <span className="font-semibold text-gray-700">{book.author}</span>
             </p>
           </div>
 
           {/* Book specifications info */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-slate-900 py-4 text-xs font-medium text-slate-400">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-gray-150 py-4 text-xs font-semibold text-gray-500">
             <div>
-              <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">Format</span>
-              <span className="text-slate-200">Secure PDF / EPUB</span>
+              <span className="block text-[9px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Format</span>
+              <span className="text-gray-800 font-bold">Secure PDF / EPUB</span>
             </div>
             <div>
-              <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">Category</span>
-              <span className="text-slate-200">{book.category}</span>
+              <span className="block text-[9px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Category</span>
+              <span className="text-gray-800 font-bold">{book.category}</span>
             </div>
             <div>
-              <span className="block text-[10px] uppercase font-bold text-slate-500 mb-0.5">License Type</span>
-              <span className={book.type === 'free' ? 'text-emerald-400' : 'text-indigo-400'}>
+              <span className="block text-[9px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">License Type</span>
+              <span className={`font-bold ${book.type === 'free' ? 'text-emerald-600' : 'text-[#B8212E]'}`}>
                 {book.type === 'free' ? 'Free (Open Library)' : 'Premium (Paid)'}
               </span>
             </div>
@@ -177,30 +169,30 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
 
           {/* Description */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">About This Book</h3>
-            <p className="text-slate-400 text-sm leading-relaxed whitespace-pre-line">
+            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest">About This Book</h3>
+            <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line font-medium">
               {book.description || 'No description available for this book yet. It will be added soon by the author.'}
             </p>
           </div>
 
           {/* Actions panel */}
-          <div className="bg-[#0c1324]/40 border border-slate-900 rounded-3xl p-6 space-y-4">
+          <div className="bg-[#f8fafc] border border-gray-200 rounded-none p-6 space-y-4">
             
             {/* FREE BOOK FLOW */}
             {book.type === 'free' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-xs text-emerald-400 font-semibold">Free Download</span>
-                    <p className="text-[11px] text-slate-500">No login or registration required. Start reading now.</p>
+                    <span className="text-xs text-emerald-600 font-bold">Free Download</span>
+                    <p className="text-[10px] text-gray-400 font-semibold">No registration required. Instant download.</p>
                   </div>
-                  <span className="text-lg font-bold text-emerald-400">FREE</span>
+                  <span className="text-base font-bold text-emerald-600">FREE</span>
                 </div>
                 
                 <a
                   href={getFreeDownloadUrl()}
                   download
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-0.5 transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-sm hover:shadow hover:-translate-y-0.5 transition-all"
                 >
                   <Download className="w-4 h-4" />
                   Download Now (PDF)
@@ -217,16 +209,16 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-xs text-indigo-400 font-semibold">Premium Ebook</span>
-                        <p className="text-[11px] text-slate-500">Sign in to unlock download access in your library.</p>
+                        <span className="text-xs text-[#B8212E] font-bold">Premium Ebook</span>
+                        <p className="text-[10px] text-gray-400 font-semibold">Sign in to unlock download access in your library.</p>
                       </div>
-                      <span className="text-xl font-extrabold text-white">${book.price.toFixed(2)}</span>
+                      <span className="text-xl font-bold text-gray-800">Rs. {book.price.toFixed(0)}</span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Link
                         href={`/login?redirectTo=/books/${book.id}`}
-                        className="flex-grow inline-flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-sm hover:from-violet-500 hover:to-indigo-500 transition-all hover:-translate-y-0.5"
+                        className="flex-grow inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-sm transition-all hover:-translate-y-0.5"
                       >
                         <ShoppingBag className="w-4 h-4" />
                         Log In to Buy Now
@@ -238,20 +230,20 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                 {/* 2. If user is logged in & ALREADY purchased */}
                 {isLoggedIn && hasPurchased && (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-slate-900 pb-3">
-                      <div className="flex items-center gap-2 text-emerald-400">
+                    <div className="flex items-center justify-between border-b border-gray-150 pb-3">
+                      <div className="flex items-center gap-2 text-emerald-600 font-bold">
                         <UserCheck className="w-4 h-4" />
-                        <span className="text-xs font-semibold">You own this resource</span>
+                        <span className="text-xs">You own this resource</span>
                       </div>
-                      <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Purchased</span>
+                      <span className="text-[9px] font-bold bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded">Purchased</span>
                     </div>
 
                     <a
                       href={`/api/download?bookId=${book.id}`}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-sm shadow-sm hover:shadow hover:-translate-y-0.5 transition-all"
                     >
                       <Download className="w-4 h-4" />
-                      Download Book File
+                      Download Book File (PDF)
                     </a>
                   </div>
                 )}
@@ -261,15 +253,14 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-xs text-indigo-400 font-semibold">Premium Resource</span>
-                        <p className="text-[11px] text-slate-500">Pay once, own forever in your library database.</p>
+                        <span className="text-xs text-[#B8212E] font-bold">Premium Resource</span>
+                        <p className="text-[10px] text-gray-400 font-semibold">Pay once, own forever in your library database.</p>
                       </div>
-                      <span className="text-xl font-extrabold text-white">${book.price.toFixed(2)}</span>
+                      <span className="text-xl font-bold text-gray-800">Rs. {book.price.toFixed(0)}</span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3">
                       
-                      {/* Buy Now (Client interactive redirection) */}
                       <AddToCartButton 
                         book={{
                           id: book.id,
@@ -282,7 +273,6 @@ export default async function BookDetailPage({ params }: BookDetailPageProps) {
                         buyNow={true}
                       />
 
-                      {/* Add to Cart (Client interactive store) */}
                       <AddToCartButton 
                         book={{
                           id: book.id,
