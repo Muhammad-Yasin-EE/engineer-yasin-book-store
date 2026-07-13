@@ -64,9 +64,11 @@ export default function BookCard({ id, title, author, category, type, price, cov
         </span>
 
         {/* Paid / Free badge */}
-        <span className="absolute top-2.5 right-2.5 z-10 text-[8px] font-bold px-1.5 py-0.5 tracking-wider rounded-none bg-white text-gray-800 border border-gray-200 shadow-sm">
-          {type === 'free' ? 'FREE' : 'PREMIUM'}
-        </span>
+        {resource_type !== 'scholarship' && resource_type !== 'job' && (
+          <span className="absolute top-2.5 right-2.5 z-10 text-[8px] font-bold px-1.5 py-0.5 tracking-wider rounded-none bg-white text-gray-800 border border-gray-200 shadow-sm">
+            {type === 'free' ? 'FREE' : 'PREMIUM'}
+          </span>
+        )}
 
         {/* Visual Render */}
         {hasCover ? (
@@ -113,22 +115,24 @@ export default function BookCard({ id, title, author, category, type, price, cov
         </p>
 
         {/* Price layout */}
-        <div className="mb-4">
-          {type === 'free' ? (
-            <span className="text-sm sm:text-base font-bold text-emerald-600">
-              Rs. 0 (Free)
-            </span>
-          ) : (
-            <>
-              <span className="text-sm sm:text-base font-bold text-[#B8212E]">
-                Rs. {price.toFixed(0)}
+        {resource_type !== 'scholarship' && resource_type !== 'job' && (
+          <div className="mb-4">
+            {type === 'free' ? (
+              <span className="text-sm sm:text-base font-bold text-emerald-600">
+                Rs. 0 (Free)
               </span>
-              <span className="text-xs text-gray-450 line-through ml-2 font-medium">
-                Rs. {(price * 1.4).toFixed(0)}
-              </span>
-            </>
-          )}
-        </div>
+            ) : (
+              <>
+                <span className="text-sm sm:text-base font-bold text-[#B8212E]">
+                  Rs. {price.toFixed(0)}
+                </span>
+                <span className="text-xs text-gray-450 line-through ml-2 font-medium">
+                  Rs. {(price * 1.4).toFixed(0)}
+                </span>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Action Button */}
         <Link 

@@ -187,9 +187,14 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
               <span className="text-gray-800 font-bold">{item.category}</span>
             </div>
             <div>
-              <span className="block text-[9px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Access Fee</span>
-              <span className={`font-bold ${item.type === 'free' ? 'text-emerald-605' : 'text-[#B8212E]'}`}>
-                {item.type === 'free' ? 'Free Access' : 'Premium Paid'}
+              <span className="block text-[9px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">
+                {item.resource_type === 'scholarship' || item.resource_type === 'job' ? 'Status' : 'Access Fee'}
+              </span>
+              <span className={`font-bold ${item.type === 'free' ? 'text-emerald-600' : 'text-[#B8212E]'}`}>
+                {item.resource_type === 'scholarship' || item.resource_type === 'job' 
+                  ? 'Open & Free' 
+                  : (item.type === 'free' ? 'Free Access' : 'Premium Paid')
+                }
               </span>
             </div>
           </div>
@@ -210,15 +215,19 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-xs text-emerald-600 font-bold">Free Resource Access</span>
+                    <span className="text-xs text-emerald-600 font-bold">
+                      {item.resource_type === 'scholarship' || item.resource_type === 'job' ? 'Public Resource' : 'Free Resource Access'}
+                    </span>
                     <p className="text-[10px] text-gray-400 font-semibold">
                       {item.resource_type === 'scholarship' || item.resource_type === 'job' 
-                        ? 'External application link.' 
+                        ? 'Official application portal.' 
                         : 'No account required. Instant access.'
                       }
                     </p>
                   </div>
-                  <span className="text-base font-bold text-emerald-605">FREE</span>
+                  {item.resource_type !== 'scholarship' && item.resource_type !== 'job' && (
+                    <span className="text-base font-bold text-emerald-600">FREE</span>
+                  )}
                 </div>
                 
                 {item.resource_type === 'scholarship' || item.resource_type === 'job' ? (

@@ -17,50 +17,26 @@ export default async function HomePage() {
   try {
     const supabase = await createClient()
 
-    // 1. Fetch 3 Latest Scholarships
-    const { data: scholData } = await supabase
-      .from('items')
-      .select('*')
-      .eq('resource_type', 'scholarship')
-      .order('created_at', { ascending: false })
-      .limit(3)
-    scholarships = scholData || []
+    // Fetch all directory items in parallel to prevent sequential database query waterfalls
+    const [
+      scholRes,
+      jobRes,
+      softRes,
+      courseRes,
+      bookRes
+    ] = await Promise.all([
+      supabase.from('items').select('*').eq('resource_type', 'scholarship').order('created_at', { ascending: false }).limit(3),
+      supabase.from('items').select('*').eq('resource_type', 'job').order('created_at', { ascending: false }).limit(3),
+      supabase.from('items').select('*').eq('resource_type', 'software').order('created_at', { ascending: false }).limit(3),
+      supabase.from('items').select('*').eq('resource_type', 'course').order('created_at', { ascending: false }).limit(3),
+      supabase.from('items').select('*').eq('resource_type', 'book').order('created_at', { ascending: false }).limit(3)
+    ])
 
-    // 2. Fetch 3 Latest Jobs
-    const { data: jobData } = await supabase
-      .from('items')
-      .select('*')
-      .eq('resource_type', 'job')
-      .order('created_at', { ascending: false })
-      .limit(3)
-    jobs = jobData || []
-
-    // 3. Fetch 3 Popular Software
-    const { data: softData } = await supabase
-      .from('items')
-      .select('*')
-      .eq('resource_type', 'software')
-      .order('created_at', { ascending: false })
-      .limit(3)
-    software = softData || []
-
-    // 4. Fetch 3 Popular Courses
-    const { data: courseData } = await supabase
-      .from('items')
-      .select('*')
-      .eq('resource_type', 'course')
-      .order('created_at', { ascending: false })
-      .limit(3)
-    courses = courseData || []
-
-    // 5. Fetch 3 Popular Books
-    const { data: bookData } = await supabase
-      .from('items')
-      .select('*')
-      .eq('resource_type', 'book')
-      .order('created_at', { ascending: false })
-      .limit(3)
-    books = bookData || []
+    scholarships = scholRes.data || []
+    jobs = jobRes.data || []
+    software = softRes.data || []
+    courses = courseRes.data || []
+    books = bookRes.data || []
 
   } catch (err: any) {
     console.error('Home Page Data Fetching Error:', err)

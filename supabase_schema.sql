@@ -231,37 +231,42 @@ insert into public.custom_pages (slug, title, content) values
 on conflict (slug) do nothing;
 
 -- B. Mock Items Catalog
-insert into public.items (title, author, description, category, resource_type, type, price, file_path) values
+insert into public.items (title, author, description, category, resource_type, type, price, file_path, cover_url) values
 -- Books
-('Fundamentals of Calculus', 'Dr. Alice Carter', 'Introductory calculus handbook.', 'Academic Books', 'book', 'free', 0.00, 'free/calculus.pdf'),
-('Advanced Electromagnetism', 'Prof. John Vance', 'Advanced field equations and Maxwell theory.', 'Academic Books', 'book', 'premium', 800.00, 'premium/magnetism.pdf'),
-('JavaScript Basics for Beginners', 'Devon Cole', 'Introductory JS tutorial.', 'Programming Books', 'book', 'free', 0.00, 'free/javascript.pdf'),
-('Design Patterns in TypeScript', 'Martin Fowler Jr.', 'Contemporary TypeScript patterns.', 'Programming Books', 'book', 'premium', 1200.00, 'premium/patterns.pdf'),
+('Fundamentals of Calculus', 'Dr. Alice Carter', 'Introductory calculus handbook covering limits, derivatives, integrations, and functions.', 'Academic Books', 'book', 'free', 0.00, 'free/calculus.pdf', 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=600&auto=format&fit=crop'),
+('Advanced Electromagnetism', 'Prof. John Vance', 'Advanced field equations and Maxwell theory for electrical engineers.', 'Academic Books', 'book', 'premium', 800.00, 'premium/magnetism.pdf', 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop'),
+('JavaScript Basics for Beginners', 'Devon Cole', 'Introductory JS tutorial for web programming students.', 'Programming Books', 'book', 'free', 0.00, 'free/javascript.pdf', 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600&auto=format&fit=crop'),
+('Design Patterns in TypeScript', 'Martin Fowler Jr.', 'Contemporary TypeScript design patterns and object-oriented architectures.', 'Programming Books', 'book', 'premium', 1200.00, 'premium/patterns.pdf', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop'),
 
--- Scholarships (resource_type = 'scholarship', price_type = 'free', price = 0)
-('HEC Overseas Scholarship 2026', 'Higher Education Commission', 'Fully funded PhD and Master scholarships in top global universities.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://www.hec.gov.pk/english/scholarships/Pages/default.aspx'),
-('Fulbright Scholarship Program', 'USEFP Pakistan', 'Fully funded Master''s and PhD study in the United States.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://usefp.org/scholarships/fulbright.cfm'),
-('DAAD Germany Scholarships', 'German Academic Exchange', 'Postgraduate scholarships for developing countries in Germany.', 'PhD & Research', 'scholarship', 'free', 0.00, 'https://www.daad.de/en/'),
-('Chevening Scholarship UK', 'UK Government', 'Fully funded master degree fellowships in United Kingdom.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://www.chevening.org/'),
+-- Scholarships (resource_type = 'scholarship', price = 0)
+('HEC Overseas Scholarship 2026', 'Higher Education Commission', 'Fully funded PhD and Master scholarships in top global universities under HEC HRDI initiative.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://www.hec.gov.pk/english/scholarships/Pages/default.aspx', 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop'),
+('Fulbright Scholarship Program 2026', 'USEFP Pakistan', 'Fully funded Master''s and PhD study in the United States covering tuition, airfare, and health insurance.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://usefp.org/scholarships/fulbright.cfm', 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop'),
+('DAAD Germany Scholarships', 'German Academic Exchange', 'Postgraduate scholarships for academic research and masters degrees in Germany.', 'PhD & Research', 'scholarship', 'free', 0.00, 'https://www.daad.de/en/', 'https://images.unsplash.com/photo-1525921429624-479b6c294548?q=80&w=600&auto=format&fit=crop'),
+('Chevening Scholarship UK', 'UK Government', 'Fully funded master degree fellowships in United Kingdom for outstanding leaders.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://www.chevening.org/', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop'),
+('MEXT Japanese Government Scholarship', 'Japan Ministry of Education', 'Fully funded undergraduate and postgraduate academic study in top research institutes in Japan.', 'Undergraduate', 'scholarship', 'free', 0.00, 'https://www.pk.emb-japan.go.jp/itpr_en/education.html', 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=600&auto=format&fit=crop'),
+('Erasmus Mundus Joint Master Degree', 'European Commission', 'Fully funded joint European masters fellowships covering study in at least two EU countries.', 'Graduate (Master''s)', 'scholarship', 'free', 0.00, 'https://ec.europa.eu/programmes/erasmus-plus/opportunities/individuals/students/erasmus-mundus-joint-master-degrees_en', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=600&auto=format&fit=crop'),
 
--- Jobs (resource_type = 'job', price_type = 'free', price = 0)
-('Assistant Director (Engg)', 'Federal Public Service Commission', 'AD Technical openings in government ministries (Civil, Electrical, Mechanical).', 'Government Jobs', 'job', 'free', 0.00, 'https://www.fpsc.gov.pk/'),
-('Senior React Developer', 'Systems Limited', 'Develop frontend applications with Next.js, Redux, and TailwindCSS.', 'Private Jobs', 'job', 'free', 0.00, 'https://www.systemsltd.com/careers'),
-('Engineering Intern 2026', 'National Transmission & Despatch Co.', 'Hands-on training in grid stations and power transmission systems.', 'Internships', 'job', 'free', 0.00, 'https://ntdc.gov.pk/careers'),
+-- Jobs (resource_type = 'job', price = 0)
+('Assistant Director (Engg) PPSC', 'Punjab Public Service Commission', 'AD Technical openings in government energy and water ministries (Civil, Electrical, Mechanical).', 'Government Jobs', 'job', 'free', 0.00, 'https://ppsc.gop.pk/', 'https://images.unsplash.com/photo-1541829019-21370038379c?q=80&w=600&auto=format&fit=crop'),
+('Junior React Native Developer', 'Systems Limited', 'Develop cross-platform mobile applications with React Native, Redux, and TailwindCSS.', 'Private Jobs', 'job', 'free', 0.00, 'https://www.systemsltd.com/careers', 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop'),
+('Associate Hardware Engineer', 'NTDC Pakistan', 'Design and analyze transmission systems and circuit protections.', 'Private Jobs', 'job', 'free', 0.00, 'https://ntdc.gov.pk/careers', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop'),
+('Frontend Developer Intern', 'Systems Limited', 'Hands-on frontend engineering internship focusing on React.js and corporate tooling systems.', 'Internships', 'job', 'free', 0.00, 'https://www.systemsltd.com/careers', 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600&auto=format&fit=crop'),
+('Automated QA Intern 2026', 'Arbisoft', 'Software testing automation internship using Cypress, Selenium, and Jest.', 'Internships', 'job', 'free', 0.00, 'https://arbisoft.com/careers/', 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop'),
+('PPSC Sub-Engineer Electrical', 'PPC Govt Dept', 'Technical operations engineer role under Punjab Energy Department development project.', 'Government Jobs', 'job', 'free', 0.00, 'https://ppsc.gop.pk/', 'https://images.unsplash.com/photo-1621905252507-b354bc25edac?q=80&w=600&auto=format&fit=crop'),
 
 -- Software
-('MATLAB 2026a (with Toolboxes)', 'MathWorks', 'Full engineering simulation and computation suite.', 'Download Software', 'software', 'premium', 2500.00, 'premium/matlab_2026a.zip'),
-('AutoCAD 2026 Student Edition', 'Autodesk', '2D and 3D computer-aided design software tools.', 'Download Software', 'software', 'free', 0.00, 'https://www.autodesk.com/education/free-software/autocad'),
-('SolidWorks 2025 Premium', 'Dassault Systèmes', 'Mechanical design simulation and modeling engine.', 'Download Software', 'software', 'premium', 3000.00, 'premium/solidworks_2025.zip'),
+('MATLAB 2026a (with Toolboxes)', 'MathWorks', 'Full engineering simulation and computation suite.', 'Download Software', 'software', 'premium', 2500.00, 'premium/matlab_2026a.zip', 'https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?q=80&w=600&auto=format&fit=crop'),
+('AutoCAD 2026 Student Edition', 'Autodesk', '2D and 3D computer-aided design software tools.', 'Download Software', 'software', 'free', 0.00, 'https://www.autodesk.com/education/free-software/autocad', 'https://images.unsplash.com/photo-1503387762-592dec58ef4e?q=80&w=600&auto=format&fit=crop'),
+('SolidWorks 2025 Premium', 'Dassault Systèmes', 'Mechanical design simulation and modeling engine.', 'Download Software', 'software', 'premium', 3000.00, 'premium/solidworks_2025.zip', 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=600&auto=format&fit=crop'),
 
 -- Services
-('Full-Stack Web App Development', 'Yasin Coding Tech', 'Build Next.js web applications tailored to your project requirements.', 'Programming', 'service', 'premium', 5000.00, 'services/programming_consult.pdf'),
-('3D Mechanical Part Designing', 'Yasin CAD Lab', 'SolidWorks 3D modeling, assembly, and product rendering.', '3D Modeling', 'service', 'premium', 4000.00, 'services/cad_consult.pdf'),
-('MATLAB Simulation & Scripting', 'Yasin Math Solutions', 'Custom Simulink circuit analysis and algorithm implementation.', 'MATLAB & Simulink', 'service', 'premium', 3500.00, 'services/matlab_consult.pdf'),
+('Full-Stack Web App Development', 'Yasin Coding Tech', 'Build Next.js web applications tailored to your project requirements.', 'Programming', 'service', 'premium', 5000.00, 'services/programming_consult.pdf', 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop'),
+('3D Mechanical Part Designing', 'Yasin CAD Lab', 'SolidWorks 3D modeling, assembly, and product rendering.', '3D Modeling', 'service', 'premium', 4000.00, 'services/cad_consult.pdf', 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop'),
+('MATLAB Simulation & Scripting', 'Yasin Math Solutions', 'Custom Simulink circuit analysis and algorithm implementation.', 'MATLAB & Simulink', 'service', 'premium', 3500.00, 'services/matlab_consult.pdf', 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600&auto=format&fit=crop'),
 
 -- Courses
-('Mastering Next.js 15 App Router', 'Vercel Team Academy', 'Learn components, actions, API routes, and advanced SSR.', 'Courses', 'course', 'premium', 1500.00, 'premium/nextjs15_course.pdf'),
-('Python for Data Science BootCamp', 'AI Association of PK', 'Introductory Python, Pandas, Numpy, and Matplotlib tutorials.', 'Courses', 'course', 'free', 0.00, 'free/python_datascience.pdf')
+('Mastering Next.js 15 App Router', 'Vercel Team Academy', 'Learn components, actions, API routes, and advanced SSR.', 'Courses', 'course', 'premium', 1500.00, 'premium/nextjs15_course.pdf', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop'),
+('Python for Data Science BootCamp', 'AI Association of PK', 'Introductory Python, Pandas, Numpy, and Matplotlib tutorials.', 'Courses', 'course', 'free', 0.00, 'free/python_datascience.pdf', 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop')
 on conflict do nothing;
 
 
@@ -282,9 +287,13 @@ on conflict (id) do nothing;
 -- 10. GLOBAL PRIVILEGES GRANTS
 grant usage on schema public to anon, authenticated, service_role;
 grant select on all tables in schema public to anon, authenticated;
-grant insert on public.orders to authenticated;
-grant insert on public.order_items to authenticated;
-grant update on public.profiles to authenticated;
 grant all on all tables in schema public to service_role;
 grant usage, select on all sequences in schema public to anon, authenticated, service_role;
-grant select on public.custom_pages to anon, authenticated;
+
+-- Grant writes to authenticated role (safeguarded securely by table RLS policies)
+grant insert, update, delete on public.custom_pages to authenticated;
+grant insert, update, delete on public.items to authenticated;
+grant insert, update, delete on public.orders to authenticated;
+grant insert, update, delete on public.order_items to authenticated;
+grant insert, update, delete on public.purchases to authenticated;
+grant update on public.profiles to authenticated;
