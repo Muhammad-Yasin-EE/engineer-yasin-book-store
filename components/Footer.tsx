@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { GraduationCap } from 'lucide-react'
+import { GraduationCap, Mail, Phone, MessageCircle } from 'lucide-react'
 
 export default function Footer() {
   const supabase = createClient()
@@ -30,8 +30,8 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="md:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2 group w-fit">
-              <div className="w-8 h-8 rounded-full bg-[#B8212E] flex items-center justify-center">
-                <GraduationCap className="w-4.5 h-4.5 text-white" />
+              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-250 bg-white">
+                <img src="/logo.jpg" alt="Engineer Yasin Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold text-lg tracking-tight text-gray-800">
                 Engineer Yasin
@@ -80,13 +80,25 @@ export default function Footer() {
           </div>
 
           {/* Support */}
-          <div>
-            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Portal Support</h3>
+          <div className="space-y-4">
+            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest">Portal Support</h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              We verify custom checkout claims (JazzCash, EasyPaisa, NayaPay, SadaPay, and ABL Bank) within 1-12 hours. For support:
-              <br />
-              <span className="text-[#B8212E] font-semibold">support@engineeryasin.com</span>
+              We verify custom checkout claims (JazzCash, EasyPaisa, NayaPay, SadaPay, and ABL Bank) within 1-12 hours.
             </p>
+            <div className="space-y-2.5 text-xs text-gray-500 font-semibold">
+              <a href="mailto:yasinofficial03098158572@gmail.com" className="flex items-center gap-2 hover:text-[#B8212E] transition-colors">
+                <Mail className="w-4 h-4 text-rose-500 shrink-0" />
+                <span className="truncate">yasinofficial03098158572@gmail.com</span>
+              </a>
+              <a href="https://wa.me/923342806970" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-emerald-600 transition-colors">
+                <MessageCircle className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>WhatsApp: +923342806970</span>
+              </a>
+              <a href="tel:+923098158572" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+                <Phone className="w-4 h-4 text-blue-500 shrink-0" />
+                <span>Call: +923098158572</span>
+              </a>
+            </div>
           </div>
 
         </div>

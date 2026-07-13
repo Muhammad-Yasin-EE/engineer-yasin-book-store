@@ -100,8 +100,8 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8.5 h-8.5 rounded-full bg-[#B8212E] flex items-center justify-center shadow-sm shadow-[#B8212E]/20 group-hover:scale-105 transition-all">
-                <GraduationCap className="w-4.5 h-4.5 text-white" />
+              <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center border border-gray-250 shadow-sm group-hover:scale-105 transition-all bg-white">
+                <img src="/logo.jpg" alt="Engineer Yasin Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold text-lg tracking-tight text-[#222222]">
                 Engineer <span className="text-[#B8212E]">Yasin</span>

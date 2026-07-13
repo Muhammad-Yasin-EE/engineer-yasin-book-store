@@ -1,9 +1,9 @@
 'use client'
 
-import React from 'react'
-import { Mail, Globe, MessageCircle, MessageSquareShare, BellRing } from 'lucide-react'
+import React, { useState } from 'react'
+import { Mail, Globe, MessageCircle, MessageSquareShare, BellRing, Share2, X } from 'lucide-react'
 
-// Custom brand SVG components to avoid lucide brand deprecations
+// Custom brand SVG components
 const FacebookIcon = () => (
   <svg className="w-4.5 h-4.5 text-[#1877f2]" fill="currentColor" viewBox="0 0 24 24">
     <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
@@ -29,6 +29,8 @@ const YouTubeIcon = () => (
 )
 
 export default function SocialFloatingBar() {
+  const [isOpen, setIsOpen] = useState(false)
+
   const socialLinks = [
     {
       name: 'Website',
@@ -88,20 +90,41 @@ export default function SocialFloatingBar() {
 
   return (
     <>
-      {/* Left Sticky Vertical Social Dock */}
-      <div className="fixed bottom-6 left-3 sm:left-6 z-50 flex flex-col gap-1.5 bg-white/95 backdrop-blur-md border border-gray-200/80 p-1.5 sm:p-2 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300">
-        {socialLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={link.name}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-205 border border-transparent hover:border-gray-200 ${link.hoverClass}`}
-          >
-            {link.icon}
-          </a>
-        ))}
+      {/* Left Sticky Social Dock Container */}
+      <div className="fixed bottom-6 left-3 sm:left-6 z-50 flex flex-col items-center gap-3">
+        
+        {/* Expanded Vertical Social Menu */}
+        <div className={`flex flex-col gap-2 bg-white/95 backdrop-blur-md border border-gray-200/80 p-2 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 origin-bottom transform ${
+          isOpen 
+            ? 'opacity-100 scale-100 translate-y-0 visible' 
+            : 'opacity-0 scale-75 translate-y-4 invisible h-0 overflow-hidden p-0 border-0'
+        }`}>
+          {socialLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={link.name}
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 border border-transparent hover:border-gray-200 ${link.hoverClass}`}
+            >
+              {link.icon}
+            </a>
+          ))}
+        </div>
+
+        {/* Collapsed Single Social Trigger Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 border cursor-pointer hover:scale-105 active:scale-95 ${
+            isOpen 
+              ? 'bg-[#B8212E] text-white border-transparent hover:bg-[#D62636]' 
+              : 'bg-white text-gray-700 border-gray-200 hover:text-[#B8212E] hover:border-[#B8212E]/30'
+          }`}
+          title="Social Connections"
+        >
+          {isOpen ? <X className="w-5 h-5 animate-scale-in" /> : <Share2 className="w-5 h-5 animate-scale-in" />}
+        </button>
       </div>
 
       {/* Right Sticky Floating WhatsApp Chat Button */}
