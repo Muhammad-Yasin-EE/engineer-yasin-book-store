@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { FileText, ArrowRight, Calendar, User, Sparkles } from 'lucide-react'
 
-export const revalidate = 0
+export const revalidate = 60
 
 export default async function BlogDirectoryPage() {
   let posts: any[] = []
   let errorMsg = null
 
   try {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
     const { data, error } = await supabase
       .from('blog_posts')
       .select('*')

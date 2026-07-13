@@ -312,6 +312,7 @@ create policy "Allow admin write for notifications" on public.notifications for 
 
 -- DATABASE PERFORMANCE INDEXING
 create index if not exists idx_items_resource_type on public.items(resource_type);
+create index if not exists idx_items_resource_category_created on public.items(resource_type, category, created_at desc);
 create index if not exists idx_purchases_user_item on public.purchases(user_id, item_id);
 create index if not exists idx_order_items_order_id on public.order_items(order_id);
 create index if not exists idx_reviews_item_id on public.reviews(item_id);

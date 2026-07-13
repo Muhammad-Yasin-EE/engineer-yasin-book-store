@@ -137,6 +137,7 @@ export default function BookCard({ id, title, author, category, type, price, cov
         {/* Action Button */}
         <Link 
           href={`/items/${id}`}
+          prefetch={false}
           className="mt-auto w-full inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold border border-[#B8212E] text-[#B8212E] group-hover:bg-[#B8212E] group-hover:text-white transition-all duration-200"
         >
           {getActionButtonText()}

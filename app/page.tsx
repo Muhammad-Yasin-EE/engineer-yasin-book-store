@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import BookCard from '@/components/BookCard'
 import CategoryCard from '@/components/CategoryCard'
 import { GraduationCap, Briefcase, Download, Hammer, BookOpen, Sparkles, Layers, ArrowRight } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export default async function HomePage() {
   let scholarships: any[] = []
@@ -15,7 +15,7 @@ export default async function HomePage() {
   let errorMsg = null
 
   try {
-    const supabase = await createClient()
+    const supabase = createAdminClient()
 
     // Fetch all directory items in parallel to prevent sequential database query waterfalls
     const [

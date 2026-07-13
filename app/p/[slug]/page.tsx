@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { FileText, ArrowLeft, Calendar } from 'lucide-react'
 
-export const revalidate = 0
+export const revalidate = 60
 
 interface CustomPageProps {
   params: Promise<{ slug: string }>
@@ -11,7 +11,7 @@ interface CustomPageProps {
 
 export async function generateMetadata({ params }: CustomPageProps) {
   const { slug } = await params
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   try {
     const { data: page } = await supabase
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: CustomPageProps) {
 
 export default async function CustomPage({ params }: CustomPageProps) {
   const { slug } = await params
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   let pageData: any = null
 

@@ -9,7 +9,7 @@ interface SearchParams {
   page?: string
 }
 
-export const revalidate = 0
+export const revalidate = 60
 
 export default async function SoftwarePage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const params = await searchParams

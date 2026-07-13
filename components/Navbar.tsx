@@ -158,7 +158,7 @@ export default function Navbar() {
       } finally {
         setLoadingSuggestions(false)
       }
-    }, 150) // fast 150ms delay for snappiness
+    }, 300) // 300ms debounce delay to optimize database calls
 
     return () => clearTimeout(delayDebounce)
   }, [searchQuery])
@@ -260,10 +260,10 @@ export default function Navbar() {
               </button>
               {activeDropdown === 'careers' && (
                 <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
-                  <Link href="/scholarships" className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                  <Link href="/scholarships" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
                     Scholarships
                   </Link>
-                  <Link href="/jobs" className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                  <Link href="/jobs" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
                     Jobs & Internships
                   </Link>
                 </div>
@@ -283,13 +283,13 @@ export default function Navbar() {
               </button>
               {activeDropdown === 'resources' && (
                 <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
-                  <Link href="/courses" className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                  <Link href="/courses" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
                     Courses
                   </Link>
-                  <Link href="/software" className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                  <Link href="/software" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
                     Software Downloads
                   </Link>
-                  <Link href="/prep" className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                  <Link href="/prep" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
                     Test Preparation (MCQs)
                   </Link>
                 </div>
@@ -297,25 +297,25 @@ export default function Navbar() {
             </div>
 
             {/* Standalone Books Link */}
-            <Link href="/books" className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+            <Link href="/books" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <BookOpen className="w-3.5 h-3.5" />
               Book Store
             </Link>
 
             {/* Standalone Services Link */}
-            <Link href="/services" className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+            <Link href="/services" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <Hammer className="w-3.5 h-3.5" />
               Services
             </Link>
 
             {/* Standalone Blog Link */}
-            <Link href="/blog" className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+            <Link href="/blog" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <Newspaper className="w-3.5 h-3.5" />
               Blog
             </Link>
 
             {/* Standalone Track Link */}
-            <Link href="/track" className="text-xs font-bold text-gray-650 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+            <Link href="/track" prefetch={false} className="text-xs font-bold text-gray-650 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" />
               Track Order
             </Link>

@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { FileText, ArrowLeft, Calendar, User, Clock } from 'lucide-react'
 
-export const revalidate = 0
+export const revalidate = 60
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -11,7 +11,7 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   try {
     const { data: post } = await supabase
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const supabase = await createClient()
+  const supabase = createAdminClient()
 
   let post: any = null
 

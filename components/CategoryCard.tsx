@@ -36,6 +36,7 @@ export default function CategoryCard({ name, count, resourceType = 'book' }: Cat
   return (
     <Link 
       href={getCategoryTarget()}
+      prefetch={false}
       className="group flex items-center justify-between p-4 bg-[#f8fafc] hover:bg-white border border-gray-200 hover:border-[#B8212E]/40 rounded-none transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.03)]"
     >
       <div className="flex items-center gap-3">

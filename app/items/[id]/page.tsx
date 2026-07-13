@@ -6,7 +6,7 @@ import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft
 import AddToCartButton from './AddToCartButton'
 import ReviewSection from './ReviewSection'
 
-export const revalidate = 0
+export const revalidate = 60
 
 interface ItemDetailPageProps {
   params: Promise<{ id: string }>
