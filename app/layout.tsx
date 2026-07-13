@@ -5,6 +5,7 @@ import { CartProvider } from "@/lib/context/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SocialFloatingBar from "@/components/SocialFloatingBar";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Engineer Yasin | Academic, Jobs & Software Portal",
@@ -28,6 +29,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <SocialFloatingBar />
+          <Analytics />
         </CartProvider>
       </body>
     </html>
