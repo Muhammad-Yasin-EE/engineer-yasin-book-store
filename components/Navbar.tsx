@@ -484,33 +484,84 @@ export default function Navbar() {
             </button>
           </form>
 
+          {/* Quick settings row at the top of the menu */}
+          <div className="flex items-center justify-between gap-3 border-b border-gray-100 pb-3">
+            <button
+              onClick={toggleDarkMode}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:text-[#B8212E] cursor-pointer"
+            >
+              {darkMode ? (
+                <>
+                  <Sun className="w-4 h-4 text-amber-500" />
+                  <span>Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-slate-500" />
+                  <span>Dark Mode</span>
+                </>
+              )}
+            </button>
+
+            {session ? (
+              <div className="flex gap-2">
+                <Link
+                  href="/account"
+                  onClick={() => setMobileMenuOpen(false)}
+                  prefetch={false}
+                  className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700"
+                >
+                  Library
+                </Link>
+                <button
+                  onClick={() => {
+                    handleSignOut()
+                    setMobileMenuOpen(false)
+                  }}
+                  className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-500 cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                prefetch={false}
+                className="px-4 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white text-xs font-bold rounded-full shadow-sm"
+              >
+                Sign In
+              </Link>
+            )}
+          </div>
+
           <div className="flex flex-col gap-2.5 text-xs font-bold text-gray-600">
             <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100">Directories</div>
-            <Link href="/scholarships" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/scholarships" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <GraduationCap className="w-4 h-4 text-[#B8212E]" /> Scholarships
             </Link>
-            <Link href="/jobs" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/jobs" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-[#B8212E]" /> Jobs & Internships
             </Link>
-            <Link href="/software" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/software" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Download className="w-4 h-4 text-[#B8212E]" /> Software Downloads
             </Link>
-            <Link href="/courses" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/courses" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <BookOpen className="w-4 h-4 text-[#B8212E]" /> Courses
             </Link>
-            <Link href="/books" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/books" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <BookMarked className="w-4 h-4 text-[#B8212E]" /> Book Store
             </Link>
-            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/services" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Hammer className="w-4 h-4 text-[#B8212E]" /> Services
             </Link>
-            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/blog" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Newspaper className="w-4 h-4 text-[#B8212E]" /> Blog Updates
             </Link>
-            <Link href="/track" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/track" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#B8212E]" /> Track Order
             </Link>
-            <Link href="/prep" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+            <Link href="/prep" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
               <Award className="w-4 h-4 text-[#B8212E]" /> MCQ Quiz Prep
             </Link>
 
@@ -522,52 +573,13 @@ export default function Navbar() {
                     key={page.slug}
                     href={`/p/${page.slug}`} 
                     onClick={() => setMobileMenuOpen(false)} 
+                    prefetch={false}
                     className="hover:text-[#B8212E] py-1 pl-4 font-semibold text-gray-500 block"
                   >
                     {page.title}
                   </Link>
                 ))}
               </>
-            )}
-
-            {session && (
-              <Link href="/account" onClick={() => setMobileMenuOpen(false)} className="mt-3 px-4 py-2 rounded-full border border-gray-200 text-center font-bold hover:border-[#B8212E]/30 text-gray-700 block">
-                User Library Dashboard
-              </Link>
-            )}
-
-            {/* Mobile-only Authentication & Theme triggers */}
-            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mt-3">Account & Settings</div>
-            
-            {/* Dark Mode trigger inside mobile menu */}
-            <button
-              onClick={() => {
-                toggleDarkMode()
-                setMobileMenuOpen(false)
-              }}
-              className="w-full text-left hover:text-[#B8212E] py-1.5 flex items-center gap-2 cursor-pointer font-bold text-xs"
-            >
-              {darkMode ? (
-                <>
-                  <Sun className="w-4.5 h-4.5 text-amber-500" />
-                  Switch to Light Theme
-                </>
-              ) : (
-                <>
-                  <Moon className="w-4.5 h-4.5 text-slate-700" />
-                  Switch to Dark Theme
-                </>
-              )}
-            </button>
-
-            {!session && (
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 w-full text-center py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm block"
-              >
-                Sign In
-              </Link>
             )}
           </div>
         </div>
