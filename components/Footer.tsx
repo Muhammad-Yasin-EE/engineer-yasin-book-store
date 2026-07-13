@@ -1,7 +1,27 @@
+'use client'
+
 import Link from 'next/link'
-import { BookOpen } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { GraduationCap } from 'lucide-react'
 
 export default function Footer() {
+  const supabase = createClient()
+  const [customPages, setCustomPages] = useState<any[]>([])
+
+  useEffect(() => {
+    const fetchCustomPages = async () => {
+      const { data } = await supabase
+        .from('custom_pages')
+        .select('slug, title')
+        .order('title', { ascending: true })
+      if (data) {
+        setCustomPages(data)
+      }
+    }
+    fetchCustomPages()
+  }, [])
+
   return (
     <footer className="bg-[#f8fafc] border-t border-gray-200 text-gray-500 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -11,34 +31,49 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2 group w-fit">
               <div className="w-8 h-8 rounded-full bg-[#B8212E] flex items-center justify-center">
-                <BookOpen className="w-4.5 h-4.5 text-white" />
+                <GraduationCap className="w-4.5 h-4.5 text-white" />
               </div>
               <span className="font-bold text-lg tracking-tight text-gray-800">
-                Engineer Yasin Books
+                Engineer Yasin
               </span>
             </Link>
             <p className="text-sm text-gray-400 max-w-sm">
-              Your premium destination for engineering, academic, and general knowledge books. Download free materials or buy premium courses with ease.
+              Your comprehensive portal for academic, technical, and engineering resources. Download software, apply for scholarships and jobs, or buy training materials.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Explore</h3>
+            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Explore Portal</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/scholarships" className="hover:text-[#B8212E] transition-colors">
+                  Scholarships
+                </Link>
+              </li>
+              <li>
+                <Link href="/jobs" className="hover:text-[#B8212E] transition-colors">
+                  Jobs & Internships
+                </Link>
+              </li>
+              <li>
+                <Link href="/software" className="hover:text-[#B8212E] transition-colors">
+                  Software Downloads
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-[#B8212E] transition-colors">
+                  Engineering Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses" className="hover:text-[#B8212E] transition-colors">
+                  Courses & Classes
+                </Link>
+              </li>
+              <li>
                 <Link href="/books" className="hover:text-[#B8212E] transition-colors">
-                  All Books
-                </Link>
-              </li>
-              <li>
-                <Link href="/books?filter=free" className="hover:text-[#B8212E] transition-colors">
-                  Free Books
-                </Link>
-              </li>
-              <li>
-                <Link href="/books?filter=premium" className="hover:text-[#B8212E] transition-colors">
-                  Premium Books
+                  Book Store
                 </Link>
               </li>
             </ul>
@@ -46,9 +81,9 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Payment Support</h3>
+            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Portal Support</h3>
             <p className="text-xs text-gray-400 leading-relaxed">
-              We verify manual transactions (JazzCash, EasyPaisa, NayaPay, SadaPay, and ABL Bank) within 1-12 hours. For support, please contact us at:
+              We verify custom checkout claims (JazzCash, EasyPaisa, NayaPay, SadaPay, and ABL Bank) within 1-12 hours. For support:
               <br />
               <span className="text-[#B8212E] font-semibold">support@engineeryasin.com</span>
             </p>
@@ -56,11 +91,19 @@ export default function Footer() {
 
         </div>
 
+        {/* Dynamic bottom links */}
         <div className="border-t border-gray-200 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
-          <p>&copy; {new Date().getFullYear()} Engineer Yasin Books. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-[#B8212E]">Privacy Policy</a>
-            <a href="#" className="hover:text-[#B8212E]">Terms of Service</a>
+          <p>&copy; {new Date().getFullYear()} Engineer Yasin. All rights reserved.</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            {customPages.map(page => (
+              <Link 
+                key={page.slug} 
+                href={`/p/${page.slug}`} 
+                className="hover:text-[#B8212E] font-bold"
+              >
+                {page.title}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

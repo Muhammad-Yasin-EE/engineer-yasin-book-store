@@ -7,41 +7,46 @@ export const dynamic = 'force-dynamic' // Disable static optimization for API ro
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
-    const bookId = searchParams.get('bookId')
+    const itemId = searchParams.get('itemId') || searchParams.get('bookId') // Support both query params for compatibility
 
-    if (!bookId) {
-      return NextResponse.json({ error: 'Book ID is required' }, { status: 400 })
+    if (!itemId) {
+      return NextResponse.json({ error: 'Resource ID is required' }, { status: 400 })
     }
 
     const supabase = await createClient()
 
-    // 1. Fetch book record (accessible by anyone)
-    const { data: book, error: bookErr } = await supabase
-      .from('books')
+    // 1. Fetch resource record
+    const { data: item, error: itemErr } = await supabase
+      .from('items')
       .select('*')
-      .eq('id', bookId)
+      .eq('id', itemId)
       .single()
 
-    if (bookErr || !book) {
-      return NextResponse.json({ error: 'Book not found' }, { status: 404 })
+    if (itemErr || !item) {
+      return NextResponse.json({ error: 'Resource not found' }, { status: 404 })
     }
 
-    // 2. FREE BOOKS FLOW (Public download)
-    if (book.type === 'free') {
+    // 2. FREE RESOURCES FLOW (Public download)
+    if (item.type === 'free') {
       const adminClient = createAdminClient()
       
       // Increment download count
       await adminClient
-        .from('books')
-        .update({ download_count: (book.download_count || 0) + 1 })
-        .eq('id', bookId)
+        .from('items')
+        .update({ download_count: (item.download_count || 0) + 1 })
+        .eq('id', itemId)
+
+      // Check if file_path is an external absolute URL (like scholarships/jobs links)
+      if (item.file_path.startsWith('http://') || item.file_path.startsWith('https://')) {
+        return NextResponse.redirect(item.file_path)
+      }
 
       // Generate public URL redirect
-      const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/free-books/${book.file_path}`
+      const publicUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/free-books/${item.file_path}`
       return NextResponse.redirect(publicUrl)
     }
 
-    // 3. PREMIUM BOOKS FLOW (Security checks)
+    // 3. PREMIUM RESOURCES FLOW (Security checks)
     // A. Check user authentication
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
@@ -66,7 +71,7 @@ export async function GET(request: Request) {
         .from('purchases')
         .select('id')
         .eq('user_id', user.id)
-        .eq('book_id', bookId)
+        .eq('item_id', itemId)
         .maybeSingle()
 
       if (purchase) {
@@ -83,14 +88,14 @@ export async function GET(request: Request) {
 
     // Increment download count
     await adminClient
-      .from('books')
-      .update({ download_count: (book.download_count || 0) + 1 })
-      .eq('id', bookId)
+        .from('items')
+        .update({ download_count: (item.download_count || 0) + 1 })
+        .eq('id', itemId)
 
     // Generate signed download link (valid for 60 seconds)
     const { data: signedData, error: signedErr } = await adminClient.storage
       .from('premium-books')
-      .createSignedUrl(book.file_path, 60, {
+      .createSignedUrl(item.file_path, 60, {
         download: true, // Forces content-disposition download headers
       })
 

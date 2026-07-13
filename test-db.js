@@ -15,11 +15,11 @@ if (!url || !key) {
 const supabase = createClient(url, key);
 
 async function runDiagnostics() {
-  console.log("\nAttempting to query 'books' table...");
+  console.log("\nAttempting to query 'items' table...");
   try {
     const { data, error } = await supabase
-      .from('books')
-      .select('id, title, category, type')
+      .from('items')
+      .select('id, title, category, resource_type')
       .limit(3);
 
     if (error) {

@@ -79,7 +79,7 @@ export default function CartPage() {
                   {/* Title & Author Info */}
                   <div className="truncate">
                     <h3 className="font-bold text-gray-800 text-sm sm:text-base hover:text-[#B8212E] transition-colors truncate">
-                      <Link href={`/books/${item.id}`}>{item.title}</Link>
+                      <Link href={`/items/${item.id}`}>{item.title}</Link>
                     </h3>
                     <p className="text-xs text-gray-500 truncate">by {item.author}</p>
                     <span className="inline-block text-[9px] font-bold text-[#B8212E] uppercase tracking-widest bg-[#B8212E]/5 px-1.5 py-0.5 rounded border border-[#B8212E]/10 mt-1">

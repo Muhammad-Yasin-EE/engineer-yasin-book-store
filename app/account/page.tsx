@@ -30,13 +30,13 @@ export default async function AccountPage() {
 
     const { data: purchaseData } = await supabase
       .from('purchases')
-      .select('id, created_at, book_id, books(*)')
+      .select('id, created_at, item_id, items(*)')
       .eq('user_id', user.id)
     purchases = purchaseData || []
 
     const { data: orderData } = await supabase
       .from('orders')
-      .select('*, order_items(*, books(*))')
+      .select('*, order_items(*, items(*))')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
     orders = orderData || []
@@ -93,7 +93,7 @@ export default async function AccountPage() {
       {/* Grid: My Library & My Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
-        {/* Left Column: My Library (Purchased Books) */}
+        {/* Left Column: My Library (Purchased Items) */}
         <div className="lg:col-span-7 space-y-6">
           <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2 border-b border-gray-150 pb-2">
             <Library className="w-4 h-4 text-[#B8212E]" />
@@ -105,21 +105,21 @@ export default async function AccountPage() {
               <BookOpen className="w-10 h-10 mb-3 opacity-30 text-gray-500" />
               <h4 className="text-sm font-bold text-gray-700">Library Empty</h4>
               <p className="text-xs text-gray-400 max-w-xs mt-1">
-                You haven't acquired any premium resources yet. Once your manual payments are verified, purchased books will appear here permanently.
+                You haven't acquired any premium resources yet. Once your manual payments are verified, purchased courses, software, services, or books will appear here permanently.
               </p>
               <Link 
-                href="/books" 
+                href="/" 
                 className="mt-6 inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-bold bg-[#B8212E] hover:bg-[#D62636] text-white"
               >
-                Explore Books Catalog
+                Browse Portal Home
               </Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {purchases.map((pur) => {
-                const book = pur.books
-                if (!book) return null
-                const hasCover = book.cover_url && !book.cover_url.includes('placeholder') && !book.cover_url.includes('covers/')
+                const item = pur.items
+                if (!item) return null
+                const hasCover = item.cover_url && !item.cover_url.includes('placeholder') && !item.cover_url.includes('covers/')
                 
                 return (
                   <div 
@@ -129,29 +129,29 @@ export default async function AccountPage() {
                     {/* Tiny Cover Visual (Sharp corners) */}
                     <div className="relative aspect-[3/4] w-14 shrink-0 rounded-none overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center text-center">
                       {hasCover ? (
-                        <img src={book.cover_url} alt={book.title} className="w-full h-full object-cover" />
+                        <img src={item.cover_url} alt={item.title} className="w-full h-full object-cover" />
                       ) : (
-                        <div className={`w-full h-full flex flex-col justify-center p-1 bg-gradient-to-br ${getGradientClass(book.title)}`}>
-                          <h4 className="font-extrabold text-[6px] leading-tight line-clamp-3 text-white">{book.title}</h4>
+                        <div className={`w-full h-full flex flex-col justify-center p-1 bg-gradient-to-br ${getGradientClass(item.title)}`}>
+                          <h4 className="font-extrabold text-[6px] leading-tight line-clamp-3 text-white">{item.title}</h4>
                         </div>
                       )}
                     </div>
 
-                    {/* Book Metadata & Download Trigger */}
+                    {/* Metadata & Download Trigger */}
                     <div className="flex flex-col justify-between truncate w-full">
                       <div className="truncate">
                         <h4 className="font-bold text-gray-800 text-xs sm:text-sm hover:text-[#B8212E] truncate">
-                          <Link href={`/books/${book.id}`}>{book.title}</Link>
+                          <Link href={`/items/${item.id}`}>{item.title}</Link>
                         </h4>
-                        <p className="text-[10px] text-gray-400 truncate">by {book.author}</p>
+                        <p className="text-[10px] text-gray-400 truncate">by {item.author}</p>
                       </div>
                       
                       <a
-                        href={`/api/download?bookId=${book.id}`}
+                        href={`/api/download?itemId=${item.id}`}
                         className="mt-2 inline-flex items-center justify-center gap-1 py-1.5 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-[9px] w-fit shadow-sm"
                       >
                         <Download className="w-3 h-3" />
-                        Download
+                        Download / Access
                       </a>
                     </div>
                   </div>
@@ -206,7 +206,7 @@ export default async function AccountPage() {
                   <div className="bg-gray-50 p-2.5 rounded-none border border-gray-200 text-[10px] text-gray-500 space-y-1 font-semibold">
                     {order.order_items?.map((item: any, idx: number) => (
                       <div key={idx} className="flex justify-between gap-2 truncate">
-                        <span className="truncate text-gray-700">{item.books?.title || 'Ebook'}</span>
+                        <span className="truncate text-gray-700">{item.items?.title || 'Resource'}</span>
                         <span className="shrink-0 text-gray-400">Rs. {item.price.toFixed(0)}</span>
                       </div>
                     ))}

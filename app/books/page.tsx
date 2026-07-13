@@ -38,8 +38,9 @@ export default async function BooksPage({ searchParams }: { searchParams: Promis
     const endRange = startRange + pageSize - 1
 
     let query = supabase
-      .from('books')
+      .from('items')
       .select('*', { count: 'exact' })
+      .eq('resource_type', 'book')
 
     if (category && category !== 'All Books') {
       query = query.eq('category', category)

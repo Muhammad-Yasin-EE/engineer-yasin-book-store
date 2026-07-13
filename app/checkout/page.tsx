@@ -110,7 +110,7 @@ export default function CheckoutPage() {
 
       const orderItems = cart.map(item => ({
         order_id: orderData.id,
-        book_id: item.id,
+        item_id: item.id,
         price: item.price
       }))
 
