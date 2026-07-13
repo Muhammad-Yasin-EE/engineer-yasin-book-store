@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import OrderStatusBadge from '@/components/OrderStatusBadge'
-import { ShieldCheck, ShieldAlert, Layers, BookMarked, Plus, Edit, Trash2, Check, X, Upload, ExternalLink, RefreshCw, FileText } from 'lucide-react'
+import { ShieldCheck, ShieldAlert, Layers, BookMarked, Plus, Edit, Trash2, Check, X, Upload, ExternalLink, RefreshCw, FileText, Users, Mail } from 'lucide-react'
 
 const CATEGORIES = [
   "Academic Books", "Test Preparation", "Programming Books", "AI Books", "Engineering Books", 
@@ -28,10 +28,27 @@ const RESOURCE_TYPES = [
 export default function AdminDashboard() {
   const supabase = createClient()
   
-  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages'>('orders')
+  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages' | 'blog' | 'subscribers'>('orders')
   const [orders, setOrders] = useState<any[]>([])
   const [items, setItems] = useState<any[]>([])
   const [customPages, setCustomPages] = useState<any[]>([])
+  
+  // Blog posts states
+  const [blogPosts, setBlogPosts] = useState<any[]>([])
+  const [loadingBlog, setLoadingBlog] = useState(false)
+  const [blogTitle, setBlogTitle] = useState('')
+  const [blogSlug, setBlogSlug] = useState('')
+  const [blogSummary, setBlogSummary] = useState('')
+  const [blogContent, setBlogContent] = useState('')
+  const [blogCoverUrl, setBlogCoverUrl] = useState('')
+  const [editingBlogPostId, setEditingBlogPostId] = useState<string | null>(null)
+  const [blogFormError, setBlogFormError] = useState<string | null>(null)
+  const [blogSubmitting, setBlogSubmitting] = useState(false)
+  const [showBlogModal, setShowBlogModal] = useState(false)
+
+  // Subscribers states
+  const [subscribers, setSubscribers] = useState<any[]>([])
+  const [loadingSubscribers, setLoadingSubscribers] = useState(false)
   
   const [loadingOrders, setLoadingOrders] = useState(false)
   const [loadingItems, setLoadingItems] = useState(false)
@@ -117,10 +134,122 @@ export default function AdminDashboard() {
     }
   }
 
+  const fetchBlogPosts = async () => {
+    setLoadingBlog(true)
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (error) throw error
+      setBlogPosts(data || [])
+    } catch (err) {
+      console.error('Fetch Blog Posts Error:', err)
+    } finally {
+      setLoadingBlog(false)
+    }
+  }
+
+  const fetchSubscribers = async () => {
+    setLoadingSubscribers(true)
+    try {
+      const { data, error } = await supabase
+        .from('newsletter_subscribers')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (error) throw error
+      setSubscribers(data || [])
+    } catch (err) {
+      console.error('Fetch Subscribers Error:', err)
+    } finally {
+      setLoadingSubscribers(false)
+    }
+  }
+
+  const handleDeleteBlogPost = async (id: string) => {
+    if (!confirm('Delete this blog post? It will go offline instantly.')) return
+    try {
+      const { error } = await supabase.from('blog_posts').delete().eq('id', id)
+      if (error) throw error
+      setBlogPosts(prev => prev.filter(post => post.id !== id))
+    } catch (err: any) {
+      alert(`Failed to delete post: ${err.message}`)
+    }
+  }
+
+  const openAddBlogPost = () => {
+    setEditingBlogPostId(null)
+    setBlogTitle('')
+    setBlogSlug('')
+    setBlogSummary('')
+    setBlogContent('')
+    setBlogCoverUrl('')
+    setBlogFormError(null)
+    setShowBlogModal(true)
+  }
+
+  const openEditBlogPost = (post: any) => {
+    setEditingBlogPostId(post.id)
+    setBlogTitle(post.title)
+    setBlogSlug(post.slug)
+    setBlogSummary(post.summary)
+    setBlogContent(post.content)
+    setBlogCoverUrl(post.cover_url || '')
+    setBlogFormError(null)
+    setShowBlogModal(true)
+  }
+
+  const handleSaveBlogPost = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setBlogFormError(null)
+
+    if (!blogTitle.trim() || !blogSlug.trim() || !blogSummary.trim() || !blogContent.trim()) {
+      setBlogFormError('Please fill out Title, Slug, Summary, and Content.')
+      return
+    }
+
+    setBlogSubmitting(true)
+
+    try {
+      const postData = {
+        title: blogTitle.trim(),
+        slug: blogSlug.trim().toLowerCase().replace(/\s+/g, '-'),
+        summary: blogSummary.trim(),
+        content: blogContent.trim(),
+        cover_url: blogCoverUrl.trim() || null,
+        updated_at: new Date().toISOString()
+      }
+
+      if (editingBlogPostId) {
+        const { error } = await supabase
+          .from('blog_posts')
+          .update(postData)
+          .eq('id', editingBlogPostId)
+        if (error) throw error
+        setBlogPosts(prev => prev.map(p => p.id === editingBlogPostId ? { ...p, ...postData } : p))
+      } else {
+        const { error } = await supabase
+          .from('blog_posts')
+          .insert(postData)
+        if (error) throw error
+        fetchBlogPosts()
+      }
+
+      setShowBlogModal(false)
+    } catch (err: any) {
+      console.error(err)
+      setBlogFormError(err.message || 'Failed to save blog post.')
+    } finally {
+      setBlogSubmitting(false)
+    }
+  }
+
   useEffect(() => {
     fetchOrders()
     fetchItems()
     fetchCustomPages()
+    fetchBlogPosts()
+    fetchSubscribers()
   }, [])
 
   const handleVerifyOrder = async (orderId: string) => {
@@ -390,7 +519,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow bg-white text-[#222222] space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow bg-white text-[#222222] space-y-8 animate-fade-in">
       
       {/* Title Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-gray-150 pb-6 gap-4">
@@ -405,7 +534,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Tab Selector */}
-        <div className="flex bg-gray-50 border border-gray-200 rounded-full p-1 shrink-0">
+        <div className="flex flex-wrap gap-1 bg-gray-50 border border-gray-200 rounded-full p-1 shrink-0">
           <button
             onClick={() => setActiveTab('orders')}
             className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${activeTab === 'orders' ? 'bg-[#B8212E] text-white shadow-sm' : 'text-gray-550'}`}
@@ -427,6 +556,59 @@ export default function AdminDashboard() {
             <FileText className="w-4 h-4" />
             Pages ({customPages.length})
           </button>
+          <button
+            onClick={() => setActiveTab('blog')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${activeTab === 'blog' ? 'bg-[#B8212E] text-white shadow-sm' : 'text-gray-550'}`}
+          >
+            <FileText className="w-4 h-4" />
+            Blog ({blogPosts.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('subscribers')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${activeTab === 'subscribers' ? 'bg-[#B8212E] text-white shadow-sm' : 'text-gray-550'}`}
+          >
+            <Users className="w-4 h-4" />
+            Subscribers ({subscribers.length})
+          </button>
+        </div>
+      </div>
+
+      {/* Analytics Stats Dashboard */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Card 1: Revenue */}
+        <div className="bg-[#f8fafc] border border-gray-200 p-5 rounded-none space-y-2">
+          <span className="block text-[8px] uppercase text-gray-400 font-bold tracking-wider">Total Verified Earnings</span>
+          <span className="text-xl font-extrabold text-emerald-600 block">
+            PKR {orders.filter(o => o.status === 'verified').reduce((sum, o) => sum + o.total_price, 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+          </span>
+          <span className="text-[10px] text-gray-400 font-semibold block">Unlocked premium orders</span>
+        </div>
+
+        {/* Card 2: Pending verifications */}
+        <div className="bg-[#f8fafc] border border-gray-200 p-5 rounded-none space-y-2">
+          <span className="block text-[8px] uppercase text-gray-400 font-bold tracking-wider">Pending Verifications</span>
+          <span className="text-xl font-extrabold text-amber-600 block">
+            {orders.filter(o => o.status === 'payment_submitted').length} Claims
+          </span>
+          <span className="text-[10px] text-gray-400 font-semibold block">Awaiting receipt verification</span>
+        </div>
+
+        {/* Card 3: Catalog Size */}
+        <div className="bg-[#f8fafc] border border-gray-200 p-5 rounded-none space-y-2">
+          <span className="block text-[8px] uppercase text-gray-400 font-bold tracking-wider">Active Catalog</span>
+          <span className="text-xl font-extrabold text-blue-600 block">
+            {items.length} Resources
+          </span>
+          <span className="text-[10px] text-gray-400 font-semibold block">Ebooks, courses, software & services</span>
+        </div>
+
+        {/* Card 4: Newsletter Subscribers */}
+        <div className="bg-[#f8fafc] border border-gray-200 p-5 rounded-none space-y-2">
+          <span className="block text-[8px] uppercase text-gray-400 font-bold tracking-wider">Newsletter Subscribers</span>
+          <span className="text-xl font-extrabold text-rose-600 block">
+            {subscribers.length} Emails
+          </span>
+          <span className="text-[10px] text-gray-400 font-semibold block">Subscribed for update notifications</span>
         </div>
       </div>
 
@@ -851,6 +1033,215 @@ export default function AdminDashboard() {
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                 <button type="button" onClick={() => setShowPageModal(false)} className="px-5 py-2 border border-gray-250 hover:bg-gray-50 text-gray-650 font-bold rounded-full text-xs cursor-pointer">Cancel</button>
                 <button type="submit" disabled={pageSubmitting} className="inline-flex items-center px-6 py-2 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm transition-all disabled:opacity-50 cursor-pointer">{pageSubmitting ? 'Saving...' : 'Save Page'}</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: BLOG POSTS MANAGER */}
+      {activeTab === 'blog' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+            <div>
+              <h2 className="text-xs font-bold text-gray-450 uppercase tracking-widest">Active Blog Guidelines</h2>
+              <p className="text-[10px] text-gray-400 font-semibold mt-0.5">Write guidelines, university alerts, or career update posts.</p>
+            </div>
+            <button
+              onClick={openAddBlogPost}
+              className="px-4 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm flex items-center gap-1.5 cursor-pointer"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              Write Article
+            </button>
+          </div>
+
+          {loadingBlog ? (
+            <div className="py-20 text-center text-gray-555 text-sm">Querying blog database...</div>
+          ) : blogPosts.length === 0 ? (
+            <div className="py-16 bg-gray-50 border border-gray-200 text-center text-gray-400 text-xs">No blog posts found. Write your first article!</div>
+          ) : (
+            <div className="bg-white border border-gray-200 overflow-hidden">
+              <table className="min-w-full divide-y divide-gray-200 text-left text-xs font-semibold text-gray-650">
+                <thead className="bg-gray-50 text-[10px] text-gray-450 font-bold uppercase tracking-wider">
+                  <tr>
+                    <th className="px-6 py-3">Cover</th>
+                    <th className="px-6 py-3">Title & Slug</th>
+                    <th className="px-6 py-3">Summary</th>
+                    <th className="px-6 py-3">Published Date</th>
+                    <th className="px-6 py-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-150">
+                  {blogPosts.map((post) => (
+                    <tr key={post.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {post.cover_url ? (
+                          <img src={post.cover_url} alt="" className="w-12 h-8 object-cover border border-gray-200" />
+                        ) : (
+                          <div className="w-12 h-8 bg-gray-100 flex items-center justify-center text-gray-400 text-[10px]">No image</div>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="block font-bold text-gray-850">{post.title}</span>
+                        <span className="block font-mono text-[10px] text-gray-400">/blog/{post.slug}</span>
+                      </td>
+                      <td className="px-6 py-4 max-w-xs truncate">{post.summary}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {new Date(post.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right space-x-2">
+                        <button onClick={() => openEditBlogPost(post)} className="p-1 text-gray-450 hover:text-blue-650 inline-block cursor-pointer">
+                          <Edit className="w-4 h-4" />
+                        </button>
+                        <button onClick={() => handleDeleteBlogPost(post.id)} className="p-1 text-gray-455 hover:text-rose-655 inline-block cursor-pointer">
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* TAB 5: NEWSLETTER SUBSCRIBERS */}
+      {activeTab === 'subscribers' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-gray-100 pb-2">
+            <div>
+              <h2 className="text-xs font-bold text-gray-455 uppercase tracking-widest">Portal Alerts Subscriptions</h2>
+              <p className="text-[10px] text-gray-400 font-semibold mt-0.5">List of student email subscriptions for job/scholarship alerts.</p>
+            </div>
+            <button onClick={fetchSubscribers} className="p-2 border border-gray-250 hover:bg-gray-50 rounded-full text-gray-500 cursor-pointer">
+              <RefreshCw className={`w-3.5 h-3.5 ${loadingSubscribers ? 'animate-spin' : ''}`} />
+            </button>
+          </div>
+
+          {loadingSubscribers ? (
+            <div className="py-20 text-center text-gray-555 text-sm">Querying subscribers...</div>
+          ) : subscribers.length === 0 ? (
+            <div className="py-16 bg-gray-50 border border-gray-200 text-center text-gray-400 text-xs">No email subscribers found.</div>
+          ) : (
+            <div className="bg-white border border-gray-200 overflow-hidden max-w-lg">
+              <table className="min-w-full divide-y divide-gray-200 text-left text-xs font-semibold text-gray-650">
+                <thead className="bg-gray-50 text-[10px] text-gray-450 font-bold uppercase tracking-wider">
+                  <tr>
+                    <th className="px-6 py-3">Email Address</th>
+                    <th className="px-6 py-3">Signup Date</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-150">
+                  {subscribers.map((sub) => (
+                    <tr key={sub.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 font-bold text-gray-800">{sub.email}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-450">
+                        {new Date(sub.created_at).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* MODAL 3: WRITE BLOG POST (ADD / EDIT) */}
+      {showBlogModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-gray-250 rounded-none w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl relative animate-scale-in">
+            <button onClick={() => setShowBlogModal(false)} className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-650 cursor-pointer">
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <h3 className="text-lg font-bold text-gray-800">{editingBlogPostId ? 'Edit Article' : 'Write Blog Guideline Post'}</h3>
+              <p className="text-xs text-gray-400 mt-0.5 font-semibold">Fill in metadata and body text. Content supports formatted paragraphs.</p>
+            </div>
+
+            {blogFormError && (
+              <div className="p-3 bg-rose-50 border border-rose-250 text-rose-600 text-xs rounded-none flex gap-2">
+                <ShieldAlert className="w-4 h-4 shrink-0" />
+                <span>{blogFormError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSaveBlogPost} className="space-y-4 text-xs font-bold text-gray-550">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Post Title</label>
+                  <input
+                    type="text"
+                    required
+                    value={blogTitle}
+                    onChange={(e) => {
+                      setBlogTitle(e.target.value)
+                      if (!editingBlogPostId) {
+                        setBlogSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''))
+                      }
+                    }}
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold"
+                    placeholder="e.g. HEC Scholarships Guide 2026"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">URL Slug</label>
+                  <input
+                    type="text"
+                    required
+                    value={blogSlug}
+                    onChange={(e) => setBlogSlug(e.target.value)}
+                    className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold font-mono"
+                    placeholder="e.g. hec-scholarships-guide-2026"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Short Summary</label>
+                <input
+                  type="text"
+                  required
+                  value={blogSummary}
+                  onChange={(e) => setBlogSummary(e.target.value)}
+                  className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold"
+                  placeholder="e.g. A comprehensive walk-through on how to apply for fully funded PhD grants."
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Cover Image URL</label>
+                <input
+                  type="url"
+                  value={blogCoverUrl}
+                  onChange={(e) => setBlogCoverUrl(e.target.value)}
+                  className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold"
+                  placeholder="e.g. https://images.unsplash.com/... (optional)"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Article Content</label>
+                <textarea
+                  rows={10}
+                  required
+                  value={blogContent}
+                  onChange={(e) => setBlogContent(e.target.value)}
+                  className="w-full bg-white border border-gray-200 rounded-xl py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold resize-none"
+                  placeholder="Write full article body. Double enter creates paragraph spacing..."
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                <button type="button" onClick={() => setShowBlogModal(false)} className="px-5 py-2 border border-gray-250 hover:bg-gray-50 text-gray-650 font-bold rounded-full text-xs cursor-pointer">Cancel</button>
+                <button type="submit" disabled={blogSubmitting} className="inline-flex items-center px-6 py-2 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm transition-all disabled:opacity-50 cursor-pointer">
+                  {blogSubmitting ? 'Publishing...' : 'Publish Article'}
+                </button>
               </div>
 
             </form>

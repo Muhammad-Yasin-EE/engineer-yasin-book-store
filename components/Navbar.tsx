@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useCart } from '@/lib/context/CartContext'
 import { createClient } from '@/lib/supabase/client'
-import { BookOpen, ShoppingCart, User, ShieldAlert, LogOut, Search, Menu, X, ChevronDown, GraduationCap, Briefcase, Download, Hammer, FileText } from 'lucide-react'
+import { BookOpen, ShoppingCart, User, ShieldAlert, LogOut, Search, Menu, X, ChevronDown, GraduationCap, Briefcase, Download, Hammer, FileText, Clock, Newspaper } from 'lucide-react'
 
 export default function Navbar() {
   const router = useRouter()
@@ -149,8 +149,15 @@ export default function Navbar() {
               <FileText className="w-3.5 h-3.5" />
               Books
             </Link>
+            <Link href="/blog" className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <Newspaper className="w-3.5 h-3.5" />
+              Blog
+            </Link>
 
-            {/* Custom Pages Dropdown */}
+            <Link href="/track" className="text-xs font-bold text-gray-650 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5" />
+              Track Order
+            </Link>
             {customPages.length > 0 && (
               <div className="relative group py-2">
                 <button className="text-xs font-bold text-gray-600 hover:text-[#B8212E] flex items-center gap-0.5 cursor-pointer">
@@ -267,6 +274,14 @@ export default function Navbar() {
             </Link>
             <Link href="/books" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 border-b border-gray-100 flex items-center gap-2">
               <FileText className="w-4 h-4 text-[#B8212E]" /> Books
+            </Link>
+
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 border-b border-gray-100 flex items-center gap-2">
+              <Newspaper className="w-4 h-4 text-[#B8212E]" /> Blog
+            </Link>
+
+            <Link href="/track" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 border-b border-gray-100 flex items-center gap-2">
+              <Clock className="w-4 h-4 text-[#B8212E]" /> Track Order
             </Link>
 
             {customPages.map(page => (

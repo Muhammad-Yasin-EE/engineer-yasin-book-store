@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft, UserCheck, ShoppingBag, ExternalLink } from 'lucide-react'
 import AddToCartButton from './AddToCartButton'
+import ReviewSection from './ReviewSection'
 
 export const revalidate = 0
 
@@ -355,6 +356,8 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
         </div>
 
       </div>
+
+      <ReviewSection itemId={item.id} hasPurchased={hasPurchased} />
 
     </div>
   )

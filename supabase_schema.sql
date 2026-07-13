@@ -111,6 +111,7 @@ create table if not exists public.orders (
   payment_method text,
   transaction_ref text,
   proof_image_url text, -- Receipt screenshot upload path
+  rejection_reason text,
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
 );
@@ -185,6 +186,75 @@ create policy "Allow users to read their own purchases" on public.purchases for 
 create policy "Allow admin write for purchases" on public.purchases for all using (
   exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
 );
+
+
+-- 6B. REVIEWS TABLE
+create table if not exists public.reviews (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid references public.profiles(id) on delete cascade not null,
+  item_id uuid references public.items(id) on delete cascade not null,
+  rating integer not null check (rating >= 1 and rating <= 5),
+  comment text not null,
+  created_at timestamp with time zone default now()
+);
+
+-- Enable RLS on reviews
+alter table public.reviews enable row level security;
+
+-- Reviews policies
+drop policy if exists "Allow public read for reviews" on public.reviews;
+drop policy if exists "Allow authenticated user insert for reviews" on public.reviews;
+create policy "Allow public read for reviews" on public.reviews for select using (true);
+create policy "Allow authenticated user insert for reviews" on public.reviews for insert with check (
+  auth.uid() = user_id
+);
+
+-- 6C. BLOG POSTS TABLE
+create table if not exists public.blog_posts (
+  id uuid default gen_random_uuid() primary key,
+  slug text not null unique,
+  title text not null,
+  summary text not null,
+  content text not null,
+  cover_url text,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
+
+-- Enable RLS on blog_posts
+alter table public.blog_posts enable row level security;
+
+-- Blog posts policies
+drop policy if exists "Allow public read for blog_posts" on public.blog_posts;
+drop policy if exists "Allow admin write for blog_posts" on public.blog_posts;
+create policy "Allow public read for blog_posts" on public.blog_posts for select using (true);
+create policy "Allow admin write for blog_posts" on public.blog_posts for all using (
+  exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
+);
+
+-- 6D. NEWSLETTER SUBSCRIBERS TABLE
+create table if not exists public.newsletter_subscribers (
+  id uuid default gen_random_uuid() primary key,
+  email text not null unique,
+  created_at timestamp with time zone default now()
+);
+
+-- Enable RLS on newsletter_subscribers
+alter table public.newsletter_subscribers enable row level security;
+
+-- Newsletter subscribers policies
+drop policy if exists "Allow public insert for newsletter_subscribers" on public.newsletter_subscribers;
+drop policy if exists "Allow admin select for newsletter_subscribers" on public.newsletter_subscribers;
+create policy "Allow public insert for newsletter_subscribers" on public.newsletter_subscribers for insert with check (true);
+create policy "Allow admin select for newsletter_subscribers" on public.newsletter_subscribers for select using (
+  exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
+);
+
+-- DATABASE PERFORMANCE INDEXING
+create index if not exists idx_items_resource_type on public.items(resource_type);
+create index if not exists idx_purchases_user_item on public.purchases(user_id, item_id);
+create index if not exists idx_order_items_order_id on public.order_items(order_id);
+create index if not exists idx_reviews_item_id on public.reviews(item_id);
 
 
 -- 7. STORAGE BUCKETS SETUP
@@ -296,4 +366,8 @@ grant insert, update, delete on public.items to authenticated;
 grant insert, update, delete on public.orders to authenticated;
 grant insert, update, delete on public.order_items to authenticated;
 grant insert, update, delete on public.purchases to authenticated;
+grant insert, update, delete on public.reviews to authenticated;
+grant insert, update, delete on public.blog_posts to authenticated;
+grant insert on public.newsletter_subscribers to anon, authenticated;
+grant select on public.newsletter_subscribers to authenticated;
 grant update on public.profiles to authenticated;

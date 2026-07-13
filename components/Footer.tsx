@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { GraduationCap, Mail, Phone, MessageCircle } from 'lucide-react'
+import NewsletterWidget from './NewsletterWidget'
 
 export default function Footer() {
   const supabase = createClient()
@@ -25,19 +26,19 @@ export default function Footer() {
   return (
     <footer className="bg-[#f8fafc] border-t border-gray-200 text-gray-500 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Logo & Description */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 group w-fit">
-              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-250 bg-white">
+              <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center border border-gray-255 bg-white">
                 <img src="/logo.jpg" alt="Engineer Yasin Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold text-lg tracking-tight text-gray-800">
                 Engineer Yasin
               </span>
             </Link>
-            <p className="text-sm text-gray-400 max-w-sm">
+            <p className="text-xs text-gray-400 leading-relaxed">
               Your comprehensive portal for academic, technical, and engineering resources. Download software, apply for scholarships and jobs, or buy training materials.
             </p>
           </div>
@@ -99,6 +100,11 @@ export default function Footer() {
                 <span>Call: +923098158572</span>
               </a>
             </div>
+          </div>
+
+          {/* Newsletter Column */}
+          <div className="space-y-4">
+            <NewsletterWidget />
           </div>
 
         </div>

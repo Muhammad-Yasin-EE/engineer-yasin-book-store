@@ -123,9 +123,15 @@ export async function POST(request: Request) {
 
     if (action === 'reject') {
       // 8. Update order status to rejected
+      const reasonStr = rejectionReason || 'The transaction reference number or receipt screenshot could not be matched with our bank statements.'
+      
       const { error: updateErr } = await adminSupabase
         .from('orders')
-        .update({ status: 'rejected', updated_at: new Date().toISOString() })
+        .update({ 
+          status: 'rejected', 
+          rejection_reason: reasonStr,
+          updated_at: new Date().toISOString() 
+        })
         .eq('id', orderId)
 
       if (updateErr) throw updateErr
