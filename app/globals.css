@@ -57,3 +57,100 @@ body {
   background-color: #D62636;
   transform: translateY(-1px);
 }
+
+/* Premium Dark Mode Styles */
+.dark {
+  --background: #0b0f19;
+  --foreground: #f1f5f9;
+}
+
+.dark body {
+  background-color: #0b0f19;
+  color: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-color: #0b0f19;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #B8212E;
+}
+
+.dark .bg-white,
+.dark [class*="bg-white"] {
+  background-color: #111827 !important; /* gray-900 */
+}
+
+.dark .text-gray-800,
+.dark [class*="text-gray-800"] {
+  color: #f3f4f6 !important; /* gray-100 */
+}
+
+.dark .text-gray-700,
+.dark [class*="text-gray-700"] {
+  color: #e5e7eb !important; /* gray-250 */
+}
+
+.dark .text-gray-600,
+.dark [class*="text-gray-600"] {
+  color: #d1d5db !important; /* gray-300 */
+}
+
+.dark .text-gray-500,
+.dark [class*="text-gray-500"] {
+  color: #9ca3af !important; /* gray-400 */
+}
+
+.dark .text-gray-400,
+.dark [class*="text-gray-400"] {
+  color: #9ca3af !important; /* gray-400 */
+}
+
+.dark .bg-gray-50,
+.dark [class*="bg-gray-50"] {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+
+.dark .bg-\[\#f8fafc\] {
+  background-color: #111827 !important; /* gray-900 */
+}
+
+.dark .border-gray-200,
+.dark [class*="border-gray-200"] {
+  border-color: #374151 !important; /* gray-700 */
+}
+
+.dark .border-gray-150,
+.dark [class*="border-gray-150"] {
+  border-color: #1f2937 !important; /* gray-800 */
+}
+
+.dark .border-gray-250,
+.dark [class*="border-gray-250"] {
+  border-color: #374151 !important;
+}
+
+.dark .border-gray-100,
+.dark [class*="border-gray-100"] {
+  border-color: #1f2937 !important;
+}
+
+/* Fix table text in dark mode admin views */
+.dark table, 
+.dark thead, 
+.dark tbody, 
+.dark tr, 
+.dark td, 
+.dark th {
+  border-color: #1f2937 !important;
+}
+
+.dark table thead tr {
+  background-color: #1f2937 !important;
+}

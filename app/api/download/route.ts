@@ -33,7 +33,7 @@ export async function GET(request: Request) {
       // Increment download count
       await adminClient
         .from('items')
-        .update({ download_count: (item.download_count || 0) + 1 })
+        .update({ downloads: (item.downloads || 0) + 1 })
         .eq('id', itemId)
 
       // Check if file_path is an external absolute URL (like scholarships/jobs links)
@@ -89,7 +89,7 @@ export async function GET(request: Request) {
     // Increment download count
     await adminClient
         .from('items')
-        .update({ download_count: (item.download_count || 0) + 1 })
+        .update({ downloads: (item.downloads || 0) + 1 })
         .eq('id', itemId)
 
     // Generate signed download link (valid for 60 seconds)

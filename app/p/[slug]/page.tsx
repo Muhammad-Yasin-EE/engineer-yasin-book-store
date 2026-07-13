@@ -9,6 +9,28 @@ interface CustomPageProps {
   params: Promise<{ slug: string }>
 }
 
+export async function generateMetadata({ params }: CustomPageProps) {
+  const { slug } = await params
+  const supabase = await createClient()
+
+  try {
+    const { data: page } = await supabase
+      .from('custom_pages')
+      .select('title, content')
+      .eq('slug', slug)
+      .single()
+
+    if (!page) return {}
+
+    return {
+      title: `${page.title} | Engineer Yasin Portal`,
+      description: page.content ? page.content.substring(0, 160) : `View ${page.title} details on Engineer Yasin Portal.`,
+    }
+  } catch {
+    return {}
+  }
+}
+
 export default async function CustomPage({ params }: CustomPageProps) {
   const { slug } = await params
   const supabase = await createClient()

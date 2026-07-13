@@ -9,6 +9,28 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>
 }
 
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const supabase = await createClient()
+
+  try {
+    const { data: post } = await supabase
+      .from('blog_posts')
+      .select('title, summary')
+      .eq('slug', slug)
+      .single()
+
+    if (!post) return {}
+
+    return {
+      title: `${post.title} | Engineer Yasin Blog`,
+      description: post.summary ? post.summary.substring(0, 160) : `Read ${post.title} on Engineer Yasin.`,
+    }
+  } catch {
+    return {}
+  }
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const supabase = await createClient()

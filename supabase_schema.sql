@@ -250,6 +250,66 @@ create policy "Allow admin select for newsletter_subscribers" on public.newslett
   exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
 );
 
+
+-- 6E. ALTER ITEMS FOR COUNTERS
+alter table public.items add column if not exists views integer default 0;
+alter table public.items add column if not exists downloads integer default 0;
+
+-- 6F. QUIZZES TABLE
+create table if not exists public.quizzes (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  description text not null,
+  created_at timestamp with time zone default now()
+);
+
+alter table public.quizzes enable row level security;
+
+drop policy if exists "Allow public read for quizzes" on public.quizzes;
+drop policy if exists "Allow admin write for quizzes" on public.quizzes;
+create policy "Allow public read for quizzes" on public.quizzes for select using (true);
+create policy "Allow admin write for quizzes" on public.quizzes for all using (
+  exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
+);
+
+-- 6G. QUIZ QUESTIONS TABLE
+create table if not exists public.quiz_questions (
+  id uuid default gen_random_uuid() primary key,
+  quiz_id uuid references public.quizzes(id) on delete cascade not null,
+  question_text text not null,
+  options text[] not null,
+  correct_option_index integer not null check (correct_option_index >= 0 and correct_option_index < 10),
+  created_at timestamp with time zone default now()
+);
+
+alter table public.quiz_questions enable row level security;
+
+drop policy if exists "Allow public read for quiz_questions" on public.quiz_questions;
+drop policy if exists "Allow admin write for quiz_questions" on public.quiz_questions;
+create policy "Allow public read for quiz_questions" on public.quiz_questions for select using (true);
+create policy "Allow admin write for quiz_questions" on public.quiz_questions for all using (
+  exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
+);
+
+-- 6H. NOTIFICATIONS TABLE
+create table if not exists public.notifications (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  message text not null,
+  link text,
+  created_at timestamp with time zone default now()
+);
+
+alter table public.notifications enable row level security;
+
+drop policy if exists "Allow public read for notifications" on public.notifications;
+drop policy if exists "Allow admin write for notifications" on public.notifications;
+create policy "Allow public read for notifications" on public.notifications for select using (true);
+create policy "Allow admin write for notifications" on public.notifications for all using (
+  exists (select 1 from public.profiles where id = auth.uid() and is_admin = true)
+);
+
+
 -- DATABASE PERFORMANCE INDEXING
 create index if not exists idx_items_resource_type on public.items(resource_type);
 create index if not exists idx_purchases_user_item on public.purchases(user_id, item_id);
@@ -368,6 +428,9 @@ grant insert, update, delete on public.order_items to authenticated;
 grant insert, update, delete on public.purchases to authenticated;
 grant insert, update, delete on public.reviews to authenticated;
 grant insert, update, delete on public.blog_posts to authenticated;
+grant insert, update, delete on public.quizzes to authenticated;
+grant insert, update, delete on public.quiz_questions to authenticated;
+grant insert, update, delete on public.notifications to authenticated;
 grant insert on public.newsletter_subscribers to anon, authenticated;
 grant select on public.newsletter_subscribers to authenticated;
 grant update on public.profiles to authenticated;

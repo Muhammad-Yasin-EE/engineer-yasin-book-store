@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft, UserCheck, ShoppingBag, ExternalLink } from 'lucide-react'
+import { createAdminClient } from '@/lib/supabase/admin'
+import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft, UserCheck, ShoppingBag, ExternalLink, Eye, DownloadCloud } from 'lucide-react'
 import AddToCartButton from './AddToCartButton'
 import ReviewSection from './ReviewSection'
 
@@ -9,6 +10,28 @@ export const revalidate = 0
 
 interface ItemDetailPageProps {
   params: Promise<{ id: string }>
+}
+
+export async function generateMetadata({ params }: ItemDetailPageProps) {
+  const { id } = await params
+  const supabase = await createClient()
+
+  try {
+    const { data: item } = await supabase
+      .from('items')
+      .select('title, description')
+      .eq('id', id)
+      .single()
+
+    if (!item) return {}
+
+    return {
+      title: `${item.title} | Engineer Yasin Portal`,
+      description: item.description ? item.description.substring(0, 160) : `Check out ${item.title} details on Engineer Yasin Portal.`,
+    }
+  } catch {
+    return {}
+  }
 }
 
 export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
@@ -20,6 +43,24 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
   let errorMsg = null
 
   const supabase = await createClient()
+
+  // 1. Dynamic Server-side Page View Stats Increment
+  try {
+    const adminSupabase = createAdminClient()
+    const { data: currentStats } = await adminSupabase
+      .from('items')
+      .select('views')
+      .eq('id', id)
+      .single()
+    if (currentStats) {
+      await adminSupabase
+        .from('items')
+        .update({ views: (currentStats.views || 0) + 1 })
+        .eq('id', id)
+    }
+  } catch (err) {
+    console.error('Stats view increment failure:', err)
+  }
 
   try {
     const { data: itemData, error } = await supabase
@@ -175,6 +216,20 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
               {item.resource_type === 'job' ? 'Company: ' : item.resource_type === 'scholarship' ? 'Organization: ' : 'Provider: '}
               <span className="font-semibold text-gray-700">{item.author}</span>
             </p>
+
+            {/* View & Download stats counters */}
+            <div className="flex items-center gap-4 pt-1.5 text-xs text-gray-400 font-semibold">
+              <span className="flex items-center gap-1.5">
+                <Eye className="w-4 h-4 text-blue-500 shrink-0" />
+                {item.views || 0} Views
+              </span>
+              {(item.resource_type !== 'job' && item.resource_type !== 'scholarship') && (
+                <span className="flex items-center gap-1.5">
+                  <DownloadCloud className="w-4 h-4 text-emerald-500 shrink-0" />
+                  {item.downloads || 0} Downloads
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Specifications Table */}
