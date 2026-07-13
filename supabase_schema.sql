@@ -38,7 +38,7 @@ begin
     new.email,
     coalesce(new.raw_user_meta_data->>'name', new.raw_user_meta_data->>'full_name', split_part(new.email, '@', 1)),
     case 
-      when new.email = 'engineer.yasin.books@gmail.com' or new.email = 'yasin.jr@gmail.com' or new.email = 'admin@engineeryasin.com' then true 
+      when new.email = 'engineeryasin2029@gmail.com' or new.email = 'yasinofficial03098158572@gmail.com' or new.email = 'engineeryasinlab@gmail.com' then true 
       else false 
     end
   );
@@ -277,7 +277,7 @@ select
   email, 
   coalesce(raw_user_meta_data->>'name', raw_user_meta_data->>'full_name', split_part(email, '@', 1)),
   case 
-    when email = 'engineer.yasin.books@gmail.com' or email = 'yasin.jr@gmail.com' or email = 'admin@engineeryasin.com' then true 
+    when email = 'engineeryasin2029@gmail.com' or email = 'yasinofficial03098158572@gmail.com' or email = 'engineeryasinlab@gmail.com' then true 
     else false 
   end
 from auth.users

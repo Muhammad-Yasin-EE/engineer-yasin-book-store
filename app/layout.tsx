@@ -4,10 +4,11 @@ import { Suspense } from "react";
 import { CartProvider } from "@/lib/context/CartContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SocialFloatingBar from "@/components/SocialFloatingBar";
 
 export const metadata: Metadata = {
-  title: "Engineer Yasin Books | Online Bookstore",
-  description: "Online bookstore with free and premium books across 25 categories, featuring manual payment verification.",
+  title: "Engineer Yasin | Academic, Jobs & Software Portal",
+  description: "Download engineering software, apply for scholarships and jobs, order web coding services, or enroll in academic courses.",
 };
 
 export default function RootLayout({
@@ -26,6 +27,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <SocialFloatingBar />
         </CartProvider>
       </body>
     </html>
