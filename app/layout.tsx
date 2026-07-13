@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Suspense } from "react";
 import { CartProvider } from "@/lib/context/CartContext";
@@ -6,6 +6,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SocialFloatingBar from "@/components/SocialFloatingBar";
 import { Analytics } from "@vercel/analytics/next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "Engineer Yasin | Academic, Jobs & Software Portal",

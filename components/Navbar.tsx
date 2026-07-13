@@ -362,14 +362,14 @@ export default function Navbar() {
             {/* Dark Mode Switcher */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer"
+              className="hidden sm:block p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer"
               title="Toggle Theme"
             >
               {darkMode ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-slate-700" />}
             </button>
 
             {/* Live Notifications Bell Dropdown */}
-            <div ref={notificationsRef} className="relative">
+            <div ref={notificationsRef} className="hidden sm:block relative">
               <button
                 onClick={() => {
                   setShowNotifications(!showNotifications)
@@ -448,7 +448,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="px-4.5 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white text-xs font-bold rounded-full shadow-sm shadow-[#B8212E]/10 hover:shadow-md transition-all flex items-center gap-1"
+                className="hidden sm:flex px-4.5 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white text-xs font-bold rounded-full shadow-sm shadow-[#B8212E]/10 hover:shadow-md transition-all items-center gap-1"
               >
                 <User className="w-3.5 h-3.5" />
                 Sign In
@@ -533,6 +533,40 @@ export default function Navbar() {
             {session && (
               <Link href="/account" onClick={() => setMobileMenuOpen(false)} className="mt-3 px-4 py-2 rounded-full border border-gray-200 text-center font-bold hover:border-[#B8212E]/30 text-gray-700 block">
                 User Library Dashboard
+              </Link>
+            )}
+
+            {/* Mobile-only Authentication & Theme triggers */}
+            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mt-3">Account & Settings</div>
+            
+            {/* Dark Mode trigger inside mobile menu */}
+            <button
+              onClick={() => {
+                toggleDarkMode()
+                setMobileMenuOpen(false)
+              }}
+              className="w-full text-left hover:text-[#B8212E] py-1.5 flex items-center gap-2 cursor-pointer font-bold text-xs"
+            >
+              {darkMode ? (
+                <>
+                  <Sun className="w-4.5 h-4.5 text-amber-500" />
+                  Switch to Light Theme
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4.5 h-4.5 text-slate-700" />
+                  Switch to Dark Theme
+                </>
+              )}
+            </button>
+
+            {!session && (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-2 w-full text-center py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm block"
+              >
+                Sign In
               </Link>
             )}
           </div>

@@ -154,3 +154,10 @@ body {
 .dark table thead tr {
   background-color: #1f2937 !important;
 }
+
+/* Prevent mobile auto-zoom on input focus */
+@media (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
