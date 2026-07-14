@@ -288,6 +288,12 @@ export default function Navbar() {
               Services
             </Link>
 
+            {/* Standalone Track Order Link */}
+            <Link href="/track" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5" />
+              Track Order
+            </Link>
+
             {/* Category Dropdown 2: Blog & Guidelines */}
             <div 
               className="relative py-2"
@@ -540,6 +546,11 @@ export default function Navbar() {
             {/* Standalone Services Link */}
             <Link href="/services" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
               <Hammer className="w-4 h-4 text-[#B8212E]" /> Services
+            </Link>
+
+            {/* Standalone Track Order Link */}
+            <Link href="/track" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
+              <Clock className="w-4 h-4 text-[#B8212E]" /> Track Order
             </Link>
 
             {/* Blog collapsible group (Info pages inside) */}

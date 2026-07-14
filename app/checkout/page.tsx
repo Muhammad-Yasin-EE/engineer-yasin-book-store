@@ -8,14 +8,14 @@ import { createClient } from '@/lib/supabase/client'
 import { Clipboard, Check, ShieldAlert, Upload, CreditCard, Sparkles, CheckCircle2, ChevronRight } from 'lucide-react'
 
 const MOBILE_WALLETS = [
-  { brand: 'JazzCash', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '📱', color: 'border-red-200 text-red-600 bg-red-50/50' },
-  { brand: 'EasyPaisa', name: 'Muhammad Yasin', number: '0331-9731598', emoji: '🟢', color: 'border-emerald-200 text-emerald-600 bg-emerald-50/50' },
-  { brand: 'NayaPay', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '🔵', color: 'border-blue-200 text-blue-600 bg-blue-50/50' },
-  { brand: 'SadaPay', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '🟠', color: 'border-orange-200 text-orange-600 bg-orange-50/50' }
+  { brand: 'JazzCash', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '📱', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/JazzCash_Logo.png', color: 'border-red-200 text-red-600 bg-red-50/50' },
+  { brand: 'EasyPaisa', name: 'Muhammad Yasin', number: '0331-9731598', emoji: '🟢', logoUrl: 'https://logo.clearbit.com/easypaisa.com.pk', color: 'border-emerald-200 text-emerald-600 bg-emerald-50/50' },
+  { brand: 'NayaPay', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '🔵', logoUrl: 'https://logo.clearbit.com/nayapay.com', color: 'border-blue-200 text-blue-600 bg-blue-50/50' },
+  { brand: 'SadaPay', name: 'Muhammad Yasin', number: '0309-8158572', emoji: '🟠', logoUrl: 'https://logo.clearbit.com/sadapay.pk', color: 'border-orange-200 text-orange-600 bg-orange-50/50' }
 ]
 
 const BANK_TRANSFERS = [
-  { brand: 'Allied Bank Limited (ABL)', name: 'Muhammad Yasin', number: '57690010139951020017', emoji: '🏦', color: 'border-indigo-200 text-indigo-600 bg-indigo-50/50' }
+  { brand: 'Allied Bank Limited (ABL)', name: 'Muhammad Yasin', number: '57690010139951020017', emoji: '🏦', logoUrl: 'https://logo.clearbit.com/abl.com', color: 'border-indigo-200 text-indigo-600 bg-indigo-50/50' }
 ]
 
 export default function CheckoutPage() {
@@ -211,7 +211,13 @@ export default function CheckoutPage() {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                        <span>{wallet.emoji}</span>
+                        {wallet.logoUrl ? (
+                          <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
+                            <img src={wallet.logoUrl} alt={wallet.brand} className="w-full h-full object-contain p-0.5" />
+                          </div>
+                        ) : (
+                          <span>{wallet.emoji}</span>
+                        )}
                         {wallet.brand}
                       </span>
                       <span className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Mobile Wallet</span>
@@ -255,7 +261,13 @@ export default function CheckoutPage() {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
-                      <span>{bank.emoji}</span>
+                      {bank.logoUrl ? (
+                        <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
+                          <img src={bank.logoUrl} alt={bank.brand} className="w-full h-full object-contain p-0.5" />
+                        </div>
+                      ) : (
+                        <span>{bank.emoji}</span>
+                      )}
                       {bank.brand}
                     </span>
                     <span className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Bank Account</span>

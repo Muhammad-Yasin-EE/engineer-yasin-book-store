@@ -67,6 +67,11 @@ export default function Footer() {
                   Engineering Services
                 </Link>
               </li>
+              <li>
+                <Link href="/track" className="hover:text-[#B8212E] transition-colors">
+                  Track Order
+                </Link>
+              </li>
             </ul>
           </div>
 
