@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react'
 import { Mail, Globe, MessageCircle, MessageSquareShare, BellRing, Share2, X } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+const LiveChatWidget = dynamic(() => import('./LiveChatWidget'), { ssr: false })
 
 // Custom brand SVG components
 const FacebookIcon = () => (
@@ -142,6 +145,9 @@ export default function SocialFloatingBar() {
           <MessageCircle className="w-6 h-6 fill-white text-[#25D366]" />
         </a>
       </div>
+
+      {/* Dynamic Live Chat Widget */}
+      <LiveChatWidget />
     </>
   )
 }

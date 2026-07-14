@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import OrderStatusBadge from '@/components/OrderStatusBadge'
-import { ShieldCheck, ShieldAlert, Layers, BookMarked, Plus, Edit, Trash2, Check, X, Upload, ExternalLink, RefreshCw, FileText, Users, Mail, Award } from 'lucide-react'
+import { ShieldCheck, ShieldAlert, Layers, BookMarked, Plus, Edit, Trash2, Check, X, Upload, ExternalLink, RefreshCw, FileText, Users, Mail, Award, MessageSquare } from 'lucide-react'
 
 const CATEGORIES = [
   "Academic Books", "Test Preparation", "Programming Books", "AI Books", "Engineering Books", 
@@ -28,7 +28,7 @@ const RESOURCE_TYPES = [
 export default function AdminDashboard() {
   const supabase = createClient()
   
-  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages' | 'blog' | 'subscribers' | 'quiz'>('orders')
+  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages' | 'blog' | 'subscribers' | 'quiz' | 'chat'>('orders')
   const [orders, setOrders] = useState<any[]>([])
   const [items, setItems] = useState<any[]>([])
   const [customPages, setCustomPages] = useState<any[]>([])
@@ -75,6 +75,14 @@ export default function AdminDashboard() {
   const [loadingItems, setLoadingItems] = useState(false)
   const [loadingPages, setLoadingPages] = useState(false)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
+  
+  // Chat States
+  const [chatSessions, setChatSessions] = useState<any[]>([])
+  const [selectedChatSessionId, setSelectedChatSessionId] = useState<string | null>(null)
+  const [chatMessages, setChatMessages] = useState<any[]>([])
+  const [adminReply, setAdminReply] = useState('')
+  const [totalUnreadChats, setTotalUnreadChats] = useState(0)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
   
   // Catalog Item CRUD Modal States
   const [showItemModal, setShowItemModal] = useState(false)
@@ -409,7 +417,76 @@ export default function AdminDashboard() {
       fetchSubscribers(),
       fetchQuizzes()
     ])
+
+    // Load Chat Sessions
+    const fetchChatSessions = async () => {
+      const { data } = await supabase.from('chat_sessions').select('*').order('updated_at', { ascending: false })
+      if (data) {
+        setChatSessions(data)
+        setTotalUnreadChats(data.reduce((sum, s) => sum + (s.unread_admin_count || 0), 0))
+      }
+    }
+    fetchChatSessions()
+
+    // Subscribe to chat sessions updates
+    const sessionsChannel = supabase.channel('admin_chat_sessions')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'chat_sessions' }, fetchChatSessions)
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(sessionsChannel)
+    }
   }, [])
+
+  // Subscribe to active chat messages if selected
+  useEffect(() => {
+    if (!selectedChatSessionId) return
+
+    const fetchMessages = async () => {
+      const { data } = await supabase.from('chat_messages').select('*').eq('session_id', selectedChatSessionId).order('created_at', { ascending: true })
+      if (data) setChatMessages(data)
+      
+      // Clear unread
+      await supabase.from('chat_sessions').update({ unread_admin_count: 0 }).eq('id', selectedChatSessionId)
+    }
+    fetchMessages()
+
+    const channel = supabase.channel(`admin_chat_${selectedChatSessionId}`)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `session_id=eq.${selectedChatSessionId}` }, (payload) => {
+        setChatMessages(prev => [...prev, payload.new])
+        // Also clear unread immediately if looking at it
+        if (payload.new.sender_role === 'user') {
+          supabase.from('chat_sessions').update({ unread_admin_count: 0 }).eq('id', selectedChatSessionId)
+        }
+      })
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [selectedChatSessionId])
+
+  // Scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [chatMessages, activeTab])
+
+  const handleAdminSendReply = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!adminReply.trim() || !selectedChatSessionId) return
+    const text = adminReply.trim()
+    setAdminReply('')
+
+    await supabase.from('chat_messages').insert({ session_id: selectedChatSessionId, sender_role: 'admin', message: text })
+    
+    // Update session
+    const { data } = await supabase.from('chat_sessions').select('unread_user_count').eq('id', selectedChatSessionId).single()
+    await supabase.from('chat_sessions').update({ 
+      last_message: text,
+      unread_user_count: (data?.unread_user_count || 0) + 1,
+      updated_at: new Date().toISOString()
+    }).eq('id', selectedChatSessionId)
+  }
 
   const handleVerifyOrder = async (orderId: string) => {
     if (!confirm('Verify manual transfer? This unlocks resource links for the client.')) return
@@ -456,6 +533,25 @@ export default function AdminDashboard() {
       setOrders(prev => prev.map(o => o.id === currentOrderId ? { ...o, status: 'rejected' } : o))
     } catch (err: any) {
       alert(`Rejection failed: ${err.message}`)
+    } finally {
+      setActionLoading(null)
+    }
+  }
+
+  const handleDeleteOrder = async (orderId: string) => {
+    if (!confirm('Permanently delete this order? This action cannot be undone.')) return
+    setActionLoading(orderId)
+    try {
+      const res = await fetch('/api/admin/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId, action: 'delete' })
+      })
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setOrders(prev => prev.filter(o => o.id !== orderId))
+    } catch (err: any) {
+      alert(`Delete failed: ${err.message}`)
     } finally {
       setActionLoading(null)
     }
@@ -736,6 +832,18 @@ export default function AdminDashboard() {
             <Award className="w-4 h-4" />
             Quizzes ({quizzes.length})
           </button>
+          <button
+            onClick={() => setActiveTab('chat')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer relative ${activeTab === 'chat' ? 'bg-[#B8212E] text-white shadow-sm' : 'text-gray-550'}`}
+          >
+            <MessageSquare className="w-4 h-4" />
+            Live Chat
+            {totalUnreadChats > 0 && (
+              <span className="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                {totalUnreadChats}
+              </span>
+            )}
+          </button>
         </div>
       </div>
 
@@ -854,16 +962,21 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* Verify controls */}
-                    {order.status === 'payment_submitted' && (
-                      <div className="flex gap-2 pt-2">
-                        <button onClick={() => handleVerifyOrder(order.id)} disabled={actionLoading !== null} className="inline-flex items-center gap-1 py-2 px-5 rounded-full bg-emerald-650 hover:bg-emerald-550 text-white font-bold text-xs shadow-sm transition-all cursor-pointer">
-                          <Check className="w-4 h-4" /> Verify Order
-                        </button>
-                        <button onClick={() => startRejection(order.id)} disabled={actionLoading !== null} className="inline-flex items-center gap-1 py-2 px-5 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer">
-                          <X className="w-4 h-4" /> Reject Order
-                        </button>
-                      </div>
-                    )}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {order.status === 'payment_submitted' && (
+                        <>
+                          <button onClick={() => handleVerifyOrder(order.id)} disabled={actionLoading !== null} className="inline-flex items-center gap-1 py-2 px-5 rounded-full bg-emerald-650 hover:bg-emerald-550 text-white font-bold text-xs shadow-sm transition-all cursor-pointer">
+                            <Check className="w-4 h-4" /> Verify Order
+                          </button>
+                          <button onClick={() => startRejection(order.id)} disabled={actionLoading !== null} className="inline-flex items-center gap-1 py-2 px-5 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer">
+                            <X className="w-4 h-4" /> Reject Order
+                          </button>
+                        </>
+                      )}
+                      <button onClick={() => handleDeleteOrder(order.id)} disabled={actionLoading !== null} className="inline-flex items-center gap-1 py-2 px-4 rounded-full border border-gray-200 hover:bg-rose-50 text-gray-500 hover:text-rose-600 font-bold text-xs transition-all cursor-pointer">
+                        <Trash2 className="w-4 h-4" /> Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -1339,6 +1452,102 @@ export default function AdminDashboard() {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* TAB 7: LIVE CHAT */}
+      {activeTab === 'chat' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-gray-150 pb-4">
+            <h2 className="text-xs font-bold text-gray-450 uppercase tracking-widest">Real-time Visitor Chat Support</h2>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 h-[600px] bg-white border border-gray-200">
+            {/* Left Sidebar: Sessions */}
+            <div className="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col bg-gray-50/50">
+              <div className="p-4 border-b border-gray-200 bg-white">
+                <h3 className="font-bold text-gray-800 text-sm">Active Sessions ({chatSessions.length})</h3>
+              </div>
+              <div className="flex-1 overflow-y-auto divide-y divide-gray-150">
+                {chatSessions.length === 0 ? (
+                  <p className="p-4 text-xs text-gray-400 text-center mt-10">No chats yet</p>
+                ) : (
+                  chatSessions.map(session => (
+                    <button
+                      key={session.id}
+                      onClick={() => setSelectedChatSessionId(session.id)}
+                      className={`w-full text-left p-4 hover:bg-white transition-colors relative ${selectedChatSessionId === session.id ? 'bg-white border-l-4 border-l-[#B8212E]' : ''}`}
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="font-bold text-xs text-gray-800 truncate">{session.user_identifier}</span>
+                        <span className="text-[9px] text-gray-400 shrink-0">{new Date(session.updated_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                      </div>
+                      <p className="text-[10px] text-gray-500 truncate">{session.last_message || 'New session'}</p>
+                      {(session.unread_admin_count || 0) > 0 && (
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 bg-rose-600 text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                          {session.unread_admin_count}
+                        </span>
+                      )}
+                    </button>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* Right Side: Chat Area */}
+            <div className="w-full md:w-2/3 flex flex-col bg-[#f8fafc]">
+              {!selectedChatSessionId ? (
+                <div className="flex-1 flex flex-col items-center justify-center text-gray-400 space-y-2">
+                  <MessageSquare className="w-12 h-12 opacity-20" />
+                  <p className="text-sm font-semibold">Select a chat session to reply</p>
+                </div>
+              ) : (
+                <>
+                  <div className="p-4 bg-white border-b border-gray-200 flex justify-between items-center">
+                    <div>
+                      <h3 className="font-bold text-gray-800 text-sm">{chatSessions.find(s => s.id === selectedChatSessionId)?.user_identifier}</h3>
+                      <p className="text-[10px] text-gray-400 font-mono mt-0.5">ID: {selectedChatSessionId}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                    {chatMessages.map(msg => (
+                      <div key={msg.id} className={`flex ${msg.sender_role === 'admin' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-xs font-medium shadow-sm ${
+                          msg.sender_role === 'admin' 
+                            ? 'bg-[#B8212E] text-white rounded-br-sm' 
+                            : 'bg-white border border-gray-200 text-gray-800 rounded-bl-sm'
+                        }`}>
+                          {msg.message}
+                          <div className={`text-[8px] mt-1 ${msg.sender_role === 'admin' ? 'text-white/60 text-right' : 'text-gray-400 text-left'}`}>
+                            {new Date(msg.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    <div ref={messagesEndRef} />
+                  </div>
+
+                  <form onSubmit={handleAdminSendReply} className="p-4 bg-white border-t border-gray-200 flex gap-2">
+                    <input
+                      type="text"
+                      value={adminReply}
+                      onChange={(e) => setAdminReply(e.target.value)}
+                      placeholder="Type your reply..."
+                      className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-800 focus:outline-none focus:border-[#B8212E] focus:bg-white"
+                    />
+                    <button
+                      type="submit"
+                      disabled={!adminReply.trim()}
+                      className="px-6 rounded-full bg-[#B8212E] text-white font-bold text-xs disabled:opacity-50 transition-all hover:bg-[#D62636]"
+                    >
+                      Send
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       )}
 

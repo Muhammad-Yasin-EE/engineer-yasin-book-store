@@ -72,9 +72,13 @@ export default function Navbar() {
         .from('notifications')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(5)
-      setNotifications(data || [])
-      setUnreadCount(data ? data.length : 0) // Treat as unread for demo purposes
+        .limit(10)
+      
+      const dismissed = JSON.parse(localStorage.getItem('dismissed_notifications') || '[]')
+      const activeNotifications = (data || []).filter(n => !dismissed.includes(n.id))
+      
+      setNotifications(activeNotifications)
+      setUnreadCount(activeNotifications.length)
     }
 
     // 4. Initialize Dark Mode Theme Settings
@@ -350,7 +354,6 @@ export default function Navbar() {
               <button
                 onClick={() => {
                   setShowNotifications(!showNotifications)
-                  setUnreadCount(0) // Clear count on click
                 }}
                 className="p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 relative transition-all cursor-pointer"
                 title="Notifications Alerts"
@@ -370,25 +373,42 @@ export default function Navbar() {
                     <Sparkles className="w-3.5 h-3.5 text-[#B8212E]" />
                   </div>
                   {notifications.length === 0 ? (
-                    <div className="px-4 py-4 text-center text-gray-400 font-semibold">No recent alerts</div>
+                    <div className="px-4 py-4 text-center text-gray-400 font-semibold">No new alerts</div>
                   ) : (
-                    <div className="divide-y divide-gray-150">
-                      {notifications.map((notif) => (
-                        <div key={notif.id} className="p-3 hover:bg-gray-50 space-y-1 font-semibold text-gray-650 transition-colors">
-                          <h4 className="font-bold text-gray-800">{notif.title}</h4>
-                          <p className="text-[10px] text-gray-400 leading-normal">{notif.message}</p>
-                          {notif.link && (
-                            <Link
-                              href={notif.link}
-                              onClick={() => setShowNotifications(false)}
-                              className="text-[9px] font-bold text-[#B8212E] hover:underline flex items-center gap-0.5 mt-1"
-                            >
-                              Check Details &rarr;
-                            </Link>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                    <>
+                      <div className="divide-y divide-gray-150 max-h-[300px] overflow-y-auto">
+                        {notifications.map((notif) => (
+                          <div key={notif.id} className="p-3 hover:bg-gray-50 space-y-1 font-semibold text-gray-650 transition-colors">
+                            <h4 className="font-bold text-gray-800">{notif.title}</h4>
+                            <p className="text-[10px] text-gray-400 leading-normal">{notif.message}</p>
+                            {notif.link && (
+                              <Link
+                                href={notif.link}
+                                onClick={() => setShowNotifications(false)}
+                                className="text-[9px] font-bold text-[#B8212E] hover:underline flex items-center gap-0.5 mt-1"
+                              >
+                                Check Details &rarr;
+                              </Link>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="p-2 border-t border-gray-100 bg-gray-50">
+                        <button 
+                          onClick={() => {
+                            const dismissed = JSON.parse(localStorage.getItem('dismissed_notifications') || '[]')
+                            const newDismissed = [...dismissed, ...notifications.map(n => n.id)]
+                            localStorage.setItem('dismissed_notifications', JSON.stringify(newDismissed))
+                            setNotifications([])
+                            setUnreadCount(0)
+                            setShowNotifications(false)
+                          }}
+                          className="w-full py-1.5 text-center text-[10px] font-bold text-gray-500 hover:text-gray-800 transition-colors cursor-pointer"
+                        >
+                          Mark all as read
+                        </button>
+                      </div>
+                    </>
                   )}
                 </div>
               )}

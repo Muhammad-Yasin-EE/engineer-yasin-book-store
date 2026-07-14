@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     // 2. Parse request payload
     const { orderId, action, rejectionReason } = await request.json()
 
-    if (!orderId || !action || !['verify', 'reject'].includes(action)) {
+    if (!orderId || !action || !['verify', 'reject', 'delete'].includes(action)) {
       return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 })
     }
 
@@ -166,6 +166,17 @@ export async function POST(request: Request) {
       }
 
       return NextResponse.json({ success: true, message: 'Order rejected successfully' })
+    }
+
+    if (action === 'delete') {
+      const { error: deleteErr } = await adminSupabase
+        .from('orders')
+        .delete()
+        .eq('id', orderId)
+
+      if (deleteErr) throw deleteErr
+
+      return NextResponse.json({ success: true, message: 'Order deleted successfully' })
     }
 
     return NextResponse.json({ error: 'Action not matched' }, { status: 400 })
