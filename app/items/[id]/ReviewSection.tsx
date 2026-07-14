@@ -8,9 +8,10 @@ interface ReviewSectionProps {
   itemId: string
   hasPurchased: boolean
   resourceType?: string
+  downloads?: number
 }
 
-export default function ReviewSection({ itemId, hasPurchased, resourceType = 'book' }: ReviewSectionProps) {
+export default function ReviewSection({ itemId, hasPurchased, resourceType = 'book', downloads = 0 }: ReviewSectionProps) {
   const supabase = createClient()
 
   const [reviews, setReviews] = useState<any[]>([])
@@ -83,7 +84,7 @@ export default function ReviewSection({ itemId, hasPurchased, resourceType = 'bo
         <div>
           <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-[#B8212E]" />
-            {resourceType === 'service' ? 'Client Reviews' : resourceType === 'software' ? 'User Reviews' : 'Student Reviews'} ({reviews.length})
+            {resourceType === 'service' ? 'Client Reviews' : resourceType === 'software' ? 'User Reviews' : 'Student Reviews'} ({Math.max(reviews.length, downloads)})
           </h2>
           <p className="text-xs text-gray-400 font-semibold mt-0.5">
             {resourceType === 'service' ? 'Read feedback from past clients for this custom service.' : 
@@ -203,7 +204,7 @@ export default function ReviewSection({ itemId, hasPurchased, resourceType = 'bo
             </div>
           ) : (
             <div className="space-y-4">
-              {reviews.map((rev) => {
+              {reviews.slice(0, 5).map((rev) => {
                 const match = rev.comment?.match(/^\[(.*?)\]:\s*(.*)/);
                 const displayName = match ? match[1] : (rev.profiles?.name || 'Verified Student');
                 const displayComment = match ? match[2] : rev.comment;

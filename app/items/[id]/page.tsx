@@ -263,7 +263,7 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
 
       </div>
 
-      <ReviewSection itemId={item.id} hasPurchased={hasPurchased} resourceType={item.resource_type} />
+      <ReviewSection itemId={item.id} hasPurchased={hasPurchased} resourceType={item.resource_type} downloads={item.downloads || 0} />
 
     </div>
   )
