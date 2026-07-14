@@ -8,19 +8,29 @@ export default function WhatsappPopup() {
   const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL || 'https://chat.whatsapp.com/GzB2X8wN2dD3B6Z8j9u9d9'
 
   useEffect(() => {
-    // Show popup every 20 seconds
+    // Client-side only safety check
+    if (typeof window !== 'undefined' && localStorage.getItem('hasJoinedWhatsapp') === 'true') {
+      return
+    }
+
+    // Check and trigger every 20 seconds
     const interval = setInterval(() => {
-      // Check if modal is already open
-      setIsOpen((prev) => {
-        if (!prev) {
-          return true
-        }
-        return prev
-      })
+      if (localStorage.getItem('hasJoinedWhatsapp') === 'true') {
+        clearInterval(interval)
+        return
+      }
+      setIsOpen(true)
     }, 20000)
 
     return () => clearInterval(interval)
   }, [])
+
+  const handleJoinClick = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('hasJoinedWhatsapp', 'true')
+    }
+    setIsOpen(false)
+  }
 
   if (!isOpen) return null
 
@@ -59,7 +69,7 @@ export default function WhatsappPopup() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={() => setIsOpen(false)}
+              onClick={handleJoinClick}
               className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-md transition-all hover:scale-102 active:scale-98"
             >
               <MessageSquare className="w-4 h-4" />

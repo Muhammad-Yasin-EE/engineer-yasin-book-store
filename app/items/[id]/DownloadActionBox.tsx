@@ -25,15 +25,20 @@ export default function DownloadActionBox({ item, isLoggedIn, hasPurchased, free
   }
 
   const handleUnlockAndProceed = () => {
-    // 1. Open WhatsApp group link in a new window/tab
+    // 1. Set joined state in localStorage to prevent global popup prompts
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('hasJoinedWhatsapp', 'true')
+    }
+
+    // 2. Open WhatsApp group link in a new window/tab
     window.open(whatsappUrl, '_blank')
 
-    // 2. Wait a split second, then trigger the original download/redirect URL
+    // 3. Wait a split second, then trigger the original download/redirect URL
     setTimeout(() => {
       window.location.href = pendingUrl
     }, 300)
 
-    // 3. Close the modal
+    // 4. Close the modal
     setShowLockModal(false)
   }
 
