@@ -7,9 +7,10 @@ import { Star, MessageSquare, AlertCircle, CheckCircle2, Loader2 } from 'lucide-
 interface ReviewSectionProps {
   itemId: string
   hasPurchased: boolean
+  resourceType?: string
 }
 
-export default function ReviewSection({ itemId, hasPurchased }: ReviewSectionProps) {
+export default function ReviewSection({ itemId, hasPurchased, resourceType = 'book' }: ReviewSectionProps) {
   const supabase = createClient()
 
   const [reviews, setReviews] = useState<any[]>([])
@@ -82,9 +83,13 @@ export default function ReviewSection({ itemId, hasPurchased }: ReviewSectionPro
         <div>
           <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-[#B8212E]" />
-            Student Reviews ({reviews.length})
+            {resourceType === 'service' ? 'Client Reviews' : resourceType === 'software' ? 'User Reviews' : 'Student Reviews'} ({reviews.length})
           </h2>
-          <p className="text-xs text-gray-400 font-semibold mt-0.5">Read feedback or share your study experience with this material.</p>
+          <p className="text-xs text-gray-400 font-semibold mt-0.5">
+            {resourceType === 'service' ? 'Read feedback from past clients for this custom service.' : 
+             resourceType === 'software' ? 'See what other users have experienced with this software.' : 
+             'Read feedback or share your study experience with this material.'}
+          </p>
         </div>
 
         {reviews.length > 0 && (
