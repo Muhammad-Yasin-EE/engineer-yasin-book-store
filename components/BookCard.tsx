@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle } from 'lucide-react'
 
@@ -72,12 +74,32 @@ export default function BookCard({ id, title, author, category, type, price, cov
 
         {/* Visual Render */}
         {hasCover ? (
-          <img
-            src={cover_url || ''}
-            alt={title}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
-          />
+          cover_url.includes('logo.clearbit.com') || cover_url.includes('google.com/s2/favicons') ? (
+            <div className="w-full h-full flex items-center justify-center bg-gray-50/80 p-6">
+              <div className="w-18 h-18 bg-white rounded-2xl shadow-sm border border-gray-150 flex items-center justify-center p-3 transform group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src={cover_url}
+                  alt={title}
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    const parts = cover_url.split('/');
+                    const domain = parts[parts.length - 1];
+                    if (domain && !cover_url.includes('google.com')) {
+                      (e.target as HTMLImageElement).src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          ) : (
+            <img
+              src={cover_url || ''}
+              alt={title}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+            />
+          )
         ) : (
           <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${
             resource_type === 'scholarship' ? 'from-emerald-500 to-teal-600' :
