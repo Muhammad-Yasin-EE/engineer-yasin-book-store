@@ -119,6 +119,9 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
 
   const getFreeDownloadUrl = () => {
     if (!item) return '#'
+    if (item.file_path.startsWith('http://') || item.file_path.startsWith('https://')) {
+      return item.file_path
+    }
     if (item.file_path.startsWith('free/')) {
       return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/free-books/${item.file_path.substring(5)}`
     }
