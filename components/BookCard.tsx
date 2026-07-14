@@ -87,36 +87,13 @@ export default function BookCard({ id, title, author, category, type, price, cov
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     const img = e.currentTarget;
-                    if (!img.src.includes('google.com/s2/favicons')) {
-                      const parts = cover_url.split('/');
-                      const domain = parts[parts.length - 1];
-                      if (domain) {
-                        img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
-                        return;
-                      }
+                    if (!img.src.includes('ui-avatars.com')) {
+                      // Final reliable fallback: A colorful letter-based logo of the app's title
+                      const cleanTitle = encodeURIComponent(title.substring(0, 15));
+                      img.src = `https://ui-avatars.com/api/?name=${cleanTitle}&background=random&color=fff&size=256&font-size=0.4&bold=true`;
                     }
-                    const wrap = document.getElementById(`img-wrap-${id}`);
-                    if (wrap) wrap.style.display = 'none';
-                    const fallback = document.getElementById(`card-fallback-${id}`);
-                    if (fallback) fallback.style.display = 'flex';
                   }}
                 />
-              </div>
-              <div 
-                id={`card-fallback-${id}`}
-                className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
-                  resource_type === 'scholarship' ? 'from-emerald-500 to-teal-600' :
-                  resource_type === 'job' ? 'from-blue-500 to-indigo-600' :
-                  resource_type === 'software' ? 'from-violet-500 to-purple-655' :
-                  resource_type === 'service' ? 'from-amber-500 to-orange-600' :
-                  resource_type === 'course' ? 'from-teal-500 to-cyan-600' : 'from-[#B8212E] to-rose-700'
-                } relative overflow-hidden`}
-                style={{ display: 'none' }}
-              >
-                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
-                <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center z-10">
-                  <Download className="w-7 h-7 text-white" />
-                </div>
               </div>
             </div>
           ) : (
