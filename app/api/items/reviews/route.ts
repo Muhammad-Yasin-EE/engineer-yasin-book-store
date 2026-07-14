@@ -70,3 +70,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 })
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const itemId = searchParams.get('itemId')
+    
+    if (!itemId) {
+      return NextResponse.json({ error: 'Item ID required' }, { status: 400 })
+    }
+
+    const adminClient = createAdminClient()
+    const { data, error } = await adminClient
+      .from('reviews')
+      .select('*, profiles(name)')
+      .eq('item_id', itemId)
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+
+    return NextResponse.json(data || [])
+  } catch (err: any) {
+    console.error('Fetch Reviews Error:', err)
+    return NextResponse.json({ error: 'Failed to load reviews' }, { status: 500 })
+  }
+}

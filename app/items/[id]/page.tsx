@@ -214,7 +214,7 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
               {(item.resource_type !== 'job' && item.resource_type !== 'scholarship') && (
                 <span className="flex items-center gap-1.5">
                   <DownloadCloud className="w-4 h-4 text-emerald-500 shrink-0" />
-                  {item.downloads || 0} Downloads
+                  {item.downloads || 0} {item.resource_type === 'service' ? 'Orders Completed' : 'Downloads'}
                 </span>
               )}
             </div>

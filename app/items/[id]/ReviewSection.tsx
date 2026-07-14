@@ -24,13 +24,9 @@ export default function ReviewSection({ itemId, hasPurchased }: ReviewSectionPro
 
   const fetchReviews = async () => {
     try {
-      const { data, error } = await supabase
-        .from('reviews')
-        .select('*, profiles(name)')
-        .eq('item_id', itemId)
-        .order('created_at', { ascending: false })
-      
-      if (error) throw error
+      const res = await fetch(`/api/items/reviews?itemId=${itemId}`)
+      if (!res.ok) throw new Error('Failed to fetch reviews')
+      const data = await res.json()
       setReviews(data || [])
     } catch (err) {
       console.error('Fetch Reviews Error:', err)
