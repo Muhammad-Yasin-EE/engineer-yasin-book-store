@@ -11,7 +11,7 @@ interface BookCardProps {
   type: 'free' | 'premium'
   price: number
   cover_url: string | null
-  resource_type?: 'book' | 'scholarship' | 'job' | 'software' | 'service' | 'course'
+  resource_type?: 'book' | 'scholarship' | 'job' | 'software' | 'service' | 'course' | 'apk'
 }
 
 export default function BookCard({ id, title, author, category, type, price, cover_url, resource_type = 'book' }: BookCardProps) {
