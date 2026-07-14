@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
 import { Search, ChevronLeft, ChevronRight, Hammer, Sparkles, Filter } from 'lucide-react'
 
-const CATEGORIES = ["Programming", "3D Modeling", "MATLAB & Simulink", "Hardware & PCB", "Tutoring", "Completed Projects"]
+const CATEGORIES = ["Programming", "3D Modeling", "MATLAB & Simulink", "Hardware & PCB", "Tutoring", "Some Completed Projects"]
 
 interface SearchParams {
   search?: string
