@@ -39,7 +39,7 @@ export default function Navbar() {
   const notificationsRef = useRef<HTMLDivElement>(null)
 
   // Dropdown States
-  const [activeDropdown, setActiveDropdown] = useState<'careers' | 'resources' | 'info' | null>(null)
+  const [activeDropdown, setActiveDropdown] = useState<'careers' | 'resources' | 'books' | 'blog' | null>(null)
 
   useEffect(() => {
     // 1. Fetch Auth Session & Admin Level Checks
@@ -296,11 +296,28 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Standalone Books Link */}
-            <Link href="/books" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
-              <BookOpen className="w-3.5 h-3.5" />
-              Book Store
-            </Link>
+            {/* Category Dropdown 3: Book Store */}
+            <div 
+              className="relative py-2"
+              onMouseEnter={() => setActiveDropdown('books')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="text-xs font-bold text-gray-600 hover:text-[#B8212E] flex items-center gap-0.5 cursor-pointer transition-colors">
+                <BookOpen className="w-3.5 h-3.5" />
+                Book Store
+                <ChevronDown className="w-3 h-3" />
+              </button>
+              {activeDropdown === 'books' && (
+                <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
+                  <Link href="/books" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                    Browse Books
+                  </Link>
+                  <Link href="/track" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                    Track Order
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* Standalone Services Link */}
             <Link href="/services" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
@@ -308,44 +325,35 @@ export default function Navbar() {
               Services
             </Link>
 
-            {/* Standalone Blog Link */}
-            <Link href="/blog" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
-              <Newspaper className="w-3.5 h-3.5" />
-              Blog
-            </Link>
-
-            {/* Standalone Track Link */}
-            <Link href="/track" prefetch={false} className="text-xs font-bold text-gray-650 hover:text-[#B8212E] transition-colors flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
-              Track Order
-            </Link>
-
-            {/* Dynamic Custom Info Pages Dropdown */}
-            {customPages.length > 0 && (
-              <div 
-                className="relative py-2"
-                onMouseEnter={() => setActiveDropdown('info')}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button className="text-xs font-bold text-gray-600 hover:text-[#B8212E] flex items-center gap-0.5 cursor-pointer">
-                  Info
-                  <ChevronDown className="w-3 h-3" />
-                </button>
-                {activeDropdown === 'info' && (
-                  <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
-                    {customPages.map(page => (
-                      <Link
-                        key={page.slug}
-                        href={`/p/${page.slug}`}
-                        className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all"
-                      >
-                        {page.title}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+            {/* Category Dropdown 4: Blog & Guidelines */}
+            <div 
+              className="relative py-2"
+              onMouseEnter={() => setActiveDropdown('blog')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="text-xs font-bold text-gray-600 hover:text-[#B8212E] flex items-center gap-0.5 cursor-pointer transition-colors">
+                <Newspaper className="w-3.5 h-3.5" />
+                Blog
+                <ChevronDown className="w-3 h-3" />
+              </button>
+              {activeDropdown === 'blog' && (
+                <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
+                  <Link href="/blog" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
+                    Blog Updates
+                  </Link>
+                  {customPages.map(page => (
+                    <Link
+                      key={page.slug}
+                      href={`/p/${page.slug}`}
+                      prefetch={false}
+                      className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all"
+                    >
+                      {page.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             
             {isAdmin && (
               <Link href="/admin" className="flex items-center gap-1 text-xs font-bold text-amber-600 hover:text-amber-500 transition-colors">
@@ -535,52 +543,96 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="flex flex-col gap-2.5 text-xs font-bold text-gray-600">
-            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100">Directories</div>
-            <Link href="/scholarships" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-[#B8212E]" /> Scholarships
-            </Link>
-            <Link href="/jobs" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <Briefcase className="w-4 h-4 text-[#B8212E]" /> Jobs & Internships
-            </Link>
-            <Link href="/software" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <Download className="w-4 h-4 text-[#B8212E]" /> Software Downloads
-            </Link>
-            <Link href="/courses" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-[#B8212E]" /> Courses
-            </Link>
-            <Link href="/books" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <BookMarked className="w-4 h-4 text-[#B8212E]" /> Book Store
-            </Link>
-            <Link href="/services" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
+          <div className="flex flex-col gap-2 text-xs font-bold text-gray-650">
+            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mb-1">Directories</div>
+
+            {/* Careers collapsible group */}
+            <details className="group border-b border-gray-100 pb-2">
+              <summary className="flex items-center justify-between py-1.5 cursor-pointer hover:text-[#B8212E] select-none list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2 text-gray-600 hover:text-[#B8212E]">
+                  <Briefcase className="w-4 h-4 text-[#B8212E]" /> Careers
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="pl-6 flex flex-col gap-2 mt-1.5 pb-1">
+                <Link href="/scholarships" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Scholarships
+                </Link>
+                <Link href="/jobs" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Jobs & Internships
+                </Link>
+              </div>
+            </details>
+
+            {/* Academic Hub collapsible group */}
+            <details className="group border-b border-gray-100 pb-2">
+              <summary className="flex items-center justify-between py-1.5 cursor-pointer hover:text-[#B8212E] select-none list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2 text-gray-600 hover:text-[#B8212E]">
+                  <BookMarked className="w-4 h-4 text-[#B8212E]" /> Academic Hub
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="pl-6 flex flex-col gap-2 mt-1.5 pb-1">
+                <Link href="/courses" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Courses
+                </Link>
+                <Link href="/software" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Software Downloads
+                </Link>
+                <Link href="/prep" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  MCQ Quiz Prep
+                </Link>
+              </div>
+            </details>
+
+            {/* Book Store collapsible group (Track Order inside) */}
+            <details className="group border-b border-gray-100 pb-2">
+              <summary className="flex items-center justify-between py-1.5 cursor-pointer hover:text-[#B8212E] select-none list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2 text-gray-600 hover:text-[#B8212E]">
+                  <BookOpen className="w-4 h-4 text-[#B8212E]" /> Book Store
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="pl-6 flex flex-col gap-2 mt-1.5 pb-1">
+                <Link href="/books" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Browse Books
+                </Link>
+                <Link href="/track" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Track Order
+                </Link>
+              </div>
+            </details>
+
+            {/* Standalone Services Link */}
+            <Link href="/services" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
               <Hammer className="w-4 h-4 text-[#B8212E]" /> Services
             </Link>
-            <Link href="/blog" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <Newspaper className="w-4 h-4 text-[#B8212E]" /> Blog Updates
-            </Link>
-            <Link href="/track" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#B8212E]" /> Track Order
-            </Link>
-            <Link href="/prep" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1.5 flex items-center gap-2">
-              <Award className="w-4 h-4 text-[#B8212E]" /> MCQ Quiz Prep
-            </Link>
 
-            {customPages.length > 0 && (
-              <>
-                <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mt-2">Information</div>
+            {/* Blog collapsible group (Info pages inside) */}
+            <details className="group border-b border-gray-100 pb-2">
+              <summary className="flex items-center justify-between py-1.5 cursor-pointer hover:text-[#B8212E] select-none list-none [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2 text-gray-600 hover:text-[#B8212E]">
+                  <Newspaper className="w-4 h-4 text-[#B8212E]" /> Blog
+                </span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-open:rotate-180 transition-transform" />
+              </summary>
+              <div className="pl-6 flex flex-col gap-2 mt-1.5 pb-1">
+                <Link href="/blog" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
+                  Blog Updates
+                </Link>
                 {customPages.map(page => (
                   <Link 
                     key={page.slug}
                     href={`/p/${page.slug}`} 
                     onClick={() => setMobileMenuOpen(false)} 
                     prefetch={false}
-                    className="hover:text-[#B8212E] py-1 pl-4 font-semibold text-gray-500 block"
+                    className="hover:text-[#B8212E] py-1 block text-gray-400 font-medium"
                   >
                     {page.title}
                   </Link>
                 ))}
-              </>
-            )}
+              </div>
+            </details>
           </div>
         </div>
       )}

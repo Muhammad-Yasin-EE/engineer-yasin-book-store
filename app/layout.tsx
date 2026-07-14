@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col bg-white text-[#222222] selection:bg-[#B8212E]/10 selection:text-[#B8212E] antialiased">
+    <html lang="en" className="h-full overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-white text-[#222222] selection:bg-[#B8212E]/10 selection:text-[#B8212E] antialiased overflow-x-hidden">
         <CartProvider>
           <Suspense fallback={<div className="h-16 bg-white border-b border-gray-100" />}>
             <Navbar />
