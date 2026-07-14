@@ -59,7 +59,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/software" className="hover:text-[#B8212E] transition-colors">
-                  Software Downloads
+                  Apps & Software
                 </Link>
               </li>
               <li>

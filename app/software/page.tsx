@@ -6,6 +6,7 @@ import { Search, ChevronLeft, ChevronRight, Download, Sparkles, Filter } from 'l
 interface SearchParams {
   search?: string
   filter?: 'free' | 'premium' | string
+  platform?: 'all' | 'apk' | 'pc' | string
   page?: string
 }
 
@@ -15,6 +16,7 @@ export default async function SoftwarePage({ searchParams }: { searchParams: Pro
   const params = await searchParams
   const search = params.search || ''
   const filter = params.filter || 'all'
+  const platform = params.platform || 'all'
   const page = parseInt(params.page || '1', 10)
   const pageSize = 9
 
@@ -38,6 +40,12 @@ export default async function SoftwarePage({ searchParams }: { searchParams: Pro
       query = query.eq('type', 'premium')
     }
 
+    if (platform === 'apk') {
+      query = query.ilike('category', '%Android APK%')
+    } else if (platform === 'pc') {
+      query = query.ilike('category', '%PC SOFTWARE%')
+    }
+
     if (search) {
       query = query.or(`title.ilike.%${search}%,author.ilike.%${search}%`)
     }
@@ -57,10 +65,11 @@ export default async function SoftwarePage({ searchParams }: { searchParams: Pro
   const totalPages = Math.ceil(totalCount / pageSize)
 
   const getQueryString = (overrides: Partial<SearchParams>) => {
-    const combined = { search, filter, page: page.toString(), ...overrides }
+    const combined = { search, filter, platform, page: page.toString(), ...overrides }
     const urlParams = new URLSearchParams()
     if (combined.search) urlParams.set('search', combined.search)
     if (combined.filter && combined.filter !== 'all') urlParams.set('filter', combined.filter)
+    if (combined.platform && combined.platform !== 'all') urlParams.set('platform', combined.platform)
     if (combined.page && combined.page !== '1') urlParams.set('page', combined.page)
     const str = urlParams.toString()
     return str ? `?${str}` : ''
@@ -74,13 +83,13 @@ export default async function SoftwarePage({ searchParams }: { searchParams: Pro
         <div>
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-50 border border-violet-200 text-violet-600 text-[10px] font-bold uppercase tracking-wider mb-2">
             <Download className="w-3.5 h-3.5" />
-            Software Downloads
+            Apps & Software Hub
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-tight">
-            Developer & Simulation Tools
+            Premium Apps, Bots & PC Software
           </h1>
           <p className="text-xs sm:text-sm text-gray-400 mt-1">
-            Get Matlab toolboxes, solidworks installers, and utility keys.
+            Download verified Android APKs, PC marketing bots, extractors, and utility suites.
           </p>
         </div>
       </div>
@@ -108,6 +117,34 @@ export default async function SoftwarePage({ searchParams }: { searchParams: Pro
                 <Search className="w-3.5 h-3.5" />
               </button>
             </form>
+          </div>
+
+          {/* Platform Filters */}
+          <div className="bg-gray-50 border border-gray-200 p-5 space-y-3">
+            <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2">
+              <Filter className="w-4 h-4 text-violet-600" />
+              Platform
+            </h3>
+            <div className="flex flex-col gap-1.5 text-xs text-gray-505 font-bold">
+              <Link 
+                href={`/software${getQueryString({ platform: 'all', page: '1' })}`} 
+                className={`block px-2.5 py-1.5 rounded-none transition-all ${platform === 'all' ? 'bg-white text-violet-650 border-l-2 border-violet-650 shadow-sm' : 'hover:text-gray-800'}`}
+              >
+                All Resources
+              </Link>
+              <Link 
+                href={`/software${getQueryString({ platform: 'apk', page: '1' })}`} 
+                className={`block px-2.5 py-1.5 rounded-none transition-all ${platform === 'apk' ? 'bg-white text-violet-650 border-l-2 border-violet-650 shadow-sm' : 'hover:text-gray-800'}`}
+              >
+                Android APKs
+              </Link>
+              <Link 
+                href={`/software${getQueryString({ platform: 'pc', page: '1' })}`} 
+                className={`block px-2.5 py-1.5 rounded-none transition-all ${platform === 'pc' ? 'bg-white text-violet-650 border-l-2 border-violet-650 shadow-sm' : 'hover:text-gray-800'}`}
+              >
+                PC Softwares
+              </Link>
+            </div>
           </div>
 
           {/* Pricing Filters */}

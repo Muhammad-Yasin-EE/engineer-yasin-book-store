@@ -44,7 +44,7 @@ export default function CartPage() {
             href="/software"
             className="mt-6 inline-flex items-center justify-center px-8 py-3 rounded-full text-sm font-bold bg-[#B8212E] hover:bg-[#D62636] text-white shadow-sm hover:shadow"
           >
-            Browse Software
+            Browse Apps & Software
           </Link>
         </div>
       ) : (

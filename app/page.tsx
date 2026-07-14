@@ -66,7 +66,7 @@ export default async function HomePage() {
             </Link>
             <Link href="/software" className="p-4 bg-white border border-gray-200 hover:border-violet-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <Download className="w-6 h-6 text-violet-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Softwares</span>
+              <span className="text-xs font-bold text-gray-800">Apps & Software</span>
             </Link>
             <Link href="/services" className="p-4 bg-white border border-gray-200 hover:border-amber-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <Hammer className="w-6 h-6 text-amber-600 group-hover:scale-105 transition-transform" />
@@ -139,10 +139,10 @@ export default async function HomePage() {
         <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
           <div className="flex items-center gap-2">
             <Download className="w-5 h-5 text-violet-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Featured Software</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Featured Apps & Software</h2>
           </div>
           <Link href="/software" className="text-xs sm:text-sm font-semibold text-[#B8212E] hover:text-[#D62636] flex items-center gap-1 transition-colors">
-            Browse Software Hub <ArrowRight className="w-4 h-4" />
+            Browse Apps & Software <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 

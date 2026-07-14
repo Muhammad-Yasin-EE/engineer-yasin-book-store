@@ -273,7 +273,7 @@ export default function Navbar() {
             {/* Standalone Software Link */}
             <Link href="/software" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <Download className="w-3.5 h-3.5" />
-              Software
+              Apps & Software
             </Link>
 
             {/* Standalone Prep Link */}
@@ -535,7 +535,7 @@ export default function Navbar() {
 
             {/* Standalone Software Link */}
             <Link href="/software" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
-              <Download className="w-4 h-4 text-[#B8212E]" /> Software
+              <Download className="w-4 h-4 text-[#B8212E]" /> Apps & Software
             </Link>
 
             {/* Standalone Prep Link */}
