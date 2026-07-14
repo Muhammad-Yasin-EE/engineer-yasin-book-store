@@ -5,6 +5,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft, UserCheck, ShoppingBag, ExternalLink, Eye, DownloadCloud } from 'lucide-react'
 import AddToCartButton from './AddToCartButton'
 import ReviewSection from './ReviewSection'
+import ItemCover from './ItemCover'
 
 export const revalidate = 60
 
@@ -177,30 +178,13 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
               {item.resource_type}
             </span>
 
-            {hasCover ? (
-              <img
-                src={item.cover_url}
-                alt={item.title}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className={`w-full h-full flex flex-col justify-between p-6 bg-gradient-to-br ${getGradientClass(item.title)}`}>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs uppercase font-bold tracking-widest opacity-60 truncate max-w-[150px]">{item.category}</span>
-                  {getResourceIcon()}
-                </div>
-                
-                <div className="my-auto py-6">
-                  <h3 className="font-extrabold text-xl leading-snug line-clamp-4 text-white tracking-tight">{item.title}</h3>
-                  <p className="text-xs mt-2.5 opacity-75 line-clamp-1 italic">by {item.author}</p>
-                </div>
-                
-                <div className="border-t border-white/10 pt-3 flex justify-between items-center text-xs font-mono opacity-50">
-                  <span className="uppercase">{item.resource_type}</span>
-                  <span>ENGINEER YASIN</span>
-                </div>
-              </div>
-            )}
+            <ItemCover
+              coverUrl={item.cover_url}
+              title={item.title}
+              category={item.category}
+              resourceType={item.resource_type}
+              author={item.author}
+            />
           </div>
         </div>
 
