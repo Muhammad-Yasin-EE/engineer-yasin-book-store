@@ -79,23 +79,29 @@ export default function BookCard({ id, title, author, category, type, price, cov
             className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
           />
         ) : (
-          <div className={`w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br ${getGradientClass(title)}`}>
-            <div className="flex items-center justify-between">
-              <span className="text-[9px] uppercase font-bold tracking-widest opacity-60 truncate max-w-[120px]">{category}</span>
-              {getResourceIcon()}
-            </div>
+          <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${
+            resource_type === 'scholarship' ? 'from-emerald-500 to-teal-600' :
+            resource_type === 'job' ? 'from-blue-500 to-indigo-600' :
+            resource_type === 'software' ? 'from-violet-500 to-purple-655' :
+            resource_type === 'service' ? 'from-amber-500 to-orange-600' :
+            resource_type === 'course' ? 'from-teal-500 to-cyan-600' : 'from-[#B8212E] to-rose-700'
+          } relative overflow-hidden`}>
+            {/* Tech grid dot pattern */}
+            <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
             
-            <div className="my-auto py-2">
-              <h3 className="font-extrabold text-sm sm:text-base leading-snug line-clamp-3 text-white">{title}</h3>
-              <p className="text-[10px] mt-1 opacity-75 line-clamp-1 italic">
-                {resource_type === 'job' ? 'at ' : resource_type === 'scholarship' ? 'by ' : 'by '}
-                {author}
-              </p>
+            {/* Centered glassmorphism icon container */}
+            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transform group-hover:scale-108 group-hover:rotate-2 transition-all duration-300 z-10">
+              {resource_type === 'scholarship' ? <GraduationCap className="w-7 h-7 text-white" /> :
+               resource_type === 'job' ? <Briefcase className="w-7 h-7 text-white" /> :
+               resource_type === 'software' ? <Download className="w-7 h-7 text-white" /> :
+               resource_type === 'service' ? <Hammer className="w-7 h-7 text-white" /> :
+               resource_type === 'course' ? <PlayCircle className="w-7 h-7 text-white" /> : <Book className="w-7 h-7 text-white" />}
             </div>
-            
-            <div className="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono opacity-50">
-              <span className="uppercase">{resource_type}</span>
-              <span>ENGINEER YASIN</span>
+
+            {/* Subtle branding coordinates */}
+            <div className="absolute bottom-3 left-4 right-4 flex justify-between items-center text-[7px] font-mono tracking-wider text-white/40 uppercase z-10 select-none">
+              <span className="truncate max-w-[80px]">{category}</span>
+              <span>Yasin Portal</span>
             </div>
           </div>
         )}
