@@ -85,7 +85,7 @@ export async function GET(request: Request) {
     const adminClient = createAdminClient()
     const { data, error } = await adminClient
       .from('reviews')
-      .select('*, profiles(name)')
+      .select('*')
       .eq('item_id', itemId)
       .order('created_at', { ascending: false })
 
