@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SocialFloatingBar from "@/components/SocialFloatingBar";
 import { Analytics } from "@vercel/analytics/next";
+import WhatsappPopup from "@/components/WhatsappPopup";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -36,6 +37,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <SocialFloatingBar />
+          <WhatsappPopup />
           <Analytics />
         </CartProvider>
       </body>

@@ -6,6 +6,7 @@ import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle, ArrowLeft
 import AddToCartButton from './AddToCartButton'
 import ReviewSection from './ReviewSection'
 import ItemCover from './ItemCover'
+import DownloadActionBox from './DownloadActionBox'
 
 export const revalidate = 60
 
@@ -250,150 +251,13 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
             </p>
           </div>
 
-          {/* Action boxes */}
-          <div className="bg-[#f8fafc] border border-gray-200 rounded-none p-6 space-y-4">
-            
-            {/* FREE FLOW (Jobs, Scholarships, Internships always follow this) */}
-            {item.type === 'free' && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-xs text-emerald-600 font-bold">
-                      {item.resource_type === 'scholarship' || item.resource_type === 'job' ? 'Public Resource' : 'Free Resource Access'}
-                    </span>
-                    <p className="text-[10px] text-gray-400 font-semibold">
-                      {item.resource_type === 'scholarship' || item.resource_type === 'job' 
-                        ? 'Official application portal.' 
-                        : 'No account required. Instant access.'
-                      }
-                    </p>
-                  </div>
-                  {item.resource_type !== 'scholarship' && item.resource_type !== 'job' && (
-                    <span className="text-base font-bold text-emerald-600">FREE</span>
-                  )}
-                </div>
-                
-                {item.resource_type === 'scholarship' || item.resource_type === 'job' ? (
-                  <a
-                    href={item.file_path}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Apply on Official Website
-                  </a>
-                ) : (
-                  <a
-                    href={getFreeDownloadUrl()}
-                    download
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download / Access File
-                  </a>
-                )}
-              </div>
-            )}
-
-            {/* PREMIUM FLOW (Software, Courses, Services, Books) */}
-            {item.type === 'premium' && (
-              <div className="space-y-4">
-                
-                {/* 1. User not logged in */}
-                {!isLoggedIn && (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-xs text-[#B8212E] font-bold">Premium Purchase</span>
-                        <p className="text-[10px] text-gray-400 font-semibold">Sign in to checkout and permanent library access.</p>
-                      </div>
-                      <span className="text-xl font-bold text-gray-800">Rs. {item.price.toFixed(0)}</span>
-                    </div>
-
-                    <Link
-                      href={`/login?redirectTo=/items/${item.id}`}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-sm transition-all hover:-translate-y-0.5"
-                    >
-                      <ShoppingBag className="w-4 h-4" />
-                      Sign In to Purchase
-                    </Link>
-                  </div>
-                )}
-
-                {/* 2. User logged in & already purchased */}
-                {isLoggedIn && hasPurchased && (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-gray-150 pb-3">
-                      <div className="flex items-center gap-2 text-emerald-605 font-bold">
-                        <UserCheck className="w-4 h-4" />
-                        <span className="text-xs">Access unlocked in library</span>
-                      </div>
-                      <span className="text-[9px] font-bold bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded">Unlocked</span>
-                    </div>
-
-                    <a
-                      href={`/api/download?bookId=${item.id}`}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-sm shadow-sm transition-all hover:-translate-y-0.5"
-                    >
-                      {item.resource_type === 'course' ? (
-                        <>
-                          <PlayCircle className="w-4 h-4" />
-                          Access Course Material
-                        </>
-                      ) : (
-                        <>
-                          <Download className="w-4 h-4" />
-                          Download Resource File
-                        </>
-                      )}
-                    </a>
-                  </div>
-                )}
-
-                {/* 3. User logged in & not purchased */}
-                {isLoggedIn && !hasPurchased && (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-xs text-[#B8212E] font-bold">Premium Option</span>
-                        <p className="text-[10px] text-gray-400 font-semibold">Make payment to unlock in your accounts list.</p>
-                      </div>
-                      <span className="text-xl font-bold text-gray-800">Rs. {item.price.toFixed(0)}</span>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <AddToCartButton 
-                        item={{
-                          id: item.id,
-                          title: item.title,
-                          author: item.author,
-                          price: item.price,
-                          cover_url: item.cover_url || '',
-                          category: item.category
-                        }} 
-                        buyNow={true}
-                      />
-
-                      <AddToCartButton 
-                        item={{
-                          id: item.id,
-                          title: item.title,
-                          author: item.author,
-                          price: item.price,
-                          cover_url: item.cover_url || '',
-                          category: item.category
-                        }} 
-                        buyNow={false}
-                      />
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            )}
-
-          </div>
+          {/* Action box wrapper */}
+          <DownloadActionBox
+            item={item}
+            isLoggedIn={isLoggedIn}
+            hasPurchased={hasPurchased}
+            freeDownloadUrl={getFreeDownloadUrl()}
+          />
 
         </div>
 
