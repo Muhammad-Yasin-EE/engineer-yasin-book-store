@@ -202,11 +202,16 @@ export default function ReviewSection({ itemId, hasPurchased }: ReviewSectionPro
             </div>
           ) : (
             <div className="space-y-4">
-              {reviews.map((rev) => (
+              {reviews.map((rev) => {
+                const match = rev.comment?.match(/^\[(.*?)\]:\s*(.*)/);
+                const displayName = match ? match[1] : (rev.profiles?.name || 'Verified Student');
+                const displayComment = match ? match[2] : rev.comment;
+                
+                return (
                 <div key={rev.id} className="p-4 bg-white border border-gray-200 rounded-none space-y-2">
                   <div className="flex items-center justify-between">
                     <div>
-                      <span className="font-bold text-gray-800 text-xs">{rev.profiles?.name || 'Student'}</span>
+                      <span className="font-bold text-gray-800 text-xs">{displayName}</span>
                       <span className="text-[10px] text-gray-400 font-semibold block sm:inline sm:ml-2">
                         {new Date(rev.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                       </span>
@@ -221,10 +226,10 @@ export default function ReviewSection({ itemId, hasPurchased }: ReviewSectionPro
                     </div>
                   </div>
                   <p className="text-gray-600 text-xs leading-relaxed font-semibold whitespace-pre-line">
-                    {rev.comment}
+                    {displayComment}
                   </p>
                 </div>
-              ))}
+              )})}
             </div>
           )}
         </div>

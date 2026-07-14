@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
 import { Search, ChevronLeft, ChevronRight, Hammer, Sparkles, Filter } from 'lucide-react'
 
-const CATEGORIES = ["Programming", "3D Modeling", "MATLAB & Simulink", "Tutoring"]
+const CATEGORIES = ["Programming", "3D Modeling", "MATLAB & Simulink", "Hardware & PCB", "Tutoring", "Completed Projects"]
 
 interface SearchParams {
   search?: string
@@ -89,6 +89,24 @@ export default async function ServicesPage({ searchParams }: { searchParams: Pro
         
         {/* Left Sidebar Filters */}
         <aside className="lg:col-span-1 space-y-6">
+          
+          {/* Custom Order Banner */}
+          <div className="bg-[#B8212E] text-white p-5 rounded-none shadow-sm relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-white/20 transition-all"></div>
+            <Sparkles className="w-6 h-6 text-amber-300 mb-3" />
+            <h3 className="text-sm font-extrabold tracking-wide mb-1">Custom Project?</h3>
+            <p className="text-xs text-rose-100 font-medium mb-4 leading-relaxed">
+              Have a unique requirement? Tell us exactly what you need built or designed.
+            </p>
+            <a 
+              href="https://wa.me/923342806970?text=Hi,%20I%20want%20to%20request%20a%20Custom%20Order%20for%20a%20project." 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-block w-full text-center px-4 py-2 bg-white text-[#B8212E] text-xs font-bold shadow-sm hover:shadow-md hover:bg-gray-50 transition-all"
+            >
+              Request Custom Order
+            </a>
+          </div>
           {/* Search form */}
           <div className="bg-gray-50 border border-gray-200 p-5 space-y-3">
             <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2">
