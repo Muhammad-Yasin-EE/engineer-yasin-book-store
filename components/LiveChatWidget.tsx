@@ -12,6 +12,7 @@ export default function LiveChatWidget() {
   const [newMessage, setNewMessage] = useState('')
   const [unreadCount, setUnreadCount] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showTooltip, setShowTooltip] = useState(false)
   
   const supabase = createClient()
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -89,6 +90,27 @@ export default function LiveChatWidget() {
       }
     }
   }, [messages, isOpen, unreadCount, sessionId, supabase])
+
+  // Tooltip bouncing attention grabber
+  useEffect(() => {
+    if (isOpen) return
+    
+    // Initial delay before first pop-up
+    const initialTimeout = setTimeout(() => {
+      setShowTooltip(true)
+      setTimeout(() => setShowTooltip(false), 5000)
+    }, 3000)
+
+    const interval = setInterval(() => {
+      setShowTooltip(true)
+      setTimeout(() => setShowTooltip(false), 5000) // Show for 5 seconds
+    }, 15000) // Every 15 seconds
+    
+    return () => {
+      clearTimeout(initialTimeout)
+      clearInterval(interval)
+    }
+  }, [isOpen])
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -197,21 +219,28 @@ export default function LiveChatWidget() {
       )}
 
       {/* Chat Bubble Toggle */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 bg-white text-[#222222] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative border-2 border-[#B8212E]"
-      >
-        <div className="w-10 h-10 rounded-full overflow-hidden p-0.5 bg-white">
-          <img src="/logo.jpg" alt="Chat" className="w-full h-full object-cover rounded-full" />
-        </div>
-        {unreadCount > 0 && !isOpen && (
-          <span className="absolute -top-1 -right-1 bg-[#B8212E] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-bounce">
-            {unreadCount}
-          </span>
+      <div className="relative">
+        <span className="absolute inline-flex h-12 w-12 rounded-full bg-[#B8212E]/30 animate-ping z-0" />
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-12 h-12 bg-white text-[#222222] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative border-2 border-[#B8212E] z-10"
+        >
+          <div className="w-10 h-10 rounded-full overflow-hidden p-0.5 bg-white">
+            <img src="/logo.jpg" alt="Chat" className="w-full h-full object-cover rounded-full" />
+          </div>
+          {unreadCount > 0 && !isOpen && (
+            <span className="absolute -top-1 -right-1 bg-[#B8212E] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-bounce">
+              {unreadCount}
+            </span>
+          )}
+        </button>
+
+        {showTooltip && !isOpen && (
+          <div className="absolute right-14 top-1/2 -translate-y-1/2 bg-white text-[#B8212E] border border-[#B8212E]/20 shadow-lg px-3 py-2 rounded-xl rounded-br-sm text-[11px] font-bold whitespace-nowrap animate-bounce z-50 flex items-center gap-2">
+            <span>Need help? Chat with us!</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          </div>
         )}
-      </button>
-      <div className="absolute top-1/2 -left-12 -translate-y-1/2 bg-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm border border-gray-100 pointer-events-none opacity-0 sm:opacity-100 text-gray-600">
-        Help
       </div>
     </div>
   )
