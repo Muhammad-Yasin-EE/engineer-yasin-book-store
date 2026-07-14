@@ -189,7 +189,7 @@ export default function CheckoutPage() {
       {cart.length === 0 ? (
         <div className="py-12 bg-gray-50 border border-gray-200 rounded-none flex flex-col items-center justify-center text-gray-400 text-sm">
           No items found in your checkout cart.
-          <Link href="/books" className="text-[#B8212E] underline font-semibold mt-2">Browse catalog &rarr;</Link>
+          <Link href="/software" className="text-[#B8212E] underline font-semibold mt-2">Browse catalog &rarr;</Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">

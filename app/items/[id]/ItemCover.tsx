@@ -68,6 +68,8 @@ export default function ItemCover({ coverUrl, title, category, resourceType, aut
             <img
               src={imgSrc || ''}
               alt={title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain"
               onError={handleImageError}
             />
@@ -80,6 +82,8 @@ export default function ItemCover({ coverUrl, title, category, resourceType, aut
       <img
         src={imgSrc || ''}
         alt={title}
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover"
         onError={handleImageError}
       />

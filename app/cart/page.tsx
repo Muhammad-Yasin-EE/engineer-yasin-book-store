@@ -38,13 +38,13 @@ export default function CartPage() {
           </div>
           <h3 className="text-lg font-bold text-gray-700">Your Cart is Empty</h3>
           <p className="text-xs text-gray-450 max-w-sm mt-1">
-            You haven't added any premium books to your checkout list yet. Browse our categories to find your study materials.
+            You haven't added any premium softwares or services to your checkout list yet. Browse our hub to find your resources.
           </p>
           <Link
-            href="/books"
+            href="/software"
             className="mt-6 inline-flex items-center justify-center px-8 py-3 rounded-full text-sm font-bold bg-[#B8212E] hover:bg-[#D62636] text-white shadow-sm hover:shadow"
           >
-            Browse Books
+            Browse Software
           </Link>
         </div>
       ) : (
@@ -68,7 +68,36 @@ export default function CartPage() {
                   {/* Small Cover Preview (Sharp corners) */}
                   <div className="relative aspect-[3/4] w-12 sm:w-16 shrink-0 rounded-none overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center text-center">
                     {item.cover_url && !item.cover_url.includes('placeholder') && !item.cover_url.includes('covers/') ? (
-                      <img src={item.cover_url} alt={item.title} className="w-full h-full object-cover" />
+                      <>
+                        <img 
+                          src={item.cover_url} 
+                          alt={item.title} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            const img = e.currentTarget;
+                            if (!img.src.includes('google.com/s2/favicons')) {
+                              // Try to extract the domain from clearbit link and request google favicon
+                              const match = item.cover_url.match(/logo\.clearbit\.com\/([^\s\/]+)/);
+                              const domain = match ? match[1] : null;
+                              if (domain) {
+                                img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                                return;
+                              }
+                            }
+                            // Google favicon also failed, show gradient text cover
+                            img.style.display = 'none';
+                            const fallback = document.getElementById(`cart-fallback-${item.id}`);
+                            if (fallback) fallback.style.display = 'flex';
+                          }}
+                        />
+                        <div 
+                          id={`cart-fallback-${item.id}`}
+                          className={`absolute inset-0 flex flex-col justify-center p-1.5 bg-gradient-to-br ${getGradientClass(item.title)}`}
+                          style={{ display: 'none' }}
+                        >
+                          <h4 className="font-extrabold text-[7px] leading-tight line-clamp-2 text-white">{item.title}</h4>
+                        </div>
+                      </>
                     ) : (
                       <div className={`w-full h-full flex flex-col justify-center p-1.5 bg-gradient-to-br ${getGradientClass(item.title)}`}>
                         <h4 className="font-extrabold text-[7px] leading-tight line-clamp-2 text-white">{item.title}</h4>
@@ -111,7 +140,7 @@ export default function CartPage() {
                 Clear All Items
               </button>
               <Link 
-                href="/books" 
+                href="/software" 
                 className="text-xs font-bold text-[#B8212E] hover:text-[#D62636] transition-colors"
               >
                 &larr; Keep Browsing

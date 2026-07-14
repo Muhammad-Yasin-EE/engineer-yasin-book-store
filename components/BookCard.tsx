@@ -76,20 +76,47 @@ export default function BookCard({ id, title, author, category, type, price, cov
         {hasCover ? (
           cover_url.includes('logo.clearbit.com') || cover_url.includes('google.com/s2/favicons') ? (
             <div className="w-full h-full flex items-center justify-center bg-gray-50/80 p-8">
-              <div className="w-28 h-28 bg-white rounded-3xl shadow-sm border border-gray-150 flex items-center justify-center p-5 transform group-hover:scale-105 transition-transform duration-300">
+              <div 
+                id={`img-wrap-${id}`}
+                className="w-28 h-28 bg-white rounded-3xl shadow-sm border border-gray-150 flex items-center justify-center p-5 transform group-hover:scale-105 transition-transform duration-300"
+              >
                 <img
                   src={cover_url}
                   alt={title}
                   loading="lazy"
                   className="w-full h-full object-contain"
                   onError={(e) => {
-                    const parts = cover_url.split('/');
-                    const domain = parts[parts.length - 1];
-                    if (domain && !cover_url.includes('google.com')) {
-                      (e.target as HTMLImageElement).src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                    const img = e.currentTarget;
+                    if (!img.src.includes('google.com/s2/favicons')) {
+                      const parts = cover_url.split('/');
+                      const domain = parts[parts.length - 1];
+                      if (domain) {
+                        img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                        return;
+                      }
                     }
+                    const wrap = document.getElementById(`img-wrap-${id}`);
+                    if (wrap) wrap.style.display = 'none';
+                    const fallback = document.getElementById(`card-fallback-${id}`);
+                    if (fallback) fallback.style.display = 'flex';
                   }}
                 />
+              </div>
+              <div 
+                id={`card-fallback-${id}`}
+                className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${
+                  resource_type === 'scholarship' ? 'from-emerald-500 to-teal-600' :
+                  resource_type === 'job' ? 'from-blue-500 to-indigo-600' :
+                  resource_type === 'software' ? 'from-violet-500 to-purple-655' :
+                  resource_type === 'service' ? 'from-amber-500 to-orange-600' :
+                  resource_type === 'course' ? 'from-teal-500 to-cyan-600' : 'from-[#B8212E] to-rose-700'
+                } relative overflow-hidden`}
+                style={{ display: 'none' }}
+              >
+                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
+                <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center z-10">
+                  <Download className="w-7 h-7 text-white" />
+                </div>
               </div>
             </div>
           ) : (
