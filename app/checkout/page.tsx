@@ -212,8 +212,22 @@ export default function CheckoutPage() {
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
                         {wallet.logoUrl ? (
-                          <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
-                            <img src={wallet.logoUrl} alt={wallet.brand} className="w-full h-full object-contain p-0.5" />
+                          <div className="relative w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
+                            <img 
+                              src={wallet.logoUrl} 
+                              alt={wallet.brand} 
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-contain p-0.5" 
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <span className="absolute inset-0 items-center justify-center text-xs" style={{ display: 'none' }}>
+                              {wallet.emoji}
+                            </span>
                           </div>
                         ) : (
                           <span>{wallet.emoji}</span>
@@ -262,8 +276,22 @@ export default function CheckoutPage() {
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-bold text-gray-800 flex items-center gap-2">
                       {bank.logoUrl ? (
-                        <div className="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
-                          <img src={bank.logoUrl} alt={bank.brand} className="w-full h-full object-contain p-0.5" />
+                        <div className="relative w-6 h-6 rounded-full overflow-hidden flex items-center justify-center border border-gray-100 bg-white shadow-sm shrink-0">
+                          <img 
+                            src={bank.logoUrl} 
+                            alt={bank.brand} 
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-contain p-0.5" 
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = 'flex';
+                            }}
+                          />
+                          <span className="absolute inset-0 items-center justify-center text-xs" style={{ display: 'none' }}>
+                            {bank.emoji}
+                          </span>
                         </div>
                       ) : (
                         <span>{bank.emoji}</span>

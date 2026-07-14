@@ -16,8 +16,29 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Engineer Yasin | Academic, Jobs & Software Portal",
-  description: "Download engineering software, apply for scholarships and jobs, order web coding services, or enroll in academic courses.",
+  title: "Engineer Yasin | Premium Software, Services & Job Portal",
+  description: "Download VIP premium Android APKs, PC engineering software, request MATLAB/Web services, and apply for latest jobs and scholarships.",
+  keywords: ["Engineer Yasin", "Premium APK", "Free Android Mod", "Download MATLAB", "Next.js Jobs Pakistan", "Yasin Portal", "Nadra SIM Tracker", "Tech Hub"],
+  authors: [{ name: "Muhammad Yasin" }],
+  openGraph: {
+    title: "Engineer Yasin | Premium Software, Services & Job Portal",
+    description: "Download VIP premium Android APKs, PC engineering software, request MATLAB/Web services, and apply for latest jobs and scholarships.",
+    url: "https://www.engineeryasin.xyz",
+    siteName: "Engineer Yasin Portal",
+    locale: "en_PK",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
