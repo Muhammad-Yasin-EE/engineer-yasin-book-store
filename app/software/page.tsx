@@ -10,7 +10,7 @@ interface SearchParams {
   page?: string
 }
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function SoftwarePage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const params = await searchParams

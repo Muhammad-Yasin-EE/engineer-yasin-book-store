@@ -4,7 +4,7 @@ import BookCard from '@/components/BookCard'
 import CategoryCard from '@/components/CategoryCard'
 import { GraduationCap, Briefcase, Download, Hammer, BookOpen, Sparkles, Layers, ArrowRight } from 'lucide-react'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   let scholarships: any[] = []
