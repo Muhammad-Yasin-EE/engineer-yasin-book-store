@@ -451,9 +451,12 @@ export default function AdminDashboard() {
     }
     fetchMessages()
 
-    const channel = supabase.channel(`admin_chat_${selectedChatSessionId}`)
+      const channel = supabase.channel(`admin_chat_${selectedChatSessionId}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `session_id=eq.${selectedChatSessionId}` }, (payload) => {
-        setChatMessages(prev => [...prev, payload.new])
+        setChatMessages(prev => {
+          if (prev.find(m => m.id === payload.new.id)) return prev
+          return [...prev, payload.new]
+        })
         // Also clear unread immediately if looking at it
         if (payload.new.sender_role === 'user') {
           supabase.from('chat_sessions').update({ unread_admin_count: 0 }).eq('id', selectedChatSessionId)
@@ -477,7 +480,21 @@ export default function AdminDashboard() {
     const text = adminReply.trim()
     setAdminReply('')
 
-    await supabase.from('chat_messages').insert({ session_id: selectedChatSessionId, sender_role: 'admin', message: text })
+    const tempId = crypto.randomUUID()
+    setChatMessages(prev => [...prev, {
+      id: tempId,
+      session_id: selectedChatSessionId,
+      sender_role: 'admin',
+      message: text,
+      created_at: new Date().toISOString()
+    }])
+
+    await supabase.from('chat_messages').insert({ 
+      id: tempId, 
+      session_id: selectedChatSessionId, 
+      sender_role: 'admin', 
+      message: text 
+    })
     
     // Update session
     const { data } = await supabase.from('chat_sessions').select('unread_user_count').eq('id', selectedChatSessionId).single()

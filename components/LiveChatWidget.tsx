@@ -65,7 +65,11 @@ export default function LiveChatWidget() {
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `session_id=eq.${currentSessionId}` },
         (payload) => {
-          setMessages((prev) => [...prev, payload.new])
+          setMessages((prev) => {
+            // Prevent duplicates from optimistic updates
+            if (prev.find(m => m.id === payload.new.id)) return prev
+            return [...prev, payload.new]
+          })
           if (payload.new.sender_role === 'admin' && !isOpen) {
             setUnreadCount((prev) => prev + 1)
           }
@@ -120,6 +124,16 @@ export default function LiveChatWidget() {
     const text = newMessage.trim()
     setNewMessage('')
 
+    // Optimistic Update
+    const tempId = crypto.randomUUID()
+    setMessages(prev => [...prev, {
+      id: tempId,
+      session_id: sessionId,
+      sender_role: 'user',
+      message: text,
+      created_at: new Date().toISOString()
+    }])
+
     try {
       // Create session if it doesn't exist
       const { data: sessionData } = await supabase.from('chat_sessions').select('id').eq('id', sessionId).single()
@@ -131,6 +145,7 @@ export default function LiveChatWidget() {
       }
 
       await supabase.from('chat_messages').insert({
+        id: tempId,
         session_id: sessionId,
         sender_role: 'user',
         message: text
