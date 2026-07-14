@@ -10,33 +10,25 @@ export default async function HomePage() {
   let scholarships: any[] = []
   let jobs: any[] = []
   let software: any[] = []
-  let courses: any[] = []
-  let books: any[] = []
   let errorMsg = null
 
   try {
     const supabase = createAdminClient()
 
-    // Fetch all directory items in parallel to prevent sequential database query waterfalls
+    // Fetch all active directory items in parallel
     const [
       scholRes,
       jobRes,
-      softRes,
-      courseRes,
-      bookRes
+      softRes
     ] = await Promise.all([
       supabase.from('items').select('*').eq('resource_type', 'scholarship').order('created_at', { ascending: false }).limit(3),
       supabase.from('items').select('*').eq('resource_type', 'job').order('created_at', { ascending: false }).limit(3),
-      supabase.from('items').select('*').eq('resource_type', 'software').order('created_at', { ascending: false }).limit(3),
-      supabase.from('items').select('*').eq('resource_type', 'course').order('created_at', { ascending: false }).limit(3),
-      supabase.from('items').select('*').eq('resource_type', 'book').order('created_at', { ascending: false }).limit(3)
+      supabase.from('items').select('*').eq('resource_type', 'software').order('created_at', { ascending: false }).limit(3)
     ])
 
     scholarships = scholRes.data || []
     jobs = jobRes.data || []
     software = softRes.data || []
-    courses = courseRes.data || []
-    books = bookRes.data || []
 
   } catch (err: any) {
     console.error('Home Page Data Fetching Error:', err)
@@ -51,7 +43,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B8212E]/5 border border-[#B8212E]/20 text-[#B8212E] text-xs font-semibold mb-6">
             <Sparkles className="w-3.5 h-3.5" />
-            Academic, Jobs & Software Resource Portal
+            Scholarships, Jobs & Software Resource Portal
           </div>
           
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 max-w-4xl mx-auto leading-tight mb-6">
@@ -59,11 +51,11 @@ export default async function HomePage() {
           </h1>
           
           <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Get instant access to free scholarships database, active jobs & internships, engineering software downloads, professional coding services, courses, and digital academic books.
+            Get instant access to free scholarships database, active jobs & internships, engineering software downloads, and professional web coding & design services.
           </p>
 
           {/* Quick Hub Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
             <Link href="/scholarships" className="p-4 bg-white border border-gray-200 hover:border-emerald-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <GraduationCap className="w-6 h-6 text-emerald-600 group-hover:scale-105 transition-transform" />
               <span className="text-xs font-bold text-gray-800">Scholarships</span>
@@ -79,14 +71,6 @@ export default async function HomePage() {
             <Link href="/services" className="p-4 bg-white border border-gray-200 hover:border-amber-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <Hammer className="w-6 h-6 text-amber-600 group-hover:scale-105 transition-transform" />
               <span className="text-xs font-bold text-gray-800">Services</span>
-            </Link>
-            <Link href="/courses" className="p-4 bg-white border border-gray-200 hover:border-teal-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <BookOpen className="w-6 h-6 text-teal-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Courses</span>
-            </Link>
-            <Link href="/books" className="p-4 bg-white border border-gray-200 hover:border-[#B8212E]/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <BookOpen className="w-6 h-6 text-[#B8212E] group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Books Store</span>
             </Link>
           </div>
         </div>
@@ -150,75 +134,29 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* Grid of Other Resources (Software, Courses, Books) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Softwares */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-            <h3 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <Download className="w-4.5 h-4.5 text-violet-600" />
-              Software
-            </h3>
-            <Link href="/software" className="text-xs font-semibold text-[#B8212E]">Browse &rarr;</Link>
+      {/* Software Highlight */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+          <div className="flex items-center gap-2">
+            <Download className="w-5 h-5 text-violet-600" />
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Featured Software</h2>
           </div>
-          {software.length === 0 ? (
-            <div className="py-8 bg-gray-50 text-center text-gray-400 text-xs">Empty directory</div>
-          ) : (
-            <div className="space-y-4">
-              {software.map(item => (
-                <div key={item.id} className="h-[380px]">
-                  <BookCard {...item} />
-                </div>
-              ))}
-            </div>
-          )}
+          <Link href="/software" className="text-xs sm:text-sm font-semibold text-[#B8212E] hover:text-[#D62636] flex items-center gap-1 transition-colors">
+            Browse Software Hub <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        {/* Courses */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-            <h3 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <BookOpen className="w-4.5 h-4.5 text-teal-600" />
-              Courses
-            </h3>
-            <Link href="/courses" className="text-xs font-semibold text-[#B8212E]">Browse &rarr;</Link>
+        {software.length === 0 ? (
+          <div className="py-12 bg-gray-50 border border-gray-150 rounded-none flex items-center justify-center text-gray-400 text-xs">
+            No software uploaded yet.
           </div>
-          {courses.length === 0 ? (
-            <div className="py-8 bg-gray-50 text-center text-gray-400 text-xs">Empty directory</div>
-          ) : (
-            <div className="space-y-4">
-              {courses.map(item => (
-                <div key={item.id} className="h-[380px]">
-                  <BookCard {...item} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Books */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-            <h3 className="font-bold text-gray-800 text-base flex items-center gap-2">
-              <BookOpen className="w-4.5 h-4.5 text-[#B8212E]" />
-              Book Store
-            </h3>
-            <Link href="/books" className="text-xs font-semibold text-[#B8212E]">Browse &rarr;</Link>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {software.map(item => (
+              <BookCard key={item.id} {...item} />
+            ))}
           </div>
-          {books.length === 0 ? (
-            <div className="py-8 bg-gray-50 text-center text-gray-400 text-xs">Empty directory</div>
-          ) : (
-            <div className="space-y-4">
-              {books.map(item => (
-                <div key={item.id} className="h-[380px]">
-                  <BookCard {...item} />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
+        )}
       </section>
 
       {/* Category Index Quick Filters */}

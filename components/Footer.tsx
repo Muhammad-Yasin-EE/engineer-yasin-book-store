@@ -39,7 +39,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Your comprehensive portal for academic, technical, and engineering resources. Download software, apply for scholarships and jobs, or buy training materials.
+              Your comprehensive portal for academic, technical, and engineering resources. Download software, apply for scholarships and jobs, or order digital coding & design services.
             </p>
           </div>
 
@@ -65,16 +65,6 @@ export default function Footer() {
               <li>
                 <Link href="/services" className="hover:text-[#B8212E] transition-colors">
                   Engineering Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/courses" className="hover:text-[#B8212E] transition-colors">
-                  Courses & Classes
-                </Link>
-              </li>
-              <li>
-                <Link href="/books" className="hover:text-[#B8212E] transition-colors">
-                  Book Store
                 </Link>
               </li>
             </ul>
