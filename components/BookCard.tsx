@@ -55,12 +55,13 @@ export default function BookCard({ id, title, author, category, type, price, cov
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-50 flex items-center justify-center border-b border-gray-100">
         
         {/* Resource Type Tag Badge */}
-        <span className={`absolute top-2.5 left-2.5 z-10 text-[8px] font-bold px-2 py-0.5 tracking-wider uppercase text-white ${
-          resource_type === 'scholarship' ? 'bg-emerald-600' :
-          resource_type === 'job' ? 'bg-blue-600' :
-          resource_type === 'software' ? 'bg-violet-600' :
-          resource_type === 'service' ? 'bg-amber-600' :
-          resource_type === 'course' ? 'bg-teal-600' : 'bg-[#B8212E]'
+        <span className={`absolute top-2.5 left-2.5 z-10 px-2.5 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white rounded shadow-sm ${
+          resource_type === 'scholarship' ? 'bg-emerald-500' :
+          resource_type === 'job' ? 'bg-blue-500' :
+          resource_type === 'apk' ? 'bg-green-600' :
+          resource_type === 'software' ? 'bg-violet-500' :
+          resource_type === 'service' ? 'bg-amber-500' :
+          resource_type === 'course' ? 'bg-teal-500' : 'bg-[#B8212E]'
         }`}>
           {resource_type}
         </span>
