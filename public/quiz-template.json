@@ -1,0 +1,27 @@
+{
+  "title": "Sample Physics Quiz",
+  "category": "ECAT",
+  "description": "This is a sample bulk upload for Physics MCQs covering mechanics.",
+  "questions": [
+    {
+      "question_text": "What is the SI unit of force?",
+      "options": [
+        "Joule",
+        "Newton",
+        "Pascal",
+        "Watt"
+      ],
+      "correct_option_index": 1
+    },
+    {
+      "question_text": "Which of the following is a scalar quantity?",
+      "options": [
+        "Velocity",
+        "Force",
+        "Speed",
+        "Acceleration"
+      ],
+      "correct_option_index": 2
+    }
+  ]
+}

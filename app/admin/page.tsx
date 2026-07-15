@@ -38,10 +38,14 @@ export default function AdminDashboard() {
   const [loadingQuizzes, setLoadingQuizzes] = useState(false)
   const [quizTitle, setQuizTitle] = useState('')
   const [quizDescription, setQuizDescription] = useState('')
+  const [quizCategory, setQuizCategory] = useState('MDCAT')
   const [editingQuizId, setEditingQuizId] = useState<string | null>(null)
   const [quizFormError, setQuizFormError] = useState<string | null>(null)
   const [quizSubmitting, setQuizSubmitting] = useState(false)
   const [showQuizModal, setShowQuizModal] = useState(false)
+  const [showBulkQuizModal, setShowBulkQuizModal] = useState(false)
+  const [bulkQuizFile, setBulkQuizFile] = useState<File | null>(null)
+  const [bulkQuizUploading, setBulkQuizUploading] = useState(false)
 
   const [showQuestionModal, setShowQuestionModal] = useState(false)
   const [questionText, setQuestionText] = useState('')
@@ -312,8 +316,8 @@ export default function AdminDashboard() {
     e.preventDefault()
     setQuizFormError(null)
 
-    if (!quizTitle.trim() || !quizDescription.trim()) {
-      setQuizFormError('Please fill out Quiz Title and Description.')
+    if (!quizTitle.trim() || !quizDescription.trim() || !quizCategory.trim()) {
+      setQuizFormError('Please fill out Quiz Title, Category, and Description.')
       return
     }
 
@@ -321,7 +325,8 @@ export default function AdminDashboard() {
     try {
       const quizData = {
         title: quizTitle.trim(),
-        description: quizDescription.trim()
+        description: quizDescription.trim(),
+        category: quizCategory.trim()
       }
 
       if (editingQuizId) {
@@ -339,7 +344,7 @@ export default function AdminDashboard() {
         if (error) throw error
         if (data && data[0]) {
           await supabase.from('notifications').insert({
-            title: `New Test Prep Quiz Available!`,
+            title: `New ${quizCategory} Quiz Available!`,
             message: `Practice questions on "${quizTitle}" now.`,
             link: `/prep/${data[0].id}`
           })
@@ -350,11 +355,46 @@ export default function AdminDashboard() {
       setShowQuizModal(false)
       setQuizTitle('')
       setQuizDescription('')
+      setQuizCategory('MDCAT')
       setEditingQuizId(null)
     } catch (err: any) {
       setQuizFormError(err.message || 'Failed to save quiz.')
     } finally {
       setQuizSubmitting(false)
+    }
+  }
+
+  const handleBulkUploadQuiz = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!bulkQuizFile) {
+      setQuizFormError('Please select a JSON file first.')
+      return
+    }
+
+    setBulkQuizUploading(true)
+    setQuizFormError(null)
+
+    try {
+      const fileText = await bulkQuizFile.text()
+      const payload = JSON.parse(fileText)
+
+      const res = await fetch('/api/admin/quizzes/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+
+      fetchQuizzes()
+      setShowBulkQuizModal(false)
+      setBulkQuizFile(null)
+      alert(`Success! Imported quiz with ${data.questionsCount} questions.`)
+    } catch (err: any) {
+      setQuizFormError('Failed to parse or upload JSON: ' + err.message)
+    } finally {
+      setBulkQuizUploading(false)
     }
   }
 
@@ -1344,19 +1384,29 @@ export default function AdminDashboard() {
               <h2 className="text-xs font-bold text-gray-455 uppercase tracking-widest">Active Prep Quizzes</h2>
               <p className="text-[10px] text-gray-400 font-semibold mt-0.5 font-sans">Create and manage practice exams and MCQ question banks.</p>
             </div>
-            <button
-              onClick={() => {
-                setEditingQuizId(null)
-                setQuizTitle('')
-                setQuizDescription('')
-                setQuizFormError(null)
-                setShowQuizModal(true)
-              }}
-              className="px-4 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm flex items-center gap-1.5 cursor-pointer"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              Create Quiz
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowBulkQuizModal(true)}
+                className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full text-xs shadow-sm flex items-center gap-1.5 cursor-pointer"
+              >
+                <Upload className="w-3.5 h-3.5" />
+                Bulk Import JSON
+              </button>
+              <button
+                onClick={() => {
+                  setEditingQuizId(null)
+                  setQuizTitle('')
+                  setQuizDescription('')
+                  setQuizCategory('MDCAT')
+                  setQuizFormError(null)
+                  setShowQuizModal(true)
+                }}
+                className="px-4 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm flex items-center gap-1.5 cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                Create Quiz
+              </button>
+            </div>
           </div>
 
           {loadingQuizzes ? (
@@ -1602,6 +1652,19 @@ export default function AdminDashboard() {
               </div>
 
               <div className="space-y-1">
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Category</label>
+                <select
+                  value={quizCategory}
+                  onChange={(e) => setQuizCategory(e.target.value)}
+                  className="w-full bg-white border border-gray-200 rounded-full py-2.5 px-4 text-gray-800 focus:outline-none focus:border-[#B8212E] text-xs font-semibold cursor-pointer"
+                >
+                  {["MDCAT", "ECAT", "NTS", "CSS", "FPSC", "Engineering", "General Knowledge", "USAT", "HAT", "LAT"].map(c => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="space-y-1">
                 <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">Description</label>
                 <textarea
                   rows={3}
@@ -1616,6 +1679,49 @@ export default function AdminDashboard() {
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                 <button type="button" onClick={() => setShowQuizModal(false)} className="px-5 py-2 border border-gray-250 hover:bg-gray-50 text-gray-655 font-bold rounded-full text-xs cursor-pointer">Cancel</button>
                 <button type="submit" disabled={quizSubmitting} className="inline-flex items-center px-6 py-2 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm transition-all disabled:opacity-50 cursor-pointer">{quizSubmitting ? 'Saving...' : 'Save Quiz'}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: BULK UPLOAD QUIZ */}
+      {showBulkQuizModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-gray-250 rounded-none w-full max-w-md p-6 space-y-6 shadow-2xl relative animate-scale-in">
+            <button onClick={() => setShowBulkQuizModal(false)} className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-650 cursor-pointer">
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <h3 className="text-base font-extrabold text-gray-800">Bulk Import Quiz (JSON)</h3>
+              <p className="text-[10px] text-gray-400 mt-0.5 font-semibold">Upload a JSON file to instantly create a quiz with all its questions.</p>
+            </div>
+
+            {quizFormError && (
+              <div className="p-3 bg-rose-50 border border-rose-250 text-rose-600 text-xs rounded-none flex gap-2">
+                <ShieldAlert className="w-4 h-4 shrink-0" />
+                <span>{quizFormError}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleBulkUploadQuiz} className="space-y-4 text-xs font-bold text-gray-550">
+              
+              <div className="space-y-1">
+                <label className="block text-[9px] uppercase tracking-wider font-bold text-gray-400">JSON File</label>
+                <div className="relative border border-dashed border-gray-200 p-3 bg-gray-50 hover:bg-gray-100/50 flex flex-col items-center justify-center text-center cursor-pointer min-h-[90px]">
+                  <input type="file" accept=".json" required onChange={(e) => { if (e.target.files && e.target.files[0]) setBulkQuizFile(e.target.files[0]) }} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                  <Upload className="w-4 h-4 text-gray-400 mb-1" />
+                  <span className="text-[10px] text-gray-600 font-bold truncate max-w-[200px]">
+                    {bulkQuizFile ? bulkQuizFile.name : 'Select JSON File'}
+                  </span>
+                </div>
+                <a href="/quiz-template.json" download className="text-[10px] text-blue-600 hover:underline mt-2 inline-block">Download JSON Template</a>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                <button type="button" onClick={() => setShowBulkQuizModal(false)} className="px-5 py-2 border border-gray-250 hover:bg-gray-50 text-gray-655 font-bold rounded-full text-xs cursor-pointer">Cancel</button>
+                <button type="submit" disabled={bulkQuizUploading} className="inline-flex items-center px-6 py-2 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm transition-all disabled:opacity-50 cursor-pointer">{bulkQuizUploading ? 'Importing...' : 'Start Import'}</button>
               </div>
             </form>
           </div>
