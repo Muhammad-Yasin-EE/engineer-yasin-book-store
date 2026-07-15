@@ -1,122 +1,159 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { MessageSquare, X, Send, User } from 'lucide-react'
+import { X, Send, MessageCircle, ChevronDown } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
-// No uuid import needed, we use crypto.randomUUID()
+
+interface ChatMessage {
+  id: string
+  session_id: string
+  sender_role: 'user' | 'admin'
+  message: string
+  created_at: string
+}
 
 export default function LiveChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [sessionId, setSessionId] = useState<string | null>(null)
-  const [messages, setMessages] = useState<any[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [unreadCount, setUnreadCount] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
-  
-  const supabase = createClient()
+  const [isConnected, setIsConnected] = useState(false)
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const supabase = createClient()
 
-  // Initialize Session
+  // Initialize session
   useEffect(() => {
-    let currentSessionId = localStorage.getItem('chat_session_id')
-    if (!currentSessionId) {
-      currentSessionId = crypto.randomUUID()
-      localStorage.setItem('chat_session_id', currentSessionId)
+    let sid = localStorage.getItem('chat_session_id')
+    const createdAt = localStorage.getItem('chat_session_created_at')
+    
+    // Reset after 3 days
+    const THREE_DAYS = 3 * 24 * 60 * 60 * 1000
+    if (sid && createdAt && (Date.now() - parseInt(createdAt)) > THREE_DAYS) {
+      localStorage.removeItem('chat_session_id')
+      localStorage.removeItem('chat_session_created_at')
+      sid = null
     }
-    setSessionId(currentSessionId)
 
-    // Ensure session exists in DB
-    const initSession = async () => {
-      const { data, error } = await supabase
-        .from('chat_sessions')
-        .select('*')
-        .eq('id', currentSessionId)
-        .single()
-      
-      if (error && error.code === 'PGRST116') {
-        // Doesn't exist, create it
-        await supabase.from('chat_sessions').insert({
-          id: currentSessionId,
-          user_identifier: 'Visitor ' + currentSessionId!.substring(0, 5)
-        })
-      } else if (data) {
-        setUnreadCount(data.unread_user_count || 0)
-      }
+    if (!sid) {
+      sid = crypto.randomUUID()
+      localStorage.setItem('chat_session_id', sid)
+      localStorage.setItem('chat_session_created_at', Date.now().toString())
     }
-    initSession()
+    setSessionId(sid)
 
-    // Load old messages
-    const fetchMessages = async () => {
+    // Load existing messages
+    const loadMessages = async () => {
       const { data } = await supabase
         .from('chat_messages')
         .select('*')
-        .eq('session_id', currentSessionId)
+        .eq('session_id', sid)
         .order('created_at', { ascending: true })
-      
-      if (data) setMessages(data)
+      if (data) setMessages(data as ChatMessage[])
     }
-    fetchMessages()
+    loadMessages()
 
-    // Realtime subscription
+    // Get unread count from session
+    const loadSession = async () => {
+      const { data } = await supabase
+        .from('chat_sessions')
+        .select('unread_user_count')
+        .eq('id', sid)
+        .single()
+      if (data) setUnreadCount(data.unread_user_count || 0)
+    }
+    loadSession()
+  }, [])
+
+  // Real-time subscription
+  useEffect(() => {
+    if (!sessionId) return
+
     const channel = supabase
-      .channel('public:chat_messages')
+      .channel(`chat_${sessionId}`)
       .on(
         'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `session_id=eq.${currentSessionId}` },
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'chat_messages',
+          filter: `session_id=eq.${sessionId}`,
+        },
         (payload) => {
+          const newMsg = payload.new as ChatMessage
           setMessages((prev) => {
-            // Prevent duplicates from optimistic updates
-            if (prev.find(m => m.id === payload.new.id)) return prev
-            return [...prev, payload.new]
+            if (prev.find((m) => m.id === newMsg.id)) return prev
+            return [...prev, newMsg]
           })
-          if (payload.new.sender_role === 'admin' && !isOpen) {
+          if (newMsg.sender_role === 'admin' && !isOpen) {
             setUnreadCount((prev) => prev + 1)
           }
         }
       )
-      .subscribe()
+      .subscribe((status) => {
+        setIsConnected(status === 'SUBSCRIBED')
+      })
 
     return () => {
       supabase.removeChannel(channel)
     }
+  }, [sessionId, isOpen])
+
+  // Scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
+
+  // Clear unread when opening
+  useEffect(() => {
+    if (isOpen && sessionId && unreadCount > 0) {
+      setUnreadCount(0)
+      supabase
+        .from('chat_sessions')
+        .update({ unread_user_count: 0 })
+        .eq('id', sessionId)
+    }
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 300)
+    }
   }, [isOpen])
 
-  // Scroll to bottom on new message
+  // Tooltip animation
   useEffect(() => {
-    if (isOpen) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-      if (unreadCount > 0) {
-        setUnreadCount(0)
-        if (sessionId) {
-          supabase.from('chat_sessions').update({ unread_user_count: 0 }).eq('id', sessionId)
-        }
-      }
+    const show = () => {
+      setShowTooltip(true)
+      setTimeout(() => setShowTooltip(false), 4000)
     }
-  }, [messages, isOpen, unreadCount, sessionId, supabase])
-
-  // Tooltip bouncing attention grabber
-  useEffect(() => {
-    if (isOpen) return
-    
-    // Initial delay before first pop-up
-    const initialTimeout = setTimeout(() => {
-      setShowTooltip(true)
-      setTimeout(() => setShowTooltip(false), 5000)
-    }, 3000)
-
-    const interval = setInterval(() => {
-      setShowTooltip(true)
-      setTimeout(() => setShowTooltip(false), 5000) // Show for 5 seconds
-    }, 15000) // Every 15 seconds
-    
+    const t1 = setTimeout(show, 3000)
+    const interval = setInterval(show, 18000)
     return () => {
-      clearTimeout(initialTimeout)
+      clearTimeout(t1)
       clearInterval(interval)
     }
-  }, [isOpen])
+  }, [])
 
-  const handleSendMessage = async (e: React.FormEvent) => {
+  const ensureSession = async (sid: string) => {
+    const { data } = await supabase
+      .from('chat_sessions')
+      .select('id')
+      .eq('id', sid)
+      .single()
+
+    if (!data) {
+      await supabase.from('chat_sessions').insert({
+        id: sid,
+        user_identifier: 'Visitor ' + sid.substring(0, 6),
+        unread_admin_count: 0,
+        unread_user_count: 0,
+      })
+    }
+  }
+
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!newMessage.trim() || !sessionId || isSubmitting) return
 
@@ -124,139 +161,194 @@ export default function LiveChatWidget() {
     const text = newMessage.trim()
     setNewMessage('')
 
-    // Optimistic Update
+    // Optimistic update
     const tempId = crypto.randomUUID()
-    setMessages(prev => [...prev, {
+    const tempMsg: ChatMessage = {
       id: tempId,
       session_id: sessionId,
       sender_role: 'user',
       message: text,
-      created_at: new Date().toISOString()
-    }])
+      created_at: new Date().toISOString(),
+    }
+    setMessages((prev) => [...prev, tempMsg])
 
     try {
-      // Create session if it doesn't exist
-      const { data: sessionData } = await supabase.from('chat_sessions').select('id').eq('id', sessionId).single()
-      if (!sessionData) {
-        await supabase.from('chat_sessions').insert({
-          id: sessionId,
-          user_identifier: 'Visitor ' + sessionId.substring(0, 5)
-        })
-      }
+      await ensureSession(sessionId)
 
-      await supabase.from('chat_messages').insert({
+      const { error } = await supabase.from('chat_messages').insert({
         id: tempId,
         session_id: sessionId,
         sender_role: 'user',
-        message: text
+        message: text,
       })
 
-      // Increment admin unread count using update
-      const { data } = await supabase.from('chat_sessions').select('unread_admin_count').eq('id', sessionId).single()
-      await supabase.from('chat_sessions').update({ 
-        unread_admin_count: (data?.unread_admin_count || 0) + 1,
-        last_message: text,
-        updated_at: new Date().toISOString()
-      }).eq('id', sessionId)
+      if (error) throw error
 
+      // Update session unread for admin
+      const { data: sess } = await supabase
+        .from('chat_sessions')
+        .select('unread_admin_count')
+        .eq('id', sessionId)
+        .single()
+
+      await supabase
+        .from('chat_sessions')
+        .update({
+          unread_admin_count: (sess?.unread_admin_count || 0) + 1,
+          last_message: text,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', sessionId)
     } catch (err) {
-      console.error('Failed to send message', err)
+      console.error('Send failed:', err)
+      // Remove optimistic message on error
+      setMessages((prev) => prev.filter((m) => m.id !== tempId))
+      setNewMessage(text)
     } finally {
       setIsSubmitting(false)
     }
   }
 
+  const formatTime = (dateStr: string) => {
+    return new Date(dateStr).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  }
+
   return (
-    <div className="fixed bottom-[80px] right-3 sm:right-6 z-[60] flex flex-col items-end">
-      
-      {/* Chat Window */}
+    <>
+      {/* Overlay for mobile */}
       {isOpen && (
-        <div className="mb-4 w-[calc(100vw-24px)] sm:w-80 max-w-[360px] h-[75vh] sm:h-96 max-h-[500px] bg-white border border-gray-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-in origin-bottom-right fixed bottom-[140px] right-3 sm:bottom-auto sm:right-auto sm:relative">
+        <div
+          className="fixed inset-0 bg-black/30 z-[998] sm:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Chat Window - Messenger Style */}
+      {isOpen && (
+        <div className="
+          fixed z-[999]
+          inset-x-0 bottom-0 top-0
+          sm:inset-auto sm:bottom-24 sm:right-4
+          sm:w-[360px] sm:h-[500px] sm:rounded-2xl
+          bg-white flex flex-col overflow-hidden
+          shadow-2xl
+        ">
           {/* Header */}
-          <div className="bg-[#222222] p-4 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20">
-                <img src="/logo.jpg" alt="Support" className="w-full h-full object-cover" />
+          <div className="bg-[#222222] px-4 py-3 flex items-center gap-3 shrink-0">
+            <div className="relative">
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20">
+                <img
+                  src="/logo.jpg"
+                  alt="Support"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div>
-                <h3 className="text-white font-bold text-sm leading-tight">Live Support</h3>
-                <p className="text-gray-400 text-[10px] flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online
-                </p>
-              </div>
+              <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-[#222] ${isConnected ? 'bg-emerald-500' : 'bg-gray-400'}`} />
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white p-1">
+            <div className="flex-1 min-w-0">
+              <h3 className="text-white font-bold text-sm leading-tight">Engineer Yasin</h3>
+              <p className="text-gray-400 text-[11px]">{isConnected ? 'Online — reply karein' : 'Connecting...'}</p>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10"
+            >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f8fafc]">
-            {messages.length === 0 ? (
-              <div className="text-center text-xs text-gray-400 mt-10 space-y-2">
-                <MessageSquare className="w-8 h-8 mx-auto opacity-50" />
-                <p>Hi! How can we help you today?</p>
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f0f2f5]">
+            {messages.length === 0 && (
+              <div className="flex flex-col items-center justify-center h-full text-center space-y-3 pb-10">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
+                  <img src="/logo.jpg" alt="Support" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <p className="font-bold text-gray-700 text-sm">Engineer Yasin Portal</p>
+                  <p className="text-gray-500 text-xs mt-1">Aapka koi bhi sawaal poochein!</p>
+                </div>
               </div>
-            ) : (
-              messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.sender_role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-xs font-medium shadow-sm ${
-                    msg.sender_role === 'user' 
-                      ? 'bg-[#B8212E] text-white rounded-br-sm' 
-                      : 'bg-white border border-gray-200 text-gray-800 rounded-bl-sm'
+            )}
+
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex items-end gap-2 ${msg.sender_role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                {msg.sender_role === 'admin' && (
+                  <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 border border-gray-200 shadow-sm">
+                    <img src="/logo.jpg" alt="Admin" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <div className={`max-w-[75%] flex flex-col ${msg.sender_role === 'user' ? 'items-end' : 'items-start'}`}>
+                  <div className={`px-4 py-2.5 text-sm font-medium leading-relaxed shadow-sm ${
+                    msg.sender_role === 'user'
+                      ? 'bg-[#0084FF] text-white rounded-[20px] rounded-br-[4px]'
+                      : 'bg-white text-gray-800 rounded-[20px] rounded-bl-[4px] border border-gray-100'
                   }`}>
                     {msg.message}
                   </div>
+                  <span className="text-[10px] text-gray-400 mt-1 px-1">{formatTime(msg.created_at)}</span>
                 </div>
-              ))
-            )}
+              </div>
+            ))}
             <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}
-          <form onSubmit={handleSendMessage} className="p-3 bg-white border-t border-gray-100 flex gap-2">
+          <form
+            onSubmit={handleSend}
+            className="flex items-center gap-2 px-3 py-3 bg-white border-t border-gray-200 shrink-0"
+          >
             <input
+              ref={inputRef}
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="Type a message..."
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-800 focus:outline-none focus:border-[#B8212E] focus:bg-white"
+              placeholder="Yahan apna message likhein..."
+              className="flex-1 bg-[#f0f2f5] rounded-full px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0084FF]/30 placeholder:text-gray-400"
             />
             <button
               type="submit"
               disabled={isSubmitting || !newMessage.trim()}
-              className="w-8 h-8 rounded-full bg-[#B8212E] text-white flex items-center justify-center shrink-0 disabled:opacity-50"
+              className="w-10 h-10 rounded-full bg-[#0084FF] text-white flex items-center justify-center shrink-0 disabled:opacity-40 hover:bg-[#0073e6] transition-colors active:scale-95"
             >
-              <Send className="w-3.5 h-3.5 -ml-0.5" />
+              <Send className="w-4 h-4" />
             </button>
           </form>
         </div>
       )}
 
-      {/* Chat Bubble Toggle */}
-      <div className="relative">
-        <span className="absolute inline-flex h-12 w-12 rounded-full bg-[#B8212E]/30 animate-ping z-0" />
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-12 h-12 bg-white text-[#222222] rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 relative border-2 border-[#B8212E] z-10"
-        >
-          <div className="w-10 h-10 rounded-full overflow-hidden p-0.5 bg-white">
-            <img src="/logo.jpg" alt="Chat" className="w-full h-full object-cover rounded-full" />
+      {/* Floating Button */}
+      <div className="fixed bottom-[74px] right-3 sm:right-6 z-[997] flex flex-col items-end">
+        {/* Tooltip */}
+        {showTooltip && !isOpen && (
+          <div className="mb-3 bg-white text-gray-800 border border-gray-200 shadow-xl px-4 py-2.5 rounded-2xl rounded-br-sm text-xs font-semibold whitespace-nowrap animate-bounce flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            Need help? Chat with us! 💬
           </div>
+        )}
+
+        {/* Button */}
+        <div className="relative">
+          <span className="absolute inset-0 rounded-full bg-[#0084FF]/30 animate-ping" />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative w-14 h-14 rounded-full overflow-hidden shadow-2xl border-4 border-white hover:scale-105 active:scale-95 transition-transform duration-200 z-10"
+          >
+            <img src="/logo.jpg" alt="Chat" className="w-full h-full object-cover" />
+          </button>
           {unreadCount > 0 && !isOpen && (
-            <span className="absolute -top-1 -right-1 bg-[#B8212E] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-bounce">
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[11px] font-bold min-w-[20px] h-5 rounded-full flex items-center justify-center px-1 border-2 border-white z-20 animate-bounce">
               {unreadCount}
             </span>
           )}
-        </button>
-
-        {showTooltip && !isOpen && (
-          <div className="absolute right-14 top-1/2 -translate-y-1/2 bg-white text-[#B8212E] border border-[#B8212E]/20 shadow-lg px-3 py-2 rounded-xl rounded-br-sm text-[11px] font-bold whitespace-nowrap animate-bounce z-50 flex items-center gap-2">
-            <span>Need help? Chat with us!</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          </div>
-        )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
