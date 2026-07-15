@@ -45,13 +45,11 @@ function getUniqueImage(url: string, content: string, title: string) {
     return imgMatch[1]
   }
   
-  // Create a crisp, perfectly sized cover image (600x400)
-  const companyName = title.split(':')[0] || title.split('-')[0] || title.substring(0, 15)
-  // Shorten name to fit nicely
-  const shortName = companyName.substring(0, 20).trim()
+  // Use ui-avatars to generate a clean 2-letter logo
+  const companyName = title.split(':')[0] || title.split('-')[0] || title
+  const initials = companyName.replace(/[^a-zA-Z0-9 ]/g, '').trim().substring(0, 2).toUpperCase()
   
-  // Use placehold.co instead of ui-avatars to prevent stretching blurriness
-  return `https://placehold.co/600x400/B8212E/ffffff?text=${encodeURIComponent(shortName)}`
+  return `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=512&font-size=0.4&bold=true&rounded=true`
 }
 
 export async function GET(request: Request) {

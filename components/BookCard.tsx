@@ -75,7 +75,7 @@ export default function BookCard({ id, title, author, category, type, price, cov
 
         {/* Visual Render */}
         {hasCover ? (
-          cover_url.includes('logo.clearbit.com') || cover_url.includes('google.com/s2/favicons') ? (
+          cover_url.includes('logo.clearbit.com') || cover_url.includes('google.com/s2/favicons') || cover_url.includes('ui-avatars.com') || cover_url.includes('icon.horse') ? (
             <div className="w-full h-full flex items-center justify-center bg-gray-50/80 p-8">
               <div 
                 id={`img-wrap-${id}`}
