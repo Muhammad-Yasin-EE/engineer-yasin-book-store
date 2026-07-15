@@ -11,6 +11,7 @@ const categoryData: Record<string, any> = {
     subgroups: [
       {
         name: 'Pakistan Army',
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pakistan_Army_emblem.svg/150px-Pakistan_Army_emblem.svg.png',
         exams: [
           { id: 'pma-long-course', name: 'PMA Long Course' },
           { id: 'lcc', name: 'LCC (Lady Cadet Course)' },
@@ -22,6 +23,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Air Force',
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pakistan_Air_Force_emblem.svg/150px-Pakistan_Air_Force_emblem.svg.png',
         exams: [
           { id: 'gd-pilot', name: 'GD Pilot' },
           { id: 'aeronautical-engineering', name: 'Aeronautical Engineering' },
@@ -32,6 +34,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Navy',
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Pakistan_Navy_emblem.svg/150px-Pakistan_Navy_emblem.svg.png',
         exams: [
           { id: 'pn-cadet', name: 'PN Cadet' },
           { id: 'ssc', name: 'SSC' },
@@ -50,6 +53,7 @@ const categoryData: Record<string, any> = {
     subgroups: [
       {
         name: 'All Commissions',
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/State_emblem_of_Pakistan.svg/150px-State_emblem_of_Pakistan.svg.png',
         exams: [
           { id: 'fpsc', name: 'FPSC' },
           { id: 'ppsc', name: 'PPSC' },
@@ -128,9 +132,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       <div className="space-y-12">
         {data.subgroups.map((subgroup: any) => (
           <div key={subgroup.name}>
-            <div className="flex items-center gap-2 mb-6 border-b border-gray-150 pb-2">
-              <Target className="w-5 h-5 text-[#B8212E]" />
-              <h2 className="text-xl font-bold text-gray-800 uppercase tracking-widest">{subgroup.name}</h2>
+            <div className="flex items-center gap-3 mb-6 border-b border-gray-150 pb-3">
+              {subgroup.iconUrl ? (
+                <div className="w-10 h-10 shrink-0 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden p-1">
+                  <img src={subgroup.iconUrl} alt={subgroup.name} className="w-full h-full object-contain" />
+                </div>
+              ) : (
+                <Target className="w-6 h-6 text-[#B8212E]" />
+              )}
+              <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800 uppercase tracking-widest">{subgroup.name}</h2>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
