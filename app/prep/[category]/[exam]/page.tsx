@@ -52,14 +52,14 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       </div>
 
       {/* Tabs */}
-      <div className="flex overflow-x-auto border-b border-gray-200 hide-scrollbar gap-8">
-        <button className="whitespace-nowrap pb-4 border-b-2 border-[#B8212E] text-[#B8212E] font-bold text-sm flex items-center gap-2 px-1">
+      <div className="flex overflow-x-auto border-b border-gray-200 hide-scrollbar gap-5 sm:gap-8 pb-1">
+        <button className="whitespace-nowrap pb-4 border-b-2 border-[#B8212E] text-[#B8212E] font-bold text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 px-1">
           <CheckCircle className="w-4 h-4" /> Interactive Mock Tests
         </button>
-        <button className="whitespace-nowrap pb-4 border-b-2 border-transparent text-gray-400 hover:text-gray-600 font-bold text-sm flex items-center gap-2 px-1 transition-colors cursor-not-allowed" title="Coming soon">
+        <button className="whitespace-nowrap pb-4 border-b-2 border-transparent text-gray-400 hover:text-gray-600 font-bold text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 px-1 transition-colors cursor-not-allowed" title="Coming soon">
           <BookOpen className="w-4 h-4" /> Study Notes <Lock className="w-3 h-3 text-gray-300" />
         </button>
-        <button className="whitespace-nowrap pb-4 border-b-2 border-transparent text-gray-400 hover:text-gray-600 font-bold text-sm flex items-center gap-2 px-1 transition-colors cursor-not-allowed" title="Coming soon">
+        <button className="whitespace-nowrap pb-4 border-b-2 border-transparent text-gray-400 hover:text-gray-600 font-bold text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 px-1 transition-colors cursor-not-allowed" title="Coming soon">
           <FileText className="w-4 h-4" /> Past Papers <Lock className="w-3 h-3 text-gray-300" />
         </button>
       </div>

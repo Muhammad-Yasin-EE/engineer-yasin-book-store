@@ -369,7 +369,7 @@ export default function Navbar() {
                     <>
                       <div className="divide-y divide-gray-150 max-h-[300px] overflow-y-auto">
                         {notifications.map((notif) => (
-                          <div key={notif.id} className="p-3 hover:bg-gray-50 space-y-1 font-semibold text-gray-650 transition-colors">
+                          <div key={notif.id} className="p-3 hover:bg-gray-50 space-y-1 font-semibold text-gray-600 transition-colors">
                             <h4 className="font-bold text-gray-800">{notif.title}</h4>
                             <p className="text-[10px] text-gray-400 leading-normal">{notif.message}</p>
                             {notif.link && (
@@ -420,7 +420,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/account"
-                  className="hidden sm:flex items-center gap-1 px-4.5 py-1.5 rounded-full border border-gray-200 hover:border-[#B8212E]/30 text-xs font-bold text-gray-650 hover:text-[#B8212E] shadow-sm transition-all"
+                  className="hidden sm:flex items-center gap-1 px-4.5 py-1.5 rounded-full border border-gray-200 hover:border-[#B8212E]/30 text-xs font-bold text-gray-600 hover:text-[#B8212E] shadow-sm transition-all"
                 >
                   <User className="w-3.5 h-3.5" />
                   Library
@@ -523,7 +523,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <div className="flex flex-col gap-2 text-xs font-bold text-gray-650">
+          <div className="flex flex-col gap-2 text-xs font-bold text-gray-600">
             <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mb-1">Directories</div>
 
             {/* Prep collapsible group */}
