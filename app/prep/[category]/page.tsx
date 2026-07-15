@@ -8,6 +8,7 @@ const categoryData: Record<string, any> = {
     description: 'Join Pak Army, Navy, or PAF. Select your specific commission exam below.',
     icon: <ShieldCheck className="w-8 h-8 text-emerald-600" />,
     color: 'emerald',
+    headerImageUrl: '/images/armed-forces-header.jpg',
     subgroups: [
       {
         name: 'Pakistan Army',
@@ -116,17 +117,32 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       </Link>
       
       {/* Header */}
-      <div className={`flex flex-col items-center text-center p-6 sm:p-10 rounded-md border ${colorClass} shadow-sm relative overflow-hidden`}>
-        <div className="w-14 h-14 bg-white rounded-md flex items-center justify-center mb-6 shadow-sm border border-gray-100">
-          {data.icon}
+      {data.headerImageUrl ? (
+        <div className="relative rounded-md overflow-hidden shadow-sm border border-gray-200 min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#0A192F]/80 z-10 mix-blend-multiply"></div>
+          <img src={data.headerImageUrl} alt={data.title} className="absolute inset-0 w-full h-full object-cover object-top" />
+          <div className="relative z-20 flex flex-col items-center text-center p-8 sm:p-14 text-white w-full">
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 drop-shadow-lg text-white">
+              {data.title}
+            </h1>
+            <p className="text-sm sm:text-base max-w-2xl mx-auto font-medium text-gray-200 drop-shadow-md">
+              {data.description}
+            </p>
+          </div>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
-          {data.title}
-        </h1>
-        <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto font-medium">
-          {data.description}
-        </p>
-      </div>
+      ) : (
+        <div className={`flex flex-col items-center text-center p-6 sm:p-10 rounded-md border ${colorClass} shadow-sm relative overflow-hidden`}>
+          <div className="w-14 h-14 bg-white rounded-md flex items-center justify-center mb-6 shadow-sm border border-gray-100">
+            {data.icon}
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+            {data.title}
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto font-medium">
+            {data.description}
+          </p>
+        </div>
+      )}
 
       {/* Subgroups & Exams */}
       <div className="space-y-12">
