@@ -4,7 +4,7 @@ import { BookOpen, Award, ArrowRight, HelpCircle, Search, Filter, ChevronLeft, C
 
 export const revalidate = 60
 
-const CATEGORIES = ["MDCAT", "ECAT", "NTS", "CSS", "FPSC", "Engineering", "General Knowledge", "USAT", "HAT", "LAT"]
+const CATEGORIES = ["MDCAT", "ECAT", "NTS", "CSS", "FPSC", "Engineering", "General Knowledge", "USAT", "HAT", "LAT", "PMA LC"]
 
 interface SearchParams {
   search?: string
