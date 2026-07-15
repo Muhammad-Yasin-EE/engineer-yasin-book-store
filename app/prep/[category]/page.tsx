@@ -106,7 +106,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                      'bg-amber-50 border-amber-200'
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-[#222222]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800">
       <Link href="/prep" className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] w-fit">
         <ArrowLeft className="w-4 h-4" /> Back to Prep Hub
       </Link>
@@ -116,7 +116,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
           {data.icon}
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight mb-4">
           {data.title}
         </h1>
         <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto font-medium">

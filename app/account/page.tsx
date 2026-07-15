@@ -65,7 +65,7 @@ export default async function AccountPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow bg-white text-[#222222] space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow bg-white text-gray-800 space-y-12">
       
       {/* Profile Editor Component */}
       <ProfileEditor profile={profile} userEmail={user.email || ''} />

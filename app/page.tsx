@@ -32,7 +32,7 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="space-y-16 pb-20 bg-white text-[#222222]">
+    <div className="space-y-16 pb-20 bg-white text-gray-800">
       
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 sm:py-28 bg-gradient-to-br from-gray-50 via-white to-red-50/40 border-b border-gray-150">

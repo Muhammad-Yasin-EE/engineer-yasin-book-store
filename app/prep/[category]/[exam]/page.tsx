@@ -28,7 +28,7 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
     .order('created_at', { ascending: true })
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-[#222222]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800">
       
       {/* Breadcrumb / Back */}
       <Link href={`/prep/${category}`} className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] w-fit">
@@ -38,11 +38,11 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-150 pb-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-50 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3 border border-gray-200">
             <LayoutGrid className="w-3.5 h-3.5" />
             Exam Dashboard
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
             {title} Preparation
           </h1>
           <p className="text-sm text-gray-500 mt-2 font-medium max-w-2xl">
@@ -77,7 +77,7 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-xs font-bold text-gray-400">Test {index + 1}</span>
-                    <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-extrabold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                    <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-extrabold text-gray-500 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-200">
                       <Clock className="w-3 h-3" /> {quiz.time_limit_minutes || 15}m
                     </span>
                   </div>

@@ -5,7 +5,7 @@ export const revalidate = 60
 
 export default function PrepDashboard() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-[#222222]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800">
       
       {/* Header */}
       <div className="flex flex-col items-center text-center border-b border-gray-150 pb-10">
