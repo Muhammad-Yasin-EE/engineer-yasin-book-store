@@ -45,10 +45,11 @@ function getUniqueImage(url: string, content: string, title: string) {
     return imgMatch[1]
   }
   
-  // Generate a completely UNIQUE, high-quality photograph for every single post using its title as a seed.
-  // This guarantees covers will NEVER repeat and will look beautiful.
-  const seed = encodeURIComponent(title.substring(0, 30))
-  return `https://picsum.photos/seed/${seed}/600/800`
+  // Generate a completely UNIQUE and highly RELEVANT AI photograph based on the job/scholarship title!
+  // This uses Pollinations.ai (Free AI Image Generator) to create a beautiful, relevant cover.
+  const prompt = `Professional high quality realistic cover photo representing: ${title.substring(0, 50)}`
+  const seed = Math.floor(Math.random() * 1000000)
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=600&height=800&nologo=true&seed=${seed}`
 }
 
 export async function GET(request: Request) {
