@@ -170,7 +170,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-40 gap-3 text-xs text-gray-550">
+      <div className="flex flex-col items-center justify-center py-40 gap-3 text-xs text-gray-550 w-full overflow-hidden">
         <Loader2 className="w-8 h-8 animate-spin text-[#B8212E]" />
         <span>Loading secure exam environment...</span>
       </div>
@@ -179,10 +179,10 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
 
   if (!quiz || questions.length === 0) {
     return (
-      <div className="max-w-md mx-auto py-24 px-4 text-center space-y-4 text-xs font-bold text-gray-500">
+      <div className="max-w-md w-full mx-auto py-24 px-4 text-center space-y-4 text-xs font-bold text-gray-500 overflow-hidden">
         <XCircle className="w-12 h-12 mx-auto text-rose-500" />
         <h3>Quiz Not Ready</h3>
-        <p className="font-semibold text-gray-400">There are no questions uploaded for this quiz yet.</p>
+        <p className="font-semibold text-gray-400 break-words">There are no questions uploaded for this quiz yet.</p>
         <Link href="/prep" className="inline-block px-5 py-2.5 bg-[#B8212E] text-white rounded-full uppercase tracking-wider text-[10px]">
           Back to List
         </Link>
@@ -194,48 +194,48 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
   const hasAnsweredCurrent = answers[currentIndex] !== undefined
 
   return (
-    <div className="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-16 flex-grow bg-white dark:bg-white text-[#222222] dark:text-[#222222] space-y-6 min-h-screen overflow-x-hidden">
+    <div className="max-w-3xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-16 flex-grow bg-white dark:bg-white text-[#222222] dark:text-[#222222] space-y-6 min-h-screen overflow-hidden box-border">
       
       {/* Show Back Button ONLY if exam hasn't started */}
       {!examStarted && (
-        <div>
+        <div className="w-full">
           <Link href="/prep" className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Prep List
+            <ArrowLeft className="w-4 h-4 shrink-0" /> Back to Prep List
           </Link>
         </div>
       )}
 
       {/* STATE 1: INTRO RULES SCREEN */}
       {examState === 'intro' && (
-        <div className="bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-5 sm:p-8 rounded-2xl shadow-sm space-y-6 sm:space-y-8 max-w-xl mx-auto">
+        <div className="w-full bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-5 sm:p-8 rounded-2xl shadow-sm space-y-6 sm:space-y-8 max-w-xl mx-auto overflow-hidden">
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#B8212E]/10 text-[#B8212E] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#B8212E]/10 text-[#B8212E] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shrink-0">
               <ShieldAlert className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h1 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-gray-900 uppercase tracking-tight">Exam Rules & Regulations</h1>
-            <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-500">{quiz.title}</p>
+            <h1 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-gray-900 uppercase tracking-tight break-words">Exam Rules & Regulations</h1>
+            <p className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-gray-500 break-words">{quiz.title}</p>
           </div>
 
-          <div className="bg-white dark:bg-white border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl space-y-3 sm:space-y-4 text-[11px] sm:text-xs font-semibold text-gray-600 dark:text-gray-600">
+          <div className="w-full bg-white dark:bg-white border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl space-y-3 sm:space-y-4 text-[11px] sm:text-xs font-semibold text-gray-600 dark:text-gray-600 overflow-hidden">
             <div className="flex items-start gap-3">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 shrink-0" />
-              <p>Strict Time Limit of <strong className="text-gray-900 dark:text-gray-900">{QUIZ_TIME_LIMIT_MINUTES} Minutes</strong>. The exam will auto-submit when time is up.</p>
+              <p className="break-words">Strict Time Limit of <strong className="text-gray-900 dark:text-gray-900">{QUIZ_TIME_LIMIT_MINUTES} Minutes</strong>. The exam will auto-submit when time is up.</p>
             </div>
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-500 shrink-0" />
-              <p><strong>Anti-Cheat Enabled:</strong> If you open a new tab, switch apps, or minimize the window, your exam will immediately Auto-Submit with 0 warning.</p>
+              <p className="break-words"><strong>Anti-Cheat Enabled:</strong> If you open a new tab, switch apps, or minimize the window, your exam will immediately Auto-Submit with 0 warning.</p>
             </div>
             <div className="flex items-start gap-3">
               <CheckSquare className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 shrink-0" />
-              <p><strong>Navigation:</strong> You can skip questions and come back to them later using the Next/Back buttons or the Question Grid at the bottom.</p>
+              <p className="break-words"><strong>Navigation:</strong> You can skip questions and come back to them later using the Next/Back buttons or the Question Grid at the bottom.</p>
             </div>
           </div>
 
-          <form onSubmit={startExam} className="space-y-4">
-            <div className="space-y-2">
+          <form onSubmit={startExam} className="w-full space-y-4">
+            <div className="space-y-2 w-full">
               <label className="block text-[9px] sm:text-[10px] uppercase font-bold text-gray-400 dark:text-gray-400 tracking-wider">Candidate Full Name</label>
-              <div className="relative">
-                <User className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <div className="relative w-full">
+                <User className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 shrink-0" />
                 <input
                   type="text"
                   required
@@ -250,7 +250,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
             <button
               type="submit"
               disabled={!studentName.trim()}
-              className="w-full py-3 sm:py-3.5 bg-[#B8212E] hover:bg-[#D62636] disabled:opacity-50 text-white font-black rounded-lg text-xs sm:text-sm shadow-md transition-all uppercase tracking-widest"
+              className="w-full py-3 sm:py-3.5 bg-[#B8212E] hover:bg-[#D62636] disabled:opacity-50 text-white font-black rounded-lg text-xs sm:text-sm shadow-md transition-all uppercase tracking-widest break-words"
             >
               Start Secure Exam
             </button>
@@ -260,22 +260,22 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
 
       {/* STATE 2: ACTIVE EXAM */}
       {examState === 'active' && (
-        <div className="space-y-4 sm:space-y-6">
+        <div className="w-full space-y-4 sm:space-y-6 overflow-hidden">
           {/* Header Bar */}
-          <div className="bg-gray-900 text-white p-3 sm:p-4 rounded-xl flex items-center justify-between sticky top-2 sm:top-4 z-50 shadow-lg">
-            <div className="flex items-center gap-2 sm:gap-3">
+          <div className="w-full bg-gray-900 text-white p-3 sm:p-4 rounded-xl flex items-center justify-between sticky top-2 sm:top-4 z-50 shadow-lg overflow-hidden">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0">
               <div className="bg-white/20 p-1.5 sm:p-2 rounded-lg shrink-0">
                 <User className="w-4 h-4" />
               </div>
-              <div className="min-w-0">
-                <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider">Candidate</p>
-                <p className="text-[10px] sm:text-xs font-bold truncate max-w-[80px] sm:max-w-[150px]">{studentName}</p>
+              <div className="min-w-0 flex-1 truncate">
+                <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">Candidate</p>
+                <p className="text-[10px] sm:text-xs font-bold truncate">{studentName}</p>
               </div>
             </div>
 
-            <div className="flex flex-col items-end shrink-0">
+            <div className="flex flex-col items-end shrink-0 pl-2">
               <p className="text-[8px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <Clock className="w-3 h-3" /> Time Remaining
+                <Clock className="w-3 h-3 shrink-0" /> Time Remaining
               </p>
               <p className={`text-lg sm:text-xl font-mono font-black ${timeLeft < 60 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'}`}>
                 {formatTime(timeLeft)}
@@ -284,9 +284,9 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
           </div>
 
           {/* Progress Indicators */}
-          <div className="flex justify-between items-center text-[10px] sm:text-xs font-semibold text-gray-500 dark:text-gray-500 px-1">
-            <span className="truncate pr-2">Subject: <strong className="text-gray-800 dark:text-gray-800">{quiz.title}</strong></span>
-            <span className="font-mono bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 px-2 py-0.5 font-bold shrink-0">
+          <div className="w-full flex justify-between items-center text-[10px] sm:text-xs font-semibold text-gray-500 dark:text-gray-500 px-1">
+            <span className="truncate pr-2 break-words">Subject: <strong className="text-gray-800 dark:text-gray-800">{quiz.title}</strong></span>
+            <span className="font-mono bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 px-2 py-0.5 font-bold shrink-0 whitespace-nowrap">
               Question {currentIndex + 1} of {questions.length}
             </span>
           </div>
@@ -298,14 +298,14 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
           </div>
 
           {/* Question Box */}
-          <div className="p-5 sm:p-8 bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 rounded-xl sm:rounded-2xl shadow-sm min-h-[120px] sm:min-h-[160px] flex items-center">
-            <h3 className="font-extrabold text-gray-900 dark:text-gray-900 text-base sm:text-xl leading-relaxed w-full">
+          <div className="w-full p-5 sm:p-8 bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 rounded-xl sm:rounded-2xl shadow-sm min-h-[120px] sm:min-h-[160px] flex items-center overflow-hidden">
+            <h3 className="font-extrabold text-gray-900 dark:text-gray-900 text-base sm:text-xl leading-relaxed w-full break-words">
               {currentQuestion.question_text}
             </h3>
           </div>
 
           {/* Options Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4 overflow-hidden">
             {currentQuestion.options.map((option: string, idx: number) => {
               const isSelectedOption = answers[currentIndex] === idx
               const optionClass = isSelectedOption
@@ -316,9 +316,9 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
                 <button
                   key={idx}
                   onClick={() => handleOptionSelect(idx)}
-                  className={`w-full p-3.5 sm:p-5 border-2 rounded-xl text-left font-bold text-xs sm:text-sm transition-all flex items-center justify-between gap-3 cursor-pointer ${optionClass}`}
+                  className={`w-full p-3.5 sm:p-5 border-2 rounded-xl text-left font-bold text-xs sm:text-sm transition-all flex items-center justify-between gap-3 cursor-pointer overflow-hidden break-words ${optionClass}`}
                 >
-                  <span className="leading-relaxed">{option}</span>
+                  <span className="leading-relaxed break-words">{option}</span>
                   {isSelectedOption && <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#B8212E] shrink-0" />}
                 </button>
               )
@@ -326,37 +326,37 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
           </div>
 
           {/* Action Buttons Row */}
-          <div className="flex justify-between items-center pt-4 sm:pt-6 border-t border-gray-100 dark:border-gray-100">
+          <div className="w-full flex justify-between items-center pt-4 sm:pt-6 border-t border-gray-100 dark:border-gray-100 overflow-hidden">
             <button
               onClick={handleBack}
               disabled={currentIndex === 0}
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-100 dark:bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-200 disabled:opacity-30 disabled:hover:bg-gray-100 text-gray-800 dark:text-gray-800 font-bold rounded-xl text-[10px] sm:text-sm flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-100 dark:bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-200 disabled:opacity-30 disabled:hover:bg-gray-100 text-gray-800 dark:text-gray-800 font-bold rounded-xl text-[10px] sm:text-sm flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0"
             >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               Back
             </button>
 
             {currentIndex + 1 < questions.length ? (
               <button
                 onClick={handleNext}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0"
               >
                 {hasAnsweredCurrent ? 'Next' : 'Skip'}
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
             ) : (
               <button
                 onClick={submitExam}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider animate-pulse"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider animate-pulse shrink-0"
               >
                 Submit
-                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
             )}
           </div>
 
           {/* Question Navigator Grid */}
-          <div className="pt-6 sm:pt-8 space-y-2 sm:space-y-3">
+          <div className="w-full pt-6 sm:pt-8 space-y-2 sm:space-y-3 overflow-hidden">
             <h4 className="text-[9px] sm:text-[10px] font-bold text-gray-400 dark:text-gray-400 uppercase tracking-wider">Question Navigator</h4>
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {questions.map((_, idx) => {
@@ -376,14 +376,14 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 border rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center ${btnClass}`}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 border rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center shrink-0 ${btnClass}`}
                   >
                     {idx + 1}
                   </button>
                 )
               })}
             </div>
-            <p className="text-[9px] sm:text-[10px] text-gray-400 dark:text-gray-400 font-semibold italic">Red = Answered, White = Skipped</p>
+            <p className="text-[9px] sm:text-[10px] text-gray-400 dark:text-gray-400 font-semibold italic break-words">Red = Answered, White = Skipped</p>
           </div>
         </div>
       )}
@@ -394,58 +394,58 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
         const percentage = questions.length > 0 ? (finalScore / questions.length) * 100 : 0
 
         return (
-          <div className="bg-white dark:bg-white border border-gray-200 dark:border-gray-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl animate-scale-in">
+          <div className="w-full bg-white dark:bg-white border border-gray-200 dark:border-gray-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl animate-scale-in">
             {/* Top Color Banner */}
-            <div className={`p-6 sm:p-10 text-center space-y-3 sm:space-y-4 ${grade.bg}`}>
-              <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white dark:bg-white rounded-full flex items-center justify-center shadow-sm ${grade.color}`}>
+            <div className={`w-full p-6 sm:p-10 text-center space-y-3 sm:space-y-4 ${grade.bg}`}>
+              <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white dark:bg-white rounded-full flex items-center justify-center shadow-sm shrink-0 ${grade.color}`}>
                 {grade.icon}
               </div>
-              <h2 className={`text-xl sm:text-3xl font-black ${grade.color}`}>{grade.title}</h2>
-              <p className="text-gray-600 dark:text-gray-600 font-bold text-xs sm:text-sm">Candidate: <span className="text-gray-900 dark:text-gray-900">{studentName}</span></p>
+              <h2 className={`text-xl sm:text-3xl font-black break-words ${grade.color}`}>{grade.title}</h2>
+              <p className="text-gray-600 dark:text-gray-600 font-bold text-xs sm:text-sm break-words">Candidate: <span className="text-gray-900 dark:text-gray-900">{studentName}</span></p>
             </div>
 
-            <div className="p-6 sm:p-10 space-y-6 sm:space-y-8">
+            <div className="w-full p-6 sm:p-10 space-y-6 sm:space-y-8 overflow-hidden">
               {/* Anti-Cheat Warning */}
               {autoSubmittedDueToCheat && (
-                <div className="p-3 sm:p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-700 text-xs sm:text-sm font-bold flex items-start gap-2 sm:gap-3">
+                <div className="w-full p-3 sm:p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-700 text-xs sm:text-sm font-bold flex items-start gap-2 sm:gap-3 overflow-hidden">
                   <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5" />
-                  <p><strong>Exam Violation Detected:</strong> You switched tabs or minimized the browser during the exam. The system automatically submitted your quiz to prevent cheating.</p>
+                  <p className="break-words"><strong>Exam Violation Detected:</strong> You switched tabs or minimized the browser during the exam. The system automatically submitted your quiz to prevent cheating.</p>
                 </div>
               )}
 
               {/* Time Expired Warning */}
               {timeLeft <= 0 && !autoSubmittedDueToCheat && (
-                <div className="p-3 sm:p-4 bg-amber-50 border-l-4 border-amber-500 text-amber-700 text-xs sm:text-sm font-bold flex items-start gap-2 sm:gap-3">
+                <div className="w-full p-3 sm:p-4 bg-amber-50 border-l-4 border-amber-500 text-amber-700 text-xs sm:text-sm font-bold flex items-start gap-2 sm:gap-3 overflow-hidden">
                   <Clock className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5" />
-                  <p><strong>Time Expired:</strong> Your 15 minutes were up, so the exam was automatically submitted.</p>
+                  <p className="break-words"><strong>Time Expired:</strong> Your 15 minutes were up, so the exam was automatically submitted.</p>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                <div className="bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1 col-span-2 sm:col-span-1">
-                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400">Total Score</span>
+              <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="w-full bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1 col-span-2 sm:col-span-1 overflow-hidden">
+                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400 break-words">Total Score</span>
                   <span className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-gray-900">{finalScore}<span className="text-sm sm:text-lg text-gray-400 dark:text-gray-400">/{questions.length}</span></span>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1">
-                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400">Percentage</span>
+                <div className="w-full bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1 overflow-hidden">
+                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400 break-words">Percentage</span>
                   <span className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-gray-900">{percentage.toFixed(1)}%</span>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1">
-                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400">Time Taken</span>
+                <div className="w-full bg-gray-50 dark:bg-gray-50 border border-gray-200 dark:border-gray-200 p-4 sm:p-5 rounded-xl text-center space-y-1 overflow-hidden">
+                  <span className="block text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-gray-400 dark:text-gray-400 break-words">Time Taken</span>
                   <span className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-gray-900">{formatTime((QUIZ_TIME_LIMIT_MINUTES * 60) - Math.max(0, timeLeft))}</span>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-100">
+              <div className="w-full flex flex-col sm:flex-row justify-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-100 overflow-hidden">
                 <button
                   onClick={handleRestart}
-                  className="px-6 py-3 border-2 border-gray-200 dark:border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-50 text-gray-700 dark:text-gray-700 font-bold rounded-xl text-xs sm:text-sm cursor-pointer flex items-center justify-center gap-2 transition-all"
+                  className="px-6 py-3 border-2 border-gray-200 dark:border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-50 text-gray-700 dark:text-gray-700 font-bold rounded-xl text-xs sm:text-sm cursor-pointer flex items-center justify-center gap-2 transition-all shrink-0 break-words"
                 >
-                  <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" /> Retake Exam
+                  <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /> Retake Exam
                 </button>
                 <Link
                   href="/prep"
-                  className="px-6 py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider transition-all"
+                  className="px-6 py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider transition-all shrink-0 break-words"
                 >
                   Exit to Dashboard
                 </Link>
