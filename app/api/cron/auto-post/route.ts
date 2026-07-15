@@ -49,7 +49,7 @@ function getUniqueImage(url: string, content: string, title: string) {
   // This uses Pollinations.ai (Free AI Image Generator) to create a beautiful, relevant cover.
   const prompt = `Professional high quality realistic cover photo representing: ${title.substring(0, 50)}`
   const seed = Math.floor(Math.random() * 1000000)
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=600&height=800&nologo=true&seed=${seed}`
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}.jpg?width=600&height=800&nologo=true&seed=${seed}`
 }
 
 export async function GET(request: Request) {
