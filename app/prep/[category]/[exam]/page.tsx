@@ -28,7 +28,7 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
     .order('created_at', { ascending: true })
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800 overflow-hidden">
       
       {/* Breadcrumb / Back */}
       <Link href={`/prep/${category}`} className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] w-fit">
@@ -52,8 +52,8 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       </div>
 
       {/* Tabs */}
-      <div className="-mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto border-b border-gray-200 hide-scrollbar">
-        <div className="flex gap-5 sm:gap-8 pb-1 min-w-max">
+      <div className="-mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto border-b border-gray-200 hide-scrollbar w-full">
+        <div className="flex gap-5 sm:gap-8 pb-1 w-max">
           <button className="whitespace-nowrap pb-4 border-b-2 border-[#B8212E] text-[#B8212E] font-bold text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 px-1">
             <CheckCircle className="w-4 h-4" /> Interactive Mock Tests
           </button>
