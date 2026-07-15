@@ -1,32 +1,45 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, use } from 'react'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { ArrowLeft, Loader2, Award, CheckCircle2, XCircle, ChevronRight, RotateCcw } from 'lucide-react'
+import { ArrowLeft, Loader2, Award, CheckCircle2, XCircle, ChevronRight, RotateCcw, AlertTriangle, Clock, User, ShieldAlert } from 'lucide-react'
 
-export default function InteractiveQuizPage() {
-  const params = useParams()
+// Constants
+const QUIZ_TIME_LIMIT_MINUTES = 15
+const MAX_QUESTIONS = 30
+
+export default function InteractiveQuizPage({ params }: { params: Promise<{ quizId: string }> }) {
   const router = useRouter()
-  const quizId = params.quizId as string
+  const { quizId } = use(params)
   const supabase = createClient()
 
+  // Data States
   const [quiz, setQuiz] = useState<any>(null)
   const [questions, setQuestions] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Quiz State Machine
+  // System States
+  const [studentName, setStudentName] = useState('')
+  const [examStarted, setExamStarted] = useState(false)
+  const [examState, setExamState] = useState<'intro' | 'active' | 'completed'>('intro')
+  
+  // Timer & Anti-Cheat
+  const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_LIMIT_MINUTES * 60)
+  const [autoSubmittedDueToCheat, setAutoSubmittedDueToCheat] = useState(false)
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Quiz States
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedOption, setSelectedOption] = useState<number | null>(null)
   const [isAnswered, setIsAnswered] = useState(false)
   const [score, setScore] = useState(0)
-  const [completed, setCompleted] = useState(false)
 
+  // 1. Fetch Quiz Data
   useEffect(() => {
     const fetchQuizDetails = async () => {
       try {
-        // Fetch Quiz details
         const { data: quizData } = await supabase
           .from('quizzes')
           .select('*')
@@ -34,12 +47,16 @@ export default function InteractiveQuizPage() {
           .single()
         setQuiz(quizData)
 
-        // Fetch Quiz Questions
         const { data: questionsData } = await supabase
           .from('quiz_questions')
           .select('*')
           .eq('quiz_id', quizId)
-        setQuestions(questionsData || [])
+        
+        // Shuffle and limit questions to MAX_QUESTIONS
+        let fetchedQuestions = questionsData || []
+        fetchedQuestions = fetchedQuestions.sort(() => 0.5 - Math.random()).slice(0, MAX_QUESTIONS)
+        setQuestions(fetchedQuestions)
+
       } catch (err) {
         console.error('Fetch quiz questions error:', err)
       } finally {
@@ -47,10 +64,62 @@ export default function InteractiveQuizPage() {
       }
     }
     fetchQuizDetails()
-  }, [quizId])
+  }, [quizId, supabase])
+
+  // 2. Timer & Anti-Cheat Logic
+  useEffect(() => {
+    if (examState !== 'active') return
+
+    // Timer Interval
+    timerRef.current = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          submitExam()
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    // Anti-Cheat: Visibility Change (Tab Switch Detection)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        // User switched tabs or minimized!
+        setAutoSubmittedDueToCheat(true)
+        submitExam()
+      }
+    }
+
+    // Anti-Cheat: Window Blur
+    const handleWindowBlur = () => {
+      setAutoSubmittedDueToCheat(true)
+      submitExam()
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange)
+    window.addEventListener("blur", handleWindowBlur)
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+      document.removeEventListener("visibilitychange", handleVisibilityChange)
+      window.removeEventListener("blur", handleWindowBlur)
+    }
+  }, [examState])
+
+  const submitExam = () => {
+    setExamState('completed')
+    if (timerRef.current) clearInterval(timerRef.current)
+  }
+
+  const startExam = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!studentName.trim()) return
+    setExamState('active')
+    setExamStarted(true)
+  }
 
   const handleOptionSelect = (optionIdx: number) => {
-    if (isAnswered) return
+    if (isAnswered || examState !== 'active') return
     setSelectedOption(optionIdx)
     setIsAnswered(true)
 
@@ -66,7 +135,7 @@ export default function InteractiveQuizPage() {
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(prev => prev + 1)
     } else {
-      setCompleted(true)
+      submitExam()
     }
   }
 
@@ -75,14 +144,32 @@ export default function InteractiveQuizPage() {
     setSelectedOption(null)
     setIsAnswered(false)
     setScore(0)
-    setCompleted(false)
+    setExamState('intro')
+    setExamStarted(false)
+    setTimeLeft(QUIZ_TIME_LIMIT_MINUTES * 60)
+    setAutoSubmittedDueToCheat(false)
+  }
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60)
+    const s = seconds % 60
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+  }
+
+  // Formatting grades
+  const getGradeDetails = () => {
+    const percentage = questions.length > 0 ? (score / questions.length) * 100 : 0
+    if (percentage < 50) return { title: 'Needs Improvement / Hard Work Required', color: 'text-rose-600', bg: 'bg-rose-50', icon: <XCircle className="w-8 h-8" /> }
+    if (percentage < 70) return { title: 'Good Effort, but you can do better', color: 'text-amber-600', bg: 'bg-amber-50', icon: <AlertTriangle className="w-8 h-8" /> }
+    if (percentage < 85) return { title: `Congratulations ${studentName}, Passed!`, color: 'text-emerald-600', bg: 'bg-emerald-50', icon: <CheckCircle2 className="w-8 h-8" /> }
+    return { title: `Outstanding Performance ${studentName}! Excellent Concept Mastery.`, color: 'text-indigo-600', bg: 'bg-indigo-50', icon: <Award className="w-8 h-8" /> }
   }
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-40 gap-3 text-xs text-gray-550">
         <Loader2 className="w-8 h-8 animate-spin text-[#B8212E]" />
-        <span>Loading quiz details...</span>
+        <span>Loading secure exam environment...</span>
       </div>
     )
   }
@@ -92,7 +179,7 @@ export default function InteractiveQuizPage() {
       <div className="max-w-md mx-auto py-24 px-4 text-center space-y-4 text-xs font-bold text-gray-500">
         <XCircle className="w-12 h-12 mx-auto text-rose-500" />
         <h3>Quiz Not Ready</h3>
-        <p className="font-semibold text-gray-400">There are no questions uploaded for this quiz yet. Try another test.</p>
+        <p className="font-semibold text-gray-400">There are no questions uploaded for this quiz yet.</p>
         <Link href="/prep" className="inline-block px-5 py-2.5 bg-[#B8212E] text-white rounded-full uppercase tracking-wider text-[10px]">
           Back to List
         </Link>
@@ -103,105 +190,134 @@ export default function InteractiveQuizPage() {
   const currentQuestion = questions[currentIndex]
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow bg-white text-[#222222] space-y-6">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex-grow bg-white text-[#222222] space-y-6">
       
-      {/* Back button */}
-      <div>
-        <Link 
-          href="/prep"
-          className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Prep List
-        </Link>
-      </div>
-
-      {completed ? (
-        /* Result Score Card */
-        <div className="bg-[#f8fafc] border border-gray-200 p-8 text-center space-y-6 rounded-none animate-scale-in">
-          <div className="w-14 h-14 bg-red-50 text-[#B8212E] rounded-full flex items-center justify-center mx-auto">
-            <Award className="w-8 h-8" />
-          </div>
-
-          <div className="space-y-1">
-            <h2 className="text-xl font-extrabold text-gray-800">Quiz Completed!</h2>
-            <p className="text-xs text-gray-400 font-semibold">{quiz.title} final results</p>
-          </div>
-
-          <div className="py-4 border-y border-gray-200 max-w-xs mx-auto">
-            <span className="block text-[10px] uppercase text-gray-400 font-extrabold tracking-wider">Your Score</span>
-            <span className="text-3xl font-black text-gray-800">
-              {score} <span className="text-sm font-bold text-gray-400">/ {questions.length}</span>
-            </span>
-          </div>
-
-          <p className="text-xs text-gray-500 font-semibold leading-relaxed max-w-sm mx-auto">
-            {score / questions.length >= 0.7 
-              ? 'Great job! You possess deep concept mastery on this exam subject. Keep up the high standard!' 
-              : 'Review your mistakes and read technical book guidelines to score higher next time.'}
-          </p>
-
-          <div className="flex justify-center gap-3 pt-2">
-            <button
-              onClick={handleRestart}
-              className="px-5 py-2.5 border border-gray-250 hover:bg-gray-50 text-gray-650 font-bold rounded-full text-xs cursor-pointer flex items-center gap-1.5"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              Retake Quiz
-            </button>
-            <Link
-              href="/prep"
-              className="px-6 py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm hover:shadow-md cursor-pointer flex items-center gap-1.5 uppercase tracking-wider"
-            >
-              Finish Prep
-            </Link>
-          </div>
+      {/* Show Back Button ONLY if exam hasn't started */}
+      {!examStarted && (
+        <div>
+          <Link href="/prep" className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#B8212E] transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Prep List
+          </Link>
         </div>
-      ) : (
-        /* Active Question Screen */
+      )}
+
+      {/* STATE 1: INTRO RULES SCREEN */}
+      {examState === 'intro' && (
+        <div className="bg-gray-50 border border-gray-200 p-8 rounded-2xl shadow-sm space-y-8 max-w-xl mx-auto">
+          <div className="text-center space-y-2">
+            <div className="w-16 h-16 bg-[#B8212E]/10 text-[#B8212E] rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShieldAlert className="w-8 h-8" />
+            </div>
+            <h1 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Exam Rules & Regulations</h1>
+            <p className="text-sm font-semibold text-gray-500">{quiz.title}</p>
+          </div>
+
+          <div className="bg-white border border-gray-200 p-5 rounded-xl space-y-4 text-xs font-semibold text-gray-600">
+            <div className="flex items-start gap-3">
+              <Clock className="w-5 h-5 text-indigo-500 shrink-0" />
+              <p>Strict Time Limit of <strong className="text-gray-900">{QUIZ_TIME_LIMIT_MINUTES} Minutes</strong>. The exam will auto-submit when time is up.</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-rose-500 shrink-0" />
+              <p><strong>Anti-Cheat Enabled:</strong> If you open a new tab, switch apps, or minimize the window, your exam will immediately Auto-Submit with 0 warning.</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+              <p>Maximum of <strong className="text-gray-900">{questions.length} randomized questions</strong>.</p>
+            </div>
+          </div>
+
+          <form onSubmit={startExam} className="space-y-4">
+            <div className="space-y-2">
+              <label className="block text-[10px] uppercase font-bold text-gray-400 tracking-wider">Candidate Full Name</label>
+              <div className="relative">
+                <User className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  required
+                  value={studentName}
+                  onChange={(e) => setStudentName(e.target.value)}
+                  placeholder="Enter your full name to begin..."
+                  className="w-full pl-9 pr-4 py-3 bg-white border border-gray-300 rounded-lg text-sm font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#B8212E] focus:border-[#B8212E]"
+                />
+              </div>
+            </div>
+            
+            <button
+              type="submit"
+              disabled={!studentName.trim()}
+              className="w-full py-3.5 bg-[#B8212E] hover:bg-[#D62636] disabled:opacity-50 text-white font-black rounded-lg text-sm shadow-md transition-all uppercase tracking-widest"
+            >
+              Start Secure Exam
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* STATE 2: ACTIVE EXAM */}
+      {examState === 'active' && (
         <div className="space-y-6">
-          
+          {/* Header Bar */}
+          <div className="bg-gray-900 text-white p-4 rounded-xl flex items-center justify-between sticky top-4 z-50 shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="bg-white/20 p-2 rounded-lg">
+                <User className="w-4 h-4" />
+              </div>
+              <div>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Candidate</p>
+                <p className="text-xs font-bold">{studentName}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-end">
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider flex items-center gap-1">
+                <Clock className="w-3 h-3" /> Time Remaining
+              </p>
+              <p className={`text-xl font-mono font-black ${timeLeft < 60 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'}`}>
+                {formatTime(timeLeft)}
+              </p>
+            </div>
+          </div>
+
           {/* Progress Indicators */}
-          <div className="flex justify-between items-center text-xs font-semibold text-gray-500">
+          <div className="flex justify-between items-center text-xs font-semibold text-gray-500 px-1">
             <span>Subject: <strong className="text-gray-800">{quiz.title}</strong></span>
             <span className="font-mono bg-gray-50 border border-gray-200 px-2 py-0.5 font-bold">
               Question {currentIndex + 1} of {questions.length}
             </span>
           </div>
-
-          {/* Progress bar line */}
-          <div className="w-full h-1 bg-gray-100">
+          <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
             <div 
               className="h-full bg-[#B8212E] transition-all duration-300"
               style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
             />
           </div>
 
-          {/* Question Text */}
-          <div className="p-5 bg-[#f8fafc] border border-gray-200 rounded-none">
-            <h3 className="font-bold text-gray-800 text-sm sm:text-base leading-relaxed">
+          {/* Question Box */}
+          <div className="p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
+            <h3 className="font-extrabold text-gray-900 text-lg sm:text-xl leading-relaxed">
               {currentQuestion.question_text}
             </h3>
           </div>
 
           {/* Options Grid */}
-          <div className="flex flex-col gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {currentQuestion.options.map((option: string, idx: number) => {
               const isCorrectOption = idx === currentQuestion.correct_option_index
               const isSelectedOption = idx === selectedOption
               
-              let optionClass = 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
+              let optionClass = 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-[#B8212E]/50'
               let iconElement = null
 
               if (isAnswered) {
                 if (isCorrectOption) {
-                  optionClass = 'bg-emerald-50 border-emerald-500 text-emerald-800 hover:bg-emerald-50'
-                  iconElement = <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0" />
+                  optionClass = 'bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500'
+                  iconElement = <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                 } else if (isSelectedOption) {
-                  optionClass = 'bg-rose-50 border-rose-500 text-rose-800 hover:bg-rose-50'
-                  iconElement = <XCircle className="w-4.5 h-4.5 text-rose-600 shrink-0" />
+                  optionClass = 'bg-rose-50 border-rose-500 text-rose-800 ring-1 ring-rose-500'
+                  iconElement = <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
                 } else {
-                  optionClass = 'bg-white border-gray-100 text-gray-300 opacity-60'
+                  optionClass = 'bg-white border-gray-100 text-gray-300 opacity-50'
                 }
               }
 
@@ -210,9 +326,7 @@ export default function InteractiveQuizPage() {
                   key={idx}
                   disabled={isAnswered}
                   onClick={() => handleOptionSelect(idx)}
-                  className={`w-full p-4 border rounded-none text-left font-semibold text-xs transition-all flex items-center justify-between gap-4 ${
-                    isAnswered ? '' : 'cursor-pointer'
-                  } ${optionClass}`}
+                  className={`w-full p-4 sm:p-5 border-2 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between gap-4 ${isAnswered ? '' : 'cursor-pointer'} ${optionClass}`}
                 >
                   <span className="leading-relaxed">{option}</span>
                   {iconElement}
@@ -223,19 +337,85 @@ export default function InteractiveQuizPage() {
 
           {/* Next Button Row */}
           {isAnswered && (
-            <div className="flex justify-end pt-4 border-t border-gray-100 animate-fade-in">
+            <div className="flex justify-end pt-6 animate-fade-in">
               <button
                 onClick={handleNext}
-                className="px-6 py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm flex items-center gap-1.5 cursor-pointer uppercase tracking-wider"
+                className="px-8 py-3.5 bg-gray-900 hover:bg-black text-white font-black rounded-xl text-sm shadow-md flex items-center gap-2 cursor-pointer uppercase tracking-wider"
               >
-                {currentIndex + 1 < questions.length ? 'Next Question' : 'View Score'}
-                <ChevronRight className="w-4 h-4" />
+                {currentIndex + 1 < questions.length ? 'Next Question' : 'Submit Exam'}
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           )}
-
         </div>
       )}
+
+      {/* STATE 3: COMPLETED RESULT */}
+      {examState === 'completed' && (() => {
+        const grade = getGradeDetails()
+        const percentage = questions.length > 0 ? (score / questions.length) * 100 : 0
+
+        return (
+          <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-xl animate-scale-in">
+            {/* Top Color Banner */}
+            <div className={`p-8 sm:p-10 text-center space-y-4 ${grade.bg}`}>
+              <div className={`w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm ${grade.color}`}>
+                {grade.icon}
+              </div>
+              <h2 className={`text-2xl sm:text-3xl font-black ${grade.color}`}>{grade.title}</h2>
+              <p className="text-gray-600 font-bold">Candidate: <span className="text-gray-900">{studentName}</span></p>
+            </div>
+
+            <div className="p-8 sm:p-10 space-y-8">
+              {/* Anti-Cheat Warning */}
+              {autoSubmittedDueToCheat && (
+                <div className="p-4 bg-rose-50 border-l-4 border-rose-500 text-rose-700 text-sm font-bold flex items-start gap-3">
+                  <ShieldAlert className="w-5 h-5 shrink-0 mt-0.5" />
+                  <p><strong>Exam Violation Detected:</strong> You switched tabs or minimized the browser during the exam. The system automatically submitted your quiz to prevent cheating.</p>
+                </div>
+              )}
+
+              {/* Time Expired Warning */}
+              {timeLeft <= 0 && !autoSubmittedDueToCheat && (
+                <div className="p-4 bg-amber-50 border-l-4 border-amber-500 text-amber-700 text-sm font-bold flex items-start gap-3">
+                  <Clock className="w-5 h-5 shrink-0 mt-0.5" />
+                  <p><strong>Time Expired:</strong> Your 15 minutes were up, so the exam was automatically submitted.</p>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="bg-gray-50 border border-gray-200 p-5 rounded-xl text-center space-y-1">
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400">Total Score</span>
+                  <span className="text-3xl font-black text-gray-900">{score}<span className="text-lg text-gray-400">/{questions.length}</span></span>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 p-5 rounded-xl text-center space-y-1">
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400">Percentage</span>
+                  <span className="text-3xl font-black text-gray-900">{percentage.toFixed(1)}%</span>
+                </div>
+                <div className="bg-gray-50 border border-gray-200 p-5 rounded-xl text-center space-y-1">
+                  <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400">Time Taken</span>
+                  <span className="text-3xl font-black text-gray-900">{formatTime((QUIZ_TIME_LIMIT_MINUTES * 60) - Math.max(0, timeLeft))}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center gap-3 pt-4 border-t border-gray-100">
+                <button
+                  onClick={handleRestart}
+                  className="px-6 py-3 border-2 border-gray-200 hover:bg-gray-50 text-gray-700 font-bold rounded-xl text-sm cursor-pointer flex items-center justify-center gap-2 transition-all"
+                >
+                  <RotateCcw className="w-4 h-4" /> Retake Exam
+                </button>
+                <Link
+                  href="/prep"
+                  className="px-8 py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-sm shadow-md cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider transition-all"
+                >
+                  Exit to Dashboard
+                </Link>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
 
     </div>
   )
