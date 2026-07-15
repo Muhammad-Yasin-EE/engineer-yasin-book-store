@@ -15,34 +15,34 @@ const categoryData: Record<string, any> = {
         name: 'Pakistan Army',
         iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pakistan_Army_emblem.svg/150px-Pakistan_Army_emblem.svg.png',
         exams: [
-          { id: 'pma-long-course', name: 'PMA Long Course' },
-          { id: 'lcc', name: 'LCC (Lady Cadet Course)' },
-          { id: 'dssc', name: 'DSSC' },
-          { id: 'tcc', name: 'TCC (Technical Cadet Course)' },
-          { id: 'afns', name: 'AFNS' },
-          { id: 'soldier', name: 'Soldier' },
+          { id: 'pma-long-course', name: 'PMA Long Course', cardBgUrl: '/images/card-pma.jpg' },
+          { id: 'lcc', name: 'LCC (Lady Cadet Course)', cardBgUrl: '/images/card-lcc.jpg' },
+          { id: 'dssc', name: 'DSSC', cardBgUrl: '/images/card-dssc.jpg' },
+          { id: 'tcc', name: 'TCC (Technical Cadet Course)', cardBgUrl: '/images/card-tcc.jpg' },
+          { id: 'afns', name: 'AFNS', cardBgUrl: '/images/card-afns.jpg' },
+          { id: 'soldier', name: 'Soldier', cardBgUrl: '/images/card-soldier.jpg' },
         ]
       },
       {
         name: 'Pakistan Air Force',
         iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pakistan_Air_Force_emblem.svg/150px-Pakistan_Air_Force_emblem.svg.png',
         exams: [
-          { id: 'gd-pilot', name: 'GD Pilot' },
-          { id: 'aeronautical-engineering', name: 'Aeronautical Engineering' },
-          { id: 'air-defence', name: 'Air Defence' },
-          { id: 'admin', name: 'Admin' },
-          { id: 'accounts', name: 'Accounts' },
+          { id: 'gd-pilot', name: 'GD Pilot', cardBgUrl: '/images/card-gd-pilot.jpg' },
+          { id: 'aeronautical-engineering', name: 'Aeronautical Engineering', cardBgUrl: '/images/card-aeronautical.jpg' },
+          { id: 'air-defence', name: 'Air Defence', cardBgUrl: '/images/card-air-defence.jpg' },
+          { id: 'admin', name: 'Admin', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'accounts', name: 'Accounts', cardBgUrl: '/images/exam-paf-bg.jpg' },
         ]
       },
       {
         name: 'Pakistan Navy',
         iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Pakistan_Navy_emblem.svg/150px-Pakistan_Navy_emblem.svg.png',
         exams: [
-          { id: 'pn-cadet', name: 'PN Cadet' },
-          { id: 'ssc', name: 'SSC' },
-          { id: 'marines', name: 'Marines' },
-          { id: 'sailor', name: 'Sailor' },
-          { id: 'civilian', name: 'Civilian' },
+          { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'ssc', name: 'SSC', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'marines', name: 'Marines', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'sailor', name: 'Sailor', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'civilian', name: 'Civilian', cardBgUrl: '/images/exam-navy-bg.jpg' },
         ]
       }
     ]
@@ -167,15 +167,22 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 <Link 
                   key={exam.id}
                   href={`/prep/${category}/${exam.id}`}
-                  className="group p-5 border border-gray-200 rounded-md hover:border-[#B8212E] hover:shadow-md transition-all duration-200 bg-white flex flex-col justify-between h-full relative overflow-hidden"
+                  className={`group border border-gray-200 rounded-md hover:border-[#B8212E] hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full min-h-[160px] relative overflow-hidden ${exam.cardBgUrl ? '' : 'p-5 bg-white'}`}
                 >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-[#B8212E] transition-colors"></div>
-                  <div className="pl-2">
-                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-[#B8212E] transition-colors">{exam.name}</h3>
-                  </div>
-                  <div className="mt-6 flex items-center justify-between text-[10px] sm:text-xs font-bold text-gray-400 group-hover:text-[#B8212E] pl-2 uppercase tracking-wider">
-                    <span>View Materials</span>
-                    <ArrowRight className="w-4 h-4" />
+                  {exam.cardBgUrl && (
+                    <>
+                      <Image src={exam.cardBgUrl} alt={exam.name} fill sizes="(max-width: 768px) 100vw, 300px" className="object-cover absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                    </>
+                  )}
+                  {!exam.cardBgUrl && <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-[#B8212E] transition-colors"></div>}
+                  
+                  <div className={`relative z-20 ${exam.cardBgUrl ? 'p-5 flex flex-col h-full justify-end' : 'pl-2'}`}>
+                    <h3 className={`font-bold text-base sm:text-lg transition-colors ${exam.cardBgUrl ? 'text-white drop-shadow-md' : 'text-gray-900 group-hover:text-[#B8212E]'}`}>{exam.name}</h3>
+                    <div className={`mt-2 flex items-center justify-between text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-colors ${exam.cardBgUrl ? 'text-gray-300 group-hover:text-white' : 'text-gray-400 group-hover:text-[#B8212E] mt-6'}`}>
+                      <span>View Materials</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
                 </Link>
               ))}
