@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
 import CategoryCard from '@/components/CategoryCard'
@@ -86,10 +87,12 @@ export default async function HomePage() {
             <div className="flex-1 w-full max-w-md lg:max-w-none relative">
               <div className="relative aspect-square w-full sm:w-4/5 lg:w-full mx-auto">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/20 to-[#B8212E]/20 rounded-full blur-3xl opacity-50"></div>
-                <img 
+                <Image 
                   src="/images/real-forces-illustration.jpg" 
                   alt="Official Armed Forces and Civil Service Preparation" 
-                  className="w-full h-full object-cover rounded-2xl shadow-2xl relative z-10 border border-white/10"
+                  fill
+                  priority
+                  className="object-cover rounded-2xl shadow-2xl relative z-10 border border-white/10"
                 />
               </div>
             </div>

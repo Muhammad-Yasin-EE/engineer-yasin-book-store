@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ShieldCheck, BookOpen, GraduationCap, ArrowLeft, Target } from 'lucide-react'
 
 // Enhanced Data for Categories matching exactly what user provided
@@ -122,7 +123,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       {data.headerImageUrl ? (
         <div className="relative rounded-md overflow-hidden shadow-sm border border-gray-200 min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
           <div className="absolute inset-0 bg-[#0A192F]/80 z-10 mix-blend-multiply"></div>
-          <img src={data.headerImageUrl} alt={data.title} className="absolute inset-0 w-full h-full object-cover object-top" />
+          <Image src={data.headerImageUrl} alt={data.title} fill priority className="absolute inset-0 object-cover object-top" />
           <div className="relative z-20 flex flex-col items-center text-center p-8 sm:p-14 text-white w-full">
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 drop-shadow-lg text-white">
               {data.title}
@@ -152,8 +153,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <div key={subgroup.name}>
             <div className="flex items-center gap-3 mb-6 border-b border-gray-150 pb-3">
               {subgroup.iconUrl ? (
-                <div className="w-10 h-10 shrink-0 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden p-1">
-                  <img src={subgroup.iconUrl} alt={subgroup.name} className="w-full h-full object-contain" />
+                <div className="w-10 h-10 shrink-0 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden p-1 relative">
+                  <Image src={subgroup.iconUrl} alt={subgroup.name} fill sizes="40px" className="object-contain p-1" />
                 </div>
               ) : (
                 <Target className="w-6 h-6 text-[#B8212E]" />

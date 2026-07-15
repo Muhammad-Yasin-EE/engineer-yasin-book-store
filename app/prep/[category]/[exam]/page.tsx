@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, BookOpen, FileText, CheckCircle, Lock, LayoutGrid, Clock, ArrowRight } from 'lucide-react'
 
@@ -55,7 +56,7 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       {headerBgImage ? (
         <div className="relative rounded-md overflow-hidden shadow-sm border border-gray-200 min-h-[220px] sm:min-h-[260px] flex items-center p-6 sm:p-10 mb-2">
           <div className="absolute inset-0 bg-[#0A192F]/80 z-10 mix-blend-multiply"></div>
-          <img src={headerBgImage} alt={title} className="absolute inset-0 w-full h-full object-cover object-center" />
+          <Image src={headerBgImage} alt={title} fill priority className="absolute inset-0 object-cover object-center" />
           <div className="relative z-20 flex flex-col items-start w-full text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-white/20 border border-white/30 text-white text-[10px] font-extrabold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-sm">
               <LayoutGrid className="w-3.5 h-3.5" />
