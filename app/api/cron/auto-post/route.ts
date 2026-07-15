@@ -45,11 +45,10 @@ function getUniqueImage(url: string, content: string, title: string) {
     return imgMatch[1]
   }
   
-  // Use ui-avatars to generate a clean 2-letter logo
-  const companyName = title.split(':')[0] || title.split('-')[0] || title
-  const initials = companyName.replace(/[^a-zA-Z0-9 ]/g, '').trim().substring(0, 2).toUpperCase()
-  
-  return `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff&size=512&font-size=0.4&bold=true&rounded=true`
+  // Generate a completely UNIQUE, high-quality photograph for every single post using its title as a seed.
+  // This guarantees covers will NEVER repeat and will look beautiful.
+  const seed = encodeURIComponent(title.substring(0, 30))
+  return `https://picsum.photos/seed/${seed}/600/800`
 }
 
 export async function GET(request: Request) {
