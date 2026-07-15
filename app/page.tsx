@@ -35,22 +35,26 @@ export default async function HomePage() {
       
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 sm:py-24 bg-[#0A192F] border-b border-[#0A192F]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-white/10 border border-white/20 text-white text-[10px] uppercase tracking-wider font-bold mb-6">
-            <Sparkles className="w-3 h-3 text-[#D4AF37]" />
-            Pakistan's Premier Preparation Portal
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+            
+            {/* Left Content */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-white/10 border border-white/20 text-white text-[10px] uppercase tracking-wider font-bold mb-6">
+                <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+                Pakistan's Premier Preparation Portal
+              </div>
           
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.15] mb-6">
-            Gateway to <span className="text-[#D4AF37]">Excellence</span>
-          </h1>
-          
-          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            Professional mock tests for Armed Forces, Public Service, and Entry Exams. Integrated with VIP tech resources and engineering services.
-          </p>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-2xl mx-auto lg:mx-0 leading-[1.15] mb-6">
+                Gateway to <span className="text-[#D4AF37]">Excellence</span>
+              </h1>
+              
+              <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium">
+                Professional mock tests for Armed Forces, Public Service, and Entry Exams. Integrated with VIP tech resources and engineering services.
+              </p>
 
-          {/* Quick Hub Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+              {/* Quick Hub Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto lg:mx-0">
             <Link href="/prep/armed-forces" className="p-4 sm:p-5 bg-[#112240] border border-[#233554] hover:border-[#D4AF37] hover:bg-[#1A2D54] shadow-sm rounded-md text-center flex flex-col items-center gap-2.5 group transition-all duration-200">
               <div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-200">
                 <ShieldCheck className="w-5 h-5 text-gray-300 group-hover:text-[#D4AF37]" />
@@ -75,6 +79,21 @@ export default async function HomePage() {
               </div>
               <span className="text-xs sm:text-sm font-bold text-white tracking-wide">Services</span>
             </Link>
+              </div>
+            </div>
+
+            {/* Right Content - 3D Illustration */}
+            <div className="flex-1 w-full max-w-md lg:max-w-none relative">
+              <div className="relative aspect-square w-full sm:w-4/5 lg:w-full mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#D4AF37]/20 to-[#B8212E]/20 rounded-full blur-3xl opacity-50"></div>
+                <img 
+                  src="/images/hero-illustration.jpg" 
+                  alt="Elite Preparation Illustration" 
+                  className="w-full h-full object-cover rounded-2xl shadow-2xl relative z-10 border border-white/10"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
