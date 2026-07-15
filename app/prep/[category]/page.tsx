@@ -51,6 +51,7 @@ const categoryData: Record<string, any> = {
     description: 'Federal and Provincial Public Service Commission Preparation.',
     icon: <BookOpen className="w-8 h-8 text-blue-600" />,
     color: 'blue',
+    headerImageUrl: '/images/public-service-header.jpg',
     subgroups: [
       {
         name: 'All Commissions',
@@ -72,6 +73,7 @@ const categoryData: Record<string, any> = {
     description: 'Prepare for ECAT, MDCAT, NTS, and top university admissions.',
     icon: <GraduationCap className="w-8 h-8 text-amber-600" />,
     color: 'amber',
+    headerImageUrl: '/images/entry-tests-header.jpg',
     subgroups: [
       {
         name: 'All Entry Tests',
