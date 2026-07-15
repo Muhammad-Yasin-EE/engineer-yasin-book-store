@@ -35,46 +35,46 @@ export default async function HomePage() {
     <div className="space-y-16 pb-20 bg-white text-gray-800">
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 sm:py-28 bg-gradient-to-br from-gray-50 via-white to-red-50/40 border-b border-gray-150">
+      <section className="relative overflow-hidden py-16 sm:py-24 bg-[#0A192F] border-b border-[#0A192F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B8212E]/5 border border-[#B8212E]/20 text-[#B8212E] text-xs font-semibold mb-6">
-            <Sparkles className="w-3.5 h-3.5" />
-            Pakistan's #1 Preparation & Tech Portal
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-white/10 border border-white/20 text-white text-[10px] uppercase tracking-wider font-bold mb-6">
+            <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+            Pakistan's Premier Preparation Portal
           </div>
           
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-800 max-w-4xl mx-auto leading-[1.15] mb-6">
-            Gateway to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8212E] to-rose-600">Success</span> & Tech
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.15] mb-6">
+            Gateway to <span className="text-[#D4AF37]">Excellence</span>
           </h1>
           
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Free and premium interactive mock tests for Armed Forces, Public Service, and Entry Exams. Plus VIP Android APKs and professional coding services.
+          <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            Professional mock tests for Armed Forces, Public Service, and Entry Exams. Integrated with VIP tech resources and engineering services.
           </p>
 
           {/* Quick Hub Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
-            <Link href="/prep/armed-forces" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-emerald-100 hover:border-emerald-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <ShieldCheck className="w-6 h-6 text-emerald-600" />
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            <Link href="/prep/armed-forces" className="p-4 sm:p-5 bg-[#112240] border border-[#233554] hover:border-[#D4AF37] hover:bg-[#1A2D54] shadow-sm rounded-md text-center flex flex-col items-center gap-2.5 group transition-all duration-200">
+              <div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-200">
+                <ShieldCheck className="w-5 h-5 text-gray-300 group-hover:text-[#D4AF37]" />
               </div>
-              <span className="text-xs sm:text-sm font-bold text-gray-800">Armed Forces</span>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">Armed Forces</span>
             </Link>
-            <Link href="/prep/public-service" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-blue-100 hover:border-blue-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <BookOpen className="w-6 h-6 text-blue-600" />
+            <Link href="/prep/public-service" className="p-4 sm:p-5 bg-[#112240] border border-[#233554] hover:border-[#D4AF37] hover:bg-[#1A2D54] shadow-sm rounded-md text-center flex flex-col items-center gap-2.5 group transition-all duration-200">
+              <div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-200">
+                <BookOpen className="w-5 h-5 text-gray-300 group-hover:text-[#D4AF37]" />
               </div>
-              <span className="text-xs sm:text-sm font-bold text-gray-800">Public Service</span>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">Public Service</span>
             </Link>
-            <Link href="/software" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-violet-100 hover:border-violet-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-violet-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Download className="w-6 h-6 text-violet-600" />
+            <Link href="/software" className="p-4 sm:p-5 bg-[#112240] border border-[#233554] hover:border-[#D4AF37] hover:bg-[#1A2D54] shadow-sm rounded-md text-center flex flex-col items-center gap-2.5 group transition-all duration-200">
+              <div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-200">
+                <Download className="w-5 h-5 text-gray-300 group-hover:text-[#D4AF37]" />
               </div>
-              <span className="text-xs sm:text-sm font-bold text-gray-800">Apps & Software</span>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">Tech Apps</span>
             </Link>
-            <Link href="/services" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-amber-100 hover:border-amber-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Hammer className="w-6 h-6 text-amber-600" />
+            <Link href="/services" className="p-4 sm:p-5 bg-[#112240] border border-[#233554] hover:border-[#D4AF37] hover:bg-[#1A2D54] shadow-sm rounded-md text-center flex flex-col items-center gap-2.5 group transition-all duration-200">
+              <div className="w-10 h-10 rounded-md bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37]/20 transition-colors duration-200">
+                <Hammer className="w-5 h-5 text-gray-300 group-hover:text-[#D4AF37]" />
               </div>
-              <span className="text-xs sm:text-sm font-bold text-gray-800">Tech Services</span>
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">Services</span>
             </Link>
           </div>
         </div>
@@ -109,25 +109,25 @@ export default async function HomePage() {
             {quizzes.map(quiz => (
               <div 
                 key={quiz.id} 
-                className="bg-white border border-gray-150 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-[#B8212E]/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300"
+                className="bg-white border border-gray-200 p-5 rounded-md flex flex-col justify-between space-y-4 hover:border-[#B8212E] hover:shadow-md transition-all duration-200"
               >
                 <div className="space-y-2">
                   <div className="flex justify-between items-start">
-                    <div className="w-10 h-10 rounded-full bg-red-50 text-[#B8212E] flex items-center justify-center shrink-0">
-                      <FileText className="w-5 h-5" />
+                    <div className="w-8 h-8 rounded-md bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                      <FileText className="w-4 h-4" />
                     </div>
-                    <span className="text-[9px] uppercase tracking-wider font-extrabold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                    <span className="text-[9px] uppercase tracking-wider font-extrabold bg-gray-50 border border-gray-200 text-gray-500 px-2 py-0.5 rounded-sm">
                       {quiz.category || 'General'}
                     </span>
                   </div>
-                  <h3 className="font-bold text-gray-800 text-base leading-snug pt-2">{quiz.title}</h3>
-                  <p className="text-xs text-gray-400 leading-relaxed font-semibold line-clamp-2">{quiz.description}</p>
+                  <h3 className="font-bold text-gray-900 text-base leading-snug pt-2">{quiz.title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed font-medium line-clamp-2">{quiz.description}</p>
                 </div>
                 <Link
                   href={`/prep/quiz/${quiz.id}`}
-                  className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm hover:shadow-md transition-all uppercase tracking-wider mt-2"
+                  className="inline-flex items-center justify-center gap-1.5 w-full py-2 bg-[#B8212E] hover:bg-[#A31C28] text-white font-bold rounded-md text-xs shadow-sm transition-all uppercase tracking-wider mt-2"
                 >
-                  Start Practice Quiz
+                  Start Practice
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

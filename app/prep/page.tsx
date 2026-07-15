@@ -9,7 +9,7 @@ export default function PrepDashboard() {
       
       {/* Header */}
       <div className="flex flex-col items-center text-center border-b border-gray-150 pb-10">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B8212E]/5 border border-[#B8212E]/10 text-[#B8212E] text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-[#B8212E]/10 border border-[#B8212E]/20 text-[#B8212E] text-xs font-bold uppercase tracking-wider mb-4">
           <BookMarked className="w-4 h-4" />
           Test Preparation Hub
         </div>
@@ -25,54 +25,54 @@ export default function PrepDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {/* Armed Forces */}
-        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-emerald-500/40 hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
-          <div className="absolute top-0 w-full h-1 bg-emerald-500/80"></div>
-          <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <ShieldCheck className="w-10 h-10 text-emerald-600" />
+        <div className="bg-[#f8fafc] border border-gray-200 p-6 sm:p-8 rounded-md flex flex-col items-center text-center hover:border-emerald-600 hover:shadow-md transition-all duration-200 group relative overflow-hidden">
+          <div className="absolute top-0 w-full h-1 bg-emerald-600"></div>
+          <div className="w-16 h-16 bg-white border border-gray-200 rounded-md flex items-center justify-center mb-6 group-hover:bg-emerald-50 transition-colors">
+            <ShieldCheck className="w-8 h-8 text-emerald-600" />
           </div>
-          <h2 className="text-2xl font-black text-gray-800 mb-3">Armed Forces</h2>
-          <p className="text-sm text-gray-500 mb-8 flex-grow">
+          <h2 className="text-2xl font-black text-gray-900 mb-3">Armed Forces</h2>
+          <p className="text-sm text-gray-500 mb-8 flex-grow font-medium">
             Join Pak Army, Navy, or PAF. Prepare for PMA Long Course, GD Pilot, PN Cadet, DSSC, AFNS, and more.
           </p>
           <Link 
             href="/prep/armed-forces" 
-            className="w-full py-3.5 bg-gray-50 hover:bg-emerald-600 text-gray-700 hover:text-white font-bold rounded-xl text-sm transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 bg-white border border-gray-300 hover:bg-emerald-600 hover:border-emerald-600 text-gray-700 hover:text-white font-bold rounded-md text-sm transition-colors flex items-center justify-center gap-2"
           >
             Explore Forces Exams <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
         {/* Public Service */}
-        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-blue-500/40 hover:shadow-[0_8px_30px_rgb(59,130,246,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
-          <div className="absolute top-0 w-full h-1 bg-blue-500/80"></div>
-          <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <BookOpen className="w-10 h-10 text-blue-600" />
+        <div className="bg-[#f8fafc] border border-gray-200 p-6 sm:p-8 rounded-md flex flex-col items-center text-center hover:border-blue-600 hover:shadow-md transition-all duration-200 group relative overflow-hidden">
+          <div className="absolute top-0 w-full h-1 bg-blue-600"></div>
+          <div className="w-16 h-16 bg-white border border-gray-200 rounded-md flex items-center justify-center mb-6 group-hover:bg-blue-50 transition-colors">
+            <BookOpen className="w-8 h-8 text-blue-600" />
           </div>
-          <h2 className="text-2xl font-black text-gray-800 mb-3">Public Service</h2>
-          <p className="text-sm text-gray-500 mb-8 flex-grow">
+          <h2 className="text-2xl font-black text-gray-900 mb-3">Public Service</h2>
+          <p className="text-sm text-gray-500 mb-8 flex-grow font-medium">
             CSS, FPSC, PPSC, BPSC, SPSC, KPPSC. Ace your provincial and federal commission tests with past papers.
           </p>
           <Link 
             href="/prep/public-service" 
-            className="w-full py-3.5 bg-gray-50 hover:bg-blue-600 text-gray-700 hover:text-white font-bold rounded-xl text-sm transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 bg-white border border-gray-300 hover:bg-blue-600 hover:border-blue-600 text-gray-700 hover:text-white font-bold rounded-md text-sm transition-colors flex items-center justify-center gap-2"
           >
             Explore Service Exams <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
         {/* Entry Tests */}
-        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-amber-500/40 hover:shadow-[0_8px_30px_rgb(245,158,11,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
-          <div className="absolute top-0 w-full h-1 bg-amber-500/80"></div>
-          <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <GraduationCap className="w-10 h-10 text-amber-600" />
+        <div className="bg-[#f8fafc] border border-gray-200 p-6 sm:p-8 rounded-md flex flex-col items-center text-center hover:border-amber-500 hover:shadow-md transition-all duration-200 group relative overflow-hidden">
+          <div className="absolute top-0 w-full h-1 bg-amber-500"></div>
+          <div className="w-16 h-16 bg-white border border-gray-200 rounded-md flex items-center justify-center mb-6 group-hover:bg-amber-50 transition-colors">
+            <GraduationCap className="w-8 h-8 text-amber-500" />
           </div>
-          <h2 className="text-2xl font-black text-gray-800 mb-3">Entry Tests</h2>
-          <p className="text-sm text-gray-500 mb-8 flex-grow">
+          <h2 className="text-2xl font-black text-gray-900 mb-3">Entry Tests</h2>
+          <p className="text-sm text-gray-500 mb-8 flex-grow font-medium">
             Secure admission in top universities. Preparation material for ECAT, MDCAT, NTS, NUST, PIEAS, UET.
           </p>
           <Link 
             href="/prep/entry-tests" 
-            className="w-full py-3.5 bg-gray-50 hover:bg-amber-600 text-gray-700 hover:text-white font-bold rounded-xl text-sm transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 bg-white border border-gray-300 hover:bg-amber-500 hover:border-amber-500 text-gray-700 hover:text-white font-bold rounded-md text-sm transition-colors flex items-center justify-center gap-2"
           >
             Explore Entry Tests <ArrowRight className="w-4 h-4" />
           </Link>
@@ -81,20 +81,20 @@ export default function PrepDashboard() {
       </div>
 
       {/* Freemium Banner */}
-      <div className="mt-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-6 sm:p-12 text-center flex flex-col items-center relative overflow-hidden shadow-2xl">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#B8212E]/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+      <div className="mt-8 bg-[#0A192F] rounded-md p-6 sm:p-12 text-center flex flex-col items-center relative overflow-hidden shadow-lg border border-[#233554]">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#B8212E]/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
         
         <div className="relative z-10 space-y-4">
-          <div className="inline-flex items-center gap-1 bg-white/10 px-3 py-1 rounded-full text-white/90 text-xs font-bold uppercase tracking-wider border border-white/20">
-            <FileText className="w-4 h-4 text-amber-400" /> Premium Materials
+          <div className="inline-flex items-center gap-1 bg-white/5 px-3 py-1 rounded-sm text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider border border-[#D4AF37]/30">
+            <FileText className="w-3.5 h-3.5" /> Premium Elite Access
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white">Yasin <span className="text-amber-400">Pro Pass</span></h2>
-          <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-black text-white">Yasin <span className="text-[#D4AF37]">Pro Pass</span></h2>
+          <p className="text-gray-300 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-medium">
             While basic quizzes are free, the Yasin Pro Pass gives you lifetime access to top-secret interview notes, completely solved past papers, and premium mock tests with anti-cheat analysis.
           </p>
           <div className="pt-4 flex items-center justify-center gap-4">
-            <Link href="/pricing" className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-gray-900 font-black rounded-full transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] uppercase tracking-wider text-sm">
+            <Link href="/pricing" className="px-8 py-3.5 bg-[#D4AF37] hover:bg-[#F59E0B] text-[#0A192F] font-black rounded-md transition-all shadow-md uppercase tracking-wider text-sm border border-transparent">
               View Pricing
             </Link>
           </div>

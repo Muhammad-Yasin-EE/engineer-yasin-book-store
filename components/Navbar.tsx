@@ -188,12 +188,12 @@ export default function Navbar() {
           
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center border border-gray-250 shadow-sm group-hover:scale-105 transition-all bg-white">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="w-9 h-9 rounded-md overflow-hidden flex items-center justify-center border border-gray-200 shadow-sm group-hover:border-[#B8212E] transition-all bg-white">
                 <img src="/logo.jpg" alt="Engineer Yasin Logo" className="w-full h-full object-cover" />
               </div>
-              <span className="font-bold text-lg tracking-tight text-gray-800">
-                Engineer <span className="text-[#B8212E]">Yasin</span>
+              <span className="font-extrabold text-lg tracking-tight text-gray-900 uppercase">
+                Eng <span className="text-[#B8212E]">Yasin</span>
               </span>
             </Link>
           </div>
@@ -210,7 +210,7 @@ export default function Navbar() {
                   setSearchQuery(e.target.value)
                   setShowSuggestions(true)
                 }}
-                className="w-full bg-[#f5f5f5] border border-transparent rounded-full py-1.5 pl-4 pr-10 text-xs text-[#222222] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 transition-all font-semibold"
+                className="w-full bg-gray-50 border border-gray-200 rounded-md py-1.5 pl-4 pr-10 text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#B8212E] focus:ring-1 focus:ring-[#B8212E]/20 transition-all font-semibold"
               />
               <button type="submit" className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#B8212E] transition-colors">
                 <Search className="w-3.5 h-3.5" />
@@ -322,7 +322,7 @@ export default function Navbar() {
             {/* Dark Mode Switcher */}
             <button
               onClick={toggleDarkMode}
-              className="hidden sm:block p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer"
+              className="hidden sm:block p-2 rounded-md border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer bg-white"
               title="Toggle Theme"
             >
               {darkMode ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-slate-700" />}
@@ -334,12 +334,12 @@ export default function Navbar() {
                 onClick={() => {
                   setShowNotifications(!showNotifications)
                 }}
-                className="p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 relative transition-all cursor-pointer"
+                className="p-2 rounded-md border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 relative transition-all cursor-pointer bg-white"
                 title="Notifications Alerts"
               >
                 <Bell className="w-4 h-4" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-0.5 right-0.5 bg-[#B8212E] text-white text-[8px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center border border-white animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-[#B8212E] text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white animate-pulse">
                     {unreadCount}
                   </span>
                 )}
@@ -394,10 +394,10 @@ export default function Navbar() {
             </div>
 
             {/* Cart Widget */}
-            <Link href="/cart" className="relative p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all flex items-center">
+            <Link href="/cart" className="relative p-2 rounded-md border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all flex items-center bg-white">
               <ShoppingCart className="w-4 h-4" />
               {cart.length > 0 && (
-                <span className="absolute top-0 right-0 bg-[#B8212E] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
+                <span className="absolute -top-1 -right-1 bg-[#B8212E] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">
                   {cart.length}
                 </span>
               )}
@@ -408,14 +408,14 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/account"
-                  className="hidden sm:flex items-center gap-1 px-4.5 py-1.5 rounded-full border border-gray-200 hover:border-[#B8212E]/30 text-xs font-bold text-gray-600 hover:text-[#B8212E] shadow-sm transition-all"
+                  className="hidden sm:flex items-center gap-1 px-4.5 py-1.5 rounded-md border border-gray-200 hover:border-[#B8212E] text-xs font-bold text-gray-600 hover:text-[#B8212E] shadow-sm transition-all bg-white"
                 >
                   <User className="w-3.5 h-3.5" />
                   Library
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer"
+                  className="p-2 rounded-md border border-gray-200 text-gray-500 hover:text-[#B8212E] hover:border-[#B8212E]/30 transition-all cursor-pointer bg-white"
                   title="Sign Out"
                 >
                   <LogOut className="w-4 h-4" />
@@ -424,7 +424,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="hidden sm:flex px-4.5 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white text-xs font-bold rounded-full shadow-sm shadow-[#B8212E]/10 hover:shadow-md transition-all items-center gap-1"
+                className="hidden sm:flex px-4.5 py-1.5 bg-[#B8212E] hover:bg-[#A31C28] text-white text-xs font-bold rounded-md shadow-sm transition-all items-center gap-1 uppercase tracking-wider"
               >
                 <User className="w-3.5 h-3.5" />
                 Sign In
@@ -434,7 +434,7 @@ export default function Navbar() {
             {/* Mobile Menu Trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full border border-gray-200 text-gray-500 hover:text-[#B8212E] focus:outline-none"
+              className="lg:hidden p-2 rounded-md border border-gray-200 text-gray-500 hover:text-[#B8212E] focus:outline-none bg-white"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -453,28 +453,28 @@ export default function Navbar() {
               placeholder="Search website..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-200 rounded-full py-2 pl-4 pr-10 text-xs text-[#222222] focus:outline-none focus:border-[#B8212E]"
+              className="w-full bg-gray-50 border border-gray-200 rounded-md py-2.5 pl-4 pr-10 text-sm text-gray-800 focus:outline-none focus:border-[#B8212E] font-semibold"
             />
             <button type="submit" className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400">
-              <Search className="w-3.5 h-3.5" />
+              <Search className="w-4 h-4" />
             </button>
           </form>
 
           {/* Quick settings row at the top of the menu */}
-          <div className="flex items-center justify-between gap-3 border-b border-gray-100 pb-3">
+          <div className="flex items-center justify-between gap-3 border-b border-gray-150 pb-4">
             <button
               onClick={toggleDarkMode}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:text-[#B8212E] cursor-pointer"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-md border border-gray-200 text-xs font-bold text-gray-700 hover:text-[#B8212E] cursor-pointer bg-white"
             >
               {darkMode ? (
                 <>
                   <Sun className="w-4 h-4 text-amber-500" />
-                  <span>Light Mode</span>
+                  <span>Light</span>
                 </>
               ) : (
                 <>
                   <Moon className="w-4 h-4 text-slate-500" />
-                  <span>Dark Mode</span>
+                  <span>Dark</span>
                 </>
               )}
             </button>
@@ -485,7 +485,7 @@ export default function Navbar() {
                   href="/account"
                   onClick={() => setMobileMenuOpen(false)}
                   prefetch={false}
-                  className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700"
+                  className="px-4 py-2 rounded-md border border-gray-200 text-xs font-bold text-gray-700 bg-white"
                 >
                   Library
                 </Link>
@@ -494,9 +494,9 @@ export default function Navbar() {
                     handleSignOut()
                     setMobileMenuOpen(false)
                   }}
-                  className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-500 cursor-pointer"
+                  className="px-4 py-2 rounded-md border border-gray-200 text-xs font-bold text-gray-500 cursor-pointer bg-white"
                 >
-                  Sign Out
+                  Logout
                 </button>
               </div>
             ) : (
@@ -504,7 +504,7 @@ export default function Navbar() {
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
                 prefetch={false}
-                className="px-4 py-1.5 bg-[#B8212E] hover:bg-[#D62636] text-white text-xs font-bold rounded-full shadow-sm"
+                className="px-6 py-2 bg-[#B8212E] text-white text-xs font-bold rounded-md uppercase tracking-wider text-center flex-grow"
               >
                 Sign In
               </Link>

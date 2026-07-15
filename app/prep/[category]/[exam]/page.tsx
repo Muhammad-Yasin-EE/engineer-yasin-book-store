@@ -38,11 +38,11 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-150 pb-8">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-50 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3 border border-gray-200">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-gray-50 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3 border border-gray-200">
             <LayoutGrid className="w-3.5 h-3.5" />
             Exam Dashboard
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             {title} Preparation
           </h1>
           <p className="text-sm text-gray-500 mt-2 font-medium max-w-2xl">
@@ -71,24 +71,24 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
             {quizzes.map((quiz, index) => (
               <div 
                 key={quiz.id}
-                className="group p-5 border border-gray-200 rounded-xl hover:border-[#B8212E]/40 hover:shadow-lg transition-all bg-white flex flex-col justify-between h-full relative overflow-hidden"
+                className="group p-5 border border-gray-200 rounded-md hover:border-[#B8212E] hover:shadow-md transition-all bg-white flex flex-col justify-between h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-[#B8212E] transition-colors"></div>
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-xs font-bold text-gray-400">Test {index + 1}</span>
-                    <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-extrabold text-gray-500 bg-gray-50 px-2 py-0.5 rounded-full border border-gray-200">
+                    <span className="flex items-center gap-1 text-[10px] uppercase tracking-wider font-extrabold text-gray-500 bg-gray-50 px-2 py-0.5 rounded-sm border border-gray-200">
                       <Clock className="w-3 h-3" /> {quiz.time_limit_minutes || 15}m
                     </span>
                   </div>
-                  <h3 className="font-bold text-gray-800 text-base group-hover:text-[#B8212E] transition-colors line-clamp-2">
+                  <h3 className="font-bold text-gray-900 text-base group-hover:text-[#B8212E] transition-colors line-clamp-2">
                     {quiz.title}
                   </h3>
                 </div>
                 <div className="mt-6">
                   <Link 
                     href={`/prep/quiz/${quiz.id}`}
-                    className="w-full py-2 bg-gray-50 hover:bg-[#B8212E] text-gray-600 hover:text-white text-xs font-bold rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+                    className="w-full py-2 bg-gray-50 border border-gray-200 hover:bg-[#B8212E] hover:border-[#B8212E] text-gray-700 hover:text-white text-xs font-bold rounded-md flex items-center justify-center gap-1.5 transition-colors uppercase tracking-wider"
                   >
                     Start Test <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -97,8 +97,8 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
             ))}
           </div>
         ) : (
-          <div className="py-20 text-center flex flex-col items-center justify-center bg-gray-50 rounded-2xl border border-gray-150 border-dashed">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4">
+          <div className="py-20 text-center flex flex-col items-center justify-center bg-gray-50 rounded-md border border-gray-200 border-dashed">
+            <div className="w-16 h-16 bg-white rounded-md flex items-center justify-center shadow-sm mb-4 border border-gray-100">
               <CheckCircle className="w-8 h-8 text-gray-300" />
             </div>
             <h3 className="text-lg font-bold text-gray-700">No mock tests available</h3>

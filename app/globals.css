@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -13,15 +13,16 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--color-accent);
   --color-accent-hover: var(--color-accent-hover);
-  --font-sans: 'Poppins', sans-serif;
-  --font-serif: 'Libre Baskerville', serif;
+  --font-sans: 'Inter', sans-serif;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom premium scrollbar styling matching studentstore.pk */
@@ -58,24 +59,24 @@ body {
   transform: translateY(-1px);
 }
 
-/* Premium Dark Mode Styles */
+/* Premium Dark Mode Styles (Elite Navy) */
 .dark {
-  --background: #0b0f19;
+  --background: #0A192F;
   --foreground: #f1f5f9;
 }
 
 .dark body {
-  background-color: #0b0f19;
+  background-color: #0A192F;
   color: #f1f5f9;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0b0f19;
+  background: #0A192F;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-color: #0b0f19;
+  background: #233554;
+  border-color: #0A192F;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
@@ -84,17 +85,17 @@ body {
 
 .dark .bg-white,
 .dark [class*="bg-white"] {
-  background-color: #111827 !important; /* gray-900 */
+  background-color: #112240 !important;
 }
 
 .dark .text-gray-800,
 .dark [class*="text-gray-800"] {
-  color: #f3f4f6 !important; /* gray-100 */
+  color: #f8fafc !important; 
 }
 
 .dark .text-gray-700,
 .dark [class*="text-gray-700"] {
-  color: #e5e7eb !important; /* gray-250 */
+  color: #e2e8f0 !important; 
 }
 
 .dark .text-gray-600,
@@ -114,31 +115,22 @@ body {
 
 .dark .bg-gray-50,
 .dark [class*="bg-gray-50"] {
-  background-color: #1f2937 !important; /* gray-800 */
+  background-color: #0F172A !important; 
 }
 
 .dark .bg-\[\#f8fafc\] {
-  background-color: #111827 !important; /* gray-900 */
+  background-color: #0A192F !important;
 }
 
 .dark .border-gray-200,
-.dark [class*="border-gray-200"] {
-  border-color: #374151 !important; /* gray-700 */
-}
-
+.dark [class*="border-gray-200"],
 .dark .border-gray-150,
-.dark [class*="border-gray-150"] {
-  border-color: #1f2937 !important; /* gray-800 */
-}
-
+.dark [class*="border-gray-150"],
 .dark .border-gray-250,
-.dark [class*="border-gray-250"] {
-  border-color: #374151 !important;
-}
-
+.dark [class*="border-gray-250"],
 .dark .border-gray-100,
 .dark [class*="border-gray-100"] {
-  border-color: #1f2937 !important;
+  border-color: #233554 !important;
 }
 
 /* Fix table text in dark mode admin views */
