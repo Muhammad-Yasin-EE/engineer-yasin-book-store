@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import OrderStatusBadge from '@/components/OrderStatusBadge'
-import { User, Library, FileText, Download, ShieldAlert, Sparkles, BookOpen } from 'lucide-react'
+import { User, Library, FileText, Download, ShieldAlert, Sparkles, BookOpen, Target, Trophy, Clock } from 'lucide-react'
 import ProfileEditor from '@/components/ProfileEditor'
 
 export const revalidate = 0
@@ -19,6 +19,7 @@ export default async function AccountPage() {
   let profile: any = null
   let purchases: any[] = []
   let orders: any[] = []
+  let userScores: any[] = []
   let errorMsg = null
 
   try {
@@ -42,6 +43,15 @@ export default async function AccountPage() {
       .order('created_at', { ascending: false })
     orders = orderData || []
 
+    // This table needs to be created in Supabase first (quiz_scores.sql provided)
+    const { data: scoreData } = await supabase
+      .from('user_scores')
+      .select('*, quizzes(title)')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(5)
+    userScores = scoreData || []
+
   } catch (err: any) {
     console.error('Account Page Fetch Error:', err)
     errorMsg = 'Could not load library details. Database connection error.'
@@ -60,14 +70,64 @@ export default async function AccountPage() {
       {/* Profile Editor Component */}
       <ProfileEditor profile={profile} userEmail={user.email || ''} />
 
-      {/* Grid: My Library & My Orders */}
+      {/* My Progress Section */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between border-b border-gray-150 pb-2">
+          <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2">
+            <Target className="w-4 h-4 text-[#B8212E]" />
+            My Quiz Progress
+          </h2>
+          <Link href="/leaderboard" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors flex items-center gap-1">
+            <Trophy className="w-3 h-3" /> View Leaderboard
+          </Link>
+        </div>
+
+        {userScores.length === 0 ? (
+          <div className="py-8 bg-gray-50 border border-gray-200 border-dashed rounded-none flex flex-col items-center justify-center text-gray-400 text-center px-4">
+            <Target className="w-8 h-8 mb-2 opacity-30 text-gray-500" />
+            <h4 className="text-xs font-bold text-gray-650">No Tests Taken Yet</h4>
+            <p className="text-[10px] mt-1">Start practicing mock tests to see your progress here.</p>
+            <Link href="/prep" className="mt-3 text-[10px] font-bold text-[#B8212E] hover:underline">Go to Prep Hub &rarr;</Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {userScores.map((score) => (
+              <div key={score.id} className="p-4 border border-gray-200 bg-white hover:border-[#B8212E]/30 transition-colors">
+                <h4 className="text-xs font-bold text-gray-800 truncate mb-2" title={score.quizzes?.title}>
+                  {score.quizzes?.title || 'Unknown Quiz'}
+                </h4>
+                <div className="flex items-center justify-between mt-3">
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-gray-500">
+                    <Trophy className="w-3.5 h-3.5 text-amber-500" />
+                    <span className={score.percentage >= 50 ? 'text-emerald-600' : 'text-rose-600'}>
+                      {score.percentage}%
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-gray-400">
+                    <Clock className="w-3 h-3" />
+                    {score.time_taken_seconds ? `${Math.floor(score.time_taken_seconds / 60)}m ${score.time_taken_seconds % 60}s` : 'N/A'}
+                  </div>
+                </div>
+                <div className="w-full bg-gray-100 h-1.5 mt-2 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full rounded-full ${score.percentage >= 50 ? 'bg-emerald-500' : 'bg-rose-500'}`} 
+                    style={{ width: `${score.percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Grid: Saved Materials & My Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
         {/* Left Column: My Library (Purchased Items) */}
         <div className="lg:col-span-7 space-y-6">
           <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2 border-b border-gray-150 pb-2">
             <Library className="w-4 h-4 text-[#B8212E]" />
-            My Library ({purchases.length})
+            Saved Materials ({purchases.length})
           </h2>
 
           {purchases.length === 0 ? (
@@ -138,9 +198,11 @@ export default async function AccountPage() {
               <FileText className="w-4 h-4 text-[#B8212E]" />
               My Orders ({orders.length})
             </h2>
-            <Link href="/track" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors">
-              Track Pending Order
-            </Link>
+            {orders.some(o => o.status === 'pending' || o.status === 'processing') && (
+              <Link href="/track" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors">
+                Track Pending Order
+              </Link>
+            )}
           </div>
 
           {orders.length === 0 ? (

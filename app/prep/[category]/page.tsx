@@ -1,20 +1,45 @@
 import Link from 'next/link'
-import { ArrowRight, ShieldCheck, BookOpen, GraduationCap, ArrowLeft } from 'lucide-react'
+import { ArrowRight, ShieldCheck, BookOpen, GraduationCap, ArrowLeft, Target } from 'lucide-react'
 
-// Mock Data for Categories - Can be moved to DB later
+// Enhanced Data for Categories matching exactly what user provided
 const categoryData: Record<string, any> = {
   'armed-forces': {
     title: 'Armed Forces Preparation',
     description: 'Join Pak Army, Navy, or PAF. Select your specific commission exam below.',
     icon: <ShieldCheck className="w-8 h-8 text-emerald-600" />,
     color: 'emerald',
-    exams: [
-      { id: 'pma-long-course', name: 'PMA Long Course', tag: 'Army' },
-      { id: 'lcc', name: 'Lady Cadet Course (LCC)', tag: 'Army' },
-      { id: 'dssc', name: 'Direct Short Service Commission', tag: 'Army' },
-      { id: 'gd-pilot', name: 'GD Pilot', tag: 'PAF' },
-      { id: 'aeronautical-engineering', name: 'Aeronautical Engineering', tag: 'PAF' },
-      { id: 'pn-cadet', name: 'PN Cadet', tag: 'Navy' },
+    subgroups: [
+      {
+        name: 'Pakistan Army',
+        exams: [
+          { id: 'pma-long-course', name: 'PMA Long Course' },
+          { id: 'lcc', name: 'LCC (Lady Cadet Course)' },
+          { id: 'dssc', name: 'DSSC' },
+          { id: 'tcc', name: 'TCC (Technical Cadet Course)' },
+          { id: 'afns', name: 'AFNS' },
+          { id: 'soldier', name: 'Soldier' },
+        ]
+      },
+      {
+        name: 'Pakistan Air Force',
+        exams: [
+          { id: 'gd-pilot', name: 'GD Pilot' },
+          { id: 'aeronautical-engineering', name: 'Aeronautical Engineering' },
+          { id: 'air-defence', name: 'Air Defence' },
+          { id: 'admin', name: 'Admin' },
+          { id: 'accounts', name: 'Accounts' },
+        ]
+      },
+      {
+        name: 'Pakistan Navy',
+        exams: [
+          { id: 'pn-cadet', name: 'PN Cadet' },
+          { id: 'ssc', name: 'SSC' },
+          { id: 'marines', name: 'Marines' },
+          { id: 'sailor', name: 'Sailor' },
+          { id: 'civilian', name: 'Civilian' },
+        ]
+      }
     ]
   },
   'public-service': {
@@ -22,12 +47,19 @@ const categoryData: Record<string, any> = {
     description: 'Federal and Provincial Public Service Commission Preparation.',
     icon: <BookOpen className="w-8 h-8 text-blue-600" />,
     color: 'blue',
-    exams: [
-      { id: 'fpsc', name: 'FPSC (Federal)', tag: 'Federal' },
-      { id: 'ppsc', name: 'PPSC (Punjab)', tag: 'Provincial' },
-      { id: 'spsc', name: 'SPSC (Sindh)', tag: 'Provincial' },
-      { id: 'kppsc', name: 'KPPSC (KPK)', tag: 'Provincial' },
-      { id: 'bpsc', name: 'BPSC (Balochistan)', tag: 'Provincial' },
+    subgroups: [
+      {
+        name: 'All Commissions',
+        exams: [
+          { id: 'fpsc', name: 'FPSC' },
+          { id: 'ppsc', name: 'PPSC' },
+          { id: 'bpsc', name: 'BPSC' },
+          { id: 'spsc', name: 'SPSC' },
+          { id: 'kppsc', name: 'KPPSC' },
+          { id: 'ajkpsc', name: 'AJKPSC' },
+          { id: 'gbpsc', name: 'GBPSC' },
+        ]
+      }
     ]
   },
   'entry-tests': {
@@ -35,12 +67,22 @@ const categoryData: Record<string, any> = {
     description: 'Prepare for ECAT, MDCAT, NTS, and top university admissions.',
     icon: <GraduationCap className="w-8 h-8 text-amber-600" />,
     color: 'amber',
-    exams: [
-      { id: 'ecat', name: 'ECAT (Engineering)', tag: 'UET' },
-      { id: 'mdcat', name: 'MDCAT (Medical)', tag: 'PMDC' },
-      { id: 'nts', name: 'NTS NAT/GAT', tag: 'NTS' },
-      { id: 'nust', name: 'NUST NET', tag: 'NUST' },
-      { id: 'pieas', name: 'PIEAS Entry Test', tag: 'PIEAS' },
+    subgroups: [
+      {
+        name: 'All Entry Tests',
+        exams: [
+          { id: 'ecat', name: 'ECAT' },
+          { id: 'mdcat', name: 'MDCAT' },
+          { id: 'nts', name: 'NTS' },
+          { id: 'uet', name: 'UET' },
+          { id: 'nust', name: 'NUST' },
+          { id: 'pieas', name: 'PIEAS' },
+          { id: 'giki', name: 'GIKI' },
+          { id: 'ots', name: 'OTS' },
+          { id: 'pts', name: 'PTS' },
+          { id: 'cts', name: 'CTS' },
+        ]
+      }
     ]
   }
 }
@@ -82,29 +124,34 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         </p>
       </div>
 
-      {/* Exams Grid */}
-      <div>
-        <h2 className="text-xl font-bold text-gray-800 mb-6">Available Exams & Courses</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {data.exams.map((exam: any) => (
-            <Link 
-              key={exam.id}
-              href={`/prep/${category}/${exam.id}`}
-              className="group p-5 border border-gray-200 rounded-xl hover:border-[#B8212E]/40 hover:shadow-lg transition-all bg-white flex flex-col justify-between h-full"
-            >
-              <div>
-                <span className="text-[10px] uppercase tracking-wider font-extrabold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full mb-3 inline-block">
-                  {exam.tag}
-                </span>
-                <h3 className="font-bold text-gray-800 text-lg group-hover:text-[#B8212E] transition-colors">{exam.name}</h3>
-              </div>
-              <div className="mt-6 flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-[#B8212E]">
-                <span>View Materials</span>
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            </Link>
-          ))}
-        </div>
+      {/* Subgroups & Exams */}
+      <div className="space-y-12">
+        {data.subgroups.map((subgroup: any) => (
+          <div key={subgroup.name}>
+            <div className="flex items-center gap-2 mb-6 border-b border-gray-150 pb-2">
+              <Target className="w-5 h-5 text-[#B8212E]" />
+              <h2 className="text-xl font-bold text-gray-800 uppercase tracking-widest">{subgroup.name}</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {subgroup.exams.map((exam: any) => (
+                <Link 
+                  key={exam.id}
+                  href={`/prep/${category}/${exam.id}`}
+                  className="group p-5 border border-gray-200 rounded-xl hover:border-[#B8212E]/40 hover:shadow-lg transition-all bg-white flex flex-col justify-between h-full"
+                >
+                  <div>
+                    <h3 className="font-bold text-gray-800 text-lg group-hover:text-[#B8212E] transition-colors">{exam.name}</h3>
+                  </div>
+                  <div className="mt-6 flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-[#B8212E]">
+                    <span>View Materials</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )
