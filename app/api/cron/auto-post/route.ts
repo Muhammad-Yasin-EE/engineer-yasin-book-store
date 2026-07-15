@@ -17,8 +17,14 @@ const TARGET_FEEDS = [
     type: 'scholarship',
     category: "Graduate (Master's)"
   },
+  // We can add more targeted Pakistan scholarship feeds here if found
   {
     url: 'https://remoteok.com/rss',
+    type: 'job',
+    category: "Private Jobs"
+  },
+  {
+    url: 'https://weworkremotely.com/categories/remote-programming-jobs.rss',
     type: 'job',
     category: "Private Jobs"
   }
@@ -33,13 +39,17 @@ function extractDomain(url: string) {
   }
 }
 
-function getOfficialImage(url: string, content: string) {
+function getUniqueImage(url: string, content: string, title: string) {
+  // First try to find real image in HTML
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/)
-  if (imgMatch && imgMatch[1]) {
+  if (imgMatch && imgMatch[1] && !imgMatch[1].includes('pixel.wp.com')) {
     return imgMatch[1]
   }
+  
+  // If no image, generate a beautiful unique letter avatar based on company/domain name
   const domain = extractDomain(url)
-  return `https://icon.horse/icon/${domain}`
+  const nameToUse = domain.split('.')[0] || title.substring(0, 2)
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(nameToUse)}&background=random&color=fff&size=512&font-size=0.33`
 }
 
 export async function GET(request: Request) {
@@ -55,18 +65,37 @@ export async function GET(request: Request) {
   for (const feed of TARGET_FEEDS) {
     try {
       const feedData = await parser.parseURL(feed.url)
-      const items = feedData.items.slice(0, 5)
+      // Process more items since we will filter many out
+      const items = feedData.items.slice(0, 15)
 
       for (const item of items) {
         if (!item.title || !item.link) continue
 
         let buyLinkUrl = item.link
-        if (buyLinkUrl.includes('google.com/url?q=')) {
-          const match = buyLinkUrl.match(/url\?q=([^&]+)/)
-          if (match && match[1]) {
-            buyLinkUrl = decodeURIComponent(match[1])
+        let cleanTitle = item.title.replace(/<[^>]*>?/gm, '').trim()
+        cleanTitle = cleanTitle.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
+        if (cleanTitle.length > 100) cleanTitle = cleanTitle.substring(0, 100) + '...'
+        
+        const fullText = (cleanTitle + ' ' + (item.contentSnippet || item.content || '')).toLowerCase()
+
+        // --- FILTERING LOGIC ---
+        if (feed.type === 'job') {
+          const isRemote = fullText.includes('remote') || fullText.includes('anywhere') || fullText.includes('worldwide')
+          const isPak = fullText.includes('pakistan') || fullText.includes('pk') || fullText.includes('islamabad') || fullText.includes('lahore') || fullText.includes('karachi')
+          
+          // Only allow Jobs if they are Remote or in Pakistan
+          if (!isRemote && !isPak) continue
+
+          // Check if it's an internship
+          if (fullText.includes('intern') || fullText.includes('internship')) {
+            feed.category = "Internships"
           }
+        } else if (feed.type === 'scholarship') {
+          // Exclude highly restrictive scholarships not for Pakistanis
+          const isRestricted = fullText.includes('us citizens only') || fullText.includes('uk citizens only') || fullText.includes('european union only')
+          if (isRestricted) continue
         }
+        // -----------------------
 
         const { data: existing } = await supabase
           .from('items')
@@ -76,11 +105,7 @@ export async function GET(request: Request) {
 
         if (existing) continue
 
-        let cleanTitle = item.title.replace(/<[^>]*>?/gm, '').trim()
-        cleanTitle = cleanTitle.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
-        if (cleanTitle.length > 100) cleanTitle = cleanTitle.substring(0, 100) + '...'
-
-        const coverImage = getOfficialImage(buyLinkUrl, item.content || item.contentSnippet || '')
+        const coverImage = getUniqueImage(buyLinkUrl, item.content || item.contentSnippet || '', cleanTitle)
 
         const { error } = await supabase.from('items').insert({
           title: cleanTitle,
