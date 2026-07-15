@@ -249,33 +249,21 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-5">
             
-            {/* Category Dropdown 1: Preparation */}
-            <div 
-              className="relative py-2"
-              onMouseEnter={() => setActiveDropdown('prep')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="text-xs font-bold text-gray-600 hover:text-[#B8212E] flex items-center gap-0.5 cursor-pointer transition-colors">
-                <BookMarked className="w-3.5 h-3.5" />
-                Preparation
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              {activeDropdown === 'prep' && (
-                <div className="absolute left-0 mt-0 w-44 bg-white border border-gray-150 rounded-none shadow-lg py-1.5 z-50 animate-scale-in">
-                  <Link href="/prep/armed-forces" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
-                    Armed Forces
-                  </Link>
-                  <Link href="/prep/public-service" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
-                    Public Service
-                  </Link>
-                  <Link href="/prep/entry-tests" prefetch={false} className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-50 hover:text-[#B8212E] font-bold transition-all">
-                    Entry Tests
-                  </Link>
-                </div>
-              )}
-            </div>
+            {/* Direct Prep Links */}
+            <Link href="/prep/armed-forces" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <Award className="w-3.5 h-3.5" />
+              Armed Forces
+            </Link>
+            <Link href="/prep/public-service" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <BookOpen className="w-3.5 h-3.5" />
+              Public Service
+            </Link>
+            <Link href="/prep/entry-tests" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <GraduationCap className="w-3.5 h-3.5" />
+              Entry Tests
+            </Link>
 
             {/* Standalone Software Link */}
             <Link href="/software" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
@@ -526,26 +514,18 @@ export default function Navbar() {
           <div className="flex flex-col gap-2 text-xs font-bold text-gray-600">
             <div className="text-[9px] uppercase tracking-wider text-gray-400 font-extrabold pb-0.5 border-b border-gray-100 mb-1">Directories</div>
 
-            {/* Prep collapsible group */}
-            <details className="group border-b border-gray-100 pb-2">
-              <summary className="flex items-center justify-between py-1.5 cursor-pointer hover:text-[#B8212E] select-none list-none [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center gap-2 text-gray-600 hover:text-[#B8212E]">
-                  <BookMarked className="w-4 h-4 text-[#B8212E]" /> Preparation
-                </span>
-                <ChevronDown className="w-3.5 h-3.5 text-gray-400 group-open:rotate-180 transition-transform" />
-              </summary>
-              <div className="pl-6 flex flex-col gap-2 mt-1.5 pb-1">
-                <Link href="/prep/armed-forces" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
-                  Armed Forces
-                </Link>
-                <Link href="/prep/public-service" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
-                  Public Service
-                </Link>
-                <Link href="/prep/entry-tests" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-1 block text-gray-500 font-semibold">
-                  Entry Tests
-                </Link>
-              </div>
-            </details>
+            {/* Direct Prep Links */}
+            <Link href="/prep/armed-forces" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
+              <Award className="w-4 h-4 text-[#B8212E]" /> Armed Forces
+            </Link>
+            
+            <Link href="/prep/public-service" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
+              <BookOpen className="w-4 h-4 text-[#B8212E]" /> Public Service
+            </Link>
+            
+            <Link href="/prep/entry-tests" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
+              <GraduationCap className="w-4 h-4 text-[#B8212E]" /> Entry Tests
+            </Link>
 
             {/* Standalone Software Link */}
             <Link href="/software" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
