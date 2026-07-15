@@ -171,9 +171,9 @@ export default function LiveChatWidget() {
       
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-80 sm:w-80 h-96 bg-white border border-gray-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-in origin-bottom-right">
+        <div className="mb-4 w-[calc(100vw-24px)] sm:w-80 max-w-[360px] h-[75vh] sm:h-96 max-h-[500px] bg-white border border-gray-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-scale-in origin-bottom-right fixed bottom-[140px] right-3 sm:bottom-auto sm:right-auto sm:relative">
           {/* Header */}
-          <div className="bg-[#222222] p-4 flex items-center justify-between">
+          <div className="bg-[#222222] p-4 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20">
                 <img src="/logo.jpg" alt="Support" className="w-full h-full object-cover" />
