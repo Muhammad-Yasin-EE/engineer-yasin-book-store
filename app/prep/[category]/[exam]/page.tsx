@@ -27,6 +27,22 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
     .ilike('title', `${searchPrefix}%`)
     .order('created_at', { ascending: true })
 
+  let headerBgImage = ''
+  if (category === 'armed-forces') {
+    const armyExams = ['pma-long-course', 'lcc', 'dssc', 'tcc', 'afns', 'soldier']
+    const pafExams = ['gd-pilot', 'aeronautical-engineering', 'air-defence', 'admin', 'accounts']
+    const navyExams = ['pn-cadet', 'ssc', 'marines', 'sailor', 'civilian']
+    
+    if (armyExams.includes(exam)) headerBgImage = '/images/exam-army-bg.jpg'
+    else if (pafExams.includes(exam)) headerBgImage = '/images/exam-paf-bg.jpg'
+    else if (navyExams.includes(exam)) headerBgImage = '/images/exam-navy-bg.jpg'
+    else headerBgImage = '/images/armed-forces-header.jpg'
+  } else if (category === 'public-service') {
+    headerBgImage = '/images/public-service-header.jpg'
+  } else if (category === 'entry-tests') {
+    headerBgImage = '/images/entry-tests-header.jpg'
+  }
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow flex flex-col gap-10 bg-white text-gray-800 overflow-hidden">
       
@@ -36,20 +52,39 @@ export default async function ExamPage({ params }: { params: Promise<{ category:
       </Link>
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-150 pb-8">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-gray-50 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3 border border-gray-200">
-            <LayoutGrid className="w-3.5 h-3.5" />
-            Exam Dashboard
+      {headerBgImage ? (
+        <div className="relative rounded-md overflow-hidden shadow-sm border border-gray-200 min-h-[220px] sm:min-h-[260px] flex items-center p-6 sm:p-10 mb-2">
+          <div className="absolute inset-0 bg-[#0A192F]/80 z-10 mix-blend-multiply"></div>
+          <img src={headerBgImage} alt={title} className="absolute inset-0 w-full h-full object-cover object-center" />
+          <div className="relative z-20 flex flex-col items-start w-full text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-white/20 border border-white/30 text-white text-[10px] font-extrabold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-sm">
+              <LayoutGrid className="w-3.5 h-3.5" />
+              Exam Dashboard
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-lg leading-tight">
+              {title}
+            </h1>
+            <p className="text-sm sm:text-base text-gray-200 mt-3 font-medium max-w-2xl drop-shadow-md">
+              Everything you need to crack the {title} exam. Practice with real mock tests, read notes, and review past papers.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-            {title} Preparation
-          </h1>
-          <p className="text-sm text-gray-500 mt-2 font-medium max-w-2xl">
-            Everything you need to crack the {title} exam. Practice with real mock tests, read notes, and review past papers.
-          </p>
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-150 pb-8">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm bg-gray-50 text-gray-600 text-[10px] font-extrabold uppercase tracking-wider mb-3 border border-gray-200">
+              <LayoutGrid className="w-3.5 h-3.5" />
+              Exam Dashboard
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+              {title} Preparation
+            </h1>
+            <p className="text-sm text-gray-500 mt-2 font-medium max-w-2xl">
+              Everything you need to crack the {title} exam. Practice with real mock tests, read notes, and review past papers.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="-mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto border-b border-gray-200 hide-scrollbar w-full">
