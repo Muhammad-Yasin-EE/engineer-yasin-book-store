@@ -28,7 +28,7 @@ const RESOURCE_TYPES = [
 export default function AdminDashboard() {
   const supabase = createClient()
   
-  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages' | 'blog' | 'subscribers' | 'quiz' | 'chat'>('orders')
+  const [activeTab, setActiveTab] = useState<'orders' | 'items' | 'pages' | 'blog' | 'subscribers' | 'quiz' | 'chat' | 'users'>('orders')
   const [orders, setOrders] = useState<any[]>([])
   const [items, setItems] = useState<any[]>([])
   const [customPages, setCustomPages] = useState<any[]>([])
@@ -74,6 +74,10 @@ export default function AdminDashboard() {
   // Subscribers states
   const [subscribers, setSubscribers] = useState<any[]>([])
   const [loadingSubscribers, setLoadingSubscribers] = useState(false)
+  // Users / Profiles states
+  const [users, setUsers] = useState<any[]>([])
+  const [loadingUsers, setLoadingUsers] = useState(false)
+  const [selectedUser, setSelectedUser] = useState<any>(null)
   
   const [loadingOrders, setLoadingOrders] = useState(false)
   const [loadingItems, setLoadingItems] = useState(false)
@@ -132,6 +136,22 @@ export default function AdminDashboard() {
       console.error('Fetch Orders Error:', err)
     } finally {
       setLoadingOrders(false)
+    }
+  }
+
+  const fetchUsers = async () => {
+    setLoadingUsers(true)
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (error) throw error
+      setUsers(data || [])
+    } catch (err) {
+      console.error('Fetch Users Error:', err)
+    } finally {
+      setLoadingUsers(false)
     }
   }
 
@@ -455,7 +475,8 @@ export default function AdminDashboard() {
       fetchCustomPages(),
       fetchBlogPosts(),
       fetchSubscribers(),
-      fetchQuizzes()
+      fetchQuizzes(),
+      fetchUsers()
     ])
 
     // Load Chat Sessions
@@ -888,6 +909,13 @@ export default function AdminDashboard() {
           >
             <Award className="w-4 h-4" />
             Quizzes ({quizzes.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${activeTab === 'users' ? 'bg-[#B8212E] text-white shadow-sm' : 'text-gray-550'}`}
+          >
+            <Users className="w-4 h-4" />
+            Profiles ({users.length})
           </button>
           <button
             onClick={() => setActiveTab('chat')}
@@ -1615,6 +1643,55 @@ export default function AdminDashboard() {
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* TAB 8: PROFILES / USERS */}
+      {activeTab === 'users' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-gray-150 pb-4">
+            <h2 className="text-xs font-bold text-gray-450 uppercase tracking-widest">Registered User Profiles ({users.length})</h2>
+          </div>
+
+          {loadingUsers ? (
+            <div className="py-20 text-center text-gray-500 text-sm">Querying database...</div>
+          ) : users.length === 0 ? (
+            <div className="py-12 bg-gray-50 border border-gray-200 text-center text-gray-400 text-xs">No users found.</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {users.map((u) => (
+                <div key={u.id} className="p-5 bg-white border border-gray-200 shadow-sm flex flex-col gap-4 relative">
+                  {u.is_admin && (
+                    <span className="absolute top-4 right-4 bg-amber-100 text-amber-700 text-[8px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-widest">
+                      Admin
+                    </span>
+                  )}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full border border-gray-200 overflow-hidden bg-gray-50 shrink-0">
+                      {u.avatar_url ? (
+                        <img src={u.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 font-bold text-lg uppercase">
+                          {(u.name || u.email).charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div className="truncate">
+                      <h4 className="font-bold text-gray-800 text-sm truncate">{u.name || 'No Name'}</h4>
+                      <p className="text-[10px] text-gray-500 truncate">{u.email}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-3 text-[10px] space-y-1.5 border border-gray-150 rounded-sm">
+                    {u.school_university && <div className="text-gray-600"><span className="font-bold text-gray-500">School:</span> {u.school_university}</div>}
+                    {u.age && <div className="text-gray-600"><span className="font-bold text-gray-500">Age:</span> {u.age}</div>}
+                    {u.phone && <div className="text-gray-600"><span className="font-bold text-gray-500">Phone:</span> {u.phone}</div>}
+                    {u.city && <div className="text-gray-600"><span className="font-bold text-gray-500">Location:</span> {u.city}</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

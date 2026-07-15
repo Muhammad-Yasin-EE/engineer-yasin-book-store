@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import OrderStatusBadge from '@/components/OrderStatusBadge'
 import { User, Library, FileText, Download, ShieldAlert, Sparkles, BookOpen } from 'lucide-react'
+import ProfileEditor from '@/components/ProfileEditor'
 
 export const revalidate = 0
 
@@ -56,39 +57,8 @@ export default async function AccountPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow bg-white text-[#222222] space-y-12">
       
-      {/* Profile Overview Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-150 pb-8 gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-[#B8212E] rounded-full flex items-center justify-center shadow-sm">
-            <User className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-tight">
-              {profile?.name || user.email?.split('@')[0]}
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-400 font-semibold">
-              Registered email: <span className="text-gray-600">{user.email}</span>
-            </p>
-          </div>
-        </div>
-        
-        {profile?.is_admin && (
-          <Link 
-            href="/admin"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-50 border border-amber-200 text-amber-600 text-xs font-bold rounded-full hover:bg-amber-100 transition-all cursor-pointer"
-          >
-            <ShieldAlert className="w-4 h-4" />
-            Admin Dashboard Access
-          </Link>
-        )}
-      </div>
-
-      {errorMsg && (
-        <div className="p-4 bg-rose-50 border border-rose-200 text-rose-600 text-xs rounded-none flex gap-2">
-          <ShieldAlert className="w-4 h-4" />
-          <span>{errorMsg}</span>
-        </div>
-      )}
+      {/* Profile Editor Component */}
+      <ProfileEditor profile={profile} userEmail={user.email || ''} />
 
       {/* Grid: My Library & My Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
