@@ -12,16 +12,15 @@ const parser = new Parser({
 })
 
 const TARGET_FEEDS = [
-  // Examples of Google Alert RSS Feeds
   {
-    url: 'https://www.google.com/alerts/feeds/14418386377196621217/14603943926868285521', 
+    url: 'https://www.scholars4dev.com/feed/', 
     type: 'scholarship',
-    category: "Undergraduate"
+    category: "Graduate (Master's)"
   },
   {
-    url: 'https://www.google.com/alerts/feeds/14418386377196621217/637841398867375685',
+    url: 'https://remoteok.com/rss',
     type: 'job',
-    category: "Government Jobs"
+    category: "Private Jobs"
   }
 ]
 
@@ -72,7 +71,7 @@ export async function GET(request: Request) {
         const { data: existing } = await supabase
           .from('items')
           .select('id')
-          .eq('buy_link', buyLinkUrl)
+          .eq('file_path', buyLinkUrl)
           .single()
 
         if (existing) continue
@@ -81,23 +80,18 @@ export async function GET(request: Request) {
         cleanTitle = cleanTitle.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&')
         if (cleanTitle.length > 100) cleanTitle = cleanTitle.substring(0, 100) + '...'
 
-        const baseSlug = slugify(cleanTitle, { lower: true, strict: true })
-        const uniqueSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 6)}`
-
         const coverImage = getOfficialImage(buyLinkUrl, item.content || item.contentSnippet || '')
 
         const { error } = await supabase.from('items').insert({
           title: cleanTitle,
-          slug: uniqueSlug,
           description: item.contentSnippet || item.content || cleanTitle,
           resource_type: feed.type,
           category: feed.category,
-          buy_link: buyLinkUrl, 
-          file_url: null,
+          type: 'free',
+          file_path: buyLinkUrl, 
           price: 0,
           author: extractDomain(buyLinkUrl).toUpperCase(),
-          cover_image: coverImage,
-          features: ['Official Source', 'Auto Verified', 'Apply Online']
+          cover_url: coverImage
         })
 
         if (error) {
