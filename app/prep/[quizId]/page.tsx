@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef, use } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { ArrowLeft, Loader2, Award, CheckCircle2, XCircle, ChevronRight, RotateCcw, AlertTriangle, Clock, User, ShieldAlert } from 'lucide-react'
+import { ArrowLeft, Loader2, Award, CheckCircle2, XCircle, ChevronRight, ChevronLeft, RotateCcw, AlertTriangle, Clock, User, ShieldAlert, CheckSquare } from 'lucide-react'
 
 // Constants
 const QUIZ_TIME_LIMIT_MINUTES = 15
@@ -30,11 +30,10 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
   const [autoSubmittedDueToCheat, setAutoSubmittedDueToCheat] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Quiz States
+  // Exam States
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
-  const [isAnswered, setIsAnswered] = useState(false)
-  const [score, setScore] = useState(0)
+  const [answers, setAnswers] = useState<Record<number, number>>({}) // { questionIndex: selectedOptionIndex }
+  const [finalScore, setFinalScore] = useState(0)
 
   // 1. Fetch Quiz Data
   useEffect(() => {
@@ -109,6 +108,15 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
   const submitExam = () => {
     setExamState('completed')
     if (timerRef.current) clearInterval(timerRef.current)
+    
+    // Calculate Score
+    let calculatedScore = 0
+    questions.forEach((q, idx) => {
+      if (answers[idx] === q.correct_option_index) {
+        calculatedScore += 1
+      }
+    })
+    setFinalScore(calculatedScore)
   }
 
   const startExam = (e: React.FormEvent) => {
@@ -119,31 +127,26 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
   }
 
   const handleOptionSelect = (optionIdx: number) => {
-    if (isAnswered || examState !== 'active') return
-    setSelectedOption(optionIdx)
-    setIsAnswered(true)
-
-    const currentQuestion = questions[currentIndex]
-    if (optionIdx === currentQuestion.correct_option_index) {
-      setScore(prev => prev + 1)
-    }
+    if (examState !== 'active') return
+    setAnswers(prev => ({ ...prev, [currentIndex]: optionIdx }))
   }
 
   const handleNext = () => {
-    setIsAnswered(false)
-    setSelectedOption(null)
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(prev => prev + 1)
-    } else {
-      submitExam()
+    }
+  }
+
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1)
     }
   }
 
   const handleRestart = () => {
     setCurrentIndex(0)
-    setSelectedOption(null)
-    setIsAnswered(false)
-    setScore(0)
+    setAnswers({})
+    setFinalScore(0)
     setExamState('intro')
     setExamStarted(false)
     setTimeLeft(QUIZ_TIME_LIMIT_MINUTES * 60)
@@ -158,7 +161,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
 
   // Formatting grades
   const getGradeDetails = () => {
-    const percentage = questions.length > 0 ? (score / questions.length) * 100 : 0
+    const percentage = questions.length > 0 ? (finalScore / questions.length) * 100 : 0
     if (percentage < 50) return { title: 'Needs Improvement / Hard Work Required', color: 'text-rose-600', bg: 'bg-rose-50', icon: <XCircle className="w-8 h-8" /> }
     if (percentage < 70) return { title: 'Good Effort, but you can do better', color: 'text-amber-600', bg: 'bg-amber-50', icon: <AlertTriangle className="w-8 h-8" /> }
     if (percentage < 85) return { title: `Congratulations ${studentName}, Passed!`, color: 'text-emerald-600', bg: 'bg-emerald-50', icon: <CheckCircle2 className="w-8 h-8" /> }
@@ -188,6 +191,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
   }
 
   const currentQuestion = questions[currentIndex]
+  const hasAnsweredCurrent = answers[currentIndex] !== undefined
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex-grow bg-white text-[#222222] space-y-6">
@@ -222,8 +226,8 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
               <p><strong>Anti-Cheat Enabled:</strong> If you open a new tab, switch apps, or minimize the window, your exam will immediately Auto-Submit with 0 warning.</p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-              <p>Maximum of <strong className="text-gray-900">{questions.length} randomized questions</strong>.</p>
+              <CheckSquare className="w-5 h-5 text-blue-500 shrink-0" />
+              <p><strong>Navigation:</strong> You can skip questions and come back to them later using the Next/Back buttons or the Question Grid at the bottom.</p>
             </div>
           </div>
 
@@ -265,7 +269,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
               </div>
               <div>
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Candidate</p>
-                <p className="text-xs font-bold">{studentName}</p>
+                <p className="text-xs font-bold truncate max-w-[100px] sm:max-w-xs">{studentName}</p>
               </div>
             </div>
 
@@ -286,16 +290,10 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
               Question {currentIndex + 1} of {questions.length}
             </span>
           </div>
-          <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-[#B8212E] transition-all duration-300"
-              style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
-            />
-          </div>
 
           {/* Question Box */}
-          <div className="p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm">
-            <h3 className="font-extrabold text-gray-900 text-lg sm:text-xl leading-relaxed">
+          <div className="p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-2xl shadow-sm min-h-[160px] flex items-center">
+            <h3 className="font-extrabold text-gray-900 text-lg sm:text-xl leading-relaxed w-full">
               {currentQuestion.question_text}
             </h3>
           </div>
@@ -303,57 +301,91 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
           {/* Options Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {currentQuestion.options.map((option: string, idx: number) => {
-              const isCorrectOption = idx === currentQuestion.correct_option_index
-              const isSelectedOption = idx === selectedOption
-              
-              let optionClass = 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-[#B8212E]/50'
-              let iconElement = null
-
-              if (isAnswered) {
-                if (isCorrectOption) {
-                  optionClass = 'bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-500'
-                  iconElement = <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                } else if (isSelectedOption) {
-                  optionClass = 'bg-rose-50 border-rose-500 text-rose-800 ring-1 ring-rose-500'
-                  iconElement = <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
-                } else {
-                  optionClass = 'bg-white border-gray-100 text-gray-300 opacity-50'
-                }
-              }
+              const isSelectedOption = answers[currentIndex] === idx
+              const optionClass = isSelectedOption
+                ? 'bg-red-50 border-[#B8212E] text-red-900 ring-1 ring-[#B8212E]'
+                : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-[#B8212E]/50'
 
               return (
                 <button
                   key={idx}
-                  disabled={isAnswered}
                   onClick={() => handleOptionSelect(idx)}
-                  className={`w-full p-4 sm:p-5 border-2 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between gap-4 ${isAnswered ? '' : 'cursor-pointer'} ${optionClass}`}
+                  className={`w-full p-4 sm:p-5 border-2 rounded-xl text-left font-bold text-sm transition-all flex items-center justify-between gap-4 cursor-pointer ${optionClass}`}
                 >
                   <span className="leading-relaxed">{option}</span>
-                  {iconElement}
+                  {isSelectedOption && <CheckCircle2 className="w-5 h-5 text-[#B8212E] shrink-0" />}
                 </button>
               )
             })}
           </div>
 
-          {/* Next Button Row */}
-          {isAnswered && (
-            <div className="flex justify-end pt-6 animate-fade-in">
+          {/* Action Buttons Row */}
+          <div className="flex justify-between items-center pt-6 border-t border-gray-100">
+            <button
+              onClick={handleBack}
+              disabled={currentIndex === 0}
+              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 disabled:opacity-30 disabled:hover:bg-gray-100 text-gray-800 font-bold rounded-xl text-xs sm:text-sm flex items-center gap-2 transition-all uppercase tracking-wider"
+            >
+              <ChevronLeft className="w-5 h-5" />
+              Back
+            </button>
+
+            {currentIndex + 1 < questions.length ? (
               <button
                 onClick={handleNext}
-                className="px-8 py-3.5 bg-gray-900 hover:bg-black text-white font-black rounded-xl text-sm shadow-md flex items-center gap-2 cursor-pointer uppercase tracking-wider"
+                className="px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl text-xs sm:text-sm shadow-md flex items-center gap-2 transition-all uppercase tracking-wider"
               >
-                {currentIndex + 1 < questions.length ? 'Next Question' : 'Submit Exam'}
+                {hasAnsweredCurrent ? 'Next' : 'Skip for now'}
                 <ChevronRight className="w-5 h-5" />
               </button>
+            ) : (
+              <button
+                onClick={submitExam}
+                className="px-6 py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-xs sm:text-sm shadow-md flex items-center gap-2 transition-all uppercase tracking-wider animate-pulse"
+              >
+                Submit Exam
+                <CheckCircle2 className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+
+          {/* Question Navigator Grid */}
+          <div className="pt-8 space-y-3">
+            <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Question Navigator</h4>
+            <div className="flex flex-wrap gap-2">
+              {questions.map((_, idx) => {
+                const isAnswered = answers[idx] !== undefined
+                const isCurrent = idx === currentIndex
+                
+                let btnClass = 'border-gray-200 text-gray-500 hover:bg-gray-100 bg-white' // default unanswered
+                
+                if (isAnswered) {
+                  btnClass = 'bg-[#B8212E] border-[#B8212E] text-white shadow-sm'
+                }
+                if (isCurrent) {
+                  btnClass = 'ring-2 ring-offset-1 ring-gray-900 border-gray-900 text-gray-900 bg-gray-50 font-black'
+                }
+
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`w-9 h-9 sm:w-10 sm:h-10 border rounded-lg text-xs font-bold transition-all flex items-center justify-center ${btnClass}`}
+                  >
+                    {idx + 1}
+                  </button>
+                )
+              })}
             </div>
-          )}
+            <p className="text-[10px] text-gray-400 font-semibold italic">Red = Answered, White = Skipped/Unanswered</p>
+          </div>
         </div>
       )}
 
       {/* STATE 3: COMPLETED RESULT */}
       {examState === 'completed' && (() => {
         const grade = getGradeDetails()
-        const percentage = questions.length > 0 ? (score / questions.length) * 100 : 0
+        const percentage = questions.length > 0 ? (finalScore / questions.length) * 100 : 0
 
         return (
           <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-xl animate-scale-in">
@@ -386,7 +418,7 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-gray-50 border border-gray-200 p-5 rounded-xl text-center space-y-1">
                   <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400">Total Score</span>
-                  <span className="text-3xl font-black text-gray-900">{score}<span className="text-lg text-gray-400">/{questions.length}</span></span>
+                  <span className="text-3xl font-black text-gray-900">{finalScore}<span className="text-lg text-gray-400">/{questions.length}</span></span>
                 </div>
                 <div className="bg-gray-50 border border-gray-200 p-5 rounded-xl text-center space-y-1">
                   <span className="block text-[10px] uppercase font-bold tracking-wider text-gray-400">Percentage</span>
@@ -420,3 +452,4 @@ export default function InteractiveQuizPage({ params }: { params: Promise<{ quiz
     </div>
   )
 }
+
