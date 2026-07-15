@@ -112,7 +112,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
       </Link>
       
       {/* Header */}
-      <div className={`flex flex-col items-center text-center p-10 rounded-3xl border ${colorClass}`}>
+      <div className={`flex flex-col items-center text-center p-6 sm:p-10 rounded-3xl border ${colorClass} shadow-sm relative overflow-hidden`}>
         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
           {data.icon}
         </div>
@@ -138,12 +138,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 <Link 
                   key={exam.id}
                   href={`/prep/${category}/${exam.id}`}
-                  className="group p-5 border border-gray-200 rounded-xl hover:border-[#B8212E]/40 hover:shadow-lg transition-all bg-white flex flex-col justify-between h-full"
+                  className="group p-5 border border-gray-150 rounded-2xl hover:border-[#B8212E]/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 bg-white flex flex-col justify-between h-full relative overflow-hidden"
                 >
-                  <div>
-                    <h3 className="font-bold text-gray-800 text-lg group-hover:text-[#B8212E] transition-colors">{exam.name}</h3>
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gray-200 group-hover:bg-[#B8212E] transition-colors"></div>
+                  <div className="pl-2">
+                    <h3 className="font-bold text-gray-800 text-base sm:text-lg group-hover:text-[#B8212E] transition-colors">{exam.name}</h3>
                   </div>
-                  <div className="mt-6 flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-[#B8212E]">
+                  <div className="mt-6 flex items-center justify-between text-[10px] sm:text-xs font-bold text-gray-400 group-hover:text-[#B8212E] pl-2">
                     <span>View Materials</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>

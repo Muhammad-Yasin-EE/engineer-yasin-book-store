@@ -25,7 +25,7 @@ export default function PrepDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {/* Armed Forces */}
-        <div className="bg-white border border-gray-200 p-8 rounded-2xl flex flex-col items-center text-center hover:border-emerald-500/40 hover:shadow-xl transition-all group relative overflow-hidden">
+        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-emerald-500/40 hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
           <div className="absolute top-0 w-full h-1 bg-emerald-500/80"></div>
           <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <ShieldCheck className="w-10 h-10 text-emerald-600" />
@@ -43,7 +43,7 @@ export default function PrepDashboard() {
         </div>
 
         {/* Public Service */}
-        <div className="bg-white border border-gray-200 p-8 rounded-2xl flex flex-col items-center text-center hover:border-blue-500/40 hover:shadow-xl transition-all group relative overflow-hidden">
+        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-blue-500/40 hover:shadow-[0_8px_30px_rgb(59,130,246,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
           <div className="absolute top-0 w-full h-1 bg-blue-500/80"></div>
           <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <BookOpen className="w-10 h-10 text-blue-600" />
@@ -61,7 +61,7 @@ export default function PrepDashboard() {
         </div>
 
         {/* Entry Tests */}
-        <div className="bg-white border border-gray-200 p-8 rounded-2xl flex flex-col items-center text-center hover:border-amber-500/40 hover:shadow-xl transition-all group relative overflow-hidden">
+        <div className="bg-white border border-gray-150 p-6 sm:p-8 rounded-3xl flex flex-col items-center text-center hover:border-amber-500/40 hover:shadow-[0_8px_30px_rgb(245,158,11,0.12)] hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
           <div className="absolute top-0 w-full h-1 bg-amber-500/80"></div>
           <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <GraduationCap className="w-10 h-10 text-amber-600" />
@@ -81,7 +81,7 @@ export default function PrepDashboard() {
       </div>
 
       {/* Freemium Banner */}
-      <div className="mt-8 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-12 text-center flex flex-col items-center relative overflow-hidden shadow-2xl">
+      <div className="mt-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-6 sm:p-12 text-center flex flex-col items-center relative overflow-hidden shadow-2xl">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#B8212E]/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
         

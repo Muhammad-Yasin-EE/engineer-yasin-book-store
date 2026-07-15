@@ -35,15 +35,15 @@ export default async function HomePage() {
     <div className="space-y-16 pb-20 bg-white text-[#222222]">
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 sm:py-24 bg-[#f8fafc] border-b border-gray-150">
+      <section className="relative overflow-hidden py-16 sm:py-28 bg-gradient-to-br from-gray-50 via-white to-red-50/40 border-b border-gray-150">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B8212E]/5 border border-[#B8212E]/20 text-[#B8212E] text-xs font-semibold mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             Pakistan's #1 Preparation & Tech Portal
           </div>
           
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 max-w-4xl mx-auto leading-tight mb-6">
-            Gateway to <span className="text-[#B8212E]">Success</span> & Tech
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-800 max-w-4xl mx-auto leading-[1.15] mb-6">
+            Gateway to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B8212E] to-rose-600">Success</span> & Tech
           </h1>
           
           <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -51,22 +51,30 @@ export default async function HomePage() {
           </p>
 
           {/* Quick Hub Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-            <Link href="/prep/armed-forces" className="p-4 bg-white border border-gray-200 hover:border-emerald-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <ShieldCheck className="w-6 h-6 text-emerald-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Armed Forces</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
+            <Link href="/prep/armed-forces" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-emerald-100 hover:border-emerald-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <ShieldCheck className="w-6 h-6 text-emerald-600" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-800">Armed Forces</span>
             </Link>
-            <Link href="/prep/public-service" className="p-4 bg-white border border-gray-200 hover:border-blue-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <BookOpen className="w-6 h-6 text-blue-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Public Service</span>
+            <Link href="/prep/public-service" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-blue-100 hover:border-blue-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <BookOpen className="w-6 h-6 text-blue-600" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-800">Public Service</span>
             </Link>
-            <Link href="/software" className="p-4 bg-white border border-gray-200 hover:border-violet-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <Download className="w-6 h-6 text-violet-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Apps & Software</span>
+            <Link href="/software" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-violet-100 hover:border-violet-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-violet-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Download className="w-6 h-6 text-violet-600" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-800">Apps & Software</span>
             </Link>
-            <Link href="/services" className="p-4 bg-white border border-gray-200 hover:border-amber-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <Hammer className="w-6 h-6 text-amber-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Tech Services</span>
+            <Link href="/services" className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm border border-amber-100 hover:border-amber-400/60 shadow-sm hover:shadow-lg hover:-translate-y-1 rounded-2xl text-center flex flex-col items-center gap-3 group transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Hammer className="w-6 h-6 text-amber-600" />
+              </div>
+              <span className="text-xs sm:text-sm font-bold text-gray-800">Tech Services</span>
             </Link>
           </div>
         </div>
@@ -101,7 +109,7 @@ export default async function HomePage() {
             {quizzes.map(quiz => (
               <div 
                 key={quiz.id} 
-                className="bg-white border border-gray-200 p-6 rounded-none flex flex-col justify-between space-y-4 hover:border-[#B8212E]/40 hover:shadow-lg transition-all"
+                className="bg-white border border-gray-150 p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:border-[#B8212E]/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="space-y-2">
                   <div className="flex justify-between items-start">
