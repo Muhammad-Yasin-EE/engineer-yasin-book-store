@@ -1,34 +1,29 @@
 import Link from 'next/link'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
 import CategoryCard from '@/components/CategoryCard'
 import Newsletter from '@/components/Newsletter'
-import { GraduationCap, Briefcase, Download, Hammer, BookOpen, Sparkles, Layers, ArrowRight } from 'lucide-react'
+import { GraduationCap, Briefcase, Download, Hammer, BookOpen, Sparkles, Layers, ArrowRight, ShieldCheck, FileText } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  let scholarships: any[] = []
-  let jobs: any[] = []
+  let quizzes: any[] = []
   let software: any[] = []
   let errorMsg = null
 
   try {
-    const supabase = createAdminClient()
+    const supabase = await createClient()
 
-    // Fetch all active directory items in parallel
     const [
-      scholRes,
-      jobRes,
+      quizRes,
       softRes
     ] = await Promise.all([
-      supabase.from('items').select('*').eq('resource_type', 'scholarship').order('created_at', { ascending: false }).limit(3),
-      supabase.from('items').select('*').eq('resource_type', 'job').order('created_at', { ascending: false }).limit(3),
+      supabase.from('quizzes').select('*').order('created_at', { ascending: false }).limit(6),
       supabase.from('items').select('*').eq('resource_type', 'software').order('created_at', { ascending: false }).limit(3)
     ])
 
-    scholarships = scholRes.data || []
-    jobs = jobRes.data || []
+    quizzes = quizRes.data || []
     software = softRes.data || []
 
   } catch (err: any) {
@@ -44,26 +39,26 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B8212E]/5 border border-[#B8212E]/20 text-[#B8212E] text-xs font-semibold mb-6">
             <Sparkles className="w-3.5 h-3.5" />
-            Scholarships, Jobs & Software Resource Portal
+            Pakistan's #1 Preparation & Tech Portal
           </div>
           
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 max-w-4xl mx-auto leading-tight mb-6">
-            Engineer <span className="text-[#B8212E]">Yasin</span> Resources
+            Gateway to <span className="text-[#B8212E]">Success</span> & Tech
           </h1>
           
           <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Get instant access to free scholarships database, active jobs & internships, engineering software downloads, and professional web coding & design services.
+            Free and premium interactive mock tests for Armed Forces, Public Service, and Entry Exams. Plus VIP Android APKs and professional coding services.
           </p>
 
           {/* Quick Hub Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-            <Link href="/scholarships" className="p-4 bg-white border border-gray-200 hover:border-emerald-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <GraduationCap className="w-6 h-6 text-emerald-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Scholarships</span>
+            <Link href="/prep/armed-forces" className="p-4 bg-white border border-gray-200 hover:border-emerald-500/40 text-center flex flex-col items-center gap-2 group transition-all">
+              <ShieldCheck className="w-6 h-6 text-emerald-600 group-hover:scale-105 transition-transform" />
+              <span className="text-xs font-bold text-gray-800">Armed Forces</span>
             </Link>
-            <Link href="/jobs" className="p-4 bg-white border border-gray-200 hover:border-blue-500/40 text-center flex flex-col items-center gap-2 group transition-all">
-              <Briefcase className="w-6 h-6 text-blue-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Jobs & Interns</span>
+            <Link href="/prep/public-service" className="p-4 bg-white border border-gray-200 hover:border-blue-500/40 text-center flex flex-col items-center gap-2 group transition-all">
+              <BookOpen className="w-6 h-6 text-blue-600 group-hover:scale-105 transition-transform" />
+              <span className="text-xs font-bold text-gray-800">Public Service</span>
             </Link>
             <Link href="/software" className="p-4 bg-white border border-gray-200 hover:border-violet-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <Download className="w-6 h-6 text-violet-600 group-hover:scale-105 transition-transform" />
@@ -71,7 +66,7 @@ export default async function HomePage() {
             </Link>
             <Link href="/services" className="p-4 bg-white border border-gray-200 hover:border-amber-500/40 text-center flex flex-col items-center gap-2 group transition-all">
               <Hammer className="w-6 h-6 text-amber-600 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-gray-800">Services</span>
+              <span className="text-xs font-bold text-gray-800">Tech Services</span>
             </Link>
           </div>
         </div>
@@ -85,51 +80,49 @@ export default async function HomePage() {
         </div>
       )}
 
-      {/* Scholarships Highlight */}
+      {/* Quizzes Highlight */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
           <div className="flex items-center gap-2">
-            <GraduationCap className="w-5 h-5 text-emerald-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Latest Scholarships</h2>
+            <BookOpen className="w-5 h-5 text-[#B8212E]" />
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Latest Mock Tests</h2>
           </div>
-          <Link href="/scholarships" className="text-xs sm:text-sm font-semibold text-[#B8212E] hover:text-[#D62636] flex items-center gap-1 transition-colors">
-            See All Scholarships <ArrowRight className="w-4 h-4" />
+          <Link href="/prep" className="text-xs sm:text-sm font-semibold text-[#B8212E] hover:text-[#D62636] flex items-center gap-1 transition-colors">
+            See All Tests <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {scholarships.length === 0 ? (
+        {quizzes.length === 0 ? (
           <div className="py-12 bg-gray-50 border border-gray-150 rounded-none flex items-center justify-center text-gray-400 text-xs">
-            No scholarships published yet.
+            No mock tests published yet.
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {scholarships.map(item => (
-              <BookCard key={item.id} {...item} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* Jobs Highlight */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
-          <div className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-blue-600" />
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Jobs & Internships</h2>
-          </div>
-          <Link href="/jobs" className="text-xs sm:text-sm font-semibold text-[#B8212E] hover:text-[#D62636] flex items-center gap-1 transition-colors">
-            See All Careers <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {jobs.length === 0 ? (
-          <div className="py-12 bg-gray-50 border border-gray-150 rounded-none flex items-center justify-center text-gray-400 text-xs">
-            No active job openings published yet.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {jobs.map(item => (
-              <BookCard key={item.id} {...item} />
+            {quizzes.map(quiz => (
+              <div 
+                key={quiz.id} 
+                className="bg-white border border-gray-200 p-6 rounded-none flex flex-col justify-between space-y-4 hover:border-[#B8212E]/40 hover:shadow-lg transition-all"
+              >
+                <div className="space-y-2">
+                  <div className="flex justify-between items-start">
+                    <div className="w-10 h-10 rounded-full bg-red-50 text-[#B8212E] flex items-center justify-center shrink-0">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <span className="text-[9px] uppercase tracking-wider font-extrabold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                      {quiz.category || 'General'}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-base leading-snug pt-2">{quiz.title}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed font-semibold line-clamp-2">{quiz.description}</p>
+                </div>
+                <Link
+                  href={`/prep/quiz/${quiz.id}`}
+                  className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 bg-[#B8212E] hover:bg-[#D62636] text-white font-bold rounded-full text-xs shadow-sm hover:shadow-md transition-all uppercase tracking-wider mt-2"
+                >
+                  Start Practice Quiz
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             ))}
           </div>
         )}

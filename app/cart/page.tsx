@@ -139,12 +139,20 @@ export default function CartPage() {
               >
                 Clear All Items
               </button>
-              <Link 
-                href="/software" 
-                className="text-xs font-bold text-[#B8212E] hover:text-[#D62636] transition-colors"
-              >
-                &larr; Keep Browsing
-              </Link>
+              <div className="flex gap-4">
+                <Link 
+                  href="/track" 
+                  className="text-xs font-bold text-gray-500 hover:text-gray-800 transition-colors underline underline-offset-2"
+                >
+                  Track Pending Order
+                </Link>
+                <Link 
+                  href="/software" 
+                  className="text-xs font-bold text-[#B8212E] hover:text-[#D62636] transition-colors"
+                >
+                  Keep Browsing &rarr;
+                </Link>
+              </div>
             </div>
 
           </div>

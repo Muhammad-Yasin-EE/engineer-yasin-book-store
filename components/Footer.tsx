@@ -39,7 +39,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Your comprehensive portal for academic, technical, and engineering resources. Download software, apply for scholarships and jobs, or order digital coding & design services.
+              Your comprehensive portal for academic, technical, and exam preparation resources. Download software, prepare for forces and public service, or order digital coding services.
             </p>
           </div>
 
@@ -48,13 +48,18 @@ export default function Footer() {
             <h3 className="text-xs font-bold text-gray-800 uppercase tracking-widest mb-4">Explore Portal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/scholarships" className="hover:text-[#B8212E] transition-colors">
-                  Scholarships
+                <Link href="/prep/armed-forces" className="hover:text-[#B8212E] transition-colors">
+                  Armed Forces
                 </Link>
               </li>
               <li>
-                <Link href="/jobs" className="hover:text-[#B8212E] transition-colors">
-                  Jobs & Internships
+                <Link href="/prep/public-service" className="hover:text-[#B8212E] transition-colors">
+                  Public Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/prep/entry-tests" className="hover:text-[#B8212E] transition-colors">
+                  Entry Tests
                 </Link>
               </li>
               <li>
@@ -65,11 +70,6 @@ export default function Footer() {
               <li>
                 <Link href="/services" className="hover:text-[#B8212E] transition-colors">
                   Engineering Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/track" className="hover:text-[#B8212E] transition-colors">
-                  Track Order
                 </Link>
               </li>
             </ul>

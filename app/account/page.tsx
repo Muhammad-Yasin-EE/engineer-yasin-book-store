@@ -133,10 +133,15 @@ export default async function AccountPage() {
 
         {/* Right Column: Order History */}
         <div className="lg:col-span-5 space-y-6">
-          <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2 border-b border-gray-150 pb-2">
-            <FileText className="w-4 h-4 text-[#B8212E]" />
-            My Orders ({orders.length})
-          </h2>
+          <div className="flex items-center justify-between border-b border-gray-150 pb-2">
+            <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2">
+              <FileText className="w-4 h-4 text-[#B8212E]" />
+              My Orders ({orders.length})
+            </h2>
+            <Link href="/track" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors">
+              Track Pending Order
+            </Link>
+          </div>
 
           {orders.length === 0 ? (
             <div className="py-12 bg-gray-50 border border-gray-200 border-dashed rounded-none flex flex-col items-center justify-center text-gray-400 text-center px-4">
