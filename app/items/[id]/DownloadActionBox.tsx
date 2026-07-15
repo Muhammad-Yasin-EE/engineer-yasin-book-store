@@ -33,9 +33,9 @@ export default function DownloadActionBox({ item, isLoggedIn, hasPurchased, free
     // 2. Open WhatsApp group link in a new window/tab
     window.open(whatsappUrl, '_blank')
 
-    // 3. Wait a split second, then trigger the original download/redirect URL
+    // 3. Wait a split second, then open the application/download link in a new tab
     setTimeout(() => {
-      window.location.href = pendingUrl
+      window.open(pendingUrl, '_blank')
     }, 300)
 
     // 4. Close the modal

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createAdminClient } from '@/lib/supabase/admin'
 import BookCard from '@/components/BookCard'
 import CategoryCard from '@/components/CategoryCard'
+import Newsletter from '@/components/Newsletter'
 import { GraduationCap, Briefcase, Download, Hammer, BookOpen, Sparkles, Layers, ArrowRight } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -174,6 +175,13 @@ export default async function HomePage() {
           <CategoryCard name="3D Modeling" resourceType="service" />
           <CategoryCard name="MATLAB & Simulink" resourceType="service" />
           <CategoryCard name="Tutoring" resourceType="service" />
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-12 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Newsletter />
         </div>
       </section>
 

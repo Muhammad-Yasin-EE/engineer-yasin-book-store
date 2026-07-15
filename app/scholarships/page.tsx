@@ -1,9 +1,15 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
+import Newsletter from '@/components/Newsletter'
 import { Search, ChevronLeft, ChevronRight, GraduationCap, Sparkles, Filter } from 'lucide-react'
 
 const CATEGORIES = ["Undergraduate", "Graduate (Master's)", "PhD & Research"]
+
+export const metadata = {
+  title: 'Fully Funded Scholarships for Pakistani Students | Engineer Yasin Portal',
+  description: 'Find the latest fully funded national and international scholarships for Pakistani students. Apply directly to official universities and programs.'
+}
 
 interface SearchParams {
   search?: string
@@ -200,6 +206,10 @@ export default async function ScholarshipsPage({ searchParams }: { searchParams:
 
         </div>
 
+      </div>
+
+      <div className="mt-12">
+        <Newsletter />
       </div>
 
     </div>

@@ -1,9 +1,15 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import BookCard from '@/components/BookCard'
+import Newsletter from '@/components/Newsletter'
 import { Search, ChevronLeft, ChevronRight, Briefcase, Sparkles, Filter } from 'lucide-react'
 
 const CATEGORIES = ["Government Jobs", "Private Jobs", "Internships"]
+
+export const metadata = {
+  title: 'Latest Jobs & Internships in Pakistan | Engineer Yasin Portal',
+  description: 'Find the latest government, private, and remote jobs, along with top internships for Pakistani students and professionals. Apply directly to official sources.'
+}
 
 interface SearchParams {
   search?: string
@@ -200,6 +206,10 @@ export default async function JobsPage({ searchParams }: { searchParams: Promise
 
         </div>
 
+      </div>
+
+      <div className="mt-12">
+        <Newsletter />
       </div>
 
     </div>
