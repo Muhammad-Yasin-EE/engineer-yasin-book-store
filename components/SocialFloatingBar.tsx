@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react'
 import { Mail, Globe, MessageCircle, MessageSquareShare, BellRing, Share2, X } from 'lucide-react'
-import dynamic from 'next/dynamic'
-
-const LiveChatWidget = dynamic(() => import('./LiveChatWidget'), { ssr: false })
 
 // Custom brand SVG components
 const FacebookIcon = () => (
@@ -130,24 +127,38 @@ export default function SocialFloatingBar() {
         </button>
       </div>
 
-      {/* Right Sticky Floating WhatsApp Chat Button */}
-      <div className="fixed bottom-6 right-3 sm:right-6 z-50 flex flex-col items-center">
-        {/* Pulsing indicator */}
-        <span className="absolute inline-flex h-11 w-11 rounded-full bg-[#25D366]/20 animate-ping z-0" />
-        
+      {/* Right Sticky Floating Buttons */}
+      <div className="fixed bottom-6 right-3 sm:right-6 z-50 flex flex-col items-center gap-3">
+
+        {/* Favicon Help Button — above WhatsApp */}
         <a
-          href="https://wa.me/923342806970"
+          href="https://wa.me/923342806970?text=Hello%2C%20I%20need%20help!"
           target="_blank"
           rel="noopener noreferrer"
-          title="Chat on WhatsApp"
-          className="relative z-10 w-11 h-11 bg-[#25D366] hover:bg-[#20ba56] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+          title="Need Help? Chat with us!"
+          className="group relative w-11 h-11 rounded-full overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 border-2 border-[#B8212E]"
         >
-          <MessageCircle className="w-6 h-6 fill-white text-[#25D366]" />
+          <img src="/logo.jpg" alt="Help" className="w-full h-full object-cover" />
+          {/* Tooltip */}
+          <span className="absolute right-14 top-1/2 -translate-y-1/2 bg-white text-[#B8212E] border border-[#B8212E]/20 shadow-md text-[10px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+            Need Help?
+          </span>
         </a>
-      </div>
 
-      {/* Dynamic Live Chat Widget */}
-      <LiveChatWidget />
+        {/* WhatsApp Button */}
+        <div className="relative flex items-center justify-center">
+          <span className="absolute inline-flex h-11 w-11 rounded-full bg-[#25D366]/20 animate-ping z-0" />
+          <a
+            href="https://wa.me/923342806970"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Chat on WhatsApp"
+            className="relative z-10 w-11 h-11 bg-[#25D366] hover:bg-[#20ba56] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+          >
+            <MessageCircle className="w-6 h-6 fill-white text-[#25D366]" />
+          </a>
+        </div>
+      </div>
     </>
   )
 }
