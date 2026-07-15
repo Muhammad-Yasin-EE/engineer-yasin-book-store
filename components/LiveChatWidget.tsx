@@ -201,9 +201,7 @@ export default function LiveChatWidget() {
         .eq('id', sessionId)
     } catch (err) {
       console.error('Send failed:', err)
-      // Remove optimistic message on error
-      setMessages((prev) => prev.filter((m) => m.id !== tempId))
-      setNewMessage(text)
+      // Don't restore - keep optimistic message shown, user can retry if needed
     } finally {
       setIsSubmitting(false)
     }
@@ -228,12 +226,12 @@ export default function LiveChatWidget() {
 
       {/* Chat Window - Messenger Style */}
       {isOpen && (
-        <div className="
-          fixed z-[999]
+        <div style={{background: '#ffffff', color: '#111111'}} className="
+          fixed z-[9999]
           inset-x-0 bottom-0 top-0
           sm:inset-auto sm:bottom-24 sm:right-4
-          sm:w-[360px] sm:h-[500px] sm:rounded-2xl
-          bg-white flex flex-col overflow-hidden
+          sm:w-[360px] sm:h-[520px] sm:rounded-2xl
+          flex flex-col overflow-hidden
           shadow-2xl
         ">
           {/* Header */}
@@ -261,15 +259,15 @@ export default function LiveChatWidget() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f0f2f5]">
+          <div style={{background: '#f0f2f5'}} className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full text-center space-y-3 pb-10">
                 <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md">
                   <img src="/logo.jpg" alt="Support" className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-700 text-sm">Engineer Yasin Portal</p>
-                  <p className="text-gray-500 text-xs mt-1">Aapka koi bhi sawaal poochein!</p>
+                  <p style={{color: '#374151'}} className="font-bold text-sm">Engineer Yasin Portal</p>
+                  <p style={{color: '#6b7280'}} className="text-xs mt-1">Aapka koi bhi sawaal poochein!</p>
                 </div>
               </div>
             )}
@@ -285,14 +283,17 @@ export default function LiveChatWidget() {
                   </div>
                 )}
                 <div className={`max-w-[75%] flex flex-col ${msg.sender_role === 'user' ? 'items-end' : 'items-start'}`}>
-                  <div className={`px-4 py-2.5 text-sm font-medium leading-relaxed shadow-sm ${
+                  <div style={msg.sender_role === 'user' 
+                    ? {background: '#0084FF', color: '#ffffff'} 
+                    : {background: '#ffffff', color: '#111111', border: '1px solid #e5e7eb'}
+                  } className={`px-4 py-2.5 text-sm font-medium leading-relaxed shadow-sm ${
                     msg.sender_role === 'user'
-                      ? 'bg-[#0084FF] text-white rounded-[20px] rounded-br-[4px]'
-                      : 'bg-white text-gray-800 rounded-[20px] rounded-bl-[4px] border border-gray-100'
+                      ? 'rounded-[20px] rounded-br-[4px]'
+                      : 'rounded-[20px] rounded-bl-[4px]'
                   }`}>
                     {msg.message}
                   </div>
-                  <span className="text-[10px] text-gray-400 mt-1 px-1">{formatTime(msg.created_at)}</span>
+                  <span style={{color: '#9ca3af'}} className="text-[10px] mt-1 px-1">{formatTime(msg.created_at)}</span>
                 </div>
               </div>
             ))}
@@ -302,7 +303,8 @@ export default function LiveChatWidget() {
           {/* Input Area */}
           <form
             onSubmit={handleSend}
-            className="flex items-center gap-2 px-3 py-3 bg-white border-t border-gray-200 shrink-0"
+            style={{background: '#ffffff', borderTop: '1px solid #e5e7eb'}}
+            className="flex items-center gap-2 px-3 py-3 shrink-0"
           >
             <input
               ref={inputRef}
@@ -310,12 +312,14 @@ export default function LiveChatWidget() {
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Yahan apna message likhein..."
-              className="flex-1 bg-[#f0f2f5] rounded-full px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0084FF]/30 placeholder:text-gray-400"
+              style={{background: '#f0f2f5', color: '#111111'}}
+              className="flex-1 rounded-full px-4 py-2.5 text-sm focus:outline-none placeholder:text-gray-400"
             />
             <button
               type="submit"
               disabled={isSubmitting || !newMessage.trim()}
-              className="w-10 h-10 rounded-full bg-[#0084FF] text-white flex items-center justify-center shrink-0 disabled:opacity-40 hover:bg-[#0073e6] transition-colors active:scale-95"
+              style={{background: '#0084FF', color: '#ffffff'}}
+              className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 disabled:opacity-40 active:scale-95"
             >
               <Send className="w-4 h-4" />
             </button>
