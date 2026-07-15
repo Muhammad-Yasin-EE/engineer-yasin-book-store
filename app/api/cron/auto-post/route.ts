@@ -13,11 +13,10 @@ const parser = new Parser({
 
 const TARGET_FEEDS = [
   {
-    url: 'https://www.scholars4dev.com/feed/', 
+    url: 'https://scholarshipscorner.website/feed/', 
     type: 'scholarship',
     category: "Graduate (Master's)"
   },
-  // We can add more targeted Pakistan scholarship feeds here if found
   {
     url: 'https://remoteok.com/rss',
     type: 'job',
@@ -46,10 +45,13 @@ function getUniqueImage(url: string, content: string, title: string) {
     return imgMatch[1]
   }
   
-  // If no image, generate a beautiful unique letter avatar based on company/domain name
-  const domain = extractDomain(url)
-  const nameToUse = domain.split('.')[0] || title.substring(0, 2)
-  return `https://ui-avatars.com/api/?name=${encodeURIComponent(nameToUse)}&background=random&color=fff&size=512&font-size=0.33`
+  // Create a crisp, perfectly sized cover image (600x400)
+  const companyName = title.split(':')[0] || title.split('-')[0] || title.substring(0, 15)
+  // Shorten name to fit nicely
+  const shortName = companyName.substring(0, 20).trim()
+  
+  // Use placehold.co instead of ui-avatars to prevent stretching blurriness
+  return `https://placehold.co/600x400/B8212E/ffffff?text=${encodeURIComponent(shortName)}`
 }
 
 export async function GET(request: Request) {
