@@ -256,6 +256,10 @@ export default function Navbar() {
               <Award className="w-3.5 h-3.5" />
               Armed Forces
             </Link>
+            <Link href="/issb" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
+              <ShieldAlert className="w-3.5 h-3.5" />
+              ISSB
+            </Link>
             <Link href="/prep/public-service" prefetch={false} className="text-xs font-bold text-gray-600 hover:text-[#B8212E] transition-colors flex items-center gap-1">
               <BookOpen className="w-3.5 h-3.5" />
               Public Service
@@ -517,6 +521,10 @@ export default function Navbar() {
             {/* Direct Prep Links */}
             <Link href="/prep/armed-forces" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
               <Award className="w-4 h-4 text-[#B8212E]" /> Armed Forces
+            </Link>
+
+            <Link href="/issb" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
+              <ShieldAlert className="w-4 h-4 text-[#B8212E]" /> ISSB
             </Link>
             
             <Link href="/prep/public-service" prefetch={false} onClick={() => setMobileMenuOpen(false)} className="hover:text-[#B8212E] py-2.5 border-b border-gray-100 flex items-center gap-2 text-gray-600 font-bold">
