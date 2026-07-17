@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import BookCard from '@/components/BookCard'
+import ServiceCard from '@/components/ServiceCard'
 import { Search, ChevronLeft, ChevronRight, Hammer, Sparkles, Filter } from 'lucide-react'
 
 const CATEGORIES = ["Programming", "3D Modeling", "MATLAB & Simulink", "Hardware & PCB", "Tutoring", "Some Completed Projects"]
@@ -173,7 +173,14 @@ export default async function ServicesPage({ searchParams }: { searchParams: Pro
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {items.map(item => (
-                  <BookCard key={item.id} {...item} />
+                  <ServiceCard
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    author={item.author}
+                    category={item.category}
+                    cover_url={item.cover_url}
+                  />
                 ))}
               </div>
 
