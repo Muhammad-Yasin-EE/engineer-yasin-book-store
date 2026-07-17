@@ -38,11 +38,11 @@ const categoryData: Record<string, any> = {
         name: 'Pakistan Navy',
         iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Pakistan_Navy_emblem.svg/150px-Pakistan_Navy_emblem.svg.png',
         exams: [
-          { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'ssc', name: 'SSC', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'marines', name: 'Marines', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'sailor', name: 'Sailor', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'civilian', name: 'Civilian', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/card-pn-cadet.jpg' },
+          { id: 'ssc', name: 'SSC', cardBgUrl: '/images/card-ssc-navy.jpg' },
+          { id: 'marines', name: 'Marines', cardBgUrl: '/images/card-marines.jpg' },
+          { id: 'sailor', name: 'Sailor', cardBgUrl: '/images/card-sailor.jpg' },
+          { id: 'civilian', name: 'Civilian', cardBgUrl: '/images/card-civilian.jpg' },
         ]
       }
     ]
