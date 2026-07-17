@@ -79,16 +79,16 @@ const categoryData: Record<string, any> = {
       {
         name: 'All Entry Tests',
         exams: [
-          { id: 'ecat', name: 'ECAT' },
-          { id: 'mdcat', name: 'MDCAT' },
-          { id: 'nts', name: 'NTS' },
-          { id: 'uet', name: 'UET' },
-          { id: 'nust', name: 'NUST' },
-          { id: 'pieas', name: 'PIEAS' },
-          { id: 'giki', name: 'GIKI' },
-          { id: 'ots', name: 'OTS' },
-          { id: 'pts', name: 'PTS' },
-          { id: 'cts', name: 'CTS' },
+          { id: 'ecat', name: 'ECAT', cardBgUrl: '/images/entry-tests-header.jpg' },
+          { id: 'mdcat', name: 'MDCAT', cardBgUrl: '/images/exam-army-bg.jpg' },
+          { id: 'nts', name: 'NTS', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'uet', name: 'UET', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'nust', name: 'NUST', cardBgUrl: '/images/entry-tests-header.jpg' },
+          { id: 'pieas', name: 'PIEAS', cardBgUrl: '/images/exam-army-bg.jpg' },
+          { id: 'giki', name: 'GIKI', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'ots', name: 'OTS', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'pts', name: 'PTS', cardBgUrl: '/images/entry-tests-header.jpg' },
+          { id: 'cts', name: 'CTS', cardBgUrl: '/images/exam-army-bg.jpg' },
         ]
       }
     ]
