@@ -58,13 +58,13 @@ const categoryData: Record<string, any> = {
         name: 'All Commissions',
         iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/State_emblem_of_Pakistan.svg/150px-State_emblem_of_Pakistan.svg.png',
         exams: [
-          { id: 'fpsc', name: 'FPSC' },
-          { id: 'ppsc', name: 'PPSC' },
-          { id: 'bpsc', name: 'BPSC' },
-          { id: 'spsc', name: 'SPSC' },
-          { id: 'kppsc', name: 'KPPSC' },
-          { id: 'ajkpsc', name: 'AJKPSC' },
-          { id: 'gbpsc', name: 'GBPSC' },
+          { id: 'fpsc', name: 'FPSC', cardBgUrl: '/images/card-fpsc.jpg' },
+          { id: 'ppsc', name: 'PPSC', cardBgUrl: '/images/card-ppsc.jpg' },
+          { id: 'bpsc', name: 'BPSC', cardBgUrl: '/images/card-bpsc.jpg' },
+          { id: 'spsc', name: 'SPSC', cardBgUrl: '/images/card-spsc.jpg' },
+          { id: 'kppsc', name: 'KPPSC', cardBgUrl: '/images/card-kppsc.jpg' },
+          { id: 'ajkpsc', name: 'AJKPSC', cardBgUrl: '/images/card-ajkpsc.jpg' },
+          { id: 'gbpsc', name: 'GBPSC', cardBgUrl: '/images/card-gbpsc.jpg' },
         ]
       }
     ]
