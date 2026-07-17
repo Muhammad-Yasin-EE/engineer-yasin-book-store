@@ -106,7 +106,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
     }
   }, [examState])
 
-  const submitExam = () => {
+  const submitExam = async () => {
     setExamState('completed')
     if (timerRef.current) clearInterval(timerRef.current)
     
@@ -118,6 +118,25 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
       }
     })
     setFinalScore(calculatedScore)
+    
+    // Save to Database
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user && quiz) {
+        const timeTaken = (QUIZ_TIME_LIMIT_MINUTES * 60) - Math.max(0, timeLeft)
+        const percentage = questions.length > 0 ? Math.round((calculatedScore / questions.length) * 100) : 0
+        
+        await supabase.from('user_scores').insert({
+          user_id: user.id,
+          quiz_id: quiz.id,
+          score: calculatedScore,
+          percentage: percentage,
+          time_taken_seconds: timeTaken
+        })
+      }
+    } catch (err) {
+      console.error('Failed to save score:', err)
+    }
   }
 
   const startExam = async (e: React.FormEvent) => {

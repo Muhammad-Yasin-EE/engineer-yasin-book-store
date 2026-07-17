@@ -73,12 +73,12 @@ export default async function AccountPage() {
       {/* My Progress Section */}
       <div className="space-y-4">
         <div className="flex items-center justify-between border-b border-gray-150 pb-2">
-          <h2 className="text-xs font-bold text-gray-800 uppercase tracking-widest flex items-center gap-2">
-            <Target className="w-4 h-4 text-[#B8212E]" />
+          <h2 className="text-[10px] font-bold text-emerald-400 bg-gray-900 px-3 py-1.5 rounded-md uppercase tracking-widest flex items-center gap-2 shadow-sm">
+            <Target className="w-4 h-4 text-emerald-500" />
             My Quiz Progress
           </h2>
-          <Link href="/leaderboard" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors flex items-center gap-1">
-            <Trophy className="w-3 h-3" /> View Leaderboard
+          <Link href="/leaderboard" className="text-[10px] uppercase tracking-wider font-extrabold text-amber-400 bg-gray-900 hover:bg-black px-3 py-1.5 rounded-md shadow-sm transition-colors flex items-center gap-1.5">
+            <Trophy className="w-3.5 h-3.5 text-amber-500" /> View Leaderboard
           </Link>
         </div>
 
