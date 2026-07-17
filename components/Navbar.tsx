@@ -415,7 +415,7 @@ export default function Navbar() {
                   className="hidden sm:flex items-center gap-1 px-4.5 py-1.5 rounded-md border border-gray-200 hover:border-[#B8212E] text-xs font-bold text-gray-600 hover:text-[#B8212E] shadow-sm transition-all bg-white"
                 >
                   <User className="w-3.5 h-3.5" />
-                  Library
+                  Dashboard
                 </Link>
                 <button
                   onClick={handleSignOut}
@@ -491,7 +491,7 @@ export default function Navbar() {
                   prefetch={false}
                   className="px-4 py-2 rounded-md border border-gray-200 text-xs font-bold text-gray-700 bg-white"
                 >
-                  Library
+                  Dashboard
                 </Link>
                 <button
                   onClick={() => {
