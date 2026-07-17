@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import AuthGateButton from '@/components/AuthGateButton'
 import { Book, GraduationCap, Briefcase, Download, Hammer, PlayCircle } from 'lucide-react'
 
 interface BookCardProps {
@@ -167,14 +167,14 @@ export default function BookCard({ id, title, author, category, type, price, cov
           </div>
         )}
 
-        {/* Action Button */}
-        <Link 
+        {/* Action Button — gated behind auth */}
+        <AuthGateButton
           href={`/items/${id}`}
-          prefetch={false}
-          className="mt-auto w-full inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold border border-[#B8212E] text-[#B8212E] group-hover:bg-[#B8212E] group-hover:text-white transition-all duration-200"
+          label={getActionButtonText()}
+          className="mt-auto w-full inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold border border-[#B8212E] text-[#B8212E] group-hover:bg-[#B8212E] group-hover:text-white transition-all duration-200 disabled:opacity-60 disabled:cursor-wait"
         >
           {getActionButtonText()}
-        </Link>
+        </AuthGateButton>
       </div>
 
     </div>

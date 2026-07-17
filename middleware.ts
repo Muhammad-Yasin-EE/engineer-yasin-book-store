@@ -49,13 +49,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Protect account and checkout routes
-  if (request.nextUrl.pathname.startsWith('/account') || request.nextUrl.pathname.startsWith('/checkout')) {
-    if (!user) {
-      return NextResponse.redirect(new URL('/login', request.url))
-    }
-  }
-
   return supabaseResponse
 }
 
