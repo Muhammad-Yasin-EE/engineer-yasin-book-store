@@ -240,11 +240,9 @@ export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
                       <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-wider">
                         Test {i + 1}
                       </span>
-                      {quiz.category && (
-                        <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${clr.badge}`}>
-                          {quiz.category}
-                        </span>
-                      )}
+                      <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${clr.badge}`}>
+                        {info.title}
+                      </span>
                     </div>
 
                     <h3 className="font-bold text-gray-900 text-sm group-hover:text-[#B8212E] transition-colors line-clamp-2 flex-grow">
