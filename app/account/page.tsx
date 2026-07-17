@@ -198,7 +198,7 @@ export default async function AccountPage() {
               <FileText className="w-4 h-4 text-[#B8212E]" />
               My Orders ({orders.length})
             </h2>
-            {orders.some(o => o.status === 'pending' || o.status === 'processing') && (
+            {orders.some(o => o.status === 'pending_payment' || o.status === 'payment_submitted') && (
               <Link href="/track" className="text-[10px] uppercase tracking-wider font-extrabold text-gray-500 hover:text-[#B8212E] bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-sm transition-colors">
                 Track Pending Order
               </Link>
