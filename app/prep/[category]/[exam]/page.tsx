@@ -113,7 +113,7 @@ export default async function ExamPage({
     <div className="bg-white text-gray-800 pb-20">
 
       {/* ── Hero Banner ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-[280px] sm:min-h-[360px] flex items-end overflow-hidden">
+      <section className="relative min-h-[280px] sm:min-h-[360px] flex flex-col overflow-hidden">
         <Image
           src={bgImg}
           alt={info.title}
@@ -122,25 +122,32 @@ export default async function ExamPage({
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/55 to-transparent z-10" />
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 pt-6">
+
+        {/* Top row: back arrow left, branch badge right */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 flex items-center justify-between">
           <Link
             href={`/prep/${category}`}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-white/70 hover:text-white mb-5 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-white/70 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Armed Forces
           </Link>
           <div
-            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-widest mb-3 ${clr.badge}`}
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-widest ${clr.badge}`}
           >
             <Shield className="w-3.5 h-3.5" />
             {info.branch}
           </div>
+        </div>
+
+        {/* Bottom: title + commission type */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 mt-auto">
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight drop-shadow-xl">
             {info.title}
           </h1>
           <p className="text-sm text-white/75 mt-2 font-semibold">{info.commissionType}</p>
         </div>
       </section>
+
 
       {/* ── Quick Facts Strip ────────────────────────────────────────────── */}
       <section className="bg-[#0A192F]">
