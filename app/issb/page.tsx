@@ -152,39 +152,43 @@ const dimensions = [
 const overviewCards = [
   {
     id: 'psychology',
-    title: 'Psychology',
+    title: 'Psychologist',
     subtitle: 'Psychological Assessment',
-    icon: Brain,
     cardBgUrl: '/images/issb-psychology.jpg',
-    tagline: 'Uncover your inner self through structured mental evaluations.',
-    href: '#psychology'
+    tagline: 'Uncovers the subconscious of the candidate through carefully designed psychological tests and assessments.',
+    href: '#psychology',
+    btnBg: 'bg-[#009beb] hover:bg-[#0089d4]',
+    btnText: 'Learn More'
   },
   {
     id: 'gto',
     title: 'GTO',
     subtitle: 'Group Testing Officer Tasks',
-    icon: Users,
     cardBgUrl: '/images/issb-gto.jpg',
-    tagline: 'Demonstrate leadership and teamwork under real pressure.',
-    href: '#gto'
+    tagline: 'Observes candidates\' behaviour in group settings through various situational tests and group activities.',
+    href: '#gto',
+    btnBg: 'bg-[#00bda6] hover:bg-[#00a894]',
+    btnText: 'Learn More'
   },
   {
     id: 'deputy',
     title: 'Deputy President',
     subtitle: 'Personal Interview',
-    icon: UserCheck,
     cardBgUrl: '/images/issb-deputy.jpg',
-    tagline: 'Face-to-face with a senior officer — clarity, confidence & character.',
-    href: '#deputy'
+    tagline: 'Analyzes candidates\' intellect, emotional pattern and social behaviour through comprehensive interviews.',
+    href: '#deputy',
+    btnBg: 'bg-[#00afd1] hover:bg-[#009bb8]',
+    btnText: 'Learn More'
   },
   {
     id: 'coaching',
     title: 'ISSB Training',
     subtitle: 'Professional Coaching Program',
-    icon: GraduationCap,
     cardBgUrl: '/images/real-forces-illustration.jpg',
-    tagline: 'Get mentored by retired officers for GTO, Psych, and Deputy President tests.',
-    href: '/issb/coaching'
+    tagline: 'Want training or coaching of GTO, Psych, Deputy, or complete ISSB? Unlock our expert mentoring programs.',
+    href: '/issb/coaching',
+    btnBg: 'bg-[#B8212E] hover:bg-[#A31C28]',
+    btnText: 'Explore Coaching'
   }
 ]
 
@@ -263,7 +267,6 @@ export default function ISSBPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {overviewCards.map((card) => {
-            const Icon = card.icon
             const isExternal = card.href.startsWith('/')
             const Container = isExternal ? Link : 'a'
             const containerProps = isExternal ? { href: card.href } : { href: card.href }
@@ -272,41 +275,62 @@ export default function ISSBPage() {
               <Container
                 key={card.id}
                 {...containerProps}
-                className="group relative rounded-xl overflow-hidden border border-gray-200 hover:border-[#B8212E] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full min-h-[300px] z-20"
+                className="group rounded-2xl overflow-hidden border border-gray-200 bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col h-full z-20 shadow-sm"
               >
-                {/* Background Image with Hover Zoom */}
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src={card.cardBgUrl}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 300px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Rich Gradient Overlay for high readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/35 group-hover:via-black/70 transition-all"></div>
-                </div>
-
-                {/* Card Content */}
-                <div className="relative z-10 p-6 flex flex-col h-full justify-between flex-grow">
-                  <div className="space-y-4">
-                    {/* Floating Icon with brand borders */}
-                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#B8212E] group-hover:border-[#B8212E] transition-all duration-300">
-                      <Icon className="w-6 h-6 text-white" />
+                {/* Top Image Section */}
+                {card.id === 'coaching' ? (
+                  /* Mixed collage image for Training card */
+                  <div className="relative h-48 w-full flex overflow-hidden border-b border-gray-100">
+                    <div className="relative w-1/3 h-full">
+                      <Image src="/images/issb-psychology.jpg" alt="Psychology" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-extrabold text-white group-hover:text-[#D4AF37] transition-colors">{card.title}</h3>
-                      <p className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-0.5">{card.subtitle}</p>
+                    <div className="relative w-1/3 h-full border-l-2 border-white">
+                      <Image src="/images/issb-gto.jpg" alt="GTO" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="relative w-1/3 h-full border-l-2 border-white">
+                      <Image src="/images/issb-deputy.jpg" alt="Deputy" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+                    
+                    {/* Title overlay */}
+                    <div className="absolute bottom-3 left-4 right-4 z-20">
+                      <h3 className="text-lg font-extrabold text-white tracking-wide">{card.title}</h3>
                     </div>
                   </div>
+                ) : (
+                  /* Standard single image for dimensions */
+                  <div className="relative h-48 w-full overflow-hidden border-b border-gray-100">
+                    <Image
+                      src={card.cardBgUrl}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 300px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
+                    
+                    {/* Title overlay */}
+                    <div className="absolute bottom-3 left-4 right-4 z-20">
+                      <h3 className="text-lg font-extrabold text-white tracking-wide">{card.title}</h3>
+                    </div>
+                  </div>
+                )}
 
-                  <div className="space-y-4 mt-6">
-                    <p className="text-xs text-gray-300 leading-relaxed font-medium line-clamp-3 group-hover:text-gray-200 transition-colors">
+                {/* Bottom Content Section */}
+                <div className="p-5 flex flex-col justify-between flex-grow space-y-5 bg-white">
+                  <div className="space-y-2">
+                    <p className="text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">
+                      {card.subtitle}
+                    </p>
+                    <p className="text-xs sm:text-sm text-gray-500 leading-relaxed font-medium min-h-[60px]">
                       {card.tagline}
                     </p>
-                    <div className="flex items-center gap-1 text-xs font-bold text-[#D4AF37] group-hover:text-white group-hover:gap-2 transition-all">
-                      <span>{isExternal ? 'Explore Coaching' : 'Learn More'}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+
+                  {/* Button style matching screenshot */}
+                  <div className="pt-2">
+                    <div className={`w-full py-2.5 rounded-lg text-white font-bold text-center text-xs tracking-wider transition-colors uppercase ${card.btnBg}`}>
+                      {card.btnText}
                     </div>
                   </div>
                 </div>
