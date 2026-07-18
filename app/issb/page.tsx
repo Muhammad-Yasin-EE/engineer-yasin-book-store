@@ -1,10 +1,12 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+
 import {
   ArrowRight, Brain, Users, UserCheck, ChevronRight,
   CheckCircle2, AlertCircle, Lightbulb, Shield, Target, Clock, BookOpen,
   GraduationCap
-} from 'lucide-react'
+} from 'lucide-react';
 
 export const metadata = {
   title: 'ISSB Preparation | Engineer Yasin',
@@ -218,9 +220,28 @@ const colorMap: Record<string, { bg: string; border: string; text: string; badge
 }
 
 export default function ISSBPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === 'loading') {
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  }
+
+  if (!session) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center p-6">
+        <h2 className="text-2xl font-bold mb-4">Please Sign In</h2>
+        <p className="mb-6">You need to log in or sign up to view the ISSB content and access the cards.</p>
+        <div className="flex gap-4 justify-center">
+          <Link href="/login" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md">Log In</Link>
+          <Link href="/signup" className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md">Sign Up</Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white text-gray-800 pb-24">
-
       {/* ── Hero Banner ──────────────────────────────────────────────────── */}
       <section className="relative min-h-[320px] sm:min-h-[420px] flex items-center justify-center overflow-hidden">
         <Image
@@ -259,12 +280,11 @@ export default function ISSBPage() {
       {/* ── Overview Cards ───────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">ISSB Dimensions & Coaching</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">ISSB Dimensions &amp; Coaching</h2>
           <p className="text-gray-500 text-sm max-w-xl mx-auto">
             Learn about the three core testing dimensions or enroll in our professional training programs to prepare for your selection.
           </p>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {overviewCards.map((card) => {
             const isExternal = card.href.startsWith('/')
@@ -290,8 +310,7 @@ export default function ISSBPage() {
                     <div className="relative w-1/3 h-full border-l-2 border-white">
                       <Image src="/images/issb-deputy.jpg" alt="Deputy" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                     {/* Title overlay */}
                     <div className="absolute bottom-3 left-4 right-4 z-20">
                       <h3 className="text-lg font-extrabold text-white tracking-wide">{card.title}</h3>
@@ -307,15 +326,13 @@ export default function ISSBPage() {
                       sizes="(max-width: 768px) 100vw, 300px"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10"></div>
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                     {/* Title overlay */}
                     <div className="absolute bottom-3 left-4 right-4 z-20">
                       <h3 className="text-lg font-extrabold text-white tracking-wide">{card.title}</h3>
                     </div>
                   </div>
                 )}
-
                 {/* Bottom Content Section */}
                 <div className="p-5 flex flex-col justify-between flex-grow space-y-5 bg-white">
                   <div className="space-y-2">
@@ -326,7 +343,6 @@ export default function ISSBPage() {
                       {card.tagline}
                     </p>
                   </div>
-
                   {/* Button style matching screenshot */}
                   <div className="pt-2">
                     <div className={`w-full py-2.5 rounded-lg text-white font-bold text-center text-xs tracking-wider transition-colors uppercase ${card.btnBg}`}>
@@ -343,12 +359,7 @@ export default function ISSBPage() {
       {/* ── Quick Facts Banner ───────────────────────────────────────────── */}
       <section className="bg-[#0A192F] py-10 px-4">
         <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-          {[
-            { icon: Clock, label: '4–5 Days', desc: 'Duration at ISSB' },
-            { icon: Target, label: '3 Dimensions', desc: 'Psych · GTO · Interview' },
-            { icon: Users, label: '8–12 Candidates', desc: 'Per group batch' },
-            { icon: BookOpen, label: '100% Honest', desc: 'Key to success' },
-          ].map((fact) => {
+          {[{ icon: Clock, label: '4–5 Days', desc: 'Duration at ISSB' },{ icon: Target, label: '3 Dimensions', desc: 'Psych · GTO · Interview' },{ icon: Users, label: '8–12 Candidates', desc: 'Per group batch' },{ icon: BookOpen, label: '100% Honest', desc: 'Key to success' }].map((fact) => {
             const FIcon = fact.icon
             return (
               <div key={fact.label} className="flex flex-col items-center gap-2">
@@ -370,13 +381,8 @@ export default function ISSBPage() {
         const isEven = idx % 2 === 0
 
         return (
-          <section
-            key={dim.id}
-            id={dim.id}
-            className={`py-16 scroll-mt-20 ${isEven ? 'bg-white' : 'bg-gray-50'}`}
-          >
+          <section key={dim.id} id={dim.id} className={`py-16 scroll-mt-20 ${isEven ? 'bg-white' : 'bg-gray-50'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
               {/* Dimension Header */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div className={`order-2 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
@@ -389,29 +395,20 @@ export default function ISSBPage() {
                     <span className="block text-base font-semibold text-gray-500 mt-1">{dim.subtitle}</span>
                   </h2>
                   <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-6">{dim.overview}</p>
-
                   {/* Key Qualities */}
                   <div>
                     <p className="text-xs font-extrabold text-gray-400 uppercase tracking-wider mb-3">Key Qualities Assessed</p>
                     <div className="flex flex-wrap gap-2">
                       {dim.keyQualities.map((q) => (
-                        <span key={q} className={`px-3 py-1 rounded-full text-xs font-bold ${clr.badge}`}>
-                          {q}
-                        </span>
+                        <span key={q} className={`px-3 py-1 rounded-full text-xs font-bold ${clr.badge}`}>${q}</span>
                       ))}
                     </div>
                   </div>
                 </div>
-
                 {/* Banner Image */}
                 <div className={`order-1 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] border border-gray-200">
-                    <Image
-                      src={dim.bannerUrl}
-                      alt={dim.title}
-                      fill
-                      className="object-cover"
-                    />
+                    <Image src={dim.bannerUrl} alt={dim.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${clr.iconBg} ${clr.text} text-xs font-extrabold`}>
@@ -427,14 +424,11 @@ export default function ISSBPage() {
               <div>
                 <h3 className="text-lg font-extrabold text-gray-800 mb-6 flex items-center gap-2">
                   <ChevronRight className={`w-5 h-5 ${clr.text}`} />
-                  {dim.id === 'gto' ? 'Tasks & Exercises' : dim.id === 'deputy' ? 'Interview Topics' : 'Tests & Assessments'}
+                  {dim.id === 'gto' ? 'Tasks &amp; Exercises' : dim.id === 'deputy' ? 'Interview Topics' : 'Tests &amp; Assessments'}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {dim.tests.map((test) => (
-                    <div
-                      key={test.name}
-                      className={`rounded-xl border ${clr.border} bg-white p-5 hover:shadow-md transition-shadow flex flex-col gap-3`}
-                    >
+                    <div key={test.name} className={`rounded-xl border ${clr.border} bg-white p-5 hover:shadow-md transition-shadow flex flex-col gap-3`}>
                       <h4 className={`font-extrabold text-sm ${clr.text}`}>{test.name}</h4>
                       <p className="text-xs text-gray-500 leading-relaxed flex-grow">{test.desc}</p>
                       <div className={`rounded-lg ${clr.bg} p-3 space-y-1.5`}>
@@ -492,21 +486,12 @@ export default function ISSBPage() {
 
       {/* ── CTA ─────────────────────────────────────────────────────────── */}
       <section className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">
-          Ready to Practise for ISSB?
-        </h2>
-        <p className="text-gray-500 text-sm max-w-xl mx-auto mb-8">
-          Head to our Armed Forces prep section to take mock intelligence tests, verbal reasoning quizzes, and more resources designed specifically for ISSB candidates.
-        </p>
-        <Link
-          href="/prep/armed-forces"
-          className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#B8212E] hover:bg-[#A31C28] text-white font-bold rounded-xl shadow-lg text-sm transition-all hover:shadow-xl hover:-translate-y-0.5 uppercase tracking-wider"
-        >
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">Ready to Practise for ISSB?</h2>
+        <p className="text-gray-500 text-sm max-w-xl mx-auto mb-8">Head to our Armed Forces prep section to take mock intelligence tests, verbal reasoning quizzes, and more resources designed specifically for ISSB candidates.</p>
+        <Link href="/prep/armed-forces" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#B8212E] hover:bg-[#A31C28] text-white font-bold rounded-xl shadow-lg text-sm transition-all hover:shadow-xl hover:-translate-y-0.5 uppercase tracking-wider">
           Go to Armed Forces Prep
           <ArrowRight className="w-4 h-4" />
         </Link>
       </section>
-
     </div>
-  )
-}
+  );
