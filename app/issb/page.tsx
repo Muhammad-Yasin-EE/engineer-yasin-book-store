@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowRight, Brain, Users, UserCheck, ChevronRight,
-  CheckCircle2, AlertCircle, Lightbulb, Shield, Target, Clock, BookOpen
+  CheckCircle2, AlertCircle, Lightbulb, Shield, Target, Clock, BookOpen,
+  GraduationCap
 } from 'lucide-react'
 
 export const metadata = {
@@ -147,6 +148,46 @@ const dimensions = [
   },
 ]
 
+// ─── Overview Cards ──────────────────────────────────────────────────────────
+const overviewCards = [
+  {
+    id: 'psychology',
+    title: 'Psychology',
+    subtitle: 'Psychological Assessment',
+    icon: Brain,
+    cardBgUrl: '/images/issb-psychology.jpg',
+    tagline: 'Uncover your inner self through structured mental evaluations.',
+    href: '#psychology'
+  },
+  {
+    id: 'gto',
+    title: 'GTO',
+    subtitle: 'Group Testing Officer Tasks',
+    icon: Users,
+    cardBgUrl: '/images/issb-gto.jpg',
+    tagline: 'Demonstrate leadership and teamwork under real pressure.',
+    href: '#gto'
+  },
+  {
+    id: 'deputy',
+    title: 'Deputy President',
+    subtitle: 'Personal Interview',
+    icon: UserCheck,
+    cardBgUrl: '/images/issb-deputy.jpg',
+    tagline: 'Face-to-face with a senior officer — clarity, confidence & character.',
+    href: '#deputy'
+  },
+  {
+    id: 'coaching',
+    title: 'ISSB Training',
+    subtitle: 'Professional Coaching Program',
+    icon: GraduationCap,
+    cardBgUrl: '/images/real-forces-illustration.jpg',
+    tagline: 'Get mentored by retired officers for GTO, Psych, and Deputy President tests.',
+    href: '/issb/coaching'
+  }
+]
+
 // ─── Color Helpers ────────────────────────────────────────────────────────────
 const colorMap: Record<string, { bg: string; border: string; text: string; badge: string; iconBg: string }> = {
   violet: {
@@ -214,34 +255,62 @@ export default function ISSBPage() {
       {/* ── Overview Cards ───────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">The Three Dimensions of ISSB</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">ISSB Dimensions & Coaching</h2>
           <p className="text-gray-500 text-sm max-w-xl mx-auto">
-            Your final recommendation is based on a combined evaluation by three independent specialists, each assessing a distinct facet of your personality.
+            Learn about the three core testing dimensions or enroll in our professional training programs to prepare for your selection.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {dimensions.map((dim) => {
-            const clr = colorMap[dim.color]
-            const Icon = dim.icon
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {overviewCards.map((card) => {
+            const Icon = card.icon
+            const isExternal = card.href.startsWith('/')
+            const Container = isExternal ? Link : 'a'
+            const containerProps = isExternal ? { href: card.href } : { href: card.href }
+
             return (
-              <a
-                key={dim.id}
-                href={`#${dim.id}`}
-                className={`group rounded-xl border-2 ${clr.border} ${clr.bg} p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col gap-4`}
+              <Container
+                key={card.id}
+                {...containerProps}
+                className="group relative rounded-xl overflow-hidden border border-gray-200 hover:border-[#B8212E] hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full min-h-[300px] z-20"
               >
-                <div className={`w-12 h-12 rounded-xl ${clr.iconBg} flex items-center justify-center`}>
-                  <Icon className={`w-6 h-6 ${clr.text}`} />
+                {/* Background Image with Hover Zoom */}
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={card.cardBgUrl}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 300px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Rich Gradient Overlay for high readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/35 group-hover:via-black/70 transition-all"></div>
                 </div>
-                <div>
-                  <h3 className={`text-lg font-extrabold ${clr.text}`}>{dim.title}</h3>
-                  <p className="text-xs text-gray-500 font-semibold mt-0.5">{dim.subtitle}</p>
+
+                {/* Card Content */}
+                <div className="relative z-10 p-6 flex flex-col h-full justify-between flex-grow">
+                  <div className="space-y-4">
+                    {/* Floating Icon with brand borders */}
+                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#B8212E] group-hover:border-[#B8212E] transition-all duration-300">
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-extrabold text-white group-hover:text-[#D4AF37] transition-colors">{card.title}</h3>
+                      <p className="text-[10px] text-gray-300 font-bold uppercase tracking-wider mt-0.5">{card.subtitle}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mt-6">
+                    <p className="text-xs text-gray-300 leading-relaxed font-medium line-clamp-3 group-hover:text-gray-200 transition-colors">
+                      {card.tagline}
+                    </p>
+                    <div className="flex items-center gap-1 text-xs font-bold text-[#D4AF37] group-hover:text-white group-hover:gap-2 transition-all">
+                      <span>{isExternal ? 'Explore Coaching' : 'Learn More'}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed flex-grow">{dim.tagline}</p>
-                <div className={`flex items-center gap-1 text-xs font-bold ${clr.text} group-hover:gap-2 transition-all`}>
-                  Learn More <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </a>
+              </Container>
             )
           })}
         </div>
