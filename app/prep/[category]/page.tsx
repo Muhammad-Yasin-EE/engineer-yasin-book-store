@@ -79,16 +79,16 @@ const categoryData: Record<string, any> = {
       {
         name: 'All Entry Tests',
         exams: [
-          { id: 'ecat', name: 'ECAT', cardBgUrl: '/images/entry-tests-header.jpg' },
-          { id: 'mdcat', name: 'MDCAT', cardBgUrl: '/images/exam-army-bg.jpg' },
-          { id: 'nts', name: 'NTS', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'uet', name: 'UET', cardBgUrl: '/images/exam-paf-bg.jpg' },
-          { id: 'nust', name: 'NUST', cardBgUrl: '/images/entry-tests-header.jpg' },
-          { id: 'pieas', name: 'PIEAS', cardBgUrl: '/images/exam-army-bg.jpg' },
-          { id: 'giki', name: 'GIKI', cardBgUrl: '/images/exam-navy-bg.jpg' },
-          { id: 'ots', name: 'OTS', cardBgUrl: '/images/exam-paf-bg.jpg' },
-          { id: 'pts', name: 'PTS', cardBgUrl: '/images/entry-tests-header.jpg' },
-          { id: 'cts', name: 'CTS', cardBgUrl: '/images/exam-army-bg.jpg' },
+          { id: 'ecat', name: 'ECAT', cardBgUrl: '/images/card-ecat.jpg' },
+          { id: 'mdcat', name: 'MDCAT', cardBgUrl: '/images/card-mdcat.jpg' },
+          { id: 'nts', name: 'NTS', cardBgUrl: '/images/card-nts.jpg' },
+          { id: 'uet', name: 'UET', cardBgUrl: '/images/card-uet.jpg' },
+          { id: 'nust', name: 'NUST', cardBgUrl: '/images/card-nust.jpg' },
+          { id: 'pieas', name: 'PIEAS', cardBgUrl: '/images/card-pieas.jpg' },
+          { id: 'giki', name: 'GIKI', cardBgUrl: '/images/card-giki.jpg' },
+          { id: 'ots', name: 'OTS', cardBgUrl: '/images/card-ots.jpg' },
+          { id: 'pts', name: 'PTS', cardBgUrl: '/images/card-pts.jpg' },
+          { id: 'cts', name: 'CTS', cardBgUrl: '/images/card-cts.jpg' },
         ]
       }
     ]
