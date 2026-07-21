@@ -1,7 +1,9 @@
 "use client";
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 
 import {
   ArrowRight, Brain, Users, UserCheck, ChevronRight,
@@ -9,16 +11,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 
-export const metadata = {
-  title: 'ISSB Preparation | Engineer Yasin',
-  description:
-    'Complete ISSB (Inter Services Selection Board) preparation guide covering all 3 dimensions: Psychological Tests, GTO Tasks, and Deputy President Interview. Tips, techniques, and practice resources for Pakistan Armed Forces candidates.',
-  keywords: [
-    'ISSB', 'ISSB Pakistan', 'ISSB preparation', 'GTO tasks', 'ISSB psychology',
-    'Deputy President interview', 'PMA Long Course ISSB', 'WAT SCT TAT',
-    'Group testing officer', 'ISSB guide', 'ISSB tips',
-  ],
-}
+
 
 // ─── Dimension Data ──────────────────────────────────────────────────────────
 const dimensions = [
@@ -221,14 +214,25 @@ const colorMap: Record<string, { bg: string; border: string; text: string; badge
 }
 
 export default function ISSBPage() {
-  const { data: session, status } = useSession();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  if (status === 'loading') {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  useEffect(() => {
+    async function checkUser() {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+      setLoading(false);
+    }
+    checkUser();
+  }, []);
+
+  if (loading) {
+    return <div className="flex items-center justify-center min-h-screen bg-white text-gray-800 font-medium">Loading...</div>;
   }
 
-  if (!session) {
+  if (!user) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center p-6">
         <h2 className="text-2xl font-bold mb-4">Please Sign In</h2>
