@@ -638,9 +638,247 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A — Civilian Grade (BPS) or equivalent',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['civilian'],
+  'm-cadet': {
+    title: 'M Cadet (Medical)',
+    branch: 'Pakistan Army',
+    branchSlug: 'army',
+    commissionType: 'Short Service Commission',
+    overview: 'The M Cadet scheme is for 4th or final year MBBS/BDS students currently studying in PM&DC recognized medical colleges. After graduation, candidates are inducted as Captains in the Army Medical Corps.',
+    quickFacts: [
+      { label: 'Age', value: '20 - 26 Years' },
+      { label: 'Education', value: '4th or Final Year MBBS/BDS' },
+      { label: 'Training', value: '22 Weeks PMA Kakul' },
+      { label: 'Gender', value: 'Male Only' }
+    ],
+    eligibility: [
+      'Unmarried male citizens of Pakistan',
+      'Age limit is generally 20 to 26 years',
+      'Must be studying in 4th or final year of MBBS/BDS in recognized civilian medical college',
+      'Minimum height 5 feet 4 inches (162.5 cm)',
+      'Weight as per Body Mass Index (BMI)'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Registration', desc: 'Online registration at joinpakarmy.gov.pk' },
+      { step: 2, title: 'Initial Medical', desc: 'Preliminary medical examination at AS&RC' },
+      { step: 3, title: 'Intelligence/Personality Test', desc: 'Conducted at AS&RC' },
+      { step: 4, title: 'Final Interview', desc: 'GHQ Selection Board interview' }
+    ],
+    training: '22 weeks Basic Military Training at PMA Kakul upon completion of degree',
+    commission: 'Captain',
+    officialUrl: 'https://www.joinpakarmy.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['medical', 'm cadet', 'amc']
   },
+  'amc': {
+    title: 'AMC (Medical Cadet)',
+    branch: 'Pakistan Army',
+    branchSlug: 'army',
+    commissionType: 'Permanent Commission',
+    overview: 'Join Army Medical College as a Medical Cadet. Open for FSc Pre-Medical students to study MBBS or BDS on military scholarship. Cadets are commissioned as Captains after graduation.',
+    quickFacts: [
+      { label: 'Age', value: '17 - 21 Years' },
+      { label: 'Education', value: 'FSc Pre-Medical (70%)' },
+      { label: 'Training', value: '5 Years MBBS / 4 Years BDS + 22 Weeks PMA' },
+      { label: 'Gender', value: 'Male Only' }
+    ],
+    eligibility: [
+      'Age: 17 to 21 years (relaxable by 3 months both in upper/lower limits)',
+      'FSc (Pre-Medical) with minimum 70% marks',
+      'A-Level candidates must have equivalent certificate',
+      'Must have appeared in NUMS Entry Test'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Initial Test', desc: 'Intelligence and Academic (Physics, Chemistry, Biology, English)' },
+      { step: 2, title: 'Physical Test', desc: '1.6km run, pushups, situps, and pullups' },
+      { step: 3, title: 'Personality Test', desc: 'Personality assessment at AS&RC' },
+      { step: 4, title: 'Final Medical', desc: 'CMH Medical Board examination' }
+    ],
+    training: '5 years MBBS or 4 years BDS at AMC, followed by 22 weeks military training at PMA',
+    commission: 'Captain',
+    officialUrl: 'https://www.joinpakarmy.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['amc', 'medical', 'biology']
+  },
+  'logistics': {
+    title: 'Logistics Branch',
+    branch: 'Pakistan Air Force',
+    branchSlug: 'paf',
+    commissionType: 'Permanent Commission',
+    overview: 'The Logistics branch of the PAF is responsible for supply chain management, procurement, and equipment provisioning to keep the air fleet operational.',
+    quickFacts: [
+      { label: 'Age', value: '16 - 22 Years' },
+      { label: 'Education', value: 'FSc Pre-Eng/ICS/Pre-Med (65%)' },
+      { label: 'Training', value: '3 Years at PAF Academy' },
+      { label: 'Gender', value: 'Male / Female' }
+    ],
+    eligibility: [
+      'Unmarried Pakistani citizen',
+      'Age: 16 to 22 years',
+      'FSc Pre-Engineering/Pre-Medical/Computer Science with minimum 65% marks',
+      'Vision: 6/6 (without glasses)'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Written Test', desc: 'Intelligence test followed by Academic test in English and Physics' },
+      { step: 2, title: 'Initial Medical', desc: 'Medical check at Information & Selection Centre' },
+      { step: 3, title: 'ISSB', desc: 'Inter Services Selection Board tests' },
+      { step: 4, title: 'CMB', desc: 'Central Medical Board examination at PAF Masroor' }
+    ],
+    training: '3 Years degree program followed by military training at PAF Academy Asghar Khan',
+    commission: 'Flying Officer',
+    officialUrl: 'https://joinpaf.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['logistics', 'paf', 'physics']
+  },
+  'it': {
+    title: 'Information Technology (IT)',
+    branch: 'Pakistan Air Force',
+    branchSlug: 'paf',
+    commissionType: 'Short Service Commission',
+    overview: 'Induction as IT Officers in the Pakistan Air Force. This branch manages networking, software development, cybersecurity, and communication infrastructure.',
+    quickFacts: [
+      { label: 'Age', value: '18 - 30 Years' },
+      { label: 'Education', value: 'BS/MS in CS/IT (2.5 CGPA)' },
+      { label: 'Training', value: '24 Weeks' },
+      { label: 'Gender', value: 'Male / Female' }
+    ],
+    eligibility: [
+      'Married/Unmarried Pakistani citizens',
+      'Age: 18 to 30 years',
+      'BS/MS/MCS/BCS (4 years) in Computer Science, IT, Software Eng, Info Security',
+      'Minimum CGPA 2.5 out of 4 or 62% marks'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Written Test', desc: 'Intelligence and IT Professional Test' },
+      { step: 2, title: 'Initial Medical', desc: 'Preliminary Medical check' },
+      { step: 3, title: 'Interview', desc: 'AHQ Selection Board interview' },
+      { step: 4, title: 'CMB', desc: 'Central Medical Board at PAF Hospital' }
+    ],
+    training: '24 weeks basic military training',
+    commission: 'Flying Officer',
+    officialUrl: 'https://joinpaf.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['it', 'computer', 'paf']
+  },
+  'education': {
+    title: 'Education Branch',
+    branch: 'Pakistan Air Force',
+    branchSlug: 'paf',
+    commissionType: 'Short Service Commission',
+    overview: 'The Education Branch inducts qualified educators and instructors to teach subjects at various PAF academies, schools, and colleges.',
+    quickFacts: [
+      { label: 'Age', value: '21 - 30 Years' },
+      { label: 'Education', value: 'Masters/BS (4 years)' },
+      { label: 'Training', value: '24 Weeks' },
+      { label: 'Gender', value: 'Male / Female' }
+    ],
+    eligibility: [
+      'Age: 21 to 30 years',
+      'MA/MSc/BS (4 Years) in Math, Physics, English, Islamic Studies, Pak Studies, etc.',
+      'Minimum 2nd Division or 2.5 CGPA'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Intelligence Test', desc: 'E-Testing of Intelligence' },
+      { step: 2, title: 'Academic Test', desc: 'Subject related professional test' },
+      { step: 3, title: 'Psychological Test', desc: 'Initial psychological evaluation' },
+      { step: 4, title: 'Interview', desc: 'Final interview by AHQ Special Selection Board' }
+    ],
+    training: '24 Weeks Basic Military Training',
+    commission: 'Flying Officer',
+    officialUrl: 'https://joinpaf.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['education', 'paf']
+  },
+  'airmen': {
+    title: 'Airmen (Aero Trades, PF&DI, Provost)',
+    branch: 'Pakistan Air Force',
+    branchSlug: 'paf',
+    commissionType: 'Non-Commissioned',
+    overview: 'Induction as Airmen in PAF. Includes trades like Aero Trades, PF&DI (Physical Fitness & Drill Instructor), Provost, and GC (Ground Combateer).',
+    quickFacts: [
+      { label: 'Age', value: '15.5 - 22 Years' },
+      { label: 'Education', value: 'Matric Science (60%)' },
+      { label: 'Training', value: 'Varies by trade' },
+      { label: 'Gender', value: 'Male Only' }
+    ],
+    eligibility: [
+      'Age varies by trade (e.g., Aero Trades 15.5-20 years, GC 17.5-22 years)',
+      'Matric with Science (minimum 60% marks overall, 33% in English, Math, Physics)',
+      'Height: 163 cm (175 cm for PF&DI/GC)'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'E-Testing', desc: 'Intelligence, English, Physics, and Mathematics' },
+      { step: 2, title: 'Initial Medical', desc: 'Medical examination at selection centre' },
+      { step: 3, title: 'Interview', desc: 'Initial interview and personality test' },
+      { step: 4, title: 'Final Medical', desc: 'At Air Headquarters Medical Board' }
+    ],
+    training: 'Basic military and specialized trade training at PAF bases',
+    commission: 'Aircraftman / Leading Aircraftman',
+    officialUrl: 'https://joinpaf.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['airmen', 'physics', 'math', 'matric']
+  },
+  'm-cadet-navy': {
+    title: 'M Cadet (Navy)',
+    branch: 'Pakistan Navy',
+    branchSlug: 'navy',
+    commissionType: 'Short Service Commission',
+    overview: 'The Navy M Cadet scheme is for medical students in their 4th or 5th year of MBBS at PM&DC recognized civilian colleges. Inducted officers serve as Medical Officers in Pakistan Navy.',
+    quickFacts: [
+      { label: 'Age', value: 'Up to 26 Years' },
+      { label: 'Education', value: '4th/5th Year MBBS' },
+      { label: 'Training', value: 'Basic Naval Training' },
+      { label: 'Gender', value: 'Male / Female' }
+    ],
+    eligibility: [
+      'Unmarried Pakistani citizens',
+      'Age up to 26 years',
+      'Must be studying in 4th or 5th year of MBBS in PM&DC recognized medical college',
+      'Minimum height: 5 ft 4 inches (Male), 5 ft (Female)'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Initial Written', desc: 'Intelligence and Academic (Medical) test' },
+      { step: 2, title: 'Initial Medical', desc: 'At PN Recruitment and Selection Centre' },
+      { step: 3, title: 'Personality Test', desc: 'Psychological assessment' },
+      { step: 4, title: 'Final Selection', desc: 'Interview by Naval Headquarters Board' }
+    ],
+    training: 'Basic military and naval training upon completion of degree',
+    commission: 'Acting Surgeon Lieutenant',
+    officialUrl: 'https://www.joinpaknavy.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['medical', 'biology']
+  },
+  'pnec': {
+    title: 'PNEC / Cadet Scheme',
+    branch: 'Pakistan Navy',
+    branchSlug: 'navy',
+    commissionType: 'Permanent Commission',
+    overview: 'Join the Pakistan Navy Engineering College (PNEC-NUST) as a Naval Cadet. This scheme provides an engineering degree (Mechanical/Electrical) followed by commissioning in the Navy.',
+    quickFacts: [
+      { label: 'Age', value: '16.5 - 21 Years' },
+      { label: 'Education', value: 'FSc Pre-Engineering' },
+      { label: 'Training', value: '4 Years BE + Naval Training' },
+      { label: 'Gender', value: 'Male Only' }
+    ],
+    eligibility: [
+      'Unmarried male citizens',
+      'Age: 16.5 to 21 years',
+      'FSc Pre-Engineering with minimum 60% marks or O/A levels equivalent',
+      'Minimum height 5 ft 4 inches'
+    ],
+    selectionProcess: [
+      { step: 1, title: 'Entrance Test', desc: 'Intelligence and Academic (Math, Physics, English)' },
+      { step: 2, title: 'ISSB', desc: 'Inter Services Selection Board assessment' },
+      { step: 3, title: 'Medical', desc: 'Final Medical examination by PN Medical Board' },
+      { step: 4, title: 'Selection', desc: 'Naval Headquarters merit list' }
+    ],
+    training: '4 years BE Degree at PNEC (NUST) Karachi, followed by professional sea training',
+    commission: 'Midshipman / Sub Lieutenant',
+    officialUrl: 'https://www.joinpaknavy.gov.pk',
+    quizCategory: 'armed-forces',
+    quizSearchTerms: ['pnec', 'engineering', 'math', 'physics']
+  }
 }
+
 
 // Branch color maps
 export const branchColors: Record<string, { primary: string; bg: string; badge: string; border: string }> = {

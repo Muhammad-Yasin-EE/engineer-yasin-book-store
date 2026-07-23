@@ -13,19 +13,14 @@ for (const line of envStr.split('\n')) {
 const supabase = createClient(env['NEXT_PUBLIC_SUPABASE_URL'], env['SUPABASE_SERVICE_ROLE_KEY']);
 
 const branches = [
-    { id: 'pma-long-course', category: 'armed-forces' },
-    { id: 'lcc', category: 'armed-forces' },
-    { id: 'dssc', category: 'armed-forces' },
-    { id: 'tcc', category: 'armed-forces' },
-    { id: 'afns', category: 'mdcat' }, // Based on your website's data mapping
-    { id: 'gd-pilot', category: 'armed-forces' },
-    { id: 'aeronautical-engineering', category: 'armed-forces' },
-    { id: 'air-defence', category: 'armed-forces' },
-    { id: 'admin', category: 'armed-forces' },
-    { id: 'accounts', category: 'armed-forces' },
-    { id: 'pn-cadet', category: 'armed-forces' },
-    { id: 'ssc', category: 'armed-forces' },
-    { id: 'marines', category: 'armed-forces' }
+    { id: 'm-cadet', category: 'armed-forces' },
+    { id: 'amc', category: 'armed-forces' },
+    { id: 'logistics', category: 'armed-forces' },
+    { id: 'it', category: 'armed-forces' },
+    { id: 'education', category: 'armed-forces' },
+    { id: 'airmen', category: 'armed-forces' },
+    { id: 'm-cadet-navy', category: 'armed-forces' },
+    { id: 'pnec', category: 'armed-forces' }
 ];
 
 async function run() {
