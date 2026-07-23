@@ -660,12 +660,15 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Weight as per Body Mass Index (BMI)'
     ],
     selectionProcess: [
-      { step: 1, title: 'Registration', desc: 'Online registration at joinpakarmy.gov.pk' },
-      { step: 2, title: 'Initial Medical', desc: 'Preliminary medical examination at AS&RC' },
-      { step: 3, title: 'Intelligence/Personality Test', desc: 'Conducted at AS&RC' },
-      { step: 4, title: 'Final Interview', desc: 'GHQ Selection Board interview' }
+      { step: 1, title: 'Registration', desc: 'Online registration via joinpakarmy.gov.pk or at Army Selection Centers.' },
+      { step: 2, title: 'Initial Written Test', desc: 'Basic Intelligence test and Academic assessment based on medical background.' },
+      { step: 3, title: 'Physical Test', desc: 'Minimum physical fitness standards must be met (running, push-ups).' },
+      { step: 4, title: 'Initial Medical Examination', desc: 'Preliminary health screening at AS&RC.' },
+      { step: 5, title: 'GHQ Selection Board', desc: 'Comprehensive panel interview by GHQ Selection Board to assess personality and aptitude.' },
+      { step: 6, title: 'Final Medical Board', desc: 'Detailed medical checkup at Combined Military Hospital (CMH).' },
+      { step: 7, title: 'Final Selection', desc: 'Merit list compiled by GHQ. Selected candidates receive joining instructions for PMA.' }
     ],
-    training: '22 weeks Basic Military Training at PMA Kakul upon completion of degree',
+    training: '22 weeks Basic Military Training at PMA Kakul upon completion of MBBS/BDS degree',
     commission: 'Captain',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
@@ -723,10 +726,13 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Vision: 6/6 (without glasses)'
     ],
     selectionProcess: [
-      { step: 1, title: 'Written Test', desc: 'Intelligence test followed by Academic test in English and Physics' },
-      { step: 2, title: 'Initial Medical', desc: 'Medical check at Information & Selection Centre' },
-      { step: 3, title: 'ISSB', desc: 'Inter Services Selection Board tests' },
-      { step: 4, title: 'CMB', desc: 'Central Medical Board examination at PAF Masroor' }
+      { step: 1, title: 'Online Registration', desc: 'Candidates apply online via joinpaf.gov.pk.' },
+      { step: 2, title: 'Initial Written Test', desc: 'Computerized intelligence test followed by Academic Test (Physics, Math, English).' },
+      { step: 3, title: 'Initial Medical & Physical', desc: 'Basic medical screening and physical fitness evaluation at Selection Centre.' },
+      { step: 4, title: 'ISSB Assessment', desc: '4-Day Inter Services Selection Board (ISSB) psychological, group, and interview tests.' },
+      { step: 5, title: 'Central Medical Board (CMB)', desc: 'Detailed final medical examination at PAF Masroor.' },
+      { step: 6, title: 'Flying Aptitude Test (If Applicable)', desc: 'General aptitude screening for specific operations.' },
+      { step: 7, title: 'Final Merit List', desc: 'Final selection by Air Headquarters.' }
     ],
     training: '3 Years degree program followed by military training at PAF Academy Asghar Khan',
     commission: 'Flying Officer',
@@ -785,10 +791,13 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Minimum 2nd Division or 2.5 CGPA'
     ],
     selectionProcess: [
-      { step: 1, title: 'Intelligence Test', desc: 'E-Testing of Intelligence' },
-      { step: 2, title: 'Academic Test', desc: 'Subject related professional test' },
-      { step: 3, title: 'Psychological Test', desc: 'Initial psychological evaluation' },
-      { step: 4, title: 'Interview', desc: 'Final interview by AHQ Special Selection Board' }
+      { step: 1, title: 'Online Application', desc: 'Register online at joinpaf.gov.pk.' },
+      { step: 2, title: 'E-Testing', desc: 'E-Testing of Intelligence followed by Professional/Subject related Academic Test.' },
+      { step: 3, title: 'Initial Medical', desc: 'Medical fitness screening at the selection centre.' },
+      { step: 4, title: 'Psychological Test', desc: 'Initial psychological evaluation and personality profiling.' },
+      { step: 5, title: 'Interview by AHQ Special Board', desc: 'Detailed professional and personality interview by AHQ Board.' },
+      { step: 6, title: 'Central Medical Board (CMB)', desc: 'Comprehensive medical assessment at PAF hospital.' },
+      { step: 7, title: 'Final Selection', desc: 'Air Headquarters compiles the final merit list for induction.' }
     ],
     training: '24 Weeks Basic Military Training',
     commission: 'Flying Officer',
@@ -814,10 +823,13 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Height: 163 cm (175 cm for PF&DI/GC)'
     ],
     selectionProcess: [
-      { step: 1, title: 'E-Testing', desc: 'Intelligence, English, Physics, and Mathematics' },
-      { step: 2, title: 'Initial Medical', desc: 'Medical examination at selection centre' },
-      { step: 3, title: 'Interview', desc: 'Initial interview and personality test' },
-      { step: 4, title: 'Final Medical', desc: 'At Air Headquarters Medical Board' }
+      { step: 1, title: 'Online Registration', desc: 'Apply online through the PAF official portal.' },
+      { step: 2, title: 'E-Testing', desc: 'Computerized tests: Intelligence, English, Physics, and Mathematics.' },
+      { step: 3, title: 'Physical Test', desc: 'Running and physical endurance test (especially for PF&DI and GC trades).' },
+      { step: 4, title: 'Initial Medical', desc: 'Medical examination at the PAF selection centre.' },
+      { step: 5, title: 'Personality Test & Interview', desc: 'Initial interview and psychological screening by selection officers.' },
+      { step: 6, title: 'Final Medical Board', desc: 'Detailed medical check at Air Headquarters Medical Board.' },
+      { step: 7, title: 'Final Merit List', desc: 'Final selection and issuance of call letters for training at PAF bases.' }
     ],
     training: 'Basic military and specialized trade training at PAF bases',
     commission: 'Aircraftman / Leading Aircraftman',
@@ -844,10 +856,13 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Minimum height: 5 ft 4 inches (Male), 5 ft (Female)'
     ],
     selectionProcess: [
-      { step: 1, title: 'Initial Written', desc: 'Intelligence and Academic (Medical) test' },
-      { step: 2, title: 'Initial Medical', desc: 'At PN Recruitment and Selection Centre' },
-      { step: 3, title: 'Personality Test', desc: 'Psychological assessment' },
-      { step: 4, title: 'Final Selection', desc: 'Interview by Naval Headquarters Board' }
+      { step: 1, title: 'Registration', desc: 'Apply online at joinpaknavy.gov.pk.' },
+      { step: 2, title: 'Initial Written Test', desc: 'Computerized Intelligence and Academic (Medical) test.' },
+      { step: 3, title: 'Initial Medical', desc: 'Preliminary health check at PN Recruitment and Selection Centre.' },
+      { step: 4, title: 'Physical Fitness Test', desc: 'Basic physical standard evaluation.' },
+      { step: 5, title: 'Personality Assessment', desc: 'Psychological tests and personality profiling.' },
+      { step: 6, title: 'Final Selection Board', desc: 'Detailed panel interview by Naval Headquarters Board.' },
+      { step: 7, title: 'Final Medical & Merit List', desc: 'Final CMB examination and merit list generation.' }
     ],
     training: 'Basic military and naval training upon completion of degree',
     commission: 'Acting Surgeon Lieutenant',
@@ -874,10 +889,13 @@ export const armedForcesData: Record<string, ExamInfo> = {
       'Minimum height 5 ft 4 inches'
     ],
     selectionProcess: [
-      { step: 1, title: 'Entrance Test', desc: 'Intelligence and Academic (Math, Physics, English)' },
-      { step: 2, title: 'ISSB', desc: 'Inter Services Selection Board assessment' },
-      { step: 3, title: 'Medical', desc: 'Final Medical examination by PN Medical Board' },
-      { step: 4, title: 'Selection', desc: 'Naval Headquarters merit list' }
+      { step: 1, title: 'Registration', desc: 'Register online at joinpaknavy.gov.pk.' },
+      { step: 2, title: 'Entrance Test', desc: 'Computerized Intelligence and Academic Test (Math, Physics, English).' },
+      { step: 3, title: 'Initial Medical & Physical', desc: 'Preliminary medical check and physical efficiency test.' },
+      { step: 4, title: 'ISSB Assessment', desc: '4-day comprehensive psychological and leadership testing by Inter Services Selection Board.' },
+      { step: 5, title: 'Final Medical Examination', desc: 'Detailed medical checkup by PN Medical Board (CMB).' },
+      { step: 6, title: 'Naval Headquarters Interview', desc: 'Final interview for selected engineering cadets.' },
+      { step: 7, title: 'Final Selection', desc: 'Naval Headquarters merit list compilation and induction.' }
     ],
     training: '4 years BE Degree at PNEC (NUST) Karachi, followed by professional sea training',
     commission: 'Midshipman / Sub Lieutenant',
