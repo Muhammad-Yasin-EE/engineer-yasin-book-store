@@ -74,6 +74,24 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
         // Shuffle and limit questions to maxQ
         let fetchedQuestions = questionsData || []
         fetchedQuestions = fetchedQuestions.sort(() => 0.5 - Math.random()).slice(0, maxQ)
+
+        // Shuffle options dynamically so answers are unpredictable
+        fetchedQuestions = fetchedQuestions.map(q => {
+          const originalOptions = q.options || [];
+          const originalCorrect = q.correct_option_index;
+          
+          let optionsWithIndices = originalOptions.map((opt: string, i: number) => ({ text: opt, originalIndex: i }));
+          optionsWithIndices.sort(() => 0.5 - Math.random());
+          
+          const newCorrectIndex = optionsWithIndices.findIndex(opt => opt.originalIndex === originalCorrect);
+          
+          return {
+            ...q,
+            options: optionsWithIndices.map(opt => opt.text),
+            correct_option_index: newCorrectIndex
+          };
+        });
+
         setQuestions(fetchedQuestions)
 
       } catch (err) {
@@ -239,7 +257,8 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
   const hasAnsweredCurrent = answers[currentIndex] !== undefined
 
   return (
-    <div className="max-w-3xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-16 flex-grow bg-white dark:bg-gray-900 text-[#222222] dark:text-gray-100 space-y-6 min-h-screen overflow-hidden box-border">
+    <div className="fixed inset-0 z-[999] bg-white dark:bg-gray-900 overflow-y-auto w-full h-full">
+      <div className="max-w-3xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-16 flex-grow text-[#222222] dark:text-gray-100 space-y-6 min-h-screen box-border">
       
       {/* Show Back Button ONLY if exam hasn't started */}
       {!examStarted && (
@@ -569,6 +588,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
         </div>
       )}
 
+      </div>
     </div>
   )
 }
