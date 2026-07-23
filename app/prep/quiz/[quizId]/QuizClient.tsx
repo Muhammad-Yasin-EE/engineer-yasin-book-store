@@ -26,6 +26,10 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [examState, setExamState] = useState<'intro' | 'active' | 'completed'>('intro')
   
+  // Dynamic Limits
+  const [limitMinutes, setLimitMinutes] = useState(QUIZ_TIME_LIMIT_MINUTES)
+  const [maxQCount, setMaxQCount] = useState(MAX_QUESTIONS)
+  
   // Timer & Anti-Cheat
   const [timeLeft, setTimeLeft] = useState(QUIZ_TIME_LIMIT_MINUTES * 60)
   const [autoSubmittedDueToCheat, setAutoSubmittedDueToCheat] = useState(false)
@@ -47,14 +51,29 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
           .single()
         setQuiz(quizData)
 
+        let limitMin = 30
+        let maxQ = 50
+
+        if (quizData) {
+          const isVerbal = quizData.title.toLowerCase().includes('verbal') || quizData.title.toLowerCase().includes('intelligence')
+          if (isVerbal) {
+            limitMin = 30
+            maxQ = 84
+          }
+        }
+
+        setLimitMinutes(limitMin)
+        setMaxQCount(maxQ)
+        setTimeLeft(limitMin * 60)
+
         const { data: questionsData } = await supabase
           .from('quiz_questions')
           .select('*')
           .eq('quiz_id', quizId)
         
-        // Shuffle and limit questions to MAX_QUESTIONS
+        // Shuffle and limit questions to maxQ
         let fetchedQuestions = questionsData || []
-        fetchedQuestions = fetchedQuestions.sort(() => 0.5 - Math.random()).slice(0, MAX_QUESTIONS)
+        fetchedQuestions = fetchedQuestions.sort(() => 0.5 - Math.random()).slice(0, maxQ)
         setQuestions(fetchedQuestions)
 
       } catch (err) {
@@ -123,7 +142,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (user && quiz) {
-        const timeTaken = (QUIZ_TIME_LIMIT_MINUTES * 60) - Math.max(0, timeLeft)
+        const timeTaken = (limitMinutes * 60) - Math.max(0, timeLeft)
         const percentage = questions.length > 0 ? Math.round((calculatedScore / questions.length) * 100) : 0
         
         await supabase.from('user_scores').insert({
@@ -175,7 +194,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
     setFinalScore(0)
     setExamState('intro')
     setExamStarted(false)
-    setTimeLeft(QUIZ_TIME_LIMIT_MINUTES * 60)
+    setTimeLeft(limitMinutes * 60)
     setAutoSubmittedDueToCheat(false)
   }
 
@@ -245,7 +264,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
           <div className="w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-4 sm:p-5 rounded-xl space-y-3 sm:space-y-4 text-[11px] sm:text-xs font-semibold text-gray-600 dark:text-gray-300 overflow-hidden">
             <div className="flex items-start gap-3">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 shrink-0" />
-              <p className="break-words">Strict Time Limit of <strong className="text-gray-900 dark:text-white">{QUIZ_TIME_LIMIT_MINUTES} Minutes</strong>. The exam will auto-submit when time is up.</p>
+              <p className="break-words">Strict Time Limit of <strong className="text-gray-900 dark:text-white">{limitMinutes} Minutes</strong>. The exam will auto-submit when time is up.</p>
             </div>
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-500 shrink-0" />

@@ -91,8 +91,9 @@ export default async function ExamPage({
   const clr = branchColors[info.branchSlug]
   const bgImg = branchImages[info.branchSlug]
 
-  // Fetch matching quizzes
+  // Fetch matching quizzes (combining all relevant search terms)
   let quizzes: any[] = []
+  const seenIds = new Set<string>()
   for (const term of info.quizSearchTerms) {
     const { data } = await supabase
       .from('quizzes')
@@ -100,10 +101,19 @@ export default async function ExamPage({
       .ilike('title', `%${term}%`)
       .eq('category', info.quizCategory)
       .order('created_at', { ascending: true })
-      .limit(9)
+      .limit(20)
     if (data && data.length > 0) {
-      quizzes = data
-      break
+      for (const q of data) {
+        // Exclude Verbal/Intelligence quizzes from soldier, sailor, civilian cards
+        const isVerbalOrIntel = q.title.toLowerCase().includes('verbal') || q.title.toLowerCase().includes('intelligence')
+        if (isVerbalOrIntel && ['soldier', 'sailor', 'civilian'].includes(exam)) {
+          continue
+        }
+        if (!seenIds.has(q.id)) {
+          seenIds.add(q.id)
+          quizzes.push(q)
+        }
+      }
     }
   }
 

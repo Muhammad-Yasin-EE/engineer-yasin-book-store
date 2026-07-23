@@ -214,7 +214,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Lieutenant (upon completion); 10-year service bond',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'mdcat',
-    quizSearchTerms: ['Biology', 'Chemistry', 'English', 'Physics', 'MDCAT'],
+    quizSearchTerms: ['Biology', 'Chemistry', 'English', 'Physics', 'Intelligence', 'MDCAT'],
   },
 
   'soldier': {
