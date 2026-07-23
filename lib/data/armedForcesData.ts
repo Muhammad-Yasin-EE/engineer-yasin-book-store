@@ -638,6 +638,8 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A — Civilian Grade (BPS) or equivalent',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
+    quizSearchTerms: ['civilian'],
+  },
   'm-cadet': {
     title: 'M Cadet (Medical)',
     branch: 'Pakistan Army',
