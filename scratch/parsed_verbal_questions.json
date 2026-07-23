@@ -1,0 +1,4371 @@
+[
+  {
+    "number": 5,
+    "options": [
+      "AD",
+      "IL",
+      "QS",
+      "MP",
+      "EH"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 4,
+    "options": [
+      "CE",
+      "EG",
+      "AC",
+      "GI",
+      "IJ"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 3,
+    "options": [
+      "Hammer",
+      "Plane",
+      "Nail",
+      "Spaceship"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 2,
+    "options": [
+      "May",
+      "July",
+      "June",
+      "March"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 1,
+    "options": [
+      "Lahore",
+      "Punjab"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 9,
+    "options": [
+      "H",
+      "I",
+      "G",
+      "K"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 8,
+    "options": [
+      "Mare",
+      "Fox",
+      "Lass",
+      "Hen"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 7,
+    "options": [
+      "3",
+      "57",
+      "48",
+      "75"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 6,
+    "options": [
+      "Lead",
+      "Notebook",
+      "Book",
+      "Knife",
+      "480"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 13,
+    "options": [
+      "DG",
+      "HK",
+      "AC",
+      "LO"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 12,
+    "options": [
+      "Spaceship",
+      "Ship",
+      "Aircraft",
+      "Cycle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 11,
+    "options": [
+      "1/16",
+      "1/64",
+      "1/32",
+      "1/18"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 10,
+    "options": [
+      "D",
+      "W",
+      "A",
+      "G"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 17,
+    "options": [
+      "Mother",
+      "Uncle",
+      "Brother",
+      "Son"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 16,
+    "options": [
+      "E, Z",
+      "E, P",
+      "E, W",
+      "E, Q"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 15,
+    "options": [
+      "13565",
+      "65531",
+      "35651",
+      "16535"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 14,
+    "options": [
+      "Liquid",
+      "Oil"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 22,
+    "options": [
+      "Handful",
+      "Beautiful",
+      "Careful",
+      "Dutiful",
+      "Cheerful"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 21,
+    "options": [
+      "Pigeon",
+      "Lockup",
+      "Cell",
+      "Lock"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 20,
+    "options": [
+      "8",
+      "4",
+      "7",
+      "12"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 19,
+    "options": [
+      "Tiger",
+      "Wolf",
+      "Lamb",
+      "Leopard"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 18,
+    "options": [
+      "Heat",
+      "Vapor"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 26,
+    "options": [
+      "Uncle",
+      "Cousin",
+      "Father",
+      "Daughter"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 25,
+    "options": [
+      "GT",
+      "TG",
+      "GO",
+      "TS"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 24,
+    "options": [
+      "String",
+      "Guitar",
+      "Piano",
+      "Banjo"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 23,
+    "options": [
+      "Water",
+      "Petrol"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 30,
+    "options": [
+      "12",
+      "4",
+      "2",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 29,
+    "options": [
+      "Buffalo",
+      "Goat",
+      "Sheep",
+      "Cow",
+      "Horse"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 28,
+    "options": [
+      "Cousin",
+      "Nephew",
+      "Brother",
+      "Uncle"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 27,
+    "options": [
+      "Steam",
+      "Ice"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 34,
+    "options": [
+      "Godly",
+      "Holy",
+      "Pious",
+      "Atheist"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 33,
+    "options": [
+      "Sunday",
+      "Monday",
+      "Saturday",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 32,
+    "options": [
+      "Radius",
+      "Arc",
+      "Diameter",
+      "Circumference",
+      "Diagonal"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 31,
+    "options": [
+      "Mutton",
+      "8",
+      "10",
+      "6"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "options": [
+      "Ankle",
+      "Arm",
+      "Knee",
+      "Foot"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 37,
+    "options": [
+      "9, 7",
+      "9, 5",
+      "8, 10",
+      "7, 5"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 36,
+    "options": [
+      "Ship",
+      "Cabin",
+      "Ocean",
+      "Sea"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 35,
+    "options": [
+      "43",
+      "32",
+      "26",
+      "20"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 41,
+    "options": [
+      "85",
+      "55",
+      "90",
+      "60",
+      "80"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 40,
+    "options": [
+      "PQDEBCUV",
+      "UVDEPQBC",
+      "BCPQDEUV",
+      "DEPQBCUV"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 39,
+    "options": [
+      "Liquor",
+      "Vegetable",
+      "Fruit"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 46,
+    "options": [
+      "298",
+      "294",
+      "198",
+      "892"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 45,
+    "options": [
+      "224",
+      "124",
+      "324",
+      "424"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 44,
+    "options": [
+      "Failure",
+      "Student",
+      "Examination",
+      "Cure"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 43,
+    "options": [
+      "M",
+      "N",
+      "O",
+      "P"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 42,
+    "options": [
+      "Yellow",
+      "Red",
+      "Blue",
+      "Chair",
+      "Green"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 50,
+    "options": [
+      "6250",
+      "2500",
+      "5169",
+      "5012",
+      "3750"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 49,
+    "options": [
+      "Fad",
+      "Hat",
+      "Far",
+      "Kit"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 48,
+    "options": [
+      "Accuse",
+      "Punish",
+      "Accept",
+      "Condemn"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 47,
+    "options": [
+      "10, 12",
+      "10, 50",
+      "Hearty",
+      "Foolish"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 55,
+    "options": [
+      "66",
+      "74",
+      "71",
+      "114",
+      "65"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 54,
+    "options": [
+      "1/2",
+      "1",
+      "1/4",
+      "1/8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 53,
+    "options": [
+      "45",
+      "47",
+      "48",
+      "46"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 52,
+    "options": [
+      "Two",
+      "Three",
+      "Ten",
+      "Twice",
+      "Zero"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 51,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 60,
+    "options": [
+      "Girl",
+      "Sir",
+      "Woman",
+      "Name"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 59,
+    "options": [
+      "70",
+      "45",
+      "85",
+      "80"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 58,
+    "options": [
+      "24",
+      "37",
+      "26",
+      "28",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 57,
+    "options": [
+      "20",
+      "29",
+      "30",
+      "32"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 56,
+    "options": [
+      "25",
+      "24",
+      "19",
+      "20",
+      "12, 50"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 64,
+    "options": [
+      "Necktie",
+      "Coat",
+      "Shirt",
+      "Trousers",
+      "Boot"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 63,
+    "options": [
+      "Puppy",
+      "Creeping",
+      "Crawling",
+      "Jump"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 62,
+    "options": [
+      "Sunshine",
+      "Grain",
+      "Rain",
+      "Crop"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 61,
+    "options": [
+      "23",
+      "13",
+      "33",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 69,
+    "options": [
+      "Sure",
+      "Vague",
+      "True",
+      "Certain"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 68,
+    "options": [
+      "They want to show off",
+      "They have to go outside",
+      "They want to look smart",
+      "They have poor eyesight"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 67,
+    "options": [
+      "Ear",
+      "Foot",
+      "Leg",
+      "Hand"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 66,
+    "options": [
+      "2",
+      "1",
+      "0",
+      "None of these"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 65,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 73,
+    "options": [
+      "Uncle",
+      "Own Picture",
+      "Cousin",
+      "Brother"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 72,
+    "options": [
+      "3165",
+      "1635",
+      "5613",
+      "3156"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 71,
+    "options": [
+      "Five",
+      "Twenty",
+      "Two",
+      "Four"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 70,
+    "options": [
+      "54",
+      "39",
+      "76",
+      "69",
+      "42"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 77,
+    "options": [
+      "38",
+      "31",
+      "28",
+      "33"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 76,
+    "options": [
+      "Bitch",
+      "Fur",
+      "Camel",
+      "Dog"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 75,
+    "options": [
+      "E",
+      "R",
+      "V",
+      "S"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 74,
+    "options": [
+      "CE",
+      "EG",
+      "14",
+      "10"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 82,
+    "options": [
+      "Oil",
+      "Fuel",
+      "Light",
+      "Table"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 81,
+    "options": [
+      "Sword",
+      "Fork",
+      "Dagger",
+      "Knife"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 80,
+    "options": [
+      "Hard",
+      "Metal",
+      "Press",
+      "Oven"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 79,
+    "options": [
+      "3",
+      "7",
+      "2",
+      "4"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 78,
+    "options": [
+      "52",
+      "56",
+      "59",
+      "49"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 86,
+    "options": [
+      "648",
+      "403",
+      "376",
+      "432",
+      "288"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 85,
+    "options": [
+      "Steel",
+      "Baseball",
+      "Head",
+      "Combat",
+      "Heavy"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 84,
+    "options": [
+      "40",
+      "46",
+      "48",
+      "44",
+      "42"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 83,
+    "options": [
+      "36",
+      "32",
+      "IJ",
+      "GI",
+      "AC"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 91,
+    "options": [
+      "12.54",
+      "12.516",
+      "8.5016",
+      "1612.5"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 90,
+    "options": [
+      "Freeze",
+      "Oven",
+      "Stream",
+      "Iron"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 89,
+    "options": [
+      "3",
+      "4",
+      "8",
+      "5",
+      "2"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 88,
+    "options": [
+      "24",
+      "40",
+      "41",
+      "31"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 87,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 96,
+    "options": [
+      "Sit",
+      "Wood",
+      "Seat",
+      "Floor"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 95,
+    "options": [
+      "22",
+      "21",
+      "18",
+      "19"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 94,
+    "options": [
+      "48",
+      "36",
+      "96",
+      "72"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 93,
+    "options": [
+      "7.5",
+      "5",
+      "10",
+      "0"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 92,
+    "options": [
+      "Scenery",
+      "Photo",
+      "Camera",
+      "Picture"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 99,
+    "options": [
+      "Arm",
+      "Head",
+      "Foot",
+      "Wrist"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 98,
+    "options": [
+      "Waqar",
+      "Jamal",
+      "Kamal",
+      "Hussain"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 97,
+    "options": [
+      "11",
+      "16",
+      "17",
+      "12"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 5,
+    "options": [
+      "7",
+      "4",
+      "49",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 4,
+    "options": [
+      "Fat",
+      "Great",
+      "High",
+      "Big",
+      "Small"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 3,
+    "options": [
+      "32",
+      "34",
+      "36",
+      "35"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 2,
+    "options": [
+      "Town",
+      "Village",
+      "Township",
+      "City",
+      "Heaven"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 1,
+    "options": [
+      "Spaceship",
+      "Relationship",
+      "Kinship",
+      "Friendship"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 9,
+    "options": [
+      "25",
+      "4",
+      "23",
+      "15"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 8,
+    "options": [
+      "12",
+      "8",
+      "14",
+      "11"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 7,
+    "options": [
+      "LO",
+      "HK",
+      "AC",
+      "DG"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 6,
+    "options": [
+      "22",
+      "20",
+      "19",
+      "10"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 14,
+    "options": [],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 13,
+    "options": [
+      "Mason",
+      "Blacksmith",
+      "Tailor",
+      "Professor"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 12,
+    "options": [
+      "Car",
+      "Train",
+      "Bus",
+      "Tram",
+      "Ship"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 11,
+    "options": [
+      "256",
+      "16",
+      "2",
+      "4"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 10,
+    "options": [
+      "25",
+      "24",
+      "19",
+      "20"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 19,
+    "options": [
+      "Judge",
+      "Advocate",
+      "Cook",
+      "Pleader",
+      "Magistrate"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 18,
+    "options": [
+      "10",
+      "14",
+      "13",
+      "12"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 17,
+    "options": [
+      "130",
+      "128",
+      "133",
+      "136"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 16,
+    "options": [
+      "132",
+      "128",
+      "124",
+      "131",
+      "129"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 15,
+    "options": [
+      "Notebook",
+      "Sketch",
+      "Map",
+      "Drawing"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 23,
+    "options": [
+      "32",
+      "33",
+      "31",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 22,
+    "options": [
+      "972",
+      "496",
+      "1485",
+      "1458"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 21,
+    "options": [
+      "25",
+      "23",
+      "26",
+      "21"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 20,
+    "options": [
+      "Girl",
+      "Woman",
+      "Sir",
+      "Name"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 28,
+    "options": [
+      "234",
+      "523",
+      "432",
+      "342"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 27,
+    "options": [
+      "A Train",
+      "A Railway",
+      "A Platform",
+      "A Station Master"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 26,
+    "options": [
+      "15",
+      "125",
+      "25",
+      "129",
+      "135"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 25,
+    "options": [
+      "13",
+      "6",
+      "19",
+      "9",
+      "10"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 24,
+    "options": [
+      "E",
+      "R",
+      "M",
+      "H"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 32,
+    "options": [
+      "Aunt",
+      "Cousin",
+      "Brother",
+      "Uncle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 31,
+    "options": [
+      "25푥",
+      "25xy",
+      "25",
+      "25x"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 30,
+    "options": [
+      "Father",
+      "Brother",
+      "Girl",
+      "Daughter"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 29,
+    "options": [
+      "Triangle",
+      "Square",
+      "Rectangle",
+      "Circle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 37,
+    "options": [
+      "50",
+      "49",
+      "42",
+      "60"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 36,
+    "options": [
+      "Sword",
+      "Fork",
+      "Knife",
+      "Dagger"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 35,
+    "options": [
+      "114",
+      "106",
+      "124",
+      "109"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 34,
+    "options": [
+      "Locate",
+      "Invention",
+      "Discover",
+      "Find"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 33,
+    "options": [
+      "House",
+      "Hand",
+      "Horse",
+      "Hero"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 41,
+    "options": [
+      "Adult",
+      "Child",
+      "Infant",
+      "Baby",
+      "Newborn"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 40,
+    "options": [
+      "9",
+      "7",
+      "3",
+      "5"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 39,
+    "options": [
+      "B",
+      "D",
+      "C",
+      "A"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 38,
+    "options": [
+      "521",
+      "228",
+      "512",
+      "384"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 46,
+    "options": [
+      "3778",
+      "1078",
+      "3773",
+      "3377"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 45,
+    "options": [
+      "Pleasant",
+      "Weep",
+      "Sad",
+      "Gloomy"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 44,
+    "options": [
+      "G",
+      "F",
+      "H",
+      "J"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 43,
+    "options": [
+      "MP",
+      "EH",
+      "AD",
+      "QS"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 42,
+    "options": [
+      "357",
+      "657",
+      "135",
+      "176"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 51,
+    "options": [
+      "Potato",
+      "Rat",
+      "Tiger",
+      "Sheep",
+      "Horse"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 50,
+    "options": [
+      "Sun",
+      "Mars",
+      "Earth",
+      "Ocean"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 49,
+    "options": [
+      "Split",
+      "Gap",
+      "Divide",
+      "Separation",
+      "Union"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 48,
+    "options": [
+      "Lahore",
+      "Kabul",
+      "Beijing",
+      "Dhaka"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 47,
+    "options": [
+      "Attractive",
+      "Loving",
+      "Smart",
+      "Execute",
+      "Charming"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 55,
+    "options": [
+      "AD",
+      "IL",
+      "QS",
+      "MP",
+      "EH"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 54,
+    "options": [
+      "DEEP",
+      "PEEP",
+      "EPED",
+      "EPPE"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 53,
+    "options": [
+      "N",
+      "U",
+      "F",
+      "I"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 52,
+    "options": [
+      "Tall",
+      "Speed",
+      "Length",
+      "Small"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 60,
+    "options": [
+      "Run",
+      "Walk",
+      "Fly",
+      "Weak"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 59,
+    "options": [
+      "TAR",
+      "RAT",
+      "TRA",
+      "ART"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 58,
+    "options": [
+      "Prisoner",
+      "Arrest",
+      "Jail",
+      "Police Station"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 57,
+    "options": [
+      "3",
+      "1",
+      "7",
+      "9",
+      "8"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 56,
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 64,
+    "options": [
+      "19,58",
+      "20,58",
+      "18,58",
+      "58,20"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 63,
+    "options": [
+      "8",
+      "4",
+      "2",
+      "3"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 62,
+    "options": [
+      "September",
+      "May",
+      "March",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 61,
+    "options": [],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 69,
+    "options": [
+      "26, 29",
+      "27, 29",
+      "27, 30",
+      "26, 30"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 68,
+    "options": [
+      "Lecture",
+      "Gossip",
+      "Oration",
+      "Speech",
+      "Sermon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 67,
+    "options": [
+      "Carrot",
+      "Mango",
+      "Orange",
+      "Melon"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 66,
+    "options": [
+      "To see the cars which are ahead",
+      "To see the girls in the cars",
+      "To see the different sights",
+      "To see the cars coming from behind"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 65,
+    "options": [
+      "Europe",
+      "Africa",
+      "America",
+      "England"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 73,
+    "options": [
+      "Always",
+      "Seldom",
+      "Often",
+      "Frequently",
+      "Occasionally"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 72,
+    "options": [
+      "Twice",
+      "Three",
+      "Zero",
+      "Two"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 71,
+    "options": [
+      "35",
+      "32",
+      "33",
+      "30",
+      "31"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 70,
+    "options": [
+      "Monday",
+      "Saturday",
+      "Sunday",
+      "Thursday",
+      "50"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 78,
+    "options": [
+      "6",
+      "5",
+      "7",
+      "8"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 77,
+    "options": [
+      "32",
+      "43",
+      "28",
+      "24"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 76,
+    "options": [
+      "Navigator",
+      "Pilot",
+      "Fuel",
+      "Load Master",
+      "Aerodrome"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 75,
+    "options": [
+      "50",
+      "52",
+      "58",
+      "60"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 74,
+    "options": [
+      "5",
+      "6"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 83,
+    "options": [
+      "Karam",
+      "Marla",
+      "Mile",
+      "Kanal",
+      "Acre"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 82,
+    "options": [
+      "Snow",
+      "Hot",
+      "Stream",
+      "Ice"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 81,
+    "options": [
+      "36",
+      "35",
+      "37",
+      "32"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 80,
+    "options": [
+      "I",
+      "K",
+      "H",
+      "J"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 79,
+    "options": [
+      "25",
+      "24",
+      "26",
+      "30"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 87,
+    "options": [
+      "Tiger",
+      "Lion",
+      "Leopard",
+      "Wolf",
+      "Lamb"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 86,
+    "options": [
+      "23",
+      "24",
+      "25",
+      "30"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 85,
+    "options": [
+      "Coarse",
+      "Smooth",
+      "Soft",
+      "Wood"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 84,
+    "options": [
+      "85",
+      "94",
+      "98",
+      "80"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 92,
+    "options": [
+      "Razor",
+      "Knife",
+      "Steel",
+      "Shapner"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 91,
+    "options": [
+      "32",
+      "34",
+      "20",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 90,
+    "options": [
+      "I",
+      "G",
+      "F",
+      "H"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 89,
+    "options": [
+      "Touch",
+      "Shout",
+      "Whisper",
+      "Sing"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 88,
+    "options": [
+      "75",
+      "73",
+      "68",
+      "72",
+      "71"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 97,
+    "options": [
+      "28",
+      "26",
+      "24",
+      "27",
+      "25"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 96,
+    "options": [
+      "64",
+      "96",
+      "56",
+      "80",
+      "48"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 95,
+    "options": [
+      "S",
+      "V",
+      "U",
+      "T"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 94,
+    "options": [
+      "Ugly",
+      "Foolish",
+      "Selfish",
+      "Dishonest"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 93,
+    "options": [
+      "Ton",
+      "Ounce",
+      "Pound",
+      "Stone"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 100,
+    "options": [
+      "O",
+      "I",
+      "F",
+      "J",
+      "K"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 99,
+    "options": [
+      "R",
+      "S",
+      "T",
+      "X",
+      "Y"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 98,
+    "options": [
+      "Advocate",
+      "Judge",
+      "Justice",
+      "Pleader",
+      "Cook"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 4,
+    "options": [
+      "11",
+      "15",
+      "12",
+      "17",
+      "21"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 3,
+    "options": [
+      "Cloth",
+      "Wash",
+      "Water",
+      "Machine"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 2,
+    "options": [
+      "ONE",
+      "EYE",
+      "TWO",
+      "THREE"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 1,
+    "options": [
+      "Stable",
+      "Judge",
+      "Horse",
+      "Prisoner",
+      "Court"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 8,
+    "options": [
+      "8913",
+      "3819",
+      "8319",
+      "8193",
+      "8139"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 7,
+    "options": [
+      "49",
+      "48",
+      "50",
+      "65"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 6,
+    "options": [
+      "2630",
+      "2631",
+      "2830",
+      "2635",
+      "2730"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 5,
+    "options": [
+      "7",
+      "5",
+      "15",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 12,
+    "options": [
+      "Plate",
+      "Sugar",
+      "Knife",
+      "Dish",
+      "Spoon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 11,
+    "options": [
+      "14807",
+      "16807",
+      "14678",
+      "16708"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 10,
+    "options": [
+      "Only Female are failed",
+      "No Male is failed",
+      "Only Male are failed",
+      "Both students are failed"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 9,
+    "options": [
+      "S",
+      "T",
+      "R",
+      "V",
+      "W"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 17,
+    "options": [
+      "23",
+      "10",
+      "6",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 16,
+    "options": [
+      "84-5",
+      "84-6",
+      "84-4",
+      "83-3"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 15,
+    "options": [
+      "Crop",
+      "Sunshine",
+      "Rain",
+      "Grain"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 14,
+    "options": [
+      "Dutiful",
+      "Cheerful",
+      "Beautiful",
+      "Handful",
+      "Careful"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 13,
+    "options": [
+      "42",
+      "47",
+      "50",
+      "43",
+      "49"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 22,
+    "options": [
+      "Mile",
+      "Inch",
+      "Foot",
+      "Yard",
+      "Acre"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 21,
+    "options": [
+      "Pen",
+      "Write",
+      "Pencil",
+      "Cover"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 20,
+    "options": [
+      "5/4",
+      "1/2",
+      "2",
+      "5/8",
+      "2/3"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 19,
+    "options": [
+      "32",
+      "26",
+      "36",
+      "24",
+      "72"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 18,
+    "options": [
+      "Evening",
+      "Night",
+      "Noon",
+      "Morning"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 27,
+    "options": [
+      "16-10",
+      "112-104",
+      "1227-1222",
+      "2516-2509"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 26,
+    "options": [
+      "3167",
+      "1365",
+      "5163",
+      "5316"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 25,
+    "options": [
+      "Stone",
+      "Soft",
+      "Difficult",
+      "Carbon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 24,
+    "options": [
+      "E",
+      "F",
+      "B",
+      "G",
+      "C"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 23,
+    "options": [
+      "D",
+      "E",
+      "C",
+      "F"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 31,
+    "options": [
+      "Watch",
+      "See",
+      "Observe",
+      "Notice"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 30,
+    "options": [
+      "Hindu",
+      "Jew",
+      "Sikh",
+      "Christian"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 29,
+    "options": [
+      "294",
+      "295",
+      "290",
+      "395"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 28,
+    "options": [
+      "Cow",
+      "Goat",
+      "Sheep",
+      "Horse",
+      "Buffalo"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 35,
+    "options": [
+      "Foot",
+      "Yard",
+      "Centimeter",
+      "Meter",
+      "Square Yard"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 34,
+    "options": [
+      "32",
+      "34",
+      "36",
+      "37",
+      "39"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 33,
+    "options": [
+      "Glass and Milk",
+      "Bottle and Wine",
+      "Radio and Transistor",
+      "Pen and Ink"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 32,
+    "options": [
+      "N",
+      "P",
+      "O",
+      "M"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 40,
+    "options": [
+      "Foot",
+      "Ear",
+      "Arm",
+      "Leg"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 39,
+    "options": [
+      "KP",
+      "Baluchistan",
+      "Sindh",
+      "City"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "options": [
+      "22, 21",
+      "24, 23",
+      "23, 21",
+      "20, 21"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 37,
+    "options": [
+      "144",
+      "236",
+      "238",
+      "99",
+      "77"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 36,
+    "options": [
+      "Korea",
+      "China",
+      "Japan",
+      "Iran"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 44,
+    "options": [
+      "4",
+      "2",
+      "6",
+      "8",
+      "10"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 43,
+    "options": [
+      "December",
+      "Monday",
+      "March",
+      "May"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 42,
+    "options": [
+      "To be fashionable",
+      "To keep warm",
+      "To look nice",
+      "because it as a custom to do"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 41,
+    "options": [
+      "41",
+      "43",
+      "65",
+      "45"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 48,
+    "options": [
+      "48",
+      "32",
+      "64",
+      "24",
+      "80"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 47,
+    "options": [
+      "30",
+      "34",
+      "45",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 46,
+    "options": [
+      "STUVXW",
+      "STUVWX",
+      "STUVXZ",
+      "SUTVXW"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 45,
+    "options": [
+      "20",
+      "22",
+      "18",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 52,
+    "options": [
+      "Sadness",
+      "Anger",
+      "Happiness",
+      "Sorrow"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 51,
+    "options": [
+      "Soap",
+      "Tub",
+      "Water",
+      "Powder"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 50,
+    "options": [
+      "Hyderabad",
+      "Lahore",
+      "Multan",
+      "Faisalabad"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 49,
+    "options": [
+      "Trip",
+      "Pair",
+      "Peer",
+      "Rips"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 57,
+    "options": [
+      "R",
+      "S",
+      "V",
+      "E"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 56,
+    "options": [
+      "Jungle",
+      "Zoo",
+      "Forest",
+      "Land"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 55,
+    "options": [
+      "Rich",
+      "Spend",
+      "Happy",
+      "Poor"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 54,
+    "options": [
+      "High",
+      "Deep",
+      "Spot",
+      "Space"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 53,
+    "options": [
+      "Socrates",
+      "Handel",
+      "Beethoven",
+      "Mozart"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 62,
+    "options": [
+      "G",
+      "D",
+      "F",
+      "E"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 61,
+    "options": [
+      "Permit",
+      "Approval",
+      "Admit",
+      "Refuse"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 60,
+    "options": [
+      "1440",
+      "1442",
+      "2400",
+      "1220"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 59,
+    "options": [
+      "Princess",
+      "Rani",
+      "Empress",
+      "Woman"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 58,
+    "options": [
+      "Aqeel",
+      "Mushed",
+      "Azhar"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 67,
+    "options": [
+      "Dog",
+      "Goat",
+      "Lion",
+      "Cat"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 66,
+    "options": [
+      "Y",
+      "X",
+      "W",
+      "N"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 65,
+    "options": [
+      "Oslo",
+      "Cairo",
+      "New York",
+      "Madrid"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 64,
+    "options": [
+      "15",
+      "16",
+      "17",
+      "19"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 63,
+    "options": [
+      "15",
+      "25"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 72,
+    "options": [
+      "Lahore",
+      "Rawalpindi",
+      "Multan",
+      "Sukkur"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 71,
+    "options": [
+      "U",
+      "X",
+      "W",
+      "V"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 70,
+    "options": [
+      "Tiger",
+      "Horse",
+      "Potato",
+      "Sheep"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 69,
+    "options": [
+      "13",
+      "19",
+      "14",
+      "9"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 68,
+    "options": [
+      "Ant",
+      "Bee",
+      "Spider",
+      "Moth"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 76,
+    "options": [
+      "Playpen",
+      "Bed",
+      "Chair",
+      "Table"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 75,
+    "options": [
+      "837",
+      "422",
+      "549",
+      "612"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 74,
+    "options": [
+      "Junk",
+      "Packet",
+      "Rickshaw",
+      "Dhow"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 73,
+    "options": [
+      "21  28",
+      "22  28",
+      "21  29",
+      "22  29"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 80,
+    "options": [
+      "21",
+      "20",
+      "19",
+      "23"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 79,
+    "options": [
+      "Cook",
+      "Judge",
+      "Advocate",
+      "Magistrate"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 78,
+    "options": [
+      "TG",
+      "TS",
+      "GO",
+      "GT"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 77,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 85,
+    "options": [
+      "Duck",
+      "Cow",
+      "Bull",
+      "Mare"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 84,
+    "options": [
+      "8",
+      "5",
+      "24",
+      "9"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 83,
+    "options": [
+      "9 10 11 12",
+      "11 12 13 14",
+      "8 9 10 11",
+      "10 11 12 13"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 82,
+    "options": [
+      "20",
+      "18",
+      "17",
+      "16"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 81,
+    "options": [
+      "T",
+      "P",
+      "K",
+      "U"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 89,
+    "options": [
+      "Wool",
+      "Pillow",
+      "Silk",
+      "Softness"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 88,
+    "options": [
+      "S",
+      "T",
+      "U",
+      "V"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 87,
+    "options": [
+      "24",
+      "18",
+      "27",
+      "21"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 86,
+    "options": [
+      "20",
+      "40",
+      "72",
+      "45"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 94,
+    "options": [
+      "Tyre",
+      "Diesel",
+      "Horn",
+      "Road"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 93,
+    "options": [
+      "YZWX",
+      "YXWZ",
+      "YWXZ",
+      "YZXW"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 92,
+    "options": [
+      "Chariot",
+      "Sleigh",
+      "Car",
+      "Bus"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 91,
+    "options": [
+      "Brush",
+      "Polish",
+      "Color",
+      "Tin Packet"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 90,
+    "options": [
+      "Drink",
+      "Water",
+      "Sugar",
+      "White"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 99,
+    "options": [
+      "Lahore",
+      "Karachi",
+      "Islamabad",
+      "Peshawar"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 98,
+    "options": [
+      "Chair",
+      "Blue",
+      "Red",
+      "Yellow"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 97,
+    "options": [
+      "135",
+      "125",
+      "120",
+      "129"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 96,
+    "options": [
+      "75",
+      "8",
+      "74",
+      "9"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 95,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 3,
+    "options": [
+      "17",
+      "5",
+      "19",
+      "9"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 2,
+    "options": [
+      "Imran Khan",
+      "Has an Sardar",
+      "Aqib Javed"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 1,
+    "options": [
+      "Field",
+      "Plain",
+      "Forest",
+      "Desert"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 100,
+    "options": [],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 7,
+    "options": [
+      "30",
+      "40",
+      "35",
+      "50"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 6,
+    "options": [
+      "7, 5",
+      "8, 10",
+      "7, 10",
+      "9, 5"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 5,
+    "options": [
+      "Student",
+      "Professor",
+      "Teacher",
+      "Lecturer"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 4,
+    "options": [
+      "Tone",
+      "New",
+      "Town",
+      "Note"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 10,
+    "options": [
+      "1645",
+      "4516",
+      "4561",
+      "5416"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 9,
+    "options": [
+      "D",
+      "E",
+      "F",
+      "Q"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 8,
+    "options": [
+      "Gap",
+      "Split",
+      "Union",
+      "Divide"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 15,
+    "options": [
+      "22",
+      "28",
+      "20",
+      "24"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 14,
+    "options": [
+      "R",
+      "K",
+      "S",
+      "F"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 13,
+    "options": [
+      "Pages",
+      "Pictures",
+      "Verses",
+      "Questions"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 12,
+    "options": [
+      "Lungs",
+      "Blood",
+      "Skin",
+      "Bread"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 11,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 20,
+    "options": [
+      "Lion",
+      "Tiger",
+      "Cow",
+      "Leopard"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 19,
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 18,
+    "options": [
+      "4",
+      "5",
+      "7",
+      "8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 17,
+    "options": [
+      "October",
+      "April",
+      "March",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 16,
+    "options": [
+      "Heaven",
+      "Town",
+      "City",
+      "Village"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 24,
+    "options": [
+      "Ravi",
+      "Sutlej",
+      "Indus",
+      "Atlantic"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 23,
+    "options": [
+      "Rose",
+      "Lily",
+      "Tulip",
+      "Turnip"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 22,
+    "options": [
+      "800",
+      "400",
+      "480",
+      "600"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 21,
+    "options": [
+      "44",
+      "53",
+      "63",
+      "37"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 29,
+    "options": [
+      "ABC",
+      "DEF",
+      "GHI",
+      "PMO"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 28,
+    "options": [
+      "4",
+      "2",
+      "5",
+      "7"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 27,
+    "options": [
+      "England",
+      "Beijing",
+      "Lahore",
+      "Karachi"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 26,
+    "options": [
+      "ABC",
+      "XYZ",
+      "KMN",
+      "RST"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 25,
+    "options": [
+      "Iron and Nail",
+      "Wool and Stool",
+      "Paper and Book",
+      "Oil and Lamp"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 33,
+    "options": [
+      "356",
+      "358",
+      "357",
+      "360"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 32,
+    "options": [
+      "Sky",
+      "Atmosphere",
+      "Ocean",
+      "Island"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 31,
+    "options": [
+      "BAT",
+      "RAT",
+      "FAT",
+      "CAT"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 30,
+    "options": [
+      "Air and Oxygen",
+      "Geometry and Math’s",
+      "Teacher and Student"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 37,
+    "options": [
+      "Binding",
+      "Voluntary",
+      "Complete",
+      "Optional"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 36,
+    "options": [
+      "Scold",
+      "Glorify",
+      "Applaud",
+      "Commend"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 35,
+    "options": [
+      "Student and Teacher",
+      "Book and Leaf",
+      "Science and Laboratory",
+      "Tailor and Cloth"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 34,
+    "options": [
+      "4",
+      "2",
+      "3",
+      "8"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 41,
+    "options": [
+      "Cat",
+      "Dog",
+      "Snake",
+      "Fox"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 40,
+    "options": [
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 39,
+    "options": [
+      "42",
+      "10",
+      "45",
+      "64"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "options": [
+      "Ornaments",
+      "Blacksmith",
+      "Flower and Petal"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 46,
+    "options": [
+      "24",
+      "42",
+      "36",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 45,
+    "options": [
+      "Yesterday",
+      "Today",
+      "Leaving",
+      "Motion"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 44,
+    "options": [
+      "May",
+      "April",
+      "Friday",
+      "November"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 43,
+    "options": [
+      "An hour",
+      "Time",
+      "Watch",
+      "Alarm"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 42,
+    "options": [
+      "71",
+      "72",
+      "68",
+      "74"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 50,
+    "options": [
+      "Teacher",
+      "Chair",
+      "Classroom",
+      "Desk"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 49,
+    "options": [
+      "14",
+      "16",
+      "18",
+      "7"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 48,
+    "options": [
+      "AABBZZ",
+      "BBCCZZ",
+      "CCDDZZ",
+      "DDEEYY"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 47,
+    "options": [
+      "4",
+      "8",
+      "9",
+      "2"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 54,
+    "options": [
+      "13",
+      "24",
+      "15",
+      "8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 53,
+    "options": [
+      "Man",
+      "Smart",
+      "He",
+      "Charming"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 52,
+    "options": [
+      "2",
+      "6",
+      "4",
+      "14"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 51,
+    "options": [
+      "4",
+      "9",
+      "6",
+      "4"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 58,
+    "options": [
+      "Train",
+      "A Station Master",
+      "A Railway Line",
+      "A Platform"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 57,
+    "options": [
+      "20",
+      "25",
+      "10",
+      "15"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 56,
+    "options": [
+      "Light",
+      "Heavy",
+      "Low",
+      "Top"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 55,
+    "options": [],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 63,
+    "options": [
+      "Car",
+      "Tyre",
+      "Clothes",
+      "Grease"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 62,
+    "options": [
+      "42, 84",
+      "44, 88",
+      "34, 68",
+      "36, 78"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 61,
+    "options": [
+      "Apple",
+      "Mango",
+      "Orange",
+      "Turnip"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 60,
+    "options": [
+      "8/G",
+      "6/C",
+      "4/D",
+      "7/G"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 59,
+    "options": [
+      "E4Z",
+      "E4Q",
+      "E4W",
+      "E0P"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 67,
+    "options": [
+      "Water",
+      "Island",
+      "Ship",
+      "Beach"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 66,
+    "options": [
+      "Watch",
+      "Observe",
+      "See",
+      "Notice"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 65,
+    "options": [
+      "70",
+      "82",
+      "56",
+      "116"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 64,
+    "options": [
+      "Skill",
+      "Sinarity",
+      "Poverty",
+      "Intelligence"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 72,
+    "options": [
+      "42",
+      "46",
+      "44",
+      "48"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 71,
+    "options": [
+      "43",
+      "28",
+      "24",
+      "32"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 70,
+    "options": [
+      "Mayor",
+      "Governor",
+      "Legislature",
+      "Judiciary"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 69,
+    "options": [
+      "Q",
+      "L",
+      "R",
+      "P"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 68,
+    "options": [
+      "2014-2010",
+      "1113-1105"
+    ],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 76,
+    "options": [
+      "West and South",
+      "Hard and Soft",
+      "Short and Long",
+      "Hot and Cold"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 75,
+    "options": [
+      "Punjab",
+      "Lahore",
+      "Ravi",
+      "Karachi"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 74,
+    "options": [
+      "R",
+      "Hz",
+      "M",
+      "E"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 73,
+    "options": [
+      "Tuesday",
+      "December",
+      "October",
+      "November"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 80,
+    "options": [
+      "21",
+      "22",
+      "23",
+      "24"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 79,
+    "options": [
+      "Father",
+      "Uncle",
+      "Mother",
+      "Grandfather"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 78,
+    "options": [
+      "170",
+      "147",
+      "180",
+      "157"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 77,
+    "options": [
+      "230-229"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 85,
+    "options": [
+      "2",
+      "-1",
+      "1",
+      "0"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 84,
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 83,
+    "options": [
+      "180",
+      "150",
+      "30",
+      "125"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 82,
+    "options": [
+      "Sugar",
+      "Dish",
+      "Spoon",
+      "Plate"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 81,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  },
+  {
+    "number": 89,
+    "options": [
+      "Tip",
+      "Fit",
+      "Bit",
+      "Sit"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 88,
+    "options": [
+      "Meal",
+      "Fast",
+      "Dinner",
+      "Refreshment"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 87,
+    "options": [
+      "Father",
+      "Brother",
+      "Son",
+      "Uncle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 86,
+    "options": [
+      "Mercury",
+      "Pressure",
+      "Gas Cylinder",
+      "Temperature"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 93,
+    "options": [
+      "120",
+      "85",
+      "144",
+      "60"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 92,
+    "options": [
+      "Gen. Musharraf",
+      "Hassan Sardar",
+      "Imran Khan",
+      "Jan Sher Khan"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 91,
+    "options": [
+      "Oil and Bottle",
+      "Arrow and Quiver",
+      "Letter and Postman",
+      "Mercury and Barometer"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 90,
+    "options": [
+      "61835",
+      "61853",
+      "86145",
+      "61358"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 96,
+    "options": [
+      "27",
+      "25",
+      "24",
+      "29"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 95,
+    "options": [
+      "554978",
+      "455978",
+      "547978",
+      "735961"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 94,
+    "options": [
+      "Student",
+      "Engineer",
+      "Books",
+      "Teacher"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 100,
+    "options": [
+      "Honorable",
+      "Coward",
+      "Respectful",
+      "Common"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 99,
+    "options": [
+      "Snow",
+      "Rink",
+      "Stable",
+      "Costume"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 98,
+    "options": [
+      "A/P, V/O",
+      "S/Q, U/V",
+      "S/O, V/P",
+      "S/R, V/M"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 97,
+    "options": [],
+    "correct_option_index": -1,
+    "correct_letter": null
+  }
+]

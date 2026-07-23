@@ -1,0 +1,4842 @@
+[
+  {
+    "number": 1,
+    "question_text": "Monday is to February as Friday is to _____",
+    "options": [
+      "May",
+      "July",
+      "June",
+      "March"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 2,
+    "question_text": "Gun is to Soldier as _______ is to Blacksmith.",
+    "options": [
+      "Hammer",
+      "Plane",
+      "Nail",
+      "Spaceship"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 3,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "CE",
+      "EG",
+      "AC",
+      "GI",
+      "IJ"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 4,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "AD",
+      "IL",
+      "QS",
+      "MP",
+      "EH"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 5,
+    "question_text": "What is the next number in the following series: 4 8 24 96 ___",
+    "options": [
+      "408",
+      "556",
+      "804",
+      "664",
+      "480"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 6,
+    "question_text": "What will come next in the following series: 17 3 51 19 3 ____",
+    "options": [
+      "3",
+      "57",
+      "48",
+      "75"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 7,
+    "question_text": "Which one is out of list?",
+    "options": [
+      "Mare",
+      "Fox",
+      "Lass",
+      "Hen"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 8,
+    "question_text": "What will come next in the following series? A  C E ___",
+    "options": [
+      "H",
+      "I",
+      "G",
+      "K"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 9,
+    "question_text": "Which one is out of list?",
+    "options": [
+      "Lahore",
+      "Punjab",
+      "Pakistan",
+      "Kabul"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 10,
+    "question_text": "What will come next in the following series? 2 1/2 1/8 ____",
+    "options": [
+      "1/16",
+      "1/64",
+      "1/32",
+      "1/18"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 11,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Spaceship",
+      "Ship",
+      "Aircraft",
+      "Cycle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 12,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "DG",
+      "HK",
+      "AC",
+      "LO"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 13,
+    "question_text": "INK is to PEN as _______ is to Pencil?",
+    "options": [
+      "Lead",
+      "Notebook",
+      "Book",
+      "Knife"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 14,
+    "question_text": "If Fellow is coded as 465531 then Ellow is coded as?",
+    "options": [
+      "13565",
+      "65531",
+      "35651",
+      "16535"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 15,
+    "question_text": "What will come next in the following series: E, V    E, W    E, X    E, Y    ____",
+    "options": [
+      "E, Z",
+      "E, P",
+      "E, W",
+      "E, Q"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 16,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Mother",
+      "Uncle",
+      "Brother",
+      "Son"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 17,
+    "question_text": "What letter comes alphabetically in order in the word Drawing?",
+    "options": [
+      "D",
+      "W",
+      "A",
+      "G"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 18,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Tiger",
+      "Wolf",
+      "Lamb",
+      "Leopard"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 19,
+    "question_text": "Which number is out of list?",
+    "options": [
+      "8",
+      "4",
+      "7",
+      "12"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 20,
+    "question_text": "Bird is to Cage as Prisoner is to ______?",
+    "options": [
+      "Pigeon",
+      "Lockup",
+      "Cell",
+      "Lock"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 21,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Handful",
+      "Beautiful",
+      "Careful",
+      "Dutiful",
+      "Cheerful"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 22,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Liquid",
+      "Oil",
+      "Water",
+      "Petrol"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 23,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "String",
+      "Guitar",
+      "Piano",
+      "Banjo"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 24,
+    "question_text": "What will come next in the following series: BY   CX   DW   EV   FU   ___",
+    "options": [
+      "GT",
+      "TG",
+      "GO",
+      "TS"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 25,
+    "question_text": "A is father of B but is not A’s son, what is relationship of B to A?",
+    "options": [
+      "Uncle",
+      "Cousin",
+      "Father",
+      "Daughter"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 26,
+    "question_text": "Essence is to Flower as ______ is to Oven?",
+    "options": [
+      "Heat",
+      "Vapor",
+      "Steam",
+      "Ice"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 27,
+    "question_text": "My mother is sister of your brother. What relation am I to you?",
+    "options": [
+      "Cousin",
+      "Nephew",
+      "Brother",
+      "Uncle"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 28,
+    "question_text": "Which one is out of list?",
+    "options": [
+      "Buffalo",
+      "Goat",
+      "Sheep",
+      "Cow",
+      "Horse"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 29,
+    "question_text": "What will come next? 16 12 28 8 4 ____",
+    "options": [
+      "12",
+      "4",
+      "2",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 30,
+    "question_text": "Write next number: 62 31 34 17 20 _____",
+    "options": [
+      "9",
+      "8",
+      "10",
+      "6"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 31,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Radius",
+      "Arc",
+      "Diameter",
+      "Circumference",
+      "Diagonal"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 32,
+    "question_text": "If Sunday dawned three days before Yesterday what day will dawn two days after Tomorrow?",
+    "options": [
+      "Sunday",
+      "Monday",
+      "Saturday",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 33,
+    "question_text": "Spot out the stranger in the following:",
+    "options": [
+      "Godly",
+      "Holy",
+      "Pious",
+      "Atheist"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 34,
+    "question_text": "What number comes next in the series: 13 15 17 19 21 ___",
+    "options": [
+      "23",
+      "24",
+      "26",
+      "20"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 35,
+    "question_text": "Fly is to Aero plane as Sail is to ____?_",
+    "options": [
+      "Ship",
+      "Cabin",
+      "Ocean",
+      "Sea"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 36,
+    "question_text": "Write next two numbers: 5 3 6 4 7 5 8 6 ____",
+    "options": [
+      "9, 7",
+      "9, 5",
+      "8, 10",
+      "7, 5"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 37,
+    "question_text": "Finger is to Elbow as Toe is to _____?",
+    "options": [
+      "Ankle",
+      "Arm",
+      "Knee",
+      "Foot"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "question_text": "Meat is to Vegetarian as ______ is to Teetotaler?",
+    "options": [
+      "Mutton",
+      "Liquor",
+      "Vegetable",
+      "Fruit"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 39,
+    "question_text": "If Box is coded as CDPQYZ, how would you write Coat in code?",
+    "options": [
+      "PQDEBCUV",
+      "UVDEPQBC",
+      "BCPQDEUV",
+      "DEPQBCUV"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 40,
+    "question_text": "What will come next in the following series: 10 20 30 40 50 ___",
+    "options": [
+      "85",
+      "55",
+      "90",
+      "60",
+      "80"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 41,
+    "question_text": "20  25  23  28  26  31  29  34  ___",
+    "options": [
+      "43",
+      "32",
+      "30",
+      "33",
+      "31"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 42,
+    "question_text": "E  G  X  F  X  H  J  X  I  X  K  M  X  L  X  _____?",
+    "options": [
+      "M",
+      "N",
+      "O",
+      "P"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 43,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Failure",
+      "Student",
+      "Examination",
+      "Cure"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 44,
+    "question_text": "4 12 36 108 ____?",
+    "options": [
+      "224",
+      "124",
+      "324",
+      "424"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 45,
+    "question_text": "17 35 72 147 ____?",
+    "options": [
+      "298",
+      "294",
+      "198",
+      "892"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 46,
+    "question_text": "Wag is to Dullard as Idiot is to ______?",
+    "options": [
+      "Clever",
+      "Healthy",
+      "Hearty",
+      "Foolish"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 47,
+    "question_text": "Free is to Imprison as Forgive is to ______?",
+    "options": [
+      "Accuse",
+      "Punish",
+      "Accept",
+      "Condemn"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 48,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Fad",
+      "Hat",
+      "Far",
+      "Kit"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 49,
+    "question_text": "10  50  250  1250  _____?",
+    "options": [
+      "6250",
+      "2500",
+      "5169",
+      "5012",
+      "3750"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 50,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Yellow",
+      "Red",
+      "Blue",
+      "Chair",
+      "Green"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 51,
+    "question_text": "Single is to Double as One is to ______?",
+    "options": [
+      "Two",
+      "Three",
+      "Ten",
+      "Twice",
+      "Zero"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 52,
+    "question_text": "17 23 30 38 ____?",
+    "options": [
+      "45",
+      "47",
+      "48",
+      "46"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 53,
+    "question_text": "64 32 16 8 4 2 __?",
+    "options": [
+      "1/2",
+      "1",
+      "1/4",
+      "1/8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 54,
+    "question_text": "5 9 17 33 ____?",
+    "options": [
+      "66",
+      "74",
+      "71",
+      "114",
+      "65"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 55,
+    "question_text": "2 90 4 80 6 70 8 60 ____?",
+    "options": [
+      "10, 12",
+      "10, 50",
+      "12, 52",
+      "50, 10",
+      "12, 50"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 56,
+    "question_text": "11 8 16 17 14 28 ___?",
+    "options": [
+      "20",
+      "29",
+      "30",
+      "32"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 57,
+    "question_text": "1 10 19 28 ___?",
+    "options": [
+      "24",
+      "37",
+      "26",
+      "28",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 58,
+    "question_text": "120 108 97 87 78 ___?",
+    "options": [
+      "70",
+      "45",
+      "85",
+      "80"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 59,
+    "question_text": "Book is to Title as Man is to _____?",
+    "options": [
+      "Girl",
+      "Sir",
+      "Woman",
+      "Name"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 60,
+    "question_text": "49 48 45 40 33 24 ___?",
+    "options": [
+      "23",
+      "13",
+      "33",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 61,
+    "question_text": "Saw is to Seed as Reap is to _____?",
+    "options": [
+      "Sunshine",
+      "Grain",
+      "Rain",
+      "Crop"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 62,
+    "question_text": "Fish is to Swimming as Snake is to ______?",
+    "options": [
+      "Puppy",
+      "Creeping",
+      "Crawling",
+      "Jump"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 63,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Necktie",
+      "Coat",
+      "Shirt",
+      "Trousers",
+      "Boot"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 64,
+    "question_text": "3 4 10 11 17 18 ___?",
+    "options": [
+      "25",
+      "24",
+      "19",
+      "20"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 65,
+    "question_text": "8 7 6 5 4 3 ___?",
+    "options": [
+      "2",
+      "1",
+      "0",
+      "None of these"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 66,
+    "question_text": "Light is to Eye as Sound is to ______?",
+    "options": [
+      "Ear",
+      "Foot",
+      "Leg",
+      "Hand"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 67,
+    "question_text": "Girls wear glasses because:",
+    "options": [
+      "They want to show off",
+      "They have to go outside",
+      "They want to look smart",
+      "They have poor eyesight"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 68,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Sure",
+      "Vague",
+      "True",
+      "Certain"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 69,
+    "question_text": "1 4 9 16 25 36 ___?",
+    "options": [
+      "39",
+      "46",
+      "49",
+      "45"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 70,
+    "question_text": "Which one of the following is different from the rest?",
+    "options": [
+      "Five",
+      "Twenty",
+      "Two",
+      "Four"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 71,
+    "question_text": "If Step is coded as 3165 then Pets is coded as ____?",
+    "options": [
+      "3165",
+      "1635",
+      "5613",
+      "3156"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 72,
+    "question_text": "Looking on a portrait, a man said, that man’s father is my            father’s son, I have no brother and sister. What is He to Me?",
+    "options": [
+      "Uncle",
+      "Own Picture",
+      "Cousin",
+      "Brother"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 73,
+    "question_text": "4  6  8  10  12  ___",
+    "options": [
+      "22",
+      "16",
+      "14",
+      "10"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 74,
+    "question_text": "B  D  G  K  P",
+    "options": [
+      "E",
+      "R",
+      "V",
+      "S"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 75,
+    "question_text": "If Sheep is to Wool as Cat is to _____",
+    "options": [
+      "Bitch",
+      "Fur",
+      "Camel",
+      "Dog"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 76,
+    "question_text": "2  9  14  21  26  ____",
+    "options": [
+      "38",
+      "31",
+      "28",
+      "33"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 77,
+    "question_text": "53  48  50  45  47  ___",
+    "options": [
+      "54",
+      "39",
+      "76",
+      "69",
+      "42"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 78,
+    "question_text": "If 1800 O’clock is to 6 O’clock then 1400 O’clock is to ____ O’clock.",
+    "options": [
+      "3",
+      "7",
+      "2",
+      "4"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 79,
+    "question_text": "Saw is to Cut as Iron is to _____",
+    "options": [
+      "Hard",
+      "Metal",
+      "Press",
+      "Oven"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 80,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Sword",
+      "Fork",
+      "Dagger",
+      "Knife"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 81,
+    "question_text": "Bulb is to Current as Lamp is to _____",
+    "options": [
+      "Oil",
+      "Fuel",
+      "Light",
+      "Table"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 82,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "CE",
+      "EG",
+      "IJ",
+      "GI",
+      "AC"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 83,
+    "question_text": "What number comes next in the series: 9   24    19        ?",
+    "options": [
+      "40",
+      "46",
+      "48",
+      "44",
+      "42"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 84,
+    "question_text": "If Shoe is to Foot then Helmet is to ______",
+    "options": [
+      "Steel",
+      "Baseball",
+      "Head",
+      "Combat",
+      "Heavy"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 85,
+    "question_text": "2  6  12  36  72  216  ____",
+    "options": [
+      "648",
+      "403",
+      "376",
+      "432",
+      "288"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 86,
+    "question_text": "20  33  46  ___",
+    "options": [
+      "52",
+      "56",
+      "59",
+      "49"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 87,
+    "question_text": "10  18  20  21  30  ___",
+    "options": [
+      "24",
+      "40",
+      "41",
+      "31"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 88,
+    "question_text": "7  8  6  7  5  6  ___",
+    "options": [
+      "3",
+      "4",
+      "8",
+      "5",
+      "2"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 89,
+    "question_text": "Hot is to Burn and Cold is to _____",
+    "options": [
+      "Freeze",
+      "Oven",
+      "Stream",
+      "Iron"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 90,
+    "question_text": "1   100   2   50   4   25   8   ___",
+    "options": [
+      "12.54",
+      "12.516",
+      "8.5016",
+      "1612.5"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 91,
+    "question_text": "32  33  31  34  ___",
+    "options": [
+      "36",
+      "32",
+      "35",
+      "30"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 92,
+    "question_text": "40  35  25  20  15  ___",
+    "options": [
+      "7.5",
+      "5",
+      "10",
+      "0"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 93,
+    "question_text": "7  4  12  9  27  24  ___",
+    "options": [
+      "48",
+      "36",
+      "96",
+      "72"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 94,
+    "question_text": "3  7  8  12  13  17  ___",
+    "options": [
+      "22",
+      "21",
+      "18",
+      "19"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 95,
+    "question_text": "Bed is to Sleep as Chair is to _____",
+    "options": [
+      "Sit",
+      "Wood",
+      "Seat",
+      "Floor"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 96,
+    "question_text": "25  50  100  125  ___",
+    "options": [
+      "175",
+      "152",
+      "225",
+      "150"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 97,
+    "question_text": "Kamal is older than Jamal, Jamal is older than Hussain, Hussain is older than Waqar, who is the oldest?",
+    "options": [
+      "Waqar",
+      "Jamal",
+      "Kamal",
+      "Hussain"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 98,
+    "question_text": "Ring is to Finger as Watch is to _____",
+    "options": [
+      "Arm",
+      "Head",
+      "Foot",
+      "Wrist"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 99,
+    "question_text": "Gun is to Soldier as ______ is to Photographer.",
+    "options": [
+      "Scenery",
+      "Photo",
+      "Camera",
+      "Picture"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 1,
+    "question_text": "Which one of the following is different from the rest:",
+    "options": [
+      "Town",
+      "Village",
+      "Township",
+      "City",
+      "Heaven"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 2,
+    "question_text": "3  8  15  24  ___",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "35"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 3,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Fat",
+      "Great",
+      "High",
+      "Big",
+      "Small"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 4,
+    "question_text": "19  9  29  8  39  ____",
+    "options": [
+      "7",
+      "4",
+      "49",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 5,
+    "question_text": "11  12  14  15  _____",
+    "options": [
+      "11",
+      "16",
+      "17",
+      "12"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 6,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "LO",
+      "HK",
+      "AC",
+      "DG"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 7,
+    "question_text": "3  4  6  7  9  10  ___",
+    "options": [
+      "12",
+      "8",
+      "14",
+      "11"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 8,
+    "question_text": "7  49  6  36  5  ____",
+    "options": [
+      "25",
+      "4",
+      "23",
+      "15"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 9,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Spaceship",
+      "Relationship",
+      "Kinship",
+      "Friendship"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 10,
+    "question_text": "2  4  16  256  16  ___",
+    "options": [
+      "256",
+      "16",
+      "2",
+      "4"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 11,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Car",
+      "Train",
+      "Bus",
+      "Tram",
+      "Ship"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 12,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Mason",
+      "Blacksmith",
+      "Tailor",
+      "Professor"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 13,
+    "question_text": "One Third of One Half is ______",
+    "options": [],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 14,
+    "question_text": "8 8 16 9 9 18 10 10?",
+    "options": [
+      "22",
+      "20",
+      "19",
+      "10"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 15,
+    "question_text": "9  24  39  54  69  84  99  114  ____",
+    "options": [
+      "132",
+      "128",
+      "124",
+      "131",
+      "129"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 16,
+    "question_text": "111  115  120  126  ____",
+    "options": [
+      "130",
+      "128",
+      "133",
+      "136"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 17,
+    "question_text": "5  6  8  9  11  __  14",
+    "options": [
+      "10",
+      "14",
+      "13",
+      "12"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 18,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Judge",
+      "Advocate",
+      "Cook",
+      "Pleader",
+      "Magistrate"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 19,
+    "question_text": "3  4  10  11  17  18  ____",
+    "options": [
+      "25",
+      "24",
+      "19",
+      "20"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 20,
+    "question_text": "2  5  10  17  ___",
+    "options": [
+      "25",
+      "23",
+      "26",
+      "21"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 21,
+    "question_text": "7  6  18  54  162  486  ___",
+    "options": [
+      "972",
+      "496",
+      "1485",
+      "1458"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 22,
+    "question_text": "0  5  12  21  ___",
+    "options": [
+      "32",
+      "33",
+      "31",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 23,
+    "question_text": "If Brush is to Painting as Pencil is to _____",
+    "options": [
+      "Notebook",
+      "Sketch",
+      "Map",
+      "Drawing"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 24,
+    "question_text": "29  23  18  14  11  ___",
+    "options": [
+      "13",
+      "6",
+      "19",
+      "9",
+      "10"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 25,
+    "question_text": "101  105  111  119  ____",
+    "options": [
+      "15",
+      "125",
+      "25",
+      "129",
+      "135"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 26,
+    "question_text": "A railway station always has:",
+    "options": [
+      "A Train",
+      "A Railway",
+      "A Platform",
+      "A Station Master"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 27,
+    "question_text": "234  342  423  ____",
+    "options": [
+      "234",
+      "523",
+      "432",
+      "342"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 28,
+    "question_text": "Book is to Title as Man is to ______",
+    "options": [
+      "Girl",
+      "Woman",
+      "Sir",
+      "Name"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 29,
+    "question_text": "Man is to Woman as Boy is to _____",
+    "options": [
+      "Father",
+      "Brother",
+      "Girl",
+      "Daughter"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 30,
+    "question_text": "3 has the same ratio to 15x as 5x has to _____",
+    "options": [
+      "25푥",
+      "25xy",
+      "25",
+      "25x"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 31,
+    "question_text": "Son is to Father as Nephew is to _____",
+    "options": [
+      "Aunt",
+      "Cousin",
+      "Brother",
+      "Uncle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 32,
+    "question_text": "What letter comes alphabetically in order in the letter, Mother?",
+    "options": [
+      "E",
+      "R",
+      "M",
+      "H"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 33,
+    "question_text": "Which of the following is different from the rest?",
+    "options": [
+      "Locate",
+      "Invention",
+      "Discover",
+      "Find"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 34,
+    "question_text": "9  24  39  54  69  84  99  ___",
+    "options": [
+      "114",
+      "106",
+      "124",
+      "109"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 35,
+    "question_text": "Which one of the following is different from the rest?",
+    "options": [
+      "Sword",
+      "Fork",
+      "Knife",
+      "Dagger"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 36,
+    "question_text": "6  7  9  12  16  21  27  34  __",
+    "options": [
+      "50",
+      "49",
+      "42",
+      "60"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 37,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Triangle",
+      "Square",
+      "Rectangle",
+      "Circle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 38,
+    "question_text": "If A is smaller than B, but taller than C and D, who is the   tallest of the three?",
+    "options": [
+      "B",
+      "D",
+      "C",
+      "A"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 39,
+    "question_text": "If Box is to 3 then Boxer is to ___",
+    "options": [
+      "9",
+      "7",
+      "3",
+      "5"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 40,
+    "question_text": "Which one of the following is different from the rest?",
+    "options": [
+      "Adult",
+      "Child",
+      "Infant",
+      "Baby",
+      "Newborn"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 41,
+    "question_text": "If ACNPNPJL means Book, what does GINPQSRTDF mean?",
+    "options": [
+      "House",
+      "Hand",
+      "Horse",
+      "Hero"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 42,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "MP",
+      "EH",
+      "AD",
+      "QS"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 43,
+    "question_text": "A is to E as C is to ___",
+    "options": [
+      "G",
+      "F",
+      "H",
+      "J"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 44,
+    "question_text": "Laugh is to Gay as Weep is to _____",
+    "options": [
+      "Pleasant",
+      "Weep",
+      "Sad",
+      "Gloomy"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 45,
+    "question_text": "11  77  539  ____",
+    "options": [
+      "3778",
+      "1078",
+      "3773",
+      "3377"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 46,
+    "question_text": "2  8  32  128  ____",
+    "options": [
+      "521",
+      "228",
+      "512",
+      "384"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 47,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Lahore",
+      "Kabul",
+      "Beijing",
+      "Dhaka"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 48,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Split",
+      "Gap",
+      "Divide",
+      "Separation",
+      "Union"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 49,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Sun",
+      "Mars",
+      "Earth",
+      "Ocean"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 50,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Potato",
+      "Rat",
+      "Tiger",
+      "Sheep",
+      "Horse"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 51,
+    "question_text": "If FACE is coded as 6135 then ACE is coded as _____",
+    "options": [
+      "357",
+      "657",
+      "135",
+      "176"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 52,
+    "question_text": "What letter comes alphabetically in the word Fluctuation?",
+    "options": [
+      "N",
+      "U",
+      "F",
+      "I"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 53,
+    "question_text": "If A=2, B=4, C=6 and so on then what word the following number stand for. 8 10 10 32 ___",
+    "options": [
+      "DEEP",
+      "PEEP",
+      "EPED",
+      "EPPE"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 54,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "AD",
+      "IL",
+      "QS",
+      "MP",
+      "EH"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 55,
+    "question_text": "If Crate is to Excrete then Cute is to _____?",
+    "options": [
+      "Attractive",
+      "Loving",
+      "Smart",
+      "Execute",
+      "Charming"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 56,
+    "question_text": "63  3  44  0  91  ___",
+    "options": [
+      "3",
+      "1",
+      "7",
+      "9",
+      "8"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 57,
+    "question_text": "Confess is to Deny as Release is to _____?",
+    "options": [
+      "Prisoner",
+      "Arrest",
+      "Jail",
+      "Police Station"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 58,
+    "question_text": "If FET is to TEF then TAR is to _____?",
+    "options": [
+      "TAR",
+      "RAT",
+      "TRA",
+      "ART"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 59,
+    "question_text": "Man is to Run as Bird is to _____?",
+    "options": [
+      "Run",
+      "Walk",
+      "Fly",
+      "Weak"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 60,
+    "question_text": "Mountain is to High then Train is to _____?",
+    "options": [
+      "Tall",
+      "Speed",
+      "Length",
+      "Small"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 61,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "September",
+      "May",
+      "March",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 62,
+    "question_text": "18  13  9  6  __",
+    "options": [
+      "8",
+      "4",
+      "2",
+      "3"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 63,
+    "question_text": "10  70  11  67  13  64  16  61  _____",
+    "options": [
+      "19,58",
+      "20,58",
+      "18,58",
+      "58,20"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 64,
+    "question_text": "8  10  14  18  26  ___",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 65,
+    "question_text": "Cars have Mirrors because _____?",
+    "options": [
+      "To see the cars which are ahead",
+      "To see the girls in the cars",
+      "To see the different sights",
+      "To see the cars coming from behind"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 66,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Carrot",
+      "Mango",
+      "Orange",
+      "Melon"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 67,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Lecture",
+      "Gossip",
+      "Oration",
+      "Speech",
+      "Sermon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 68,
+    "question_text": "6  9  13  16  20  23  ______",
+    "options": [
+      "26, 29",
+      "27, 29",
+      "27, 30",
+      "26, 30"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 69,
+    "question_text": "6  7  9  12  16  21  27  34  ___",
+    "options": [
+      "43",
+      "47",
+      "49",
+      "42",
+      "50"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 70,
+    "question_text": "20  25  23  28  26  31  29  34  ___",
+    "options": [
+      "35",
+      "32",
+      "33",
+      "30",
+      "31"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 71,
+    "question_text": "Single is to Double as One is to ____?",
+    "options": [
+      "Twice",
+      "Three",
+      "Zero",
+      "Two"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 72,
+    "question_text": "The opposite of Never is ____?",
+    "options": [
+      "Always",
+      "Seldom",
+      "Often",
+      "Frequently",
+      "Occasionally"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 73,
+    "question_text": "Pakistan is to Asia as United Kingdom is to _____?",
+    "options": [
+      "Europe",
+      "Africa",
+      "America",
+      "England"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 74,
+    "question_text": "24  12  36  24  48  36  ___",
+    "options": [
+      "50",
+      "52",
+      "58",
+      "60"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 75,
+    "question_text": "Driver is to Car as _____ is to Airplane?",
+    "options": [
+      "Navigator",
+      "Pilot",
+      "Fuel",
+      "Load Master",
+      "Aerodrome"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 76,
+    "question_text": "32  6  43  12  64  ___",
+    "options": [
+      "32",
+      "43",
+      "28",
+      "24"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 77,
+    "question_text": "9  5  8  5  7  5  __",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "8"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 78,
+    "question_text": "If Yesterday was Monday, what day is after Tomorrow?",
+    "options": [
+      "Monday",
+      "Saturday",
+      "Sunday",
+      "Thursday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 79,
+    "question_text": "A  C F __?",
+    "options": [
+      "I",
+      "K",
+      "H",
+      "J"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 80,
+    "question_text": "3  10  18  27  __",
+    "options": [
+      "36",
+      "35",
+      "37",
+      "32"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 81,
+    "question_text": "Skardu is too cold as Multan is to ____?",
+    "options": [
+      "Snow",
+      "Hot",
+      "Stream",
+      "Ice"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 82,
+    "question_text": "Acre is to Kanal as Square is to _____?",
+    "options": [
+      "Karam",
+      "Marla",
+      "Mile",
+      "Kanal",
+      "Acre"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 83,
+    "question_text": "7  8  6  7  5  6  4 __",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 84,
+    "question_text": "Heavy is to Light as Rough is to _____?",
+    "options": [
+      "Coarse",
+      "Smooth",
+      "Soft",
+      "Wood"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 85,
+    "question_text": "10  18  15  23  20  28  ___",
+    "options": [
+      "23",
+      "24",
+      "25",
+      "30"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 86,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Tiger",
+      "Lion",
+      "Leopard",
+      "Wolf",
+      "Lamb"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 87,
+    "question_text": "10  11  13  16  20  ___",
+    "options": [
+      "25",
+      "24",
+      "26",
+      "30"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 88,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Touch",
+      "Shout",
+      "Whisper",
+      "Sing"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 89,
+    "question_text": "A is to E as C is to ___",
+    "options": [
+      "I",
+      "G",
+      "F",
+      "H"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 90,
+    "question_text": "1  2  4  8  16  ___",
+    "options": [
+      "32",
+      "34",
+      "20",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 91,
+    "question_text": "Nib is to Pen as Blade is to _____?",
+    "options": [
+      "Razor",
+      "Knife",
+      "Steel",
+      "Shapner"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 92,
+    "question_text": "1  4  10  22  46  ___",
+    "options": [
+      "85",
+      "94",
+      "98",
+      "80"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 93,
+    "question_text": "Which word is out of list?",
+    "options": [
+      "Ugly",
+      "Foolish",
+      "Selfish",
+      "Dishonest"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 94,
+    "question_text": "A  C  F  J  O  ___",
+    "options": [
+      "S",
+      "V",
+      "U",
+      "T"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 95,
+    "question_text": "1  2  4  8  32  ___",
+    "options": [
+      "64",
+      "96",
+      "56",
+      "80",
+      "48"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 96,
+    "question_text": "3  9  14  18  21  23  ___",
+    "options": [
+      "28",
+      "26",
+      "24",
+      "27",
+      "25"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 97,
+    "question_text": "8  10  14  28  30  34  ___",
+    "options": [
+      "75",
+      "73",
+      "68",
+      "72",
+      "71"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 98,
+    "question_text": "C  H  L  O  Q  ___?",
+    "options": [
+      "R",
+      "S",
+      "T",
+      "X",
+      "Y"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 99,
+    "question_text": "B  D E G H ___?",
+    "options": [
+      "O",
+      "I",
+      "F",
+      "J",
+      "K"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 100,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Ton",
+      "Ounce",
+      "Pound",
+      "Stone"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 1,
+    "question_text": "Which choice supplies the answer in the following? If       BME = DOG then MLC =?",
+    "options": [
+      "ONE",
+      "EYE",
+      "TWO",
+      "THREE"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 2,
+    "question_text": "Sweeper is to Sweep as Washer man is to _____?",
+    "options": [
+      "Cloth",
+      "Wash",
+      "Water",
+      "Machine"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 3,
+    "question_text": "5  7  9  __?",
+    "options": [
+      "11",
+      "15",
+      "12",
+      "17",
+      "21"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 4,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Advocate",
+      "Judge",
+      "Justice",
+      "Pleader",
+      "Cook"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 5,
+    "question_text": "2413  2420  2434  2462  2518  ____ ?",
+    "options": [
+      "2630",
+      "2631",
+      "2830",
+      "2635",
+      "2730"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 6,
+    "question_text": "3  8  14  21  29  38  ___ ?",
+    "options": [
+      "49",
+      "48",
+      "50",
+      "65"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 7,
+    "question_text": "If LACK = 9381 and CALK = 8391 then CKAL =?",
+    "options": [
+      "8913",
+      "3819",
+      "8319",
+      "8193",
+      "8139"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 8,
+    "question_text": "Write the numbers of the two words which have the same relationship as Bird and Cage from?",
+    "options": [
+      "Stable",
+      "Judge",
+      "Horse",
+      "Prisoner",
+      "Court"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 9,
+    "question_text": "In a class of 60 male and 35 female students 80% class failed in chemistry, 30% in English then which one is true?",
+    "options": [
+      "Only Female are failed",
+      "No Male is failed",
+      "Only Male are failed",
+      "Both students are failed"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 10,
+    "question_text": "7  49  343  2410  _____ ?",
+    "options": [
+      "14807",
+      "16807",
+      "14678",
+      "16708"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 11,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Plate",
+      "Sugar",
+      "Knife",
+      "Dish",
+      "Spoon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 12,
+    "question_text": "(8  10  6) Divide the largest of these numbers by the difference of two smaller numbers then answer will be?",
+    "options": [
+      "7",
+      "5",
+      "15",
+      "25"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 13,
+    "question_text": "Point out the word which is different from others in the group?",
+    "options": [
+      "Dutiful",
+      "Cheerful",
+      "Beautiful",
+      "Handful",
+      "Careful"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 14,
+    "question_text": "Saw is to Seed as Reap is to ______?",
+    "options": [
+      "Crop",
+      "Sunshine",
+      "Rain",
+      "Grain"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 15,
+    "question_text": "43-1  53-2  74-3  _____ ?",
+    "options": [
+      "84-5",
+      "84-6",
+      "84-4",
+      "83-3"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 16,
+    "question_text": "3  21  4  22  5  ___?",
+    "options": [
+      "23",
+      "10",
+      "6",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 17,
+    "question_text": "T  S  R  T  S  R  T  S  ___?",
+    "options": [
+      "S",
+      "T",
+      "R",
+      "V",
+      "W"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 18,
+    "question_text": "2048  1024  512  256  128  64  ___ ?",
+    "options": [
+      "32",
+      "26",
+      "36",
+      "24",
+      "72"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 19,
+    "question_text": "80  40  20  10  5  5/2  ____ ?",
+    "options": [
+      "5/4",
+      "1/2",
+      "2",
+      "5/8",
+      "2/3"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 20,
+    "question_text": "Book is to Read as Notebook is to ______?",
+    "options": [
+      "Pen",
+      "Write",
+      "Pencil",
+      "Cover"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 21,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Mile",
+      "Inch",
+      "Foot",
+      "Yard",
+      "Acre"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 22,
+    "question_text": "6  7  9  12  16  21  27  34  ___?",
+    "options": [
+      "42",
+      "47",
+      "50",
+      "43",
+      "49"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 23,
+    "question_text": "G  F  E  D  ___?",
+    "options": [
+      "E",
+      "F",
+      "B",
+      "G",
+      "C"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 24,
+    "question_text": "Tight is to Loose as Hard is to ______ ?",
+    "options": [
+      "Stone",
+      "Soft",
+      "Difficult",
+      "Carbon"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 25,
+    "question_text": "If Step is coded as 5631 then Pets is coded as _____?",
+    "options": [
+      "3167",
+      "1365",
+      "5163",
+      "5316"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 26,
+    "question_text": "Which pair of numbers does not belong to this group?",
+    "options": [
+      "16-10",
+      "112-104",
+      "1227-1222",
+      "2516-2509"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 27,
+    "question_text": "Clear is to Foggy as Day is to ______ ?",
+    "options": [
+      "Evening",
+      "Night",
+      "Noon",
+      "Morning"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 28,
+    "question_text": "11  21  40  77  150  ____?",
+    "options": [
+      "294",
+      "295",
+      "290",
+      "395"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 29,
+    "question_text": "Quran is to Muslim as Bible is to _______ ?",
+    "options": [
+      "Hindu",
+      "Jew",
+      "Sikh",
+      "Christian"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 30,
+    "question_text": "Listen is to Hear as Look is to ______?",
+    "options": [
+      "Watch",
+      "See",
+      "Observe",
+      "Notice"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 31,
+    "question_text": "Write the middle letter: B  C  D  E  F  G  H ?",
+    "options": [
+      "D",
+      "E",
+      "C",
+      "F"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 32,
+    "question_text": "Write number of the pair which is dissimilar to the others in  the following;",
+    "options": [
+      "Glass and Milk",
+      "Bottle and Wine",
+      "Radio and Transistor",
+      "Pen and Ink"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 33,
+    "question_text": "7  11  16  22  26  31  ___ ?",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "37",
+      "39"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 34,
+    "question_text": "What is the odd term out here?",
+    "options": [
+      "Foot",
+      "Yard",
+      "Centimeter",
+      "Meter",
+      "Square Yard"
+    ],
+    "correct_option_index": 4,
+    "correct_letter": "E"
+  },
+  {
+    "number": 35,
+    "question_text": "Which one is out of list?",
+    "options": [
+      "Cow",
+      "Goat",
+      "Sheep",
+      "Horse",
+      "Buffalo"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 36,
+    "question_text": "2  7  24  77  ___ ?",
+    "options": [
+      "144",
+      "236",
+      "238",
+      "99",
+      "77"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 37,
+    "question_text": "27  25  26  24  25  23  24  22  ___ ?",
+    "options": [
+      "22, 21",
+      "24, 23",
+      "23, 21",
+      "20, 21"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "question_text": "Lahore is to Punjab as Karachi is to ______?",
+    "options": [
+      "KP",
+      "Baluchistan",
+      "Sindh",
+      "City"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 39,
+    "question_text": "Light is to Eye as Sound is to _____",
+    "options": [
+      "Foot",
+      "Ear",
+      "Arm",
+      "Leg"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 40,
+    "question_text": "If 7+2-1 = H and 22+6-5=W then 11+6-2=?",
+    "options": [
+      "N",
+      "P",
+      "O",
+      "M"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 41,
+    "question_text": "We wear clothes. (Quote the serial number)",
+    "options": [
+      "To be fashionable",
+      "To keep warm",
+      "To look nice",
+      "because it as a custom to do"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 42,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "December",
+      "Monday",
+      "March",
+      "May"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 43,
+    "question_text": "If second of the following number is added to the shortest number and divided by the third number then the answer will be: 2  14  4  ?",
+    "options": [
+      "4",
+      "2",
+      "6",
+      "8",
+      "10"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 44,
+    "question_text": "Rupee is to Pakistan as Yen is to _____?",
+    "options": [
+      "Korea",
+      "China",
+      "Japan",
+      "Iran"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 45,
+    "question_text": "AB  DEF  HIJK  MNOPQ  ________?",
+    "options": [
+      "STUVXW",
+      "STUVWX",
+      "STUVXZ",
+      "SUTVXW"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 46,
+    "question_text": "6  11  12  11  18  11  24  11  ___?",
+    "options": [
+      "30",
+      "34",
+      "45",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 47,
+    "question_text": "1/16  1/4  1/2  2  4  16  ___?",
+    "options": [
+      "48",
+      "32",
+      "64",
+      "24",
+      "80"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 48,
+    "question_text": "Adnan was 21 years old in 1945, how old will be he in 1965?",
+    "options": [
+      "41",
+      "43",
+      "65",
+      "45"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 49,
+    "question_text": "Steel is to Karachi as Hosiery is to ______?",
+    "options": [
+      "Hyderabad",
+      "Lahore",
+      "Multan",
+      "Faisalabad"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 50,
+    "question_text": "Sweep is to Broom as Wash is to _____ ?",
+    "options": [
+      "Soap",
+      "Tub",
+      "Water",
+      "Powder"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 51,
+    "question_text": "Laughter is to Joy as Tears are to _____",
+    "options": [
+      "Sadness",
+      "Anger",
+      "Happiness",
+      "Sorrow"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 52,
+    "question_text": "Insert the missing number: 7 14 12 4 12 9 6   24    ?",
+    "options": [
+      "20",
+      "22",
+      "18",
+      "24"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 53,
+    "question_text": "Pond is to Ocean as Shallow is to _____?",
+    "options": [
+      "High",
+      "Deep",
+      "Spot",
+      "Space"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 54,
+    "question_text": "Knowledge is to Learned as Wealth is to _____?",
+    "options": [
+      "Rich",
+      "Spend",
+      "Happy",
+      "Poor"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 55,
+    "question_text": "Fish is to Water as Animal is to ______?",
+    "options": [
+      "Jungle",
+      "Zoo",
+      "Forest",
+      "Land"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 56,
+    "question_text": "B  D  G  K  P  ___?",
+    "options": [
+      "R",
+      "S",
+      "V",
+      "E"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 57,
+    "question_text": "Find the odd-man out?",
+    "options": [
+      "Trip",
+      "Pair",
+      "Peer",
+      "Rips"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 58,
+    "question_text": "King is to Queen as Raja is to _____?",
+    "options": [
+      "Princess",
+      "Rani",
+      "Empress",
+      "Woman"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 59,
+    "question_text": "2  4  12  48  240  ____.?",
+    "options": [
+      "1440",
+      "1442",
+      "2400",
+      "1220"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 60,
+    "question_text": "Curse is to Bless as Deny is to _____.?",
+    "options": [
+      "Permit",
+      "Approval",
+      "Admit",
+      "Refuse"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 61,
+    "question_text": "R   O   L   I   __?",
+    "options": [
+      "G",
+      "D",
+      "F",
+      "E"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 62,
+    "question_text": "Find the odd-man out?",
+    "options": [
+      "Socrates",
+      "Handel",
+      "Beethoven",
+      "Mozart"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 63,
+    "question_text": "Insert the missing number. 17  19  __  20  15",
+    "options": [
+      "15",
+      "16",
+      "17",
+      "19"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 64,
+    "question_text": "Find the odd man out?",
+    "options": [
+      "Oslo",
+      "Cairo",
+      "New York",
+      "Madrid"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 65,
+    "question_text": "D  H  L  P  T  ___?",
+    "options": [
+      "Y",
+      "X",
+      "W",
+      "N"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 66,
+    "question_text": "Foul is to Hen as Cub is to _____?",
+    "options": [
+      "Dog",
+      "Goat",
+      "Lion",
+      "Cat"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 67,
+    "question_text": "If Mushed is smaller than Azhar, but taller than Aqeel. Who is the tallest of the three?",
+    "options": [
+      "Aqeel",
+      "Mushed",
+      "Azhar"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 68,
+    "question_text": "6  9  7  10  8  11  ___ ?",
+    "options": [
+      "13",
+      "19",
+      "14",
+      "9"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 69,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Tiger",
+      "Horse",
+      "Potato",
+      "Sheep"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 70,
+    "question_text": "F   J   N   R   __ ?",
+    "options": [
+      "U",
+      "X",
+      "W",
+      "V"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 71,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Lahore",
+      "Rawalpindi",
+      "Multan",
+      "Sukkur"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 72,
+    "question_text": "8  12  10  16  12  ___ ?",
+    "options": [
+      "15",
+      "25",
+      "20",
+      "18"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 73,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Junk",
+      "Packet",
+      "Rickshaw",
+      "Dhow"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 74,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "837",
+      "422",
+      "549",
+      "612"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 75,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Playpen",
+      "Bed",
+      "Chair",
+      "Table"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 76,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Ant",
+      "Bee",
+      "Spider",
+      "Moth"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 77,
+    "question_text": "BY  CX  DW  EV  FU  ___ ?",
+    "options": [
+      "TG",
+      "TS",
+      "GO",
+      "GT"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 78,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Cook",
+      "Judge",
+      "Advocate",
+      "Magistrate"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 79,
+    "question_text": "3  11  4  13  5  15  6  17  7  ___ ?",
+    "options": [
+      "21",
+      "20",
+      "19",
+      "23"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 80,
+    "question_text": "2  4  7  11  16  __  __ ?",
+    "options": [
+      "21  28",
+      "22  28",
+      "21  29",
+      "22  29"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 81,
+    "question_text": "4  5  8  10  12  15  ___ ?",
+    "options": [
+      "20",
+      "18",
+      "17",
+      "16"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 82,
+    "question_text": "3 4 5 6, 5 6 7 8, 7 8 9 10, ?",
+    "options": [
+      "9 10 11 12",
+      "11 12 13 14",
+      "8 9 10 11",
+      "10 11 12 13"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 83,
+    "question_text": "25  20  15  10  __ ?",
+    "options": [
+      "8",
+      "5",
+      "24",
+      "9"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 84,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Duck",
+      "Cow",
+      "Bull",
+      "Mare"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 85,
+    "question_text": "A cake is cut so that, one piece, which is half of the cake, is twice as largest as the other piece. How many pieces are there?",
+    "options": [
+      "3",
+      "5",
+      "2",
+      "9"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 86,
+    "question_text": "3  6  9  12  15  ___ ?",
+    "options": [
+      "24",
+      "18",
+      "27",
+      "21"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 87,
+    "question_text": "A  C  F  J  O  ___ ?",
+    "options": [
+      "S",
+      "T",
+      "U",
+      "V"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 88,
+    "question_text": "Cotton is to quilt as ______ is to Blanket.",
+    "options": [
+      "Wool",
+      "Pillow",
+      "Silk",
+      "Softness"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 89,
+    "question_text": "Which letter is as far from L as far from J?",
+    "options": [
+      "T",
+      "P",
+      "K",
+      "U"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 90,
+    "question_text": "Cement is to Trowel as Paint is to _____ ?",
+    "options": [
+      "Brush",
+      "Polish",
+      "Color",
+      "Tin Packet"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 91,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Chariot",
+      "Sleigh",
+      "Car",
+      "Bus"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 92,
+    "question_text": "WXYZ   XYZW   ?",
+    "options": [
+      "YZWX",
+      "YXWZ",
+      "YWXZ",
+      "YZXW"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 93,
+    "question_text": "Scooter is to Petrol as Truck is to _____ ?",
+    "options": [
+      "Tyre",
+      "Diesel",
+      "Horn",
+      "Road"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 94,
+    "question_text": "16  8  24  32  16  ___?",
+    "options": [
+      "20",
+      "40",
+      "72",
+      "45"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 95,
+    "question_text": "3  7  16  35  ___?",
+    "options": [
+      "75",
+      "8",
+      "74",
+      "9"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 96,
+    "question_text": "101  105  111  119  ___?",
+    "options": [
+      "135",
+      "125",
+      "120",
+      "129"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 97,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Chair",
+      "Blue",
+      "Red",
+      "Yellow"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 98,
+    "question_text": "Beijing is to China as _______ is to Pakistan.",
+    "options": [
+      "Lahore",
+      "Karachi",
+      "Islamabad",
+      "Peshawar"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 99,
+    "question_text": "Food is to Eat as Milk is to ______.?",
+    "options": [
+      "Drink",
+      "Water",
+      "Sugar",
+      "White"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 100,
+    "question_text": "Snow is to Mountain as Sand is to ______?",
+    "options": [
+      "Field",
+      "Plain",
+      "Forest",
+      "Desert"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 1,
+    "question_text": "Find the odd man out. (a) Allama Iqbal",
+    "options": [
+      "Imran Khan",
+      "Has an Sardar",
+      "Aqib Javed"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 2,
+    "question_text": "4  7  9  11  14  15  19  ___?",
+    "options": [
+      "17",
+      "5",
+      "19",
+      "9"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 3,
+    "question_text": "34  24  16  10  6  ___ ?",
+    "options": [
+      "7",
+      "4",
+      "3",
+      "2"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 4,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Student",
+      "Professor",
+      "Teacher",
+      "Lecturer"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 5,
+    "question_text": "5,  3,  6,  4,  7,  5,  8,  6,  9,  ___?",
+    "options": [
+      "7, 5",
+      "8, 10",
+      "7, 10",
+      "9, 5"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 6,
+    "question_text": "Insert the missing number: 3    7    16 6   13   28 9   19    ?",
+    "options": [
+      "30",
+      "40",
+      "35",
+      "50"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 7,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Rawalpindi",
+      "Khushab",
+      "Baluchistan",
+      "Quetta"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 8,
+    "question_text": "What is the missing letter? 8 + 3   – 4 = G 2 + 12 – 2   = L 22 + 4   – 3   = W 13 + 1   – 10 =?",
+    "options": [
+      "D",
+      "E",
+      "F",
+      "Q"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 9,
+    "question_text": "If Slight stands 426175, then Gist stands for _____ ?",
+    "options": [
+      "1645",
+      "4516",
+      "4561",
+      "5416"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 10,
+    "question_text": "If 124351 stands for Newton, then 3512 stands for ____?",
+    "options": [
+      "Tone",
+      "New",
+      "Town",
+      "Note"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 11,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Lungs",
+      "Blood",
+      "Skin",
+      "Bread"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 12,
+    "question_text": "What do all the books have?",
+    "options": [
+      "Pages",
+      "Pictures",
+      "Verses",
+      "Questions"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 13,
+    "question_text": "E  J N Q?",
+    "options": [
+      "R",
+      "K",
+      "S",
+      "F"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 14,
+    "question_text": "6  12  18  ___  30",
+    "options": [
+      "22",
+      "28",
+      "20",
+      "24"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 15,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Gap",
+      "Split",
+      "Union",
+      "Divide"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 16,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "October",
+      "April",
+      "March",
+      "Tuesday"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 17,
+    "question_text": "If Box is to 3 then Boxer is to ___.",
+    "options": [
+      "4",
+      "5",
+      "7",
+      "8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 18,
+    "question_text": "8  10  14  18  26  ___ ?",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 19,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Lion",
+      "Tiger",
+      "Cow",
+      "Leopard"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 20,
+    "question_text": "Divide the largest of following numbers by the difference of   two small numbers, then the answer will be: 16   20   12 ?",
+    "options": [
+      "4",
+      "10",
+      "5",
+      "2"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 21,
+    "question_text": "10  2  20  4  80  6  ?",
+    "options": [
+      "800",
+      "400",
+      "480",
+      "600"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 22,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Rose",
+      "Lily",
+      "Tulip",
+      "Turnip"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 23,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Ravi",
+      "Sutlej",
+      "Indus",
+      "Atlantic"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 24,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Heaven",
+      "Town",
+      "City",
+      "Village"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 25,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "ABC",
+      "XYZ",
+      "KMN",
+      "RST"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 26,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "England",
+      "Beijing",
+      "Lahore",
+      "Karachi"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 27,
+    "question_text": "5  7  4  6  3  ___?",
+    "options": [
+      "4",
+      "2",
+      "5",
+      "7"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 28,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "ABC",
+      "DEF",
+      "GHI",
+      "PMO"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 29,
+    "question_text": "0   7   26   ?",
+    "options": [
+      "44",
+      "53",
+      "63",
+      "37"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 30,
+    "question_text": "If DCF means BAD then ECV means _____.?",
+    "options": [
+      "BAT",
+      "RAT",
+      "FAT",
+      "CAT"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 31,
+    "question_text": "Sand is to Desert as Air is to _____.?",
+    "options": [
+      "Sky",
+      "Atmosphere",
+      "Ocean",
+      "Island"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 32,
+    "question_text": "381  378  373  366  ____?",
+    "options": [
+      "356",
+      "358",
+      "357",
+      "360"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 33,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Iron and Nail",
+      "Wool and Stool",
+      "Paper and Book",
+      "Oil and Lamp"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 34,
+    "question_text": "Which is different from the rest?",
+    "options": [
+      "Student and Teacher",
+      "Book and Leaf",
+      "Science and Laboratory",
+      "Tailor and Cloth"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 35,
+    "question_text": "Accelerate is to Retard as Praise is to ____?",
+    "options": [
+      "Scold",
+      "Glorify",
+      "Applaud",
+      "Commend"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 36,
+    "question_text": "Rush is to Reckless as Compulsory is to _____.?",
+    "options": [
+      "Binding",
+      "Voluntary",
+      "Complete",
+      "Optional"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 37,
+    "question_text": "State the number of pair which is different from others:",
+    "options": [
+      "Air and Oxygen",
+      "Geometry and Math’s",
+      "Teacher and Student",
+      "Flower and Petal"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 38,
+    "question_text": "4  8  32  5  9  ___ ?",
+    "options": [
+      "42",
+      "10",
+      "45",
+      "64"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 39,
+    "question_text": "A  C  F  ___?",
+    "options": [
+      "H",
+      "J",
+      "K",
+      "L"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 40,
+    "question_text": "Find the odd man out?",
+    "options": [
+      "Cat",
+      "Dog",
+      "Snake",
+      "Fox"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 41,
+    "question_text": "18  13  9  6  ___?",
+    "options": [
+      "4",
+      "2",
+      "3",
+      "8"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 42,
+    "question_text": "Meter is to Distance as a Clock is to _____ ?",
+    "options": [
+      "An hour",
+      "Time",
+      "Watch",
+      "Alarm"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 43,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "May",
+      "April",
+      "Friday",
+      "November"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 44,
+    "question_text": "“Will go” is to “Went” as Tomorrow is to _____?",
+    "options": [
+      "Yesterday",
+      "Today",
+      "Leaving",
+      "Motion"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 45,
+    "question_text": "3  12  6  24  12  48  __?",
+    "options": [
+      "24",
+      "42",
+      "36",
+      "40"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 46,
+    "question_text": "Gold is to Wood as _____ is to Carpenter.",
+    "options": [
+      "Ornaments",
+      "Blacksmith",
+      "Goldsmith",
+      "Fisher"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 47,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "AABBZZ",
+      "BBCCZZ",
+      "CCDDZZ",
+      "DDEEYY"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 48,
+    "question_text": "2  8  5  11  ___ 8  11",
+    "options": [
+      "14",
+      "16",
+      "18",
+      "7"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 49,
+    "question_text": "A school always has:",
+    "options": [
+      "Teacher",
+      "Chair",
+      "Classroom",
+      "Desk"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 50,
+    "question_text": "8  10  14  28  30  34  ___?",
+    "options": [
+      "71",
+      "72",
+      "68",
+      "74"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 51,
+    "question_text": "Insert the missing number: 4   7   6 8   4   8 6   5   ?",
+    "options": [
+      "2",
+      "6",
+      "4",
+      "14"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 52,
+    "question_text": "Handsome is too Beautiful as ___ is to She.",
+    "options": [
+      "Man",
+      "Smart",
+      "He",
+      "Charming"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 53,
+    "question_text": "0 3 8 15?",
+    "options": [
+      "13",
+      "24",
+      "15",
+      "8"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 54,
+    "question_text": "2   4   6   8   9  10",
+    "options": [
+      "4",
+      "8",
+      "9",
+      "2"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 55,
+    "question_text": "Slow is to fast as High is to _____.?",
+    "options": [
+      "Light",
+      "Heavy",
+      "Low",
+      "Top"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 56,
+    "question_text": "100  75  55  40  30  ___ ?",
+    "options": [
+      "20",
+      "25",
+      "10",
+      "15"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 57,
+    "question_text": "A Railway Station always has:",
+    "options": [
+      "Train",
+      "A Station Master",
+      "A Railway Line",
+      "A Platform"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 58,
+    "question_text": "2  4  8  3  ___  12",
+    "options": [
+      "4",
+      "9",
+      "6",
+      "4"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 59,
+    "question_text": "A/2, 4/C, E/6   ?",
+    "options": [
+      "8/G",
+      "6/C",
+      "4/D",
+      "7/G"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 60,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Apple",
+      "Mango",
+      "Orange",
+      "Turnip"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 61,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "42, 84",
+      "44, 88",
+      "34, 68",
+      "36, 78"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 62,
+    "question_text": "Soap is to Dirt as Petrol is to _____.?",
+    "options": [
+      "Car",
+      "Tyre",
+      "Clothes",
+      "Grease"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 63,
+    "question_text": "What will come next? 435 534 328 ?",
+    "options": [],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 64,
+    "question_text": "If 312 x 225 = 54, 127 x 407 = 110, 54 x 36 = 126, then 125x232 =?",
+    "options": [
+      "70",
+      "82",
+      "56",
+      "116"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 65,
+    "question_text": "Listen is to Hear as Look is to _____.?",
+    "options": [
+      "Watch",
+      "Observe",
+      "See",
+      "Notice"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 66,
+    "question_text": "A Lake is to Land as _____ is to Ocean. ?",
+    "options": [
+      "Water",
+      "Island",
+      "Ship",
+      "Beach"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 67,
+    "question_text": "E0V  E1W  E2X  E3Y  ?",
+    "options": [
+      "E4Z",
+      "E4Q",
+      "E4W",
+      "E0P"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 68,
+    "question_text": "Z   X   U   Q   ?",
+    "options": [
+      "Q",
+      "L",
+      "R",
+      "P"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 69,
+    "question_text": "A Municipality is to City as ____ is to a state.",
+    "options": [
+      "Mayor",
+      "Governor",
+      "Legislature",
+      "Judiciary"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 70,
+    "question_text": "32  6  43  12  64  ___?",
+    "options": [
+      "43",
+      "28",
+      "24",
+      "32"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 71,
+    "question_text": "42  21  84  42  92  ___?",
+    "options": [
+      "42",
+      "46",
+      "44",
+      "48"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 72,
+    "question_text": "Which of the following is a trait of character?",
+    "options": [
+      "Skill",
+      "Sinarity",
+      "Poverty",
+      "Intelligence"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 73,
+    "question_text": "What latter comes alphabetically in order in the letter MOTHER?",
+    "options": [
+      "R",
+      "Hz",
+      "M",
+      "E"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 74,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "Punjab",
+      "Lahore",
+      "Ravi",
+      "Karachi"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 75,
+    "question_text": "Which one is different from the rest?",
+    "options": [
+      "West and South",
+      "Hard and Soft",
+      "Short and Long",
+      "Hot and Cold"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 76,
+    "question_text": "Which pair of number does not belong to the same class?",
+    "options": [
+      "2014-2010",
+      "8-6",
+      "230-229"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 77,
+    "question_text": "If 312 x 536 = 84, and 732 x 423 = 108, then 901 x 3257 =?",
+    "options": [
+      "170",
+      "147",
+      "180",
+      "157"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 78,
+    "question_text": "A is son of B but B is not A’s father. What is relationship of B   to A.?",
+    "options": [
+      "Father",
+      "Uncle",
+      "Mother",
+      "Grandfather"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 79,
+    "question_text": "14  16  18  20  ___?",
+    "options": [
+      "21",
+      "22",
+      "23",
+      "24"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 80,
+    "question_text": "Friday is to August as Sunday is to _____?",
+    "options": [
+      "Tuesday",
+      "December",
+      "October",
+      "November"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 81,
+    "question_text": "Which word does not belong to the list?",
+    "options": [
+      "Sugar",
+      "Dish",
+      "Spoon",
+      "Plate"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 82,
+    "question_text": "If 1 x 4 = 2, 2 x 4 = 8, 3 x 16 = 36, 4 x 9 = 48 then 5 x 36 =?",
+    "options": [
+      "180",
+      "150",
+      "30",
+      "125"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 83,
+    "question_text": "8  10  14  18  26  ___?",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "30"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 84,
+    "question_text": "48  24  20  10  6  3  ___?",
+    "options": [
+      "2",
+      "-1",
+      "1",
+      "0"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 85,
+    "question_text": "Watch is to Time as Barometer is to _____?",
+    "options": [
+      "Mercury",
+      "Pressure",
+      "Gas Cylinder",
+      "Temperature"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 86,
+    "question_text": "X and Y are two brothers. B is A’s brother but A is the mother of X. What is B to Y?",
+    "options": [
+      "Father",
+      "Brother",
+      "Son",
+      "Uncle"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 87,
+    "question_text": "Breakfast is to Lunch as Lunch is to _____.?",
+    "options": [
+      "Meal",
+      "Fast",
+      "Dinner",
+      "Refreshment"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 88,
+    "question_text": "If Rat is to Tar then Pit is to _____.?",
+    "options": [
+      "Tip",
+      "Fit",
+      "Bit",
+      "Sit"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 89,
+    "question_text": "212  179  146  113  ____?",
+    "options": [
+      "60",
+      "50",
+      "70",
+      "80"
+    ],
+    "correct_option_index": 3,
+    "correct_letter": "D"
+  },
+  {
+    "number": 90,
+    "question_text": "Write the number of the pair which is different from the following:",
+    "options": [
+      "Oil and Bottle",
+      "Arrow and Quiver",
+      "Letter and Postman",
+      "Mercury and Barometer"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 91,
+    "question_text": "Find the odd man out.?",
+    "options": [
+      "Gen. Musharraf",
+      "Hassan Sardar",
+      "Imran Khan",
+      "Jan Sher Khan"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 92,
+    "question_text": "If 324 x 150 = 54, 251 x 402 = 48, 523 x 246 = 120 then 651 x 345 =?",
+    "options": [
+      "120",
+      "85",
+      "144",
+      "60"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 93,
+    "question_text": "PPRS is to RRTU as MMOP is to _____.?",
+    "options": [
+      "NNPO",
+      "TTVR",
+      "OOQR",
+      "MMOP"
+    ],
+    "correct_option_index": 2,
+    "correct_letter": "C"
+  },
+  {
+    "number": 94,
+    "question_text": "If Paint is coded as 74128 and Excel is coded as 93596, then how would you encode Accept?",
+    "options": [
+      "554978",
+      "455978",
+      "547978",
+      "735961"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 95,
+    "question_text": "214 (17) 325, 523 (23) 247, 157 (20) 412, 268 (?) 315 ?",
+    "options": [
+      "27",
+      "25",
+      "24",
+      "29"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 96,
+    "question_text": "If 8514 stands for “Bead” and 3165 stands for “Late” then which choice stand for the word “Table”?",
+    "options": [
+      "61835",
+      "61853",
+      "86145",
+      "61358"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 97,
+    "question_text": "Supply the missing letters in the following fraction. G/T,   J/S, M/R, P/Q, ___, ___,?",
+    "options": [
+      "A/P, V/O",
+      "S/Q, U/V",
+      "S/O, V/P",
+      "S/R, V/M"
+    ],
+    "correct_option_index": 0,
+    "correct_letter": "A"
+  },
+  {
+    "number": 98,
+    "question_text": "Bathing is to Pool, as Skating is to _____?.",
+    "options": [
+      "Snow",
+      "Rink",
+      "Stable",
+      "Costume"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 99,
+    "question_text": "Honor is to Brave as Censure is to ______.?",
+    "options": [
+      "Honorable",
+      "Coward",
+      "Respectful",
+      "Common"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  },
+  {
+    "number": 100,
+    "question_text": "Find the odd man out.",
+    "options": [
+      "Student",
+      "Engineer",
+      "Books",
+      "Teacher"
+    ],
+    "correct_option_index": 1,
+    "correct_letter": "B"
+  }
+]

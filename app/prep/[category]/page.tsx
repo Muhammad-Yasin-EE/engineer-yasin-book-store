@@ -13,7 +13,7 @@ const categoryData: Record<string, any> = {
     subgroups: [
       {
         name: 'Pakistan Army',
-        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Pakistan_Army_emblem.svg/150px-Pakistan_Army_emblem.svg.png',
+        iconUrl: '/images/army-logo.png',
         exams: [
           { id: 'pma-long-course', name: 'PMA Long Course', cardBgUrl: '/images/card-pma.jpg' },
           { id: 'lcc', name: 'LCC (Lady Cadet Course)', cardBgUrl: '/images/card-lcc.jpg' },
@@ -25,7 +25,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Air Force',
-        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pakistan_Air_Force_emblem.svg/150px-Pakistan_Air_Force_emblem.svg.png',
+        iconUrl: '/images/paf-logo.png',
         exams: [
           { id: 'gd-pilot', name: 'GD Pilot', cardBgUrl: '/images/card-gd-pilot.jpg' },
           { id: 'aeronautical-engineering', name: 'Aeronautical Engineering', cardBgUrl: '/images/card-aeronautical.jpg' },
@@ -36,7 +36,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Navy',
-        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Pakistan_Navy_emblem.svg/150px-Pakistan_Navy_emblem.svg.png',
+        iconUrl: '/images/navy-logo.png',
         exams: [
           { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/card-pn-cadet.jpg' },
           { id: 'ssc', name: 'SSC', cardBgUrl: '/images/card-ssc-navy.jpg' },
