@@ -13,7 +13,7 @@ const categoryData: Record<string, any> = {
     subgroups: [
       {
         name: 'Pakistan Army',
-        iconUrl: '/images/army-logo.png',
+        iconUrl: '/images/army-logo.jpg',
         exams: [
           { id: 'pma-long-course', name: 'PMA Long Course', cardBgUrl: '/images/card-pma.jpg' },
           { id: 'lcc', name: 'LCC (Lady Cadet Course)', cardBgUrl: '/images/card-lcc.jpg' },
@@ -25,7 +25,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Air Force',
-        iconUrl: '/images/paf-logo.png',
+        iconUrl: '/images/paf-logo.jpg',
         exams: [
           { id: 'gd-pilot', name: 'GD Pilot', cardBgUrl: '/images/card-gd-pilot.jpg' },
           { id: 'aeronautical-engineering', name: 'Aeronautical Engineering', cardBgUrl: '/images/card-aeronautical.jpg' },
@@ -36,7 +36,7 @@ const categoryData: Record<string, any> = {
       },
       {
         name: 'Pakistan Navy',
-        iconUrl: '/images/navy-logo.png',
+        iconUrl: '/images/navy-logo.jpg',
         exams: [
           { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/card-pn-cadet.jpg' },
           { id: 'ssc', name: 'SSC', cardBgUrl: '/images/card-ssc-navy.jpg' },
