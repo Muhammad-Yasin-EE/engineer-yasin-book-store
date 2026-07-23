@@ -154,7 +154,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <div className="flex items-center gap-3 mb-6 border-b border-gray-150 pb-3">
               {subgroup.iconUrl ? (
                 <div className="w-10 h-10 shrink-0 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden p-1 relative">
-                  <Image src={subgroup.iconUrl} alt={subgroup.name} fill sizes="40px" className="object-contain p-1" />
+                  <img src={subgroup.iconUrl} alt={subgroup.name} className="w-full h-full object-contain p-1" />
                 </div>
               ) : (
                 <Target className="w-6 h-6 text-[#B8212E]" />
