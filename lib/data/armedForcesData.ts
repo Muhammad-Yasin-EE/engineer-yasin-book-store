@@ -62,7 +62,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Second Lieutenant',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['PMA', 'English', 'Verbal', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['pma-long-course'],
   },
 
   'lcc': {
@@ -100,7 +100,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Second Lieutenant',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Biology', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['lcc'],
   },
 
   'dssc': {
@@ -139,7 +139,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Lieutenant (short service tenure: 2–5 years, extendable)',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['dssc'],
   },
 
   'tcc': {
@@ -178,7 +178,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Captain (one rank higher than PMA Long Course graduates)',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['Physics', 'Chemistry', 'Mathematics', 'English', 'Armed Forces'],
+    quizSearchTerms: ['tcc'],
   },
 
   'afns': {
@@ -214,7 +214,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Lieutenant (upon completion); 10-year service bond',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'mdcat',
-    quizSearchTerms: ['Biology', 'Chemistry', 'English', 'Physics', 'Intelligence', 'MDCAT'],
+    quizSearchTerms: ['afns'],
   },
 
   'soldier': {
@@ -252,7 +252,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A — Enlisted rank; begins as Private/Sepoy',
     officialUrl: 'https://www.joinpakarmy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces', 'General'],
+    quizSearchTerms: ['soldier'],
   },
 
   // ─── PAKISTAN AIR FORCE ───────────────────────────────────────────────────
@@ -295,7 +295,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Pilot Officer | Degree: BS Aviation Sciences',
     officialUrl: 'https://www.joinpaf.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['Physics', 'English', 'Intelligence', 'Armed Forces', 'PAF'],
+    quizSearchTerms: ['gd-pilot'],
   },
 
   'aeronautical-engineering': {
@@ -335,7 +335,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Pilot Officer | Degree: BE Aerospace / BE Avionics Engineering',
     officialUrl: 'https://www.joinpaf.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['Physics', 'Chemistry', 'Mathematics', 'English', 'Armed Forces'],
+    quizSearchTerms: ['aeronautical-engineering'],
   },
 
   'air-defence': {
@@ -375,7 +375,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Pilot Officer | Degree: BS Air Defence Management',
     officialUrl: 'https://www.joinpaf.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['Physics', 'English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['air-defence'],
   },
 
   'admin': {
@@ -412,7 +412,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Pilot Officer (PC) | Flying Officer (SSC)',
     officialUrl: 'https://www.joinpaf.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['admin'],
   },
 
   'accounts': {
@@ -450,7 +450,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Flying Officer',
     officialUrl: 'https://www.joinpaf.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['accounts'],
   },
 
   // ─── PAKISTAN NAVY ────────────────────────────────────────────────────────
@@ -492,7 +492,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Sub-Lieutenant',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['Physics', 'English', 'Intelligence', 'Armed Forces', 'Navy'],
+    quizSearchTerms: ['pn-cadet'],
   },
 
   'ssc': {
@@ -527,7 +527,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'Sub-Lieutenant (or equivalent)',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['ssc'],
   },
 
   'marines': {
@@ -565,7 +565,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A for enlisted; SSC Marines officers via Navy SSC route',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['marines'],
   },
 
   'sailor': {
@@ -601,7 +601,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A — Enlisted rank; begins as Ordinary Seaman/Recruit',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'Armed Forces'],
+    quizSearchTerms: ['sailor'],
   },
 
   'civilian': {
@@ -638,7 +638,7 @@ export const armedForcesData: Record<string, ExamInfo> = {
     commission: 'N/A — Civilian Grade (BPS) or equivalent',
     officialUrl: 'https://www.joinpaknavy.gov.pk',
     quizCategory: 'armed-forces',
-    quizSearchTerms: ['English', 'Intelligence', 'General'],
+    quizSearchTerms: ['civilian'],
   },
 }
 
