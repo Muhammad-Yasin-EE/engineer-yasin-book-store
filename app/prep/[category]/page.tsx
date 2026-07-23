@@ -20,6 +20,8 @@ const categoryData: Record<string, any> = {
           { id: 'dssc', name: 'DSSC', cardBgUrl: '/images/card-dssc.jpg' },
           { id: 'tcc', name: 'TCC (Technical Cadet Course)', cardBgUrl: '/images/card-tcc.jpg' },
           { id: 'afns', name: 'AFNS', cardBgUrl: '/images/card-afns.jpg' },
+          { id: 'm-cadet', name: 'M Cadet', cardBgUrl: '/images/exam-army-bg.jpg' },
+          { id: 'amc', name: 'AMC (Medical Cadet)', cardBgUrl: '/images/exam-army-bg.jpg' },
           { id: 'soldier', name: 'Soldier', cardBgUrl: '/images/card-soldier.jpg' },
         ]
       },
@@ -30,8 +32,12 @@ const categoryData: Record<string, any> = {
           { id: 'gd-pilot', name: 'GD Pilot', cardBgUrl: '/images/card-gd-pilot.jpg' },
           { id: 'aeronautical-engineering', name: 'Aeronautical Engineering', cardBgUrl: '/images/card-aeronautical.jpg' },
           { id: 'air-defence', name: 'Air Defence', cardBgUrl: '/images/card-air-defence.jpg' },
+          { id: 'logistics', name: 'Logistics', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'it', name: 'Information Tech', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'education', name: 'Education', cardBgUrl: '/images/exam-paf-bg.jpg' },
           { id: 'admin', name: 'Admin', cardBgUrl: '/images/exam-paf-bg.jpg' },
           { id: 'accounts', name: 'Accounts', cardBgUrl: '/images/exam-paf-bg.jpg' },
+          { id: 'airmen', name: 'Airmen', cardBgUrl: '/images/exam-paf-bg.jpg' },
         ]
       },
       {
@@ -39,6 +45,8 @@ const categoryData: Record<string, any> = {
         iconUrl: '/images/navy-logo.jpg',
         exams: [
           { id: 'pn-cadet', name: 'PN Cadet', cardBgUrl: '/images/card-pn-cadet.jpg' },
+          { id: 'm-cadet-navy', name: 'M Cadet', cardBgUrl: '/images/exam-navy-bg.jpg' },
+          { id: 'pnec', name: 'PNEC / Cadet Scheme', cardBgUrl: '/images/exam-navy-bg.jpg' },
           { id: 'ssc', name: 'SSC', cardBgUrl: '/images/card-ssc-navy.jpg' },
           { id: 'marines', name: 'Marines', cardBgUrl: '/images/card-marines.jpg' },
           { id: 'sailor', name: 'Sailor', cardBgUrl: '/images/card-sailor.jpg' },

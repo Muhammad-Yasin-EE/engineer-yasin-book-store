@@ -1,0 +1,7 @@
+<USER_REQUEST>
+from these all pdf extract the questions and make quiz according to the armed forces cards, remember verbal must be 84 questions, and academic 50 questions both time is 30 minutes, 
+har card may jese agar admin (paf)  ka card he to waha show ho admin verbbal intelligence test, agar army ka he to army ka name ho and agar navy ka he to navy ka ho and ha har card ka alag name ho jese agr yeh paf may kisi card ka hai to waha paf ka os card ka name ho os branch ka same for army and same for navy, jitni bhi quiz banti hai bana lo is se agar last quiz complete 84 questions na ho to wo quiz skip krdo add na kro mjhy 84 complete chye and for academics 50 chye
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-07-24T01:15:24+05:00.
+</ADDITIONAL_METADATA>

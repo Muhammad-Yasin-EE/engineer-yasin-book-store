@@ -25,12 +25,12 @@ export default async function ExamPage({
   // ── Fallback for non-armed-forces or unknown exams ─────────────────────────
   if (category !== 'armed-forces' || !info) {
     const title = formatTitle(exam)
-    let headerBg = '/images/armed-forces-header.jpg'
-    if (['pma-long-course', 'lcc', 'dssc', 'tcc', 'afns', 'soldier'].includes(exam))
+    let headerBg = '/images/exam-army-bg.jpg'
+    if (['pma-long-course', 'lcc', 'dssc', 'tcc', 'afns', 'soldier', 'm-cadet', 'amc'].includes(exam))
       headerBg = '/images/exam-army-bg.jpg'
-    else if (['gd-pilot', 'aeronautical-engineering', 'air-defence', 'admin', 'accounts'].includes(exam))
+    else if (['gd-pilot', 'aeronautical-engineering', 'air-defence', 'admin', 'accounts', 'logistics', 'it', 'education', 'airmen'].includes(exam))
       headerBg = '/images/exam-paf-bg.jpg'
-    else if (['pn-cadet', 'ssc', 'marines', 'sailor', 'civilian'].includes(exam))
+    else if (['pn-cadet', 'ssc', 'marines', 'sailor', 'civilian', 'm-cadet-navy', 'pnec'].includes(exam))
       headerBg = '/images/exam-navy-bg.jpg'
     else if (category === 'public-service') headerBg = '/images/public-service-header.jpg'
     else if (category === 'entry-tests') headerBg = '/images/entry-tests-header.jpg'
