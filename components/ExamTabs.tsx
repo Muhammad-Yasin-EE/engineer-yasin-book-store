@@ -6,8 +6,10 @@ import {
   ArrowRight, CheckCircle2, ExternalLink,
   Users, Calendar, Clock, UserCheck,
   ChevronRight, Zap, FileText, BookOpen,
-  ListChecks, Info, GraduationCap, Lock
+  ListChecks, Info, GraduationCap, Lock, ShoppingCart
 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useCart } from '@/lib/context/CartContext'
 
 interface SelectionStep {
   step: number
@@ -54,6 +56,14 @@ interface ExamTabsProps {
 
 export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
   const [activeTab, setActiveTab] = useState<'information' | 'preparation'>('information')
+  const { addToCart } = useCart()
+  const router = useRouter()
+
+  // Sort quizzes: free ones first
+  const sortedQuizzes = [...quizzes].sort((a, b) => {
+    if (a.is_paid === b.is_paid) return 0
+    return a.is_paid ? 1 : -1
+  })
 
   const tabs = [
     { id: 'information' as const, label: 'Information', icon: Info },
@@ -228,9 +238,9 @@ export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
               )}
             </div>
 
-            {quizzes.length > 0 ? (
+            {sortedQuizzes.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                {quizzes.map((quiz, i) => (
+                {sortedQuizzes.map((quiz, i) => (
                   <div
                     key={quiz.id}
                     className={`group border rounded-xl p-5 hover:shadow-lg transition-all duration-200 bg-white flex flex-col gap-4 relative overflow-hidden ${
@@ -274,20 +284,49 @@ export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
                       </p>
                     )}
 
-                    <Link
-                      href={`/prep/quiz/${quiz.id}`}
-                      className={`w-full py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider mt-auto ${
-                        quiz.is_paid 
-                          ? 'bg-gray-100 text-gray-600 hover:bg-gray-200' 
-                          : 'bg-[#B8212E] hover:bg-[#A31C28] text-white'
-                      }`}
-                    >
-                      {quiz.is_paid ? (
-                        <>Unlock Test <Lock className="w-3.5 h-3.5" /></>
-                      ) : (
-                        <>Start Test <ArrowRight className="w-3.5 h-3.5" /></>
-                      )}
-                    </Link>
+                    {quiz.is_paid ? (
+                      <div className="flex gap-2 w-full mt-auto">
+                        <button
+                          onClick={() => {
+                            addToCart({
+                              id: quiz.id,
+                              title: quiz.title,
+                              author: 'Engineer Yasin',
+                              price: quiz.price || 0,
+                              cover_url: 'placeholder',
+                              category: quiz.category || 'Premium Mock Test'
+                            })
+                          }}
+                          className="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-bold rounded-lg flex items-center justify-center transition-colors uppercase tracking-wider"
+                          title="Add to Cart"
+                        >
+                          <ShoppingCart className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            addToCart({
+                              id: quiz.id,
+                              title: quiz.title,
+                              author: 'Engineer Yasin',
+                              price: quiz.price || 0,
+                              cover_url: 'placeholder',
+                              category: quiz.category || 'Premium Mock Test'
+                            })
+                            router.push('/checkout')
+                          }}
+                          className="flex-[3] py-2.5 bg-[#B8212E] hover:bg-[#A31C28] text-white text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider shadow-sm"
+                        >
+                          Unlock Now <Lock className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <Link
+                        href={`/prep/quiz/${quiz.id}`}
+                        className="w-full py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider mt-auto bg-[#B8212E] hover:bg-[#A31C28] text-white"
+                      >
+                        Start Test <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    )}
                   </div>
                 ))}
               </div>
