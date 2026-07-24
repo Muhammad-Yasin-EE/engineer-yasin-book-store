@@ -13,7 +13,7 @@ export default async function LeaderboardPage() {
   try {
     const { data, error } = await supabase
       .from('user_scores')
-      .select('*, profiles(full_name, avatar_url), quizzes(title)')
+      .select('*, profiles(name, avatar_url), quizzes!fk_user_scores_quizzes(title)')
       .order('percentage', { ascending: false })
       .order('time_taken_seconds', { ascending: true })
       .limit(50)
@@ -105,12 +105,12 @@ export default async function LeaderboardPage() {
                                 <img src={score.profiles.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
                               ) : (
                                 <div className="w-full h-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs uppercase">
-                                  {(score.profiles?.full_name?.[0] || 'A')}
+                                  {(score.profiles?.name?.[0] || 'A')}
                                 </div>
                               )}
                             </div>
                             <span className={`text-xs font-bold ${isTop3 ? 'text-gray-900' : 'text-gray-700'}`}>
-                              {score.profiles?.full_name || 'Anonymous Candidate'}
+                              {score.profiles?.name || 'Anonymous Candidate'}
                             </span>
                           </div>
                         </td>
