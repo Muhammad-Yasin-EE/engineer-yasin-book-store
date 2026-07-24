@@ -126,12 +126,31 @@ export default function AdminDashboard() {
   const fetchOrders = async () => {
     setLoadingOrders(true)
     try {
-      const { data, error } = await supabase
+      const { data: rawData, error } = await supabase
         .from('orders')
-        .select('*, profiles(email, name), order_items(*, items(*))')
+        .select('*, profiles(email, name), order_items(*)')
         .order('created_at', { ascending: false })
       if (error) throw error
-      setOrders(data || [])
+      
+      let orderData = rawData || []
+      if (orderData.length > 0) {
+        const itemIds = orderData.flatMap(o => o.order_items?.map((oi: any) => oi.item_id) || [])
+        if (itemIds.length > 0) {
+          const { data: catItems } = await supabase.from('items').select('id, title').in('id', itemIds)
+          const { data: quizItems } = await supabase.from('quizzes').select('id, title').in('id', itemIds)
+          const titleMap: any = {}
+          catItems?.forEach((i: any) => titleMap[i.id] = i.title)
+          quizItems?.forEach((i: any) => titleMap[i.id] = i.title)
+          orderData = orderData.map(o => ({
+            ...o,
+            order_items: o.order_items?.map((oi: any) => ({
+              ...oi,
+              items: { title: titleMap[oi.item_id] || 'Unknown Item' }
+            }))
+          }))
+        }
+      }
+      setOrders(orderData)
     } catch (err) {
       console.error('Fetch Orders Error:', err)
     } finally {

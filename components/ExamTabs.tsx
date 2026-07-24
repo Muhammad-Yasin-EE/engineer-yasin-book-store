@@ -297,7 +297,7 @@ export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
                               category: quiz.category || 'Premium Mock Test'
                             })
                           }}
-                          className="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-bold rounded-lg flex items-center justify-center transition-colors uppercase tracking-wider"
+                          className="flex-1 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs font-bold rounded-lg flex items-center justify-center transition-colors uppercase tracking-wider cursor-pointer"
                           title="Add to Cart"
                         >
                           <ShoppingCart className="w-4 h-4" />
@@ -314,7 +314,7 @@ export default function ExamTabs({ info, quizzes, clr }: ExamTabsProps) {
                             })
                             router.push('/checkout')
                           }}
-                          className="flex-[3] py-2.5 bg-[#B8212E] hover:bg-[#A31C28] text-white text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider shadow-sm"
+                          className="flex-[3] py-2.5 bg-[#B8212E] hover:bg-[#A31C28] text-white text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-colors uppercase tracking-wider shadow-sm cursor-pointer"
                         >
                           Unlock Now <Lock className="w-3.5 h-3.5" />
                         </button>

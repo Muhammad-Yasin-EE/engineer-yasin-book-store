@@ -13,14 +13,10 @@ for (const line of envStr.split('\n')) {
 const supabase = createClient(env['NEXT_PUBLIC_SUPABASE_URL'], env['SUPABASE_SERVICE_ROLE_KEY']);
 
 const branches = [
-    { id: 'm-cadet', category: 'armed-forces' },
-    { id: 'amc', category: 'armed-forces' },
-    { id: 'logistics', category: 'armed-forces' },
-    { id: 'it', category: 'armed-forces' },
-    { id: 'education', category: 'armed-forces' },
-    { id: 'airmen', category: 'armed-forces' },
-    { id: 'm-cadet-navy', category: 'armed-forces' },
-    { id: 'pnec', category: 'armed-forces' }
+    { id: 'nums', category: 'entry-tests' },
+    { id: 'mdcat', category: 'entry-tests' },
+    { id: 'css', category: 'public-service' },
+    { id: 'fia', category: 'public-service' }
 ];
 
 async function run() {

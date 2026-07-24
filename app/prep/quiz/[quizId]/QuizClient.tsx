@@ -185,6 +185,26 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
       setShowAuthModal(true)
       return
     }
+
+    // Check purchase if paid
+    if (quiz.is_paid) {
+      const { data: orders } = await supabase
+        .from('orders')
+        .select('*, order_items(*)')
+        .eq('user_id', user.id)
+        .in('status', ['verified', 'completed'])
+
+      let hasPurchased = false
+      if (orders) {
+        hasPurchased = orders.some(o => o.order_items.some((item: any) => item.item_id === quiz.id))
+      }
+
+      if (!hasPurchased) {
+        alert("This is a premium test. You have not purchased it yet. Please add it to your cart and complete the checkout first.")
+        return
+      }
+    }
+
     setExamState('active')
     setExamStarted(true)
   }
@@ -314,7 +334,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
             <button
               type="submit"
               disabled={!studentName.trim()}
-              className="w-full py-3 sm:py-3.5 bg-[#B8212E] hover:bg-[#D62636] disabled:opacity-50 text-white font-black rounded-lg text-xs sm:text-sm shadow-md transition-all uppercase tracking-widest break-words"
+              className="w-full py-3 sm:py-3.5 bg-[#B8212E] hover:bg-[#D62636] disabled:opacity-50 text-white font-black rounded-lg text-xs sm:text-sm shadow-md transition-all uppercase tracking-widest break-words cursor-pointer disabled:cursor-not-allowed"
             >
               Start Secure Exam
             </button>
@@ -394,7 +414,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
             <button
               onClick={handleBack}
               disabled={currentIndex === 0}
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800 text-gray-800 dark:text-gray-200 font-bold rounded-xl text-[10px] sm:text-sm flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:hover:bg-gray-100 dark:disabled:hover:bg-gray-800 text-gray-800 dark:text-gray-200 font-bold rounded-xl text-[10px] sm:text-sm flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0 cursor-pointer disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               Back
@@ -403,7 +423,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
             {currentIndex + 1 < questions.length ? (
               <button
                 onClick={handleNext}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white hover:bg-black dark:hover:bg-gray-200 text-white dark:text-gray-900 font-bold rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white hover:bg-black dark:hover:bg-gray-200 text-white dark:text-gray-900 font-bold rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider shrink-0 cursor-pointer"
               >
                 {hasAnsweredCurrent ? 'Next' : 'Skip'}
                 <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
@@ -411,7 +431,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
             ) : (
               <button
                 onClick={submitExam}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider animate-pulse shrink-0"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#B8212E] hover:bg-[#D62636] text-white font-black rounded-xl text-[10px] sm:text-sm shadow-md flex items-center gap-1 sm:gap-2 transition-all uppercase tracking-wider animate-pulse shrink-0 cursor-pointer"
               >
                 Submit
                 <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
@@ -440,7 +460,7 @@ export default function QuizClient({ params }: { params: Promise<{ quizId: strin
                   <button
                     key={idx}
                     onClick={() => setCurrentIndex(idx)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 border rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center shrink-0 ${btnClass}`}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 border rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center shrink-0 cursor-pointer ${btnClass}`}
                   >
                     {idx + 1}
                   </button>

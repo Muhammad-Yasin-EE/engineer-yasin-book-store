@@ -1,6 +1,9 @@
 const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
 
+const targetBranches = [
+    'nums', 'mdcat', 'css', 'fia'
+];
 const envStr = fs.readFileSync('.env.local', 'utf8');
 const env = {};
 for (const line of envStr.split('\n')) {

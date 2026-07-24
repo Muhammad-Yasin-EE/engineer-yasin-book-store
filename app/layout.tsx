@@ -16,13 +16,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Engineer Yasin | Premium Software, Services & Job Portal",
-  description: "Download VIP premium Android APKs, PC engineering software, request MATLAB/Web services, and apply for latest jobs and scholarships.",
-  keywords: ["Engineer Yasin", "Premium APK", "Free Android Mod", "Download MATLAB", "Next.js Jobs Pakistan", "Yasin Portal", "Nadra SIM Tracker", "Tech Hub"],
-  authors: [{ name: "Muhammad Yasin" }],
+  title: "Engineer Yasin | Premium Prep Hub & Software Portal",
+  description: "Official portal of Engineer Yasin. Access premium Armed Forces (PMA, PAF, Navy) preparation tests, MDCAT, CSS mock exams, VIP Android APKs, and engineering software.",
+  keywords: ["Engineer Yasin", "Engineer Yasin Book Store", "Engineer Yasin Prep Hub", "PMA Long Course Preparation", "ISSB Preparation", "PAF GD Pilot Test", "MDCAT Mock Tests", "FPSC Preparation", "Premium APK", "Free Android Mod", "Yasin Portal"],
+  authors: [{ name: "Engineer Yasin" }],
   openGraph: {
-    title: "Engineer Yasin | Premium Software, Services & Job Portal",
-    description: "Download VIP premium Android APKs, PC engineering software, request MATLAB/Web services, and apply for latest jobs and scholarships.",
+    title: "Engineer Yasin | Premium Prep Hub & Software Portal",
+    description: "Official portal of Engineer Yasin. Access premium Armed Forces (PMA, PAF, Navy) preparation tests, MDCAT, CSS mock exams, VIP Android APKs, and engineering software.",
     url: "https://www.engineeryasin.xyz",
     siteName: "Engineer Yasin Portal",
     locale: "en_PK",

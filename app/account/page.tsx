@@ -36,14 +36,32 @@ export default async function AccountPage() {
       .eq('user_id', user.id)
     purchases = purchaseData || []
 
-    const { data: orderData } = await supabase
+    const { data: rawOrderData } = await supabase
       .from('orders')
-      .select('*, order_items(*, items(*))')
+      .select('*, order_items(*)')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
-    orders = orderData || []
 
-    // This table needs to be created in Supabase first (quiz_scores.sql provided)
+    let orderData = rawOrderData || []
+    if (orderData.length > 0) {
+      const itemIds = orderData.flatMap(o => o.order_items?.map((oi: any) => oi.item_id) || [])
+      if (itemIds.length > 0) {
+        const { data: catItems } = await supabase.from('items').select('id, title').in('id', itemIds)
+        const { data: quizItems } = await supabase.from('quizzes').select('id, title').in('id', itemIds)
+        const titleMap: any = {}
+        catItems?.forEach((i: any) => titleMap[i.id] = i.title)
+        quizItems?.forEach((i: any) => titleMap[i.id] = i.title)
+        orderData = orderData.map(o => ({
+          ...o,
+          order_items: o.order_items?.map((oi: any) => ({
+            ...oi,
+            items: { title: titleMap[oi.item_id] || 'Unknown Item' }
+          }))
+        }))
+      }
+    }
+    orders = orderData
+
     const { data: scoreData } = await supabase
       .from('user_scores')
       .select('*, quizzes(title)')
@@ -51,6 +69,38 @@ export default async function AccountPage() {
       .order('created_at', { ascending: false })
       .limit(5)
     userScores = scoreData || []
+
+    // Fetch unlocked quizzes from verified orders
+    const verifiedOrders = orders.filter(o => o.status === 'verified' || o.status === 'completed')
+    const unlockedQuizIds = verifiedOrders.flatMap(o => o.order_items.map((i: any) => i.item_id))
+    
+    let unlockedQuizzes: any[] = []
+    if (unlockedQuizIds.length > 0) {
+      const { data: qData } = await supabase
+        .from('quizzes')
+        .select('*')
+        .in('id', unlockedQuizIds)
+      unlockedQuizzes = qData || []
+    }
+    
+    // Inject unlocked quizzes into purchases array so they render in the library
+    unlockedQuizzes.forEach(quiz => {
+      // Avoid duplicates if already in purchases somehow
+      if (!purchases.some(p => p.item_id === quiz.id)) {
+        purchases.push({
+          id: `quiz-${quiz.id}`,
+          item_id: quiz.id,
+          created_at: new Date().toISOString(),
+          items: {
+            id: quiz.id,
+            title: quiz.title,
+            author: 'Engineer Yasin Prep',
+            cover_url: '',
+            isQuiz: true // flag to render Take Test instead of Download
+          }
+        })
+      }
+    })
 
   } catch (err: any) {
     console.error('Account Page Fetch Error:', err)
@@ -176,13 +226,23 @@ export default async function AccountPage() {
                         <p className="text-[10px] text-gray-400 truncate">by {item.author}</p>
                       </div>
                       
-                      <a
-                        href={`/api/download?itemId=${item.id}`}
-                        className="mt-2 inline-flex items-center justify-center gap-1 py-1.5 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-[9px] w-fit shadow-sm"
-                      >
-                        <Download className="w-3 h-3" />
-                        Download / Access
-                      </a>
+                      {item.isQuiz ? (
+                        <Link
+                          href={`/prep/category/${item.id}`} // We should link to the exam prep page, but for now we'll just link to the quiz page if we had one. Actually, quizzes don't have standalone pages yet, but we can direct them to /prep
+                          className="mt-2 inline-flex items-center justify-center gap-1 py-1.5 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] w-fit shadow-sm"
+                        >
+                          <Sparkles className="w-3 h-3" />
+                          Take Premium Test
+                        </Link>
+                      ) : (
+                        <a
+                          href={`/api/download?itemId=${item.id}`}
+                          className="mt-2 inline-flex items-center justify-center gap-1 py-1.5 px-4 rounded-full bg-[#B8212E] hover:bg-[#D62636] text-white font-bold text-[9px] w-fit shadow-sm"
+                        >
+                          <Download className="w-3 h-3" />
+                          Download / Access
+                        </a>
+                      )}
                     </div>
                   </div>
                 )

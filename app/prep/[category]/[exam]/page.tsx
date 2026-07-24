@@ -13,6 +13,24 @@ export const revalidate = 3600
 const formatTitle = (slug: string) =>
   slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 
+export async function generateMetadata({ params }: { params: Promise<{ category: string; exam: string }> }) {
+  const { exam } = await params;
+  const info = armedForcesData[exam];
+  
+  if (info) {
+    return {
+      title: `${info.title} Mock Tests & Preparation | Engineer Yasin`,
+      description: `Prepare for the ${info.title} with premium mock tests, syllabus, and official selection process details.`,
+    };
+  }
+
+  const title = formatTitle(exam);
+  return {
+    title: `${title} Preparation & Quizzes | Engineer Yasin`,
+    description: `Access premium mock tests and past papers for ${title}.`,
+  };
+}
+
 export default async function ExamPage({
   params,
 }: {
